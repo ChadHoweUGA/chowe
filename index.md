@@ -7,3 +7,6 @@
 #
 layout: home
 ---
+Here is some stuff.
+
+Where does it goe
