@@ -15,7 +15,7 @@ minima:
 
   # generate social links in footer
   social_links:
-    twitter: @ChoweAthens
+    twitter: ChoweAthens
     github:  ChoweUGA
     # rss: rss
     # dribbble: jekyll
