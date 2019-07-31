@@ -12,29 +12,26 @@ Below is a list a resources that students might find useful for their research (
 - [RStudio](https://www.rstudio.com/): If you use R, you should use RStudio
 - [Rbrul](http://www.danielezrajohnson.com/rbrul.html): An R implementation of GoldVarb-style regression analysis by Daniel Ezra Johnson
 - [Language Variation Suite](https://languagevariationsuite.shinyapps.io/Pages/): tools for quantitative data analysis
-- [ELAN](https://tla.mpi.nl/tools/tla-tools/elan/: a very useful tool for transcribing and annotating linguistic data
+- [ELAN](https://tla.mpi.nl/tools/tla-tools/elan/): a very useful tool for transcribing and annotating linguistic data
 - [Transcriber](http://trans.sourceforge.net/en/presentation.php): a tool for segmenting, labeling and transcribing speech
 - [SPPAS](http://www.sppas.org/): "The automatic annotation and analyses of speech, is a scientific computer software tool, daily developed with the aim to be a robust and reliable software."
 
 ## Corpora and Corpus tools
 - [Collection of corpus resources available to UGA faculty and students](http://research.franklin.uga.edu/linglab/corpora)
-
-{% comment %}
-
-<li><a href="http://www.corpusdelespanol.org/">Corpus del Español</a> - Spanish corpus run out of BYU</li>
-	<li><a href="http://www.corpusdoportugues.org/">Corpus do Português</a> - Portuguese corpus run out BYU</li>
-	<li><a href="http://preseea.linguas.net/">PRESEEA</a> - A collection of sociolinguistic data from around the Spanish-speaking world</li>
-	<li><a href="http://www.rae.es/recursos/banco-de-datos">Real Academia Española</a> - different synchronic and diachronic corpora</li>
-	<li><a href="https://www.webcorpora.org/">COW</a> - High Quality Web Corpora</li>
-	<li><a href="http://corpora.lancs.ac.uk/lancsbox/">LANCSBox</a> -&nbsp;software package for the analysis of language data and corpora</li>
-	<li><a href="https://uclouvain.be/en/research-institutes/ilc/cecl/corpora.html">Center for English Corpus Linguistics (Louvain)</a> - A collection of several useful corpus resources</li>
-	<li><a href="http://lingtools.uoregon.edu/coraal/explorer/">CoRAAL</a> - Corpus of Regional African American Language, developed and hosted by the University Oregon</li>
-	<li><a href="https://cqpweb.lancs.ac.uk/">Lancaster Corpus Resources</a></li>
-	<li><a href="https://cesa.arizona.edu/links-other-sociolinguistic-corpora">University of Arizona Corpus Resources</a></li>
-</ul>
+- [Corpus del Español](http://www.corpusdelespanol.org/): Spanish corpus run out of BYU
+- <a href="http://www.corpusdoportugues.org/">Corpus do Português</a>; Portuguese corpus run out BYU
+- <a href="http://preseea.linguas.net/">PRESEEA</a>: A collection of sociolinguistic data from around the Spanish-speaking world
+- <a href="http://www.rae.es/recursos/banco-de-datos">Real Academia Española</a>: different synchronic and diachronic corpora
+- <a href="https://www.webcorpora.org/">COW</a>: High Quality Web Corpora
+- <a href="http://corpora.lancs.ac.uk/lancsbox/">LANCSBox</a>: software package for the analysis of language data and corpora
+- <a href="https://uclouvain.be/en/research-institutes/ilc/cecl/corpora.html">Center for English Corpus Linguistics (Louvain)</a>: A collection of several useful corpus resources
+- <a href="http://lingtools.uoregon.edu/coraal/explorer/">CoRAAL</a>: Corpus of Regional African American Language, developed and hosted by the University Oregon
+- <a href="https://cqpweb.lancs.ac.uk/">Lancaster Corpus Resources</a>
+- <a href="https://cesa.arizona.edu/links-other-sociolinguistic-corpora">University of Arizona Corpus Resources</a>
 
 <h3>Other Tools and Resources</h3>
 
+{% comment %}
 <ul>
 	<li><a href="http://www.essex.ac.uk/linguistics/external/clmt/latex4ling/">LaTeX for Linguists</a></li>
 	<li><a href="https://rmarkdown.rstudio.com/">RMarkdown</a> - A markup language useful for creating documents and presentations (and other delights)</li>
