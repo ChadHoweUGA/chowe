@@ -44,6 +44,8 @@ minima:
 #header_pages:
 # - about.md
 
+include /poptweet.html 
+
 # Build settings
 theme: minima
 
