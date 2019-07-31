@@ -1,6 +1,5 @@
 title: Chad Howe, PhD
-author: ChadHoweUGA
-office: 218 Gilbert Hall
+author: 
 email: chowe@uga.edu
 description: > # this means to ignore newlines until "show_excerpts:"
   This is the website for Chad Howe, Associate Professor of Spanish Linguistics at the University of Georgia.
@@ -51,3 +50,4 @@ theme: minima
 plugins:
  - jekyll-feed
  - jekyll-seo-tag
+ - lazy_tweet_embedding.rb
