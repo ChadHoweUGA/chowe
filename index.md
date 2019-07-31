@@ -14,7 +14,6 @@ My principle area of research is language variation and change, primarily focusi
 
 Below are some of my current (and recent) projects. For a full description of these projects, go to my research page, which also includes recent/forthcoming publications and presentations. For news regarding current research, teaching, graduate student goings-on, and other follies, please check out my Twitter feed (@ChoweAthens). 
 
-{%comment
 This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
 
 You can find the source code for Minima at GitHub:
@@ -27,5 +26,3 @@ You can find the source code for Jekyll at GitHub:
 
 
 [jekyll-organization]: https://github.com/jekyll
-
-comment%}
