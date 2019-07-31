@@ -1,5 +1,5 @@
 # Welcome
-I am an Associate Professor of Spanish Linguistics with a joint appointment in the Department of Romance Languages and the Department of Linguistics at the University of Georgia. I am also faculty in the Latin American and Caribbean Studies Institute where I serve as the coordinator for the Quechua Language Program.
+I am an Associate Professor of Spanish Linguistics with a joint appointment in the [Department of Romance Languages](https://www.rom.uga.edu/) and the [Department of Linguistics](http://www.linguistics.uga.edu/) at the University of Georgia. I am also faculty in the Latin American and Caribbean Studies Institute where I serve as the coordinator for the Quechua Language Program.
 
 My principle area of research is language variation and change, primarily focusing on structural phenomena in the Romance Languages. More generally, I investigate the forces that shape language use and the subsequent effect that these forces have on how language evolves. The most recent extension of this research involves analyzed data from social media for evidence of language change. I am also involved in work related to Spanish/Quechua contact.
 
