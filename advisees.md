@@ -15,4 +15,11 @@ If you’re interested in working with me, please take a look at my current Advi
 
 ## Current Advisees
 
-
+- [Bethany Bateman](https://www.rom.uga.edu/directory/people/bethany-bateman) (PhD, Romance Languages), Areas of Research: Sociolinguistics, Spanish/Quechua Contact
+- [Sarah Bigger](https://www.rom.uga.edu/directory/people/sarah-bigger) (PhD, Romance Languages), Areas of Research:&nbsp;Sociolinguistics, Spanish/Quechua Contact
+- [Andrew Bray]()http://www.linguistics.uga.edu/directory/people/andrew-bray) (PhD, Linguistics), Areas of Research: Sociolinguistics, language use among hockey players
+- [Madeline Critchfield](http://rom.uga.edu/directory/madeline-critchfield)(PhD, Romance Languages), Areas of Research:&nbsp;Areas of Research: Sociolinguistics, Spanish/Miskitu Contact
+- [Rachel Kim](http://www.linguistics.uga.edu/directory/people/dot-eum-kim) (PhD, Linguistics), Areas of Research: Sociolinguistics, perception of US dialects by L2 speakers of English
+- [Camila Lívio](http://rom.uga.edu/directory/camila-livio-emidio) (PhD, Romance Languages), Areas of Research: Sociolinguistics, language variation, grammaticalization in Portuguese
+- [Shannon Rodríguez](http://www.linguistics.uga.edu/directory/people/shannon-rodriguez) (PhD, Linguistics), Areas of Research:&nbsp;Sociolinguistics, Spanish in the US
+- [Joseph "Joey" Stanley](http://joeystanley.com/) (PhD, Linguistics), Areas of Research:&nbsp;</span><span>sociolinguistics, vowel variation in American English
