@@ -3,5 +3,16 @@ layout: page
 title: Students
 permalink: /students/
 ---
+If you’re interested in working with me, please take a look at my current Advisee Guide. This document is intended to provide some useful guidance in the process of completing your graduate requirements. It’s also a bit out of date so please contact me if you have any questions.
 
-This is some stuff for and about advisees.
+**NOTE:** Before you consider asking me to work with you as a major professor, please keep a few things in mind. First, you need to have taken at least one course with me in order for me to consider serving as your major professor. Second, unless you are working on something related to my current research, I will not be able to serve as a your major professor.
+
+## Important Information
+- [UGA Grad School Forms](http://grad.uga.edu/index.php/current-students/forms/)
+- [UGA Grad School Calendar](http://grad.uga.edu/index.php/current-students/important-dates-deadlines/)
+- [Romance Languages Graduate Handbook](http://rom.uga.edu/graduate-handbook)
+- [Linguistics Graduate Handbook](https://ling.franklin.uga.edu/sites/default/files/inline-files/Graduate%20Handbook%20Revised%20July%202019.pdf)
+
+## Current Advisees
+
+
