@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Advisees
-permalink: /advisees/
+title: Students
+permalink: /students/
 ---
 
 This is some stuff for and about advisees.
