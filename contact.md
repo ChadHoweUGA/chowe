@@ -15,7 +15,7 @@ Athens, GA 30602
 
 USA
 
-- Phone: (706) 583-0792 (direct)
+- Phone: (706) 583-0792 (Office)
 - Phone: (706) 542-1075 (Romance Languages Office)
 - Fax: (706) 542-3287
 
