@@ -20,16 +20,16 @@ My principle area of research is language variation and change, primarily focusi
 
 ## Current Projects
 
-### Incipiente language shift in a southern Latino community
+### Incipient language shift in a southern Latino community
 This project was developed in collaboration with the Roswell Voices project, which began in 2002 as a partnership between researchers at the University of Georgia (Professors William A. Kretzschmar, Jr. and Sonja Lanehart) and the Roswell Folk and Heritage Bureau, to document language and life in the community. Preliminary work indicates extended contact-induced language shift, observed in both the English and Spanish of bilingual communities (Wilson 2013, Limerick 2014). We have argued that the Mid-Atlantic US in general and Roswell, GA in particular represent an ideal test case for studying emergent speech communities in that it displays several of the benchmarks of demographic change characteristic of American urbanization during the end of the twentieth century. The combination of demographic and linguistic factors exhibited in Roswell offers a compelling new case study in our attempt to answer questions about the emergence of language patterns in the presence of relative social, ethnic, and linguistic heterogeneity. In the proposed study, we assume the perspective of individual speakers as loci for the adaptation and innovation of social practices, in this case manifested by language variables. The aggregate affect of individual speaker behavior is then proposed as a way of representing the language of a speech community. By observing the linguistic behavior of Spanish speaking residents in Roswell, this study takes advantage of a timely opportunity to observe patterns of language use as a function of the social practices of disparate communities of language users.
 
 #### Papers/Presentations:
 
-1.  Limerick, Philip. 2017. Language Contact in the US Southeast: The Case of Spanish Subject Expression in an Emerging Bilingual Community in Georgia. Spanish in Context. 14.1:53-77.
+1.  Limerick, Philip. 2017. Language Contact in the US Southeast: The Case of Spanish Subject Expression in an Emerging Bilingual Community in Georgia. *Spanish in Context*. 14.1:53-77.
 2.  Howe, Chad and Philip Limerick. 2016. The PRET/PP distinction in Roswell Spanish. Seventh Annual Workshop on Immigrant Languages in the Americas. University of Georgia.
-3.  Limerick, Philip. Variable Clitic Placement in U.S. Spanish. Paper forthcoming in Proceedings of Hispanic Linguistics Symposium.
-Howe, Chad and Philip Limerick. 2016. Past reference in Roswell Spanish: The PRET/PP distinction and beyond. 8th International Workshop on Spanish Sociolinguistics. Universidad de Puerto Rico.
-4.  Limerick, Philip. 2014. Spanish subject expression in Roswell, Georgia: Dialect formation in an emerging bilingual community. University of Georgia MA Thesis.
+3.  Limerick, Philip. Variable Clitic Placement in U.S. Spanish. Paper forthcoming in *Proceedings of Hispanic Linguistics Symposium*.
+4.  Howe, Chad and Philip Limerick. 2016. Past reference in Roswell Spanish: The PRET/PP distinction and beyond. 8th International Workshop on Spanish Sociolinguistics. Universidad de Puerto Rico.
+5.  Limerick, Philip. 2014. Spanish subject expression in Roswell, Georgia: Dialect formation in an emerging bilingual community. University of Georgia MA Thesis.
 
 
 ### Indigenous languages in Latin America: Contact, Shift, and Maintenance
