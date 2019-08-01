@@ -43,4 +43,4 @@ In coordination with the Latin American Indigenous Languages Initiative, this p
 4.  Bateman, Bethany and Chad Howe. 2016. Runasimita yachasunchis: Best practices in Quechua language education. 19th Annual Conference on the Americas. Milledgeville, GA.
 5.  Howe, Chad.  2015. Plurality in Quechua: Some (socio)linguistic questions. Plenary Lecture at the Linguistics Society at UGA annual conference. Athens, GA.
 6.  Bove, Kate and Chad Howe. 2015. Grammatical Borrowing as an indicator of dual identity: the case of plural marking in Quechua- Spanish bilinguals. Forging Linguistic Identities. Towson University.
-7.  Bateman, Bethany. 2015. Reportative evidentiality in Wounaan meu-Spanish bilinguals: A comparative examination of dice(n) que. University of Georgia Masters Thesis.
+7.  Bateman, Bethany. 2015. *Reportative evidentiality in Wounaan meu-Spanish bilinguals: A comparative examination of* dice(n) que. University of Georgia Masters Thesis.
