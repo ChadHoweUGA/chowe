@@ -4,7 +4,7 @@ title: Research
 permalink: /research/
 ---
 
-My principle area of research is language variation and change, primarily focusing on structural phenomena in the Romance Languages. More generally, I investigate the forces that shape language use and the subsequent effect that these forces have on how language evolves. The most recent extension of this research involves analyzed data from social media for evidence of language change. I am also involved in work related to Spanish/Quechua contact. For a full list of research-related goings on, please [see my current CV](https://github.com/ChadHoweUGA/HoweCV/blob/master/HoweCV.pdf).
+My principle area of research is language variation and change, primarily focusing on structural phenomena in the Romance Languages. More generally, I investigate the forces that shape language use and the subsequent effect that these forces have on how language evolves. The most recent extension of this research involves analyzed data from social media for evidence of language change. I am also involved in work related to Spanish/Quechua contact. For a full list of research-related goings on, please [see my current CV](https://drive.google.com/open?id=12AJlAyBTaXN46iEJOa2ko8zDzXhHKNwI).
 
 ## Research Interests
 1.  Language variation and language change
