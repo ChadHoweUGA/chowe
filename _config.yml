@@ -46,6 +46,7 @@ header_pages:
  - research.md
  - advisees.md
  - resources.md
+ - contact.md
 
 # Build settings
 theme: minima
