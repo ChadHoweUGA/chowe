@@ -1,5 +1,5 @@
 title: Chad Howe, PhD
-author: 
+author: 706-541-1075
 email: chowe@uga.edu
 description: > # this means to ignore newlines until "show_excerpts:"
   This is the website for Chad Howe, Associate Professor of Spanish Linguistics at the University of Georgia.
@@ -43,7 +43,7 @@ minima:
 # If you want to link only specific pages in your header, uncomment
 # this and add the path to the pages in order as they should show up
 #header_pages:
-# - about.md
+ - research.md
 
 # Build settings
 theme: minima
