@@ -4,7 +4,7 @@ title: Resources
 permalink: /resources/
 ---
 
-Below is a list a resources that students might find useful for their research (and teaching). I've pillaged heavily (and, in some instances, copied) [Dr. Peggy Renwick's thorough list of resources](http://faculty.franklin.uga.edu/mrenwick/phonetics-phonology-resources)
+Below is a list a resources that students might find useful for their research (and teaching). I've pillaged heavily (and, in some instances, copied) [Dr. Peggy Renwick's thorough list of resources](http://faculty.franklin.uga.edu/mrenwick/phonetics-phonology-resources). Suggestions welcome!
 
 ## Tools for data analysis
 - [UGA Statistical Consulting Center](http://www.stat.uga.edu/consulting)
