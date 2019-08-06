@@ -28,6 +28,8 @@ Below is a list a resources that students might find useful for their research (
 - <a href="http://lingtools.uoregon.edu/coraal/explorer/">CoRAAL</a>: Corpus of Regional African American Language, developed and hosted by the University Oregon
 - <a href="https://cqpweb.lancs.ac.uk/">Lancaster Corpus Resources</a>
 - <a href="https://cesa.arizona.edu/links-other-sociolinguistic-corpora">University of Arizona Corpus Resources</a>
+- [SPeech Across Dialects of English (SPADE)](https://spade.glasgow.ac.uk/): This is a very cool project that seeks to develop tools for doing large-scale analysis of speech data.
+
 
 ## Other Tools and Resources
 - <a href="http://www.essex.ac.uk/linguistics/external/clmt/latex4ling/">LaTeX for Linguists</a>
