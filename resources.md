@@ -54,6 +54,8 @@ Below is a list a resources that students might find useful for their research (
 - <a href="http://www.quechua.org.uk/">Quechua</a>: A somewhat dated but <strong>very </strong>useful collection of resources for folks interested in Quechua/Quichua/Runasimi
 
 ## Stay connected / Get involved
+There are lots of ways to stay active in the linguistics community at UGA. In Romance Languages, there are [weekly conversation groups](http://rom.uga.edu/conversation-groups-and-language-tables) for French, Italian, Portuguese, and Spanish (and sometimes Catalan), as well as the [Romance Languages Colloquium](http://rom.uga.edu/events/all). In the [Department of Linguistics](http://www.linguistics.uga.edu/department-calendar), there are regular talks by internal and external speakers and several events hosted by the [Linguistics Society at the University of Georgia (LSUGA)](http://www.linguistics.uga.edu/lsuga), including the [Linguistics Conference at UGA](http://www.linguistics.uga.edu/linguistics-conference), now in its sixth iteration. Finally, if you're interested in joining one of our listservs, please contact me for access to either the **Romance Linguistics Listserv (ROMLING-L)** or the **Latin American Indigenous Languages Listserv (LAIL-L)**.
+
 - <a href="http://languagelog.ldc.upenn.edu/nll/">Language Log</a>: A great (and in fact award-winning)&nbsp;blog for linguists
 - <a href="https://lingthusiasm.com/">Lingthusiasm</a>: podcast that's enthusiastic about linguistics by Gretchen McCulloch and Lauren Gawne.
 - <a href="http://www.languageonthemove.com/#">Language on the Move</a>: a peer-reviewed sociolinguistics research site devoted to multilingualism, language learning and intercultural communication in the contexts of globalization and migration
