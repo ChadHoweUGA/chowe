@@ -15,6 +15,7 @@ Below is a list a resources that students might find useful for their research (
 - [ELAN](https://tla.mpi.nl/tools/tla-tools/elan/): a very useful tool for transcribing and annotating linguistic data
 - [Transcriber](http://trans.sourceforge.net/en/presentation.php): a tool for segmenting, labeling and transcribing speech
 - [SPPAS](http://www.sppas.org/): "The automatic annotation and analyses of speech, is a scientific computer software tool, daily developed with the aim to be a robust and reliable software."
+- [Praat](http://www.fon.hum.uva.nl/praat/): The (linguistics) industry standard in doing phonetic analysis
 
 ## Corpora and Corpus tools
 - [Collection of corpus resources available to UGA faculty and students](http://research.franklin.uga.edu/linglab/corpora)
