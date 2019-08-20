@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Data Visualization Worksho-Intro to GGplot2"
+title: "Data Visualization Workshop-Intro to GGplot2"
 category: news
 ---
 
