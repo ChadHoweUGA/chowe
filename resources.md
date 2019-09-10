@@ -62,5 +62,5 @@ There are lots of ways to stay active in the linguistics community at UGA. In Ro
 - <a href="http://www.languageonthemove.com/#">Language on the Move</a>: a peer-reviewed sociolinguistics research site devoted to multilingualism, language learning and intercultural communication in the contexts of globalization and migration
 - <a href="https://citizensociolinguistics.com/">Citizen Sociolinguistics</a>: A great blog by Prof. Betsy Rymes at the University of Pennsylvania
 - <a href="http://www.athensoconeecasa.org/">Athens-Oconee CASA</a>: Court Appointed Special Advocates
-- < a href="http://athensamistad.com/">Casa de Amistad</a>: Casa de Amistad works with the Latino and Hispanic population in the Northeast Georgia area. They provide social services, referrals, translation, education and advocacy.
+- [Casa de Amistad](http://athensamistad.com/): Casa de Amistad works with the Latino and Hispanic population in the Northeast Georgia area. They provide social services, referrals, translation, education and advocacy.
 - <a href="https://athensforeveryone.com/">Athens for Everyone</a>
