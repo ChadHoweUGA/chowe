@@ -13,7 +13,7 @@ My principle area of research is language variation and change, primarily focusi
 
 ## Recent/Upcoming Publications and Presentations
 1.  2019 (October) Intensiﬁcation in Brazilian Portuguese: muito, bem and beyon.Poster presentation at New Ways of Analyzing Variation 48. University of Oregon. (with Camila Lívio)
-2.  2019 (October) From placeholder to hesitation marker: na in Quechua/Spanish bilingual speech.Poster presentation at New Ways of Analyzing Variation 48. University of Oregon. (with Bethany Bateman and Sarah Hubbel) [Examples](https://drive.google.com/open?id=1kgGVrpn-CRjObB5n_UxhMMwimIkIDYu8)
+2.  2019 (October) From placeholder to hesitation marker: na in Quechua/Spanish bilingual speech.Poster presentation at New Ways of Analyzing Variation 48. University of Oregon. (with Bethany Bateman and Sarah Hubbel) [Poster](https://drive.google.com/open?id=1dhE9oBcFdeLwC_QZfTeoKwfAy1I0g7GN) [Examples](https://drive.google.com/open?id=1kgGVrpn-CRjObB5n_UxhMMwimIkIDYu8)
 3.  Howe, Chad and Philip Limerick. (October 2018). "The PRET/PP distinction in US Spanish: Evidence for contact-induced change?" Hispanic Linguistics Symposium 2018. University of Texas at Austin.
 4.  Howe, Chad and Camila Lívio. (October 2018). "Innovation and change in the language of social media: Evaluative markers in Spanish and Portuguese." Hispanic Linguistics Symposium 2018. University of Texas at Austin.(with Camila Lívio)
 5.  Howe, Chad. (September 2018). "A corpus analysis of category change: Spanish temporal constructions as syntactic hybrids." American Association for Corpus Linguistics. Georgia State University, Atlanta, GA.
