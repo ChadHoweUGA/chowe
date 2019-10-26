@@ -18,6 +18,7 @@ USA
 - Phone: (706) 583-0792 (Office)
 - Phone: (706) 542-1075 (Romance Languages Office)
 - Fax: (706) 542-3287
+- [ORCID](https://orcid.org/0000-0002-3044-1443)
 
 ## Teaching Schedule (Fall 2019)
 1.  LING(ENGL) 4886/6886: Text and Corpus Analysis
