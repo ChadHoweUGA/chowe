@@ -17,14 +17,15 @@ If you’re interested in working with me, please take a look at [my current Adv
 
 - [Bethany Bateman](https://www.rom.uga.edu/directory/people/bethany-bateman) (PhD, Romance Languages), Areas of Research: Sociolinguistics, Spanish/Quechua Contact
 - [Andrew Bray](http://www.linguistics.uga.edu/directory/people/andrew-bray) (PhD, Linguistics), Areas of Research: Sociolinguistics, language use among hockey players
-- [Madeline Critchfield](http://rom.uga.edu/directory/madeline-critchfield)(PhD, Romance Languages), Areas of Research:&nbsp;Areas of Research: Sociolinguistics, Spanish/Miskitu Contact
-- [Sarah Hubbel](https://www.rom.uga.edu/directory/people/sarah-bigger) (PhD, Romance Languages), Areas of Research:&nbsp;Sociolinguistics, Spanish/Quechua Contact
+- [Javier Cabezas Zapata](https://rom.uga.edu/directory/people/javier-cabezas-zapata) (ABD, Romance Languages) Areas of Research: language variation, language change, grammaticalization in Spanish
+- [Madeline Critchfield](http://rom.uga.edu/directory/madeline-critchfield)(PhD, Romance Languages), Areas of Research: Areas of Research: Sociolinguistics, Spanish/Miskitu Contact
+- [Sarah Hubbel](https://www.rom.uga.edu/directory/people/sarah-bigger) (PhD, Romance Languages), Areas of Research: Sociolinguistics, Spanish/Quechua Contact
 - [Rachel Kim](http://www.linguistics.uga.edu/directory/people/dot-eum-kim) (PhD, Linguistics), Areas of Research: Sociolinguistics, perception of US dialects by L2 speakers of English
 - [Dallin V. Larsen](http://rom.uga.edu/directory/people/dallin-v-larsen) (PhD, Romance Languages), Areas of Research: History of Spanish, Grammaticalization, Pragmaticalization
 - [Camila Lívio](http://rom.uga.edu/directory/camila-livio-emidio) (PhD, Romance Languages), Areas of Research: Sociolinguistics, language variation, grammaticalization in Portuguese
-- [Shannon Rodríguez](http://www.linguistics.uga.edu/directory/people/shannon-rodriguez) (PhD, Linguistics), Areas of Research:&nbsp;Sociolinguistics, Spanish in the US
+- [Shannon Rodríguez](http://www.linguistics.uga.edu/directory/people/shannon-rodriguez) (PhD, Linguistics), Areas of Research: Sociolinguistics, Spanish in the US
 - [Joseph "Joey" Stanley](http://joeystanley.com/) (PhD, Linguistics), Areas of Research: sociolinguistics, vowel variation in American English
-  
+
 ## Former Advisees
 To find a copy of a thesis or dissertation, go to the [UGA repository](http://dbs.galib.uga.edu/cgi-bin/getd.cgi?userid=galileo&amp;serverno=22&amp;instcode=uga1) and search by the author's name.
 
