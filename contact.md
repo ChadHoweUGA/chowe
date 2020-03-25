@@ -32,4 +32,6 @@ USA
 | 12:30-1:45 | LING 2100 | LING 2100 |
 | ----------- | ----------- |  ----------- |
 
-- Office Hours: Fridays, 9:00-11:00
+## Office Hours
+
+Fridays from 9:00-11:00
