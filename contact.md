@@ -21,16 +21,15 @@ USA
 - [ORCID](https://orcid.org/0000-0002-3044-1443)
 
 
-## Teaching Schedule (Fall 2019)
-1.  LING(ENGL) 4886/6886: Text and Corpus Analysis
-2.  SPAN 6350: Romance Linguistics Theory and Analysis
-3.  FYOS 1001: Endangered Languages: Preserving the World's Voices
+## Teaching Schedule (Spring 20120)
+1.  LING 2100: The Study of Language
+2.  SPAN 6450: Variación y sociolingüística en español
 
 	| Time | Tuesdays | Thursdays |
 | ----------- | ----------- |  ----------- |
-| 9:00-11:00 | Office Hours | FYOS 1001 |
-| 11:00-12:15 | LING 4886/6886 | LING 4886/6886 |
-| 12:30-1:45 | SPAN 6350 | SPAN 6350 |
+| 9:30-10:45 | SPAN 6450 | SPAN 6450 |
+| 11:00-12:15 | LING 2100 | LING 2100 |
+| 12:30-1:45 | LING 2100 | LING 2100 |
 | ----------- | ----------- |  ----------- |
 
-
+- Office Hours: Fridays, 9:00-11:00
