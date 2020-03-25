@@ -48,6 +48,7 @@ header_pages:
  - advisees.md
  - resources.md
  - contact.md
+ - news.md
 
 # Build settings
 theme: jekyll-theme-modernist
