@@ -1,7 +1,6 @@
 title: Chad Howe, PhD
 author: 218 Gilbert Hall
 email: chowe@uga.edu
-logo: avatar2.jpg
 description: > # this means to ignore newlines until "show_excerpts:"
   This website was built by Chad Howe, Associate Professor of Spanish Linguistics at the University of Georgia, and distributed via GitHub Pages. All opinions expressed are those of Chad Howe.
 #  Write an awesome description for your new site here. You can edit this
@@ -20,7 +19,7 @@ minima:
   social_links:
     twitter: ChoweAthens
     github:  ChadHoweUGA
-    # researchgate: profile/Chad_Howe2
+    researchgate: profile/Chad_Howe2
     # rss: rss
     # dribbble: jekyll
     # facebook: jekyll
