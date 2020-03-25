@@ -4,4 +4,4 @@ title: News
 permalink: /news/
 ---
 
-stuff here
+Interested in the latest goings-on?
