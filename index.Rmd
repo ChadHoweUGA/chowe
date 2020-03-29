@@ -1,0 +1,85 @@
+---
+title: "Chad Howe, Associate Professor"
+author:  "[Department of Romance Languages](https://rom.uga.edu/) and [Department of Linguistics](https://www.linguistics.uga.edu/) at [the University of Georgia](https://www.uga.edu/)"
+output:
+  html_document:
+    fig_width: 1
+---
+
+----
+
+I am [Associate Professor of Spanish Linguistics](http://rom.uga.edu/directory/people/chad-howe) with a joint appointment in the [Department of Romance Languages](http://rom.uga.edu/) and the [Department of Linguistics](http://www.linguistics.uga.edu/) at the University of Georgia. I am also faculty in the [Latin American and Caribbean Studies Institute](http://lacs.franklin.uga.edu/) where I serve as the coordinator for the [Quechua Language Program](http://lacs.franklin.uga.edu/quechua-language).
+
+For an overview of my current (and recent) projects, go to my research page, which also includes recent/forthcoming publications and presentations. For news regarding current research, teaching, graduate student goings-on, and other follies, please check out [my Twitter feed](https://twitter.com/ChoweAthens). For information regarding my current class schedule and office hours, please consult my contact information below. [My current cv](https://drive.google.com/open?id=12AJlAyBTaXN46iEJOa2ko8zDzXhHKNwI) has the most up-to-date summary of what's going on.
+
+Current students are encouraged to consult the [Resources page of my website](https://chadhoweuga.github.io/lchowe/resources.html). This (non)exhaustive list provides an overview of different resources that will help in your research, teaching, and non-UGA life. Prospective students might have a look at the list of students whose work I've directed.
+
+----
+
+## Teaching Schedule (Spring 2020)
+1.  LING 2100: The Study of Language
+2.  SPAN 6450: Variación y sociolingüística en español
+3.  Office Hours: Fridays from 9:00-11:00 (or by appointment)
+
+| Time | Tuesdays | Thursdays |
+| ----------- | ----------- |  ----------- |
+| 9:30-10:45 | SPAN 6450 | SPAN 6450 |
+| 11:00-12:15 | LING 2100 | LING 2100 |
+| 12:30-1:45 | LING 2100 | LING 2100 |
+
+
+----
+
+<!---From http://stackoverflow.com/questions/31753897/2-column-section-in-r-markdown:
+Put in your css file or directly in rmarkdown--->
+<style>
+  .col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+  }
+</style>
+ 
+<div class="col2">
+
+<center><img src="images/ChadHowe1.jpg" width="200px"></center>
+
+<br>
+<br>
+
+**Contact Information**
+
+- Office: [218 Gilbert Hall](https://goo.gl/maps/8dMQbqdPuK94ttTY6)
+- Mail: Dept. of Romance Languages, 218 Gilbert Hall, Athens, GA 30602-1815
+- Phone: (706) 583-0792 (Office)
+- Fax: (706) 542-3287
+- [ORCID](https://orcid.org/0000-0002-3044-1443)
+
+</div>
+
+
+----
+
+
+<!--
+It's possible to create well-designed websites for free using [RStudio's R Markdown](http://rmarkdown.rstudio.com/) and hosting them on [Github](http://github.com). This is very new and incredibly cool. It is a really powerful way to communicate science using the same reproducible workflow you use for your analyses and collaborations.
+
+***Creating websites with R Markdown can be done without knowing R or HTML, CSS, etc,*** and that's where we'll start. However, R Markdown integrates with these tools so the more you know the more complex and beautiful your website can be. This tutorial borrows heavily from a lot of great tutorials and resources you should check out too -- there are links throughout. 
+
+The best way to learn is to follow along with your own laptop, but all are welcome. We'll spend half the time with the tutorial and half the time for you to work on your own website and get help. If you bring your laptop please do this beforehand: 
+
+1. install [RStudio](https://www.rstudio.com/products/rstudio/download/)
+1. create a [GitHub]((http://github.com)) account ([advice](http://happygitwithr.com/github-acct.html))
+1. set up your computer to talk to GitHub
+    - have RStudio linked directly (preferred) ([instructions sections 8-14](http://happygitwithr.com/hello-git.html))
+    - or install the [Desktop App](https://desktop.github.com/)
+    - or be familiar with git commands for the command line ([tutorial](https://try.github.io/levels/1/challenges/1))
+
+----
+
+
+**Examples:**
+
+We have been using R Markdown for the Ocean Health Index:  [**ohi-science.org/ohi-global**](http://ohi-science.org/ohi-global).  
+And R Markdown is much more than just websites -- here's a [**one-minute video about R Markdown**](http://rmarkdown.rstudio.com/lesson-1.html) to get you excited.
+-->

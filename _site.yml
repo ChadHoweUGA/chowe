@@ -1,0 +1,17 @@
+name: "Chad Howe, Ph.D."
+navbar:
+  title: "Chad Howe, Ph.D."
+  left:
+    - text: "Research"
+      href: research.html
+    - text: "Students"
+      href: students.html
+    - text: "Resources"
+      href: resources.html
+output_dir: "."
+output:
+  html_document:
+    theme: yeti
+    highlight: textmate
+    include:
+      after_body: _footer.html

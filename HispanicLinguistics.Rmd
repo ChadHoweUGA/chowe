@@ -1,0 +1,81 @@
+---
+title: "Hispanic Linguistics at UGA"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# Personnel
+## Core Faculty
+- [Dr. Gary Baker](https://rom.uga.edu/directory/people/gary-k-baker): Phonetics and Phonology
+- [Dr. Sarah Blackwell](https://rom.uga.edu/directory/people/sarah-blackwell): semantics/pragmatics, discourse analysis
+- [Dr. Pilar Chamorro](https://rom.uga.edu/directory/people/pilar-chamorro): (Formal) semantics
+- [Dr. Timothy Gupton](https://rom.uga.edu/directory/people/timothy-gupton): (Formal) syntax, second language acquisition
+- [Dr. Chad Howe](https://rom.uga.edu/directory/people/chad-howe): Language variation, sociolinguistics
+- [Dr. Margaret Lubbers Quesada](https://rom.uga.edu/directory/people/margaret-lubbers-quesada): second language acquisition, historical linguistics
+- [Dr. Diana Ranson](https://rom.uga.edu/directory/people/diana-l-ranson): Historical linguistics, comparative Romance
+
+## Affiliated Faculty
+
+- [Dr. Kelly Farmer Ford](https://rom.uga.edu/directory/people/kelly-farmer-ford): Sociolinguistics, French applied linguistics, second language acquisition and foreign language pedagogy, language variation and change, and media-based studies of language change.
+- [Dr. Leslie Gordon](https://rom.uga.edu/directory/people/leslie-gordon): Phonetics, Phonology, Second Lannguage Perception & Production, Second Language Teaching & Learning
+- [Dr. Peggy Renwick](https://rom.uga.edu/directory/people/margaret-renwick): Phonetics and Phonology
+
+
+----
+
+
+# Graduate Programs in Hispanic Linguistics
+## MA Hispanic Linguistics
+
+- [Program Requirements](https://rom.uga.edu/ma-hispanic-linguistics)
+- 18 hours of required courses
+- 9 hours of elective courses
+- Thesis and Non-Thesis Options
+- Some recent theses:
+  + *La gramaticalización de la estructura (NO) IMPORTAR + MINIMIZADOR; La negación y las palabras tabúes en español* (**Shannon McDonough**, 2018)
+  + *La adquisición de L3 del parámetro de objeto nulo en el portugués brasileño* (**Diogo Cosme**, 2016)
+  + *Native and non-native instructors? discourse patterns and feedback in upper-level Spanish classes* (**Leah Lemberg**, 2015)
+
+## PhD Hispanic Linguistics
+
+- [Program Requirements](https://rom.uga.edu/ph-d-romance-languages-hispanic-linguistics-area-emphasis)
+- 24 hours of ‘Required’ courses
+- 12 hours of elective courses
+- Comprehensive Exams taken in Year 3
+- Some recent dissertations:
+  + *Discourse markers in adolescent speech: contrasting native and non-native understanding, recognition, and use of Spanish reformulation markers* (Kristin Roberts)
+  + *Marcadores conversacionales como origen de intensificadores en el español peninsular: la gramaticalización de* venga (Inma Garnes, 2016)
+  + *Near-native speakers' recognition and production of idioms in L2 Spanish* (Mariana Stoyanova, 2013)
+
+
+----
+
+
+# Funding Opportunities at UGA
+
+- Teaching Assistantships
+- Graduate School Fellowships
+- [Foreign Language Area Scholarship (Summer/AY)](https://lacsi.uga.edu/funding-available-foreign-language-area-studies-fellowships-flas): For languages spoken in Latin America other than Spanish (e.g., Portuguese, Quechua)
+- [Tinker Field Research Grant](https://lacsi.uga.edu/funding-available-tinker-graduate-research-award): Used for funding travel to Latin America for MA and PhD students
+- [Willson Center for Humanities and Arts](https://willson.uga.edu/research/graduate-research-awards/)
+  + Recent ROML Awardees: Leticia Ricón Herce (Spring 2019), Sarah Bigger (Fall 2018), Bethany Bateman (Spring 2018)
+
+
+
+----
+
+# Resources for Linguists at UGA
+
+- Equipment for fieldwork
+  + Solid state recorders
+  + Microphones
+- Resources on campus
+  + Sound attenuated booth
+  + Recording equipment
+  + Portable eye-tracker
+  + Corpus server
+- Specialized Software
+  + Praat, Rstudio, ELAN
+

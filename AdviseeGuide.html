@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Advisee Guide</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Chad Howe, Ph.D.</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="research.html">Research</a>
+</li>
+<li>
+  <a href="students.html">Students</a>
+</li>
+<li>
+  <a href="resources.html">Resources</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Advisee Guide</h1>
+
+</div>
+
+
+<hr />
+<center>
+``Remember that your major professor is a busy person. If he [or she] isn’t, get a different major professor.’’ <em>Anonymous</em>
+</center>
+<hr />
+<div id="id" class="section level1">
+<h1><span class="header-section-number">1</span> Expectations</h1>
+<p>Below you will find details regarding my expectations as a major professor. Our mutual agreement to work together as advisor/advisee entails that you accept the conditions outlined throughout this document. Please remember that these expectations go both ways and that you should feel free to ask me about my approach to advisees.</p>
+<p>Choosing a major professor is an important first step in completing your graduate education. Keep in mind that if you have not had a class with a particular faculty member, it is not likely that this professor will be a suitable advisor. In fact, if you have not had a class with me, <strong>do not</strong> ask me to be your major professor; I will say no. In <a href="#you-and-your-major-professor">Section 4</a>, I have provided some questions that you might ask as you consider who your major professor might be. This decision will be different for MA and PhD students, though some of the same criteria may apply.</p>
+<div id="collaborative-research" class="section level2">
+<h2><span class="header-section-number">1.1</span> Collaborative Research</h2>
+<p>For anyone considering asking me to be his/her major professor, you will be expected to participate in some type of collaborative research with me. Collaborative research could include, for example, a conference presentation, a publication, or a joint grant application. MA students who choose to complete a thesis will be strongly encouraged to choose a research topic that complements my own research agenda. In linguistics, working with collaborative projects has become increasingly common, and I encourage this type of work with all my students. You should take advantage of your time as a graduate student to learn how to work on group research.</p>
+</div>
+<div id="presenting-papersposters" class="section level2">
+<h2><span class="header-section-number">1.2</span> Presenting papers/posters</h2>
+<p>In addition to working with me collaboratively, I expect you to present your research (either individually, with me, or in collaboration with other scholars) in academic settings. The first place to do so is at the <strong>Romance Linguistics Colloquium</strong> (held year-round) and the <strong>Linguistics Colloquium</strong> (held on Fridays in the Spring semester), each featuring talks by students and sometimes faculty from UGA and other institutions. Any student, MA or PhD, working with me is expected to give at least one presentation in the RLC related to his/her thesis/dissertation research; <strong>this is not optional</strong>. Moreover, there are a number of conferences that would be good venues for your work, e.g., the <em>Hispanic Linguistics Colloquium</em>, <em>Workshop on Spanish Sociolinguistics</em>, <em>Linguistic Symposium on Romance Languages</em>, <em>Southeastern Conference on Languages and Literatures</em>, <em>New Ways of Analyzing Variation</em>, <em>Annual LSA Meeting</em>, among many others. Presenting at academic conferences is one of the best ways to meet other students and faculty interested in your topic and to get feedback on your research. UGA has a number of resources available to students attending conferences, including departmental funds and Graduate School support.</p>
+</div>
+<div id="teaching" class="section level2">
+<h2><span class="header-section-number">1.3</span> Teaching</h2>
+<p>If you are a graduate assistant at UGA, you will have a number of duties related to the teaching of your classes. Although I won’t have a supervisory role in your teaching, I’m happy to offer advice as needed, such as it is. During each semester, my intention is to observe your teachoing at least once, just to have an idea of your teaching style so that I can address this in my letters of recommendation. Also, if you’d like for me to attend a class or would like to sit in on one of mind, just let me know. I’ve learned a lot about teaching from watching my students and am always looking to learn new approaches.</p>
+<p>You should also be prepared to treat your teaching (like your research) as another opportunity for professional development. As such, I highly recommend consulting with the <a href="https://ctl.uga.edu/">UGA Center for Teaching and Learning</a> which offers, among many other programs, a wide range of <a href="https://ctl.uga.edu/grad-student/">opportunities for Graduate Students</a>. Again, my primary focus regarding your education at UGA is helping you develop and execute a successful research program. But you should always look out for ways of improving your teaching.</p>
+</div>
+<div id="submitting-and-revising" class="section level2">
+<h2><span class="header-section-number">1.4</span> Submitting and Revising</h2>
+<p>At some point in your program (preferably sooner rather than later), I will give you a schedule specific to your program. This schedule will include dates for turning in different pieces of your MA thesis or dissertation. Regarding submission of materials, please keep in mind the following. Before any materials (in particular, chapters of a thesis or a dissertation) are submitted to the other members of your advisory committee, they will need to be approved by me. I will need to provide feedback on your work before you send it out to others. When you do submit something to me (and to others), it should be as polished as possible. <strong>Do not</strong> submit a set of bulleted notes and expect to get feedback. Finally, regarding turn-around times (see also the section on <strong>Selecting a Chair and Committee</strong>, my goal is to give you feedback on your work <strong>no later than two weeks after submission</strong>. I will make every effort to get your work returned to you in a timely manner.</p>
+<p>Also, you should feel free (and in fact obliged) to send me other submissions that you might be working on. In particular, I will be happy to read drafts of conference abstracts and journal/proceedings submissions. At the very least, you should have one other set of eyes reviewing your work before you send it out. I (and your committee members) will certainly be available to give you feedback on these items.</p>
+</div>
+<div id="letters-of-recommendation" class="section level2">
+<h2><span class="header-section-number">1.5</span> Letters of Recommendation</h2>
+<p>I am more than happy to provide letters of recommendation for my advisees, including those for whom I am not the major professor. However, please keep in mind that preparing multiple letters requires a considerable amount of time, even if the content of these letters is largely repeated for different applications. Thus, for any given letter writing venture that requires more than <strong>five (5)</strong> individual letters (e.g., letters for academic positions), students will be expected to use a dossier service, like <a href="http://career.uga.edu/graduate_school/interfolio">Interfolio</a>. This requirement applies to anyone (advisees and non-advisees) who may request that I provide a letter of recommendation.</p>
+<p>All requests for letters should be done with <strong>at least three weeks of advance notice</strong>. More substantive letters (e.g., letters for job applications), require more time; please keep this in mind as you plan your requests. When you ask for a letter (or letters), I’ll need the following:</p>
+<ol style="list-style-type: decimal">
+<li>Complete information about the program or job that you are applying for: This includes description of the job or the name of the specific degree program / study abroad program and a link to the program website, the name and address of the person to whom the letter should be sent [if it is not a standard online recommendation form, other special instructions concerning the letter, and the <font size="3" color="red">deadline</font>.</li>
+<li>Copies of other documents that you may be submitting along with your application (e.g., a CV or resumé, writing sample): These can be rough drafts. If you are applying for an academic position you must include a draft of your cover letter.</li>
+<li>Names and dates for the courses you took with me along with some indication of the work that you did in theses courses (e.g., titles of final papers): This will help in making sure that my memory doesn’t get in the way of providing helpful (and accurate) details in the letter.</li>
+<li>Any additional information that might be useful: It’s often the case that I make mention in my letters of extracurricular accomplishments. If you feel that there’s something you’d like for me to address, then you should certainly provide me with additional materials.</li>
+</ol>
+<p>Finally, I need to make two additional points regarding letters. First, unless you’re certain that I can provide a generally positive letter, then you should reconsider asking me for one. The better I know you and your work, the more specific the letter will be. But if you don’t believe that I will serve as a good or accurate recommender, then please ask someone else. Second, I welcome and appreciate ``Gentle Reminders’’ as needed, particularly as a deadline approaches.</p>
+</div>
+<div id="tech-savvy" class="section level2">
+<h2><span class="header-section-number">1.6</span> Tech Savvy</h2>
+<p>In completing your thesis or dissertation, you should make every effort to learn new skills that will be useful to in field. This includes research skills (e.g., quantitative analysis), software, and equipment. Starting in <strong>Fall 2020</strong>, all advisees will be required to use the newly revised <a href="https://github.com/DigiUGA/UGA-Dissertation-LaTeX-Template">UGA Dissertation LaTeX Template</a>, developed by Joey Stanley and Jonathan Crum. There are lots of resources for learning how to use LaTeX, including some available through the <a href="https://digi.uga.edu/digilab/#1544564021635-6ae22572-cb2d">UGA DigiLab</a>. For the purposes of working with me as an advisee, knowledge of the following resources will be required:</p>
+<ol style="list-style-type: decimal">
+<li><strong>LaTeX</strong>: As you will find out, there are plenty of ways to <strong>LaTeX</strong> (yes, it’s a verb!). One particularly easy way is to use <a href="https://www.overleaf.com/">Overleaf</a> which has a number of useful features that make getting started with <strong>LaTeX</strong> relatively easy. You can also <strong>LaTeX</strong> on your local machine (i.e. your laptop) using editors like <a href="https://atom.io/">Atom</a> or <a href="https://www.xm1math.net/texmaker/">TexMaker</a>.</li>
+<li><a href="https://www.zotero.org/">Zotero</a> (or some similar citation management system): Keeping track of what will end up being many references requires some tool designed for this purpose, especially since you will be using <strong>LaTeX</strong>. I recommend Zotero but there are others (e.g., Endnote).</li>
+<li><a href="https://www.r-project.org/">R</a> and <a href="https://rstudio.com/">RStudio</a>: At this point, using R and RStudio are standard in the field. There are <strong>numerous</strong> books about using R in linguistics (e.g., <span class="citation">Gries (2013)</span>, <span class="citation">Desagulier (2017)</span>, and <span class="citation">Winter (2020)</span>), in addition to other resources available for learning more about R.–&gt;</li>
+<li><a href="https://archive.mpi.nl/tla/elan">ELAN</a>: This is an annotation tool for audio and video recordings created by the great folks at the <a href="https://archive.mpi.nl/tla/">Language Archive</a>.</li>
+</ol>
+<p>This (woefully inadequate) list should provide you with a sense of my expectations regarding the skills you should be learning. There will be many other resources that will be useful as you navigate your research and teaching interests. If you have no background in coding or using programs like these, welcome to the club. Remember that now is the time for you to expose yourself to as many new ideas and techniques as possible. Take this time to push yourself into new areas, even it requires moving out of your tech-comfort zone. I strongly encourage you to interact with me and your fellow students in learning more about these resources. If you would like for me (or someone else) to arrange a workshop that covers any of these resources, I am more than happy to do that.</p>
+<hr />
+</div>
+</div>
+<div id="academic-requirements" class="section level1">
+<h1><span class="header-section-number">2</span> Academic Requirements</h1>
+<div id="ma-students" class="section level2">
+<h2><span class="header-section-number">2.1</span> MA Students</h2>
+<p>For information regarding the MA in Hispanic Linguistics, please read carefully both the <a href="http://www.rom.uga.edu/ma-hispanic-linguistics">Degree Requirements</a> and the <a href="http://www.rom.uga.edu/graduate-handbook">Romance Languages Graduate Handbook</a>, in particular <a href="http://www.rom.uga.edu/graduate-handbook#III2">section III.2</a>. This section provides a ``Suggested Timetable to Complete the M.A. program’’, which is normally done in two years. For students in the Department of Linguistics, you should read the information regarding the <a href="https://ling.franklin.uga.edu/graduate/ma-thesis-introduction">MA (thesis)</a> or <a href="https://ling.franklin.uga.edu/graduate/ma-non-thesis-introduction">MA (non-thesis)</a>. The <a href="http://www.rom.uga.edu/graduate-handbook#III2">Checklist in Section III.2.g</a> explains the specific requirements for completion of the MA, most of which apply both to students in Romance Languages and Linguistics. Students from the Department of Linguistics should also consult the website regarding <a href="http://linguistics.uga.edu/graduate-advising">Graduate Advising</a> as well as the <a href="https://ling.franklin.uga.edu/sites/default/files/inline-files/Graduate%20Handbook%20Revised%20Feb%202020.pdf">Linguistics Graduate Student Handbook</a>. In addition to this information, you should also consider the following:</p>
+<ul>
+<li><strong>All</strong> linguistics students (regardless of their particular areas of interest) should complete the <a href="https://research.uga.edu/hrpp/irb/">Internal Review Board (IRB) training</a> required for working with human subjects. Ideally, you should do this during your <strong>first semester</strong>.</li>
+<li>If you’re planning to do fieldwork or experiments, I strongly urge you to apply for funding (see Section on <strong>Funding Opportunities</strong>). Even if you don’t receive any funds, the experience of applying will be beneficial.</li>
+<li>Even though studying or working in the summer is not strictly speaking required, it is an ideal time to complete data collection or experiment development/implementation. In fact, taking courses over the summer can be a good way to get a jump on your coursework. In addition to occasional offerings from Romance Languages, the Statistics Department routinely offers <strong>STAT 6210/6220 and 6315</strong>, both of which offer students comprehensive coverage of the types of quantitative methods used in linguistic research. For a more specific introduction, however, I strongly recommend that students take , “Quantitative Methods in Linguistics.”</li>
+<li>Students working with me, as either MA or PhD students, will be <em>required</em> to present their research at some forum held on campus, such as the Romance Languages Colloquium or the Linguistics Colloquium. MA students will be expected to present in the fall or spring of their second year.</li>
+</ul>
+<p>Below is a (non-exhaustive) list of theses that I have directed:<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<ul>
+<li><strong>Ryan Dekker</strong> (MA, Linguistics), Thesis Title: <em>Income Effects on a Speech Community: Oconee County within Northeastern Georgia</em> (2018)</li>
+<li><strong>Bethany Bateman</strong> (MA, Romance Languages), Thesis Title: <em>Reportative evidentiality in Wounaan meu-Spanish bilinguals: A comparative examination of</em> dice(n) que (2015)</li>
+<li><strong>Philip Limerick</strong> (MA, Romance Languages), Thesis Title: <em>Spanish subject expression in Roswell, Georgia: Dialect formation in an emerging bilingual community</em> (2014)</li>
+<li><strong>Kristen Fredriksen</strong> (MA, Linguistics), Thesis Title: <em>Constraints on perfect auxiliary contraction: Evidence from spoken American English</em> (2012)</li>
+<li><strong>Kerry Steinberg</strong> (MA, Romance Languages), Thesis Title: <em>Language Use, Language Attitudes and Mobility: The Case of the Rural and Urban Areas of Coronel Oviedo, Paraguay</em> (2010)</li>
+<li><strong>William Pennington</strong> (MA, Romance Languages), Thesis Title: <em>Split antecedents and pronominal expressions in Spanish</em> (2008)</li>
+<li><strong>Ninosca Pérez Minchola</strong> (MA, Romance Languages, Thesis Title: <em>El rol de la cortes'ia en entrevistas políticas conflictivas en la televisión peruana</em> (2007)</li>
+</ul>
+<blockquote>
+<p><strong><em>A note on Thesis vs. Non-Thesis</em></strong> The choice between doing the thesis or the non-thesis option of the MA is one that should be guided largely by your experiences in your first semester (or two) at UGA. After arriving at UGA, you should talk to your professors and get an idea of what you might be able to do for thesis research. Keep in mind that you’re not necessarily expected to come up with a thesis topic completely on your own. Ideally, your research would relate to/interface with/contribute to the work being conducted by the faculty in the department. If you’re considering moving onto a PhD after the MA, you should consider your decision of doing a thesis very carefully. Although the trend as of late seems to be that MA programs in Spanish Linguistics (and some in General Linguistics) do not require a thesis, completing a thesis-like project can be a good way of gauging your interest and ability in the field. Moreover, since the idea of a thesis is to have you produce a piece of research that is of sufficient quality to present at academic conferences and to publish in scholarly journals, then this work could be used as part of your application to PhD programs (should you be interested in pursuing a career in academics). In short, I urge you to keep your options open; you never know when you might be struck by inspiration and decide that research on the complex nature of variable past reference in Spanish is indeed your true calling.</p>
+</blockquote>
+</div>
+<div id="phd-students" class="section level2">
+<h2><span class="header-section-number">2.2</span> PhD Students</h2>
+<p>So, you’ve decided to do a PhD. You will likely find yourself in the position of asking yourself (and having others ask you) “Why are you doing this?”. This is normal and will continue throughout your career in academia. The more relevant question to ask yourself at this point is “How am I going to get this done?”. For students in Romance Languages, you should consult the <a href="http://www.rom.uga.edu/ph-d-hispanic-linguistics">Degree Requirements for the PhD in Hispanic Linguistics</a> as well as the <a href="http://www.rom.uga.edu/graduate-handbook#III3">relevant sections of the RL Graduate Student Handbook</a>. Once again, you should pay close attention to the sections outlining the Suggested Timetable (III.3.g) and the Checklist (III.3.h). For students in the Department of Linguistics, you should consult the following information provided in <a href="https://ling.franklin.uga.edu/graduate/phd-introduction%7D%7Bthis%20section%20of%20the%20departmental%20website">this section of the departmental website</a>.</p>
+<p>Like any life choice, choosing to do a PhD should be approached with considerable care and preparation. There are <strong>many</strong> resources on the internet regarding this question, and I would suggest going through them before you commit. It’s also a good idea to take a look at resources like the <em>Chronicle of Higher Education</em>, which has resources regarding the academic job market. I also recommend a document entitled <a href="http://people.cs.umass.edu/~wallach/how_to_be_a_successful_phd_student.pdf">How to Be a Successful PhD Student</a> (by Mark Dredze at Johns Hopkins University and Hanna M. Wallach University of Massachusetts Amherst). In addition to many other helpful comments, Dredze and Wallach note that “[g]etting a PhD takes a long time and a great deal of dedication and hard work. Unless you really want it, you will not finish the PhD.” A healthy dose of practical consideration is helpful before embarking on a program of doctoral study.</p>
+<p>Here are a few things you have to keep in mind if you’re considering doing a PhD in general and with me more specifically:</p>
+<ul>
+<li>As mentioned in the section on <strong>Expectations</strong>, you should make every effort during your doctoral studies to expose yourself to new ideas. This includes (but is not limited to) attending lectures, learning new research techniques/methods, engaging in collaborative research with faculty and other students, and taking courses (when possible) that are not necessarily required by your program of study.</li>
+<li>Students working with me, as either MA or PhD students, will be <strong>required</strong> to present their research at the Romance Languages Colloquium and the Linguistics Colloquium. MA students will be expected to present in the fall or spring of their second year. PhD students will present at least once in the RLC.</li>
+<li>Applying for funds to conduct research is part and parcel of what you’ll be doing in academics. And though getting a research grant is time-consuming and often frustrating, it is absolutely essential to your formation as a scholar to solicit funding for your work. In the section on <strong>Funding</strong>, I explain some of the resources available for research funding. Please have a look at these resources. If you know of any that aren’t included, feel free to let me know.</li>
+<li>As a PhD student, you will be focusing more and more on an exceptionally small piece of the larger realm of scholarly exploration. However, this is not an excuse to avoid taking courses in other linguistic disciplines (or even from other areas of the humanities or social sciences). Indeed, some of the best research is conducted at the interfaces between areas of study (e.g., linguistics and sociology) and should be considered as viable areas of inquiry. However …</li>
+<li>If you find yourself interested in some topic that you know to be well outside my wheelhouse (which includes a lot of issues), it’s probably better that you ask someone else to be your Major Professor. More generally, you should know what the interests of your potential advisor and committee members are so that you can begin to plan your thesis project accordingly.</li>
+<li>Invest some effort in reading about how to accomplish your degree objectives. Some oldies but goodies include <!-- \cite{bolker_writing_1998} and \cite{macaulay_surviving_2011}, but there are many others. --></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="program-requirements" class="section level1 tabset">
+<h1><span class="header-section-number">3</span> Program Requirements</h1>
+<p>If you’re planning on asking me to be your Major Professor, you will be required to meet the following deadlines. <strong>Failure to meet these deadlines may result in the postponement of the completion of your degree or termination of your program</strong>.</p>
+<div id="ma-students-1" class="section level2">
+<h2><span class="header-section-number">3.1</span> MA Students</h2>
+<ol style="list-style-type: decimal">
+<li><em>Choose a major professor</em>: If you’re planning to ask me to direct your thesis, you need to make this request no later than <font size="3" color="red">the end of your 2nd semester</font>the end of your 2nd semester} (Important dates are indicated in red.). You should first take some time to come and talk to me to discuss the type of project you’re interested in doing.</li>
+<li><em>Selecting a thesis topic</em>: This, of course, can be done in conjunction with the selection of your Major Professor. If you are working with me, you will need to submit, in writing, a proposed thesis topic (2 pages) no later than <font size="3" color="red">the end of your 2nd (MA) semester</font>.</li>
+<li><em>Apply for funding, IRB, etc. for MA Thesis-related projects</em>: If your project requires data collection with human subjects (e.g., interviews, experiments, etc.), you will need to submit the required paperwork to the <a href="https://research.uga.edu/hrpp/irb/">IRB</a>. Also, if you need to travel, you should apply for funding during your <font size="3" color="red">2nd semester</font>.</li>
+<li><em>Selection of Advisory Committee</em>: There’s a good chance that you will have already chosen the other members of your Advisory Committee. If not, we’ll need to finalize your selection by the end of your <font size="3" color="red">2nd semester</font>.</li>
+<li><em>Complete fieldwork</em>: If you plan on working with me, chances are that you’ll be asked to gather data of your own. So, you should plan on completing this part of your thesis research during the summer between your <font size="3" color="red">1st Spring semester and your 2nd Fall Semester</font>.</li>
+<li><em>Pass M.A. Examinations</em></li>
+</ol>
+<blockquote>
+<p><strong><em>MA in ROML</em></strong> “The M.A. written examinations will be given three times a year: in the <font size="3" color="red">2nd week of November</font>; in the <font size="3" color="red">5th week of the Spring Semester</font>; and in <font size="3" color="red">the 12th week of the Spring Semester</font>. Students choosing to write a thesis must take the M.A. written examinations in November. The examination in the 5th week of the Spring Semester will be reserved for students choosing the non-thesis option and students who failed the exam in November. The examination in the 12th week of Spring Semester will be reserved for students who failed the examination in the 5th week of Spring Semester. The Graduate Coordinator will inform students in writing of the date of the exams and ask them in turn to inform him or her of their intention to take the exam. Previous exam questions will be kept on file and made available to students.”</p>
+</blockquote>
+<blockquote>
+<p><strong><em>MA in LING</em></strong> For Masters students in the Department of Linguistics, there are also two options: <a href="https://www.linguistics.uga.edu/ma-thesis-introduction">M.A. (Thesis)</a> and <a href="https://www.linguistics.uga.edu/ma-non-thesis-introduction">M.A. (Non-Thesis)</a>. The Thesis option does not require an exam, but the Non-Thesis option does. For more information regarding the Final Examination for M.A. (non-thesis) Students, please consult <a href="https://www.linguistics.uga.edu/ma-non-thesis-final-exam">the departmental website</a>.</p>
+</blockquote>
+<ol start="7" style="list-style-type: decimal">
+<li><em>File appropriate paperwork</em>: There are a number of steps that are involved in moving towards completing your requirements for the M.A., some of which will be accomplished in the Spring Semester of your 2nd year (e.g., Application for Graduation). One of the forms that should be completed by the end of your 3rd semester is the Program of Study Form. See the <a href="https://grad.uga.edu/index.php/current-students/forms/">Graduate School Website</a> for more details.</li>
+<li><em>Secure approval of thesis prospectus</em>: For MA students in ROML, you must prepare a prospectus outlining your thesis research and describing the main points that will be discussed (see section III.2.d. of the Handbook). This prospectus will be read by your Advisory Committee and discussed following your MA examinations. You must submit a complete draft of your prospectus <font size="3" color="red">the end of your third semester</font> (i.e. in December). Although there is no formal requirement of a prospectus for MA students in the Department of Linguistics, you will be required to prepare a proposal if you are working with me. A draft of this proposal must be submitted by <font size="3" color="red">the end of your third semester</font>.</li>
+<li><em>Submit 1st Draft of your thesis</em>: You will need to turn in a complete draft of your thesis (i.e. one that includes the body of the document, the bibliography, tables, etc., not just a collection of notes) by the beginning of your last semester in the program. The expectation is that uyou will be submitting chapters of your thesis before this time. These chapters will be reviewed by me and your other committee members (see section III.2.d. of the Graduate Student handbook). The complete draft should be submitted by the <font size="3" color="red">last Friday of January of your final semester</font>.</li>
+<li><em>Submit 1st Draft of your thesis</em>: You will need to turn in a complete draft of your thesis (i.e. one that includes the body of the document, the bibliography, tables, etc., not just a collection of notes) by the beginning of your last semester in the program. The expectation is that uyou will be submitting chapters of your thesis before this time. These chapters will be reviewed by me and your other committee members (see section III.2.d. of the Graduate Student handbook). The complete draft should be submitted by the <font size="3" color="red">last Friday of January of your final semester</font>.</li>
+<li><em>Submit revised draft of thesis</em>: The revising process takes time and will undoubtedly require several passes. You will be expected to have finished a complete revised draft no later than <font size="3" color="red">the end of February</font>.</li>
+<li><em>Schedule a defense</em>: All the final paperwork required for your graduation is due by the last week in April (see <a href="https://grad.uga.edu/index.php/current-students/important-dates-deadlines/">Graduate School Deadlines</a>. In order to provide proper time for any necessary revisions between your defense date and the date for completing all degree-related requirements, we will plan to have your defense in <font size="3" color="red">early to mid April</font>. This should provide you with ample time to apply any of the changes resulting from the defense and review by your Advisory Committee.</li>
+<li><em>Submit Thesis Draft for Review by Advisory Committee</em>: You will need to submit the ‘final’ version of your thesis to your committee <font size="3" color="red">no later than two weeks before the defense date</font>. This is done to provide your advisory committee enough time to provide comments and feedback on the final product. Also, it is at this point that your committee will sign (or not) the <a href="http://www.grad.uga.edu/forms&amp;publications/student/body_apprform.pdf">“Approval for Master’s Thesis and Final Oral Examination”</a> for your thesis.</li>
+<li><em>Format Check for Graduate School</em>: See the <a href="http://www.grad.uga.edu/academics/deadlines.html">Graduate School website</a> for more details.</li>
+<li><em>Thesis Defense</em>: Assuming your Advisory Committee has agreed that your thesis draft is ready to defense (using the <a href="http://www.grad.uga.edu/forms&amp;publications/student/body_apprform.pdf">“Approval for Master’s Thesis and Final Oral Examination”</a>, we will have the defense. The defense is expected to last no longer than 90 minutes and should include a brief (15 minute) presentation by you covering the main points of the thesis (e.g., research questions, hypotheses, background lit., methodology, results, discussion, and conclusions). During the defense, you will be asked questions about your thesis research. You talk to me in advance about the types of questions that you might receive and try to anticipate how you might address potential shortcomings. Remember, the defense is a <strong>separate</strong> piece of the MA process; having your committee agree that your thesis is defendable doesn’t guarantee a favorable evaluation for the defense. Also, the defense is a public event, and, as such, you are welcome and encouraged to invite spectactors.</li>
+<li><em>Submit Final Paperwork</em>: Once you’ve submitted all the necessary revisions, I can sign off on the final version and submit the required (digital) paperwork to the Graduate School.</li>
+<li><em>Commencement</em>: If you’re not planning to attend your commencement, you may need to let the Graduate School know before hand. You should at least consider attending, especially given what I will have just put you through. Besides, you get to wear fancy robes. Either way, please let me know what you plan to do vis-`a-vis Commencement; I would very much like to attend if you are.</li>
+<li><strong>Celebrate!</strong></li>
+</ol>
+<blockquote>
+<p><strong><em>A note on summer defenses:</em></strong> First and foremost, <strong>under not circumstances will my advisees be permitted to defend their theses during the summer</strong>. You will have to complete all of the requirements for Graduation in order to graduate in the spring. Failure to do so will result in postponement or early termination of your degree. Again, I will NOT be available for thesis defenses during the summer semester so do not consider this an option. If under some exceptional circumstance you cannot fulfill your degree requirements during the spring semester, it may be possible to defend during the following fall semester. Doing so, however, may require you to pay for your own tuition. You will need to consult the Graduate School and the Romance Graduate Student Handbook for more detailed information. Nevertheless, such arrangements will only be made under <strong>extraordinary</strong> circumstances and are subject to the availability of your Advisory Committee members.</p>
+</blockquote>
+<hr />
+</div>
+<div id="phd-students-1" class="section level2">
+<h2><span class="header-section-number">3.2</span> PhD Students</h2>
+<p>The process of completing a PhD is, to put it bluntly, difficult, as it should be. You will inevitably find yourself drawn to a variety of different areas of inquiry, each interesting and distracting in its own way. However, I urge you to formulate a concise calendar from the very beginning; this will give you a measure of how you’re progressing in your program of study. Remember, at this stage in your career, it’s not enough to check boxes, but it sure does help to have some boxes to check. With that in mind, here we go!</p>
+<ol style="list-style-type: decimal">
+<li><em>Preliminary Forms</em>: Complete the the <a href="https://grad.uga.edu/index.php/current-students/forms/">Preliminary Doctoral Program of Study form</a> and present it to the Graduate Coordinator by <font size="3" color="red">the end of your 2nd semester</font>. You’ll also need to complete the <a href="https://grad.uga.edu/index.php/current-students/forms/">Advisory Committee form</a>, which assumes that you’ll need to have chosen a Major Professor (also by <font size="3" color="red">the end of your 2nd semester</font>). Note that some of these forms should be completed using the onine portal provided by the Graduate School. You should first take some time to come and talk to me to discuss the type of project you’re interested in doing.</li>
+<li><em>Complete coursework</em>: By <font size="3" color="red">the end of your fourth or fifth semester</font>, you will complete your coursework and prepare for your comprehensive examinations (or qualifying papers in the case of students from the Linguistics Department).</li>
+<li><em>Final Program of Study Form</em>: You will need to complete the <a href="https://grad.uga.edu/index.php/current-students/forms/">Final Program of Study form</a> by <font size="3" color="red">the end of the fourth or fifth semester</font> as well.</li>
+<li><em>Secure approval of thesis prospectus</em>: You will need to prepare a prospectus outlining your thesis research and describing the main points that will be discussed. This prospectus will be read by your Advisory Committee and discussed following your Comprehensive examinations. Ideally, your prospectus will be completed by <font size="3" color="red">the end of your third fifth semester</font>. For additional information regarding how to develop your prospectus, consult the <a href="http://linguistics.uga.edu/graduate/phd/phd-prospectus-guidelines">PhD. Prospectus Guidelines</a>.</li>
+<li>Once you’ve secured approval for your thesis prospectus, you can proceed with your project. If this involves human subjects data gathering, then you will need to submit the required paperwork to the <a href="https://research.uga.edu/hrpp/citi-training/">IRB</a>. Also, if you need to travel, you should apply for funding during your <font size="3" color="red">third and fourth years</font>.</li>
+<li><strong>NOTE!</strong> Please keep in mind that once you’ve finished all the tasks related to your comprehensive exams and your prospective, we will be set up a work schedule that is catered to your individual project. This will include deadlines for submitting dissertation materials (i.e. chapters) and dates for meetings. We may in fact start doing this <strong>before</strong> the comprehensive exam process.</li>
+<li>File an Application for May Graduation, Program of Study, and Advisory Committee Form: See the <a href="https://grad.uga.edu/index.php/current-students/important-dates-deadlines/">Graduate School Website</a> for more details.</li>
+<li><em>Schedule a defense</em>: All the final paperwork required for your graduation is due by the first week in May (see <a href="https://grad.uga.edu/index.php/current-students/important-dates-deadlines/">Graduate School Deadlines</a>). In order to provide proper time for any necessary revisions between your defense date and the date for completing all degree-related requirements, we will plan to have your defense in <font size="3" color="red">early to mid April</font>. This should provide you with ample time to apply any of the changes resulting from the defense and review by your Advisory Committee.</li>
+<li><em>Submit Thesis Draft for Review by Advisory Committee</em>: You will need to submit the ‘final’ version of your thesis to your committee <font size="3" color="red">no later than three weeks before the defense date</font>. This is done to provide your advisory committee enough time to provide comments and feedback on the final product. Also, it is at this point that your committee will sign (or not) the <a href="https://grad.uga.edu/wp-content/uploads/2019/08/body_appphddis_v2-1.pdf">“Approval for Master’s Thesis and Final Oral Examination”</a> for your thesis.</li>
+<li><em>Format Check for Graduate School</em>: See the <a href="https://grad.uga.edu/index.php/current-students/important-dates-deadlines/">Graduate School website</a> for more details.</li>
+<li><strong>Dissertation Defense</strong>: Assuming your Advisory Committee has agreed that your dissertation draft is ready to defense, we will have the defense. The defense is expected to last no longer than 120 minutes and should include a brief (15-20 minute) presentation by you covering the main points of the thesis (e.g., research questions, hypotheses, background lit., methodology, results, discussion, and conclusions). During the defense, you will be asked questions about your thesis research. You talk to me in advance about the types of questions that you might receive and try to anticipate how you might address potential shortcomings. Remember, the defense is a <strong>separate</strong> piece of the PhD process; having your committee agree that your thesis is defendable doesn’t guarantee a favorable evaluation for the defense.</li>
+<li><em>Submit final paperwork</em>: Once you’ve submitted all the necessary revisions, I can sign off on the final version and submit the required paperwork to the Graduate School.</li>
+<li><em>Commencement</em>: If you’re not planning to attend your commencement, you may need to let the Graduate School know before hand. You should at least consider attending, especially given what I will have just put you through. Besides, you get to wear fancy robes.</li>
+<li>**Celebrate!*</li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="you-and-your-major-professor" class="section level1">
+<h1><span class="header-section-number">4</span> You and Your Major Professor</h1>
+<p>In this section, I’ve provided some information regarding the process of choosing a major professor. If you’re considering working with me, please be sure to read the section above on <strong>Expectations</strong>. Ideally, you and your Major Professor should be on the same page about what the expected work flow will be. Should we decide that working together is in your and your project’s best interest, we will put together a Mentor-Mentee compact document that outlines the structure of our partnership. The Graduate School <a href="https://grad.uga.edu/wp-content/uploads/2018/01/UAB-Mentor-Compact-adpated.pdf">provides examples of these compacts</a>.</p>
+<div id="selecting-a-chair-and-committee" class="section level2 unnumbered">
+<h2>Selecting a Chair and Committee</h2>
+<hr />
+<center>
+Lunenburg, F. and D. Irby. (2008). <a href="https://www.amazon.com/Writing-Successful-Thesis-Dissertation-Strategies/dp/141294225X">Writing a Successful Thesis or Dissertation: Tips and Strategies for Students in the Social and Behavioral Sciences</a>. Thousand Oaks, CA: SAGE.
+</center>
+<hr />
+<p>Selecting your committee is a very important step in the process of preparing your dissertation or master’s thesis. The chairperson of the committee usually has broad power and influence throughout the process of completing the dissertation or master’s thesis.Therefore, the selection of a chairperson for your project is a very important decision. In collaboration with your chair and committee, you will delimit your topic, develop your proposal, conduct your research, and write your dissertation or master’s thesis. Ultimately, your committee will judge the quality of your project. In this chapter, we present some suggestions that might help you in selecting your dissertation or thesis chair and other committee members.</p>
+<p>Before choosing a faculty member as your chairperson, consider the chair’s role. As mentioned previously, your chair will have broad power and influence over the dissertation or thesis process. While the specifics of this role vary from institution to institution, from department to department, and from chairperson to chairperson, some general functions of the chair are relatively universal. First, the chairperson will approve your dissertation or thesis topic.Second, the chairperson will approve, in consultation with you, the other committee members. Third, the chairperson will approve every line, section, and chapter of the dissertation. Fourth, the chairperson will determine how committee members will be involved in the dissertation or thesis process.Fifth, the chairperson will decide when you are ready to defend your dissertation or master’s thesis. And, ultimately, the chairperson will determine whether you will be granted the degree.</p>
+<p>Most departments have rules concerning who may and who may not serve as dissertation or thesis chairpersons. Some universities allow only those individuals who are on the graduate faculty to serve as dissertation chairs; that is, faculty who have adequate, recent publication records and who teach graduate classes. These rules are based on the rationale that faculty who do not have active programs of research will lack the necessary skills to guide a doctoral research project.Rules regarding who may chair master’s theses may not be as stringent as those concerning doctoral dissertations. Because practice varies on who may and who may not serve as dissertation chairs, we recommend that you learn your institution’s rules as soon as possible.Knowing your institution’s local ground rules will help you avoid considering a potential chairperson who is not eligible to chair a dissertation or thesis.</p>
+<p>Selecting your committee is a very important step in the process of preparing your dissertation or master’s thesis. The chairperson of the committee usually has broad power and influence throughout the process of completing the dissertation or master’s thesis. Therefore, the selection of a chairperson for your project is a very important decision. In collaboration with your chair and committee, you will delimit your topic, develop your proposal, conduct your research, and write your dissertation or master’s thesis. Ultimately, your committee will judge the quality of your project. In this chapter, we present some suggestions that might help you in selecting your dissertation or thesis chair and other committee members.</p>
+<p>Before choosing a faculty member as your chairperson, consider the chair’s role. As mentioned previously, your chair will have broad power and influence over the dissertation or thesis process. While the specifics of this role vary from institution to institution, from department to department, and from chairperson to chairperson, some general functions of the chair are relatively universal. First, the chairperson will approve your dissertation or thesis topic. Second, the chairperson will approve, in consultation with you, the other committee members. Third, the chairperson will approve every line, section, and chapter of the dissertation. Fourth, the chairperson will determine how committee members will be involved in the dissertation or thesis process. Fifth, the chairperson will decide when you are ready to defend your dissertation or master’s thesis. And, ultimately, the chairperson will determine whether you will be granted the degree.</p>
+<p>Most departments have rules concerning who may and who may not serve as dissertation or thesis chairpersons. Some universities allow only those individuals who are on the graduate faculty to serve as dissertation chairs; that is, faculty who have adequate, recent publication records and who teach graduate classes. These rules are based on the rationale that faculty who do not have active programs of research will lack the necessary skills to guide a doctoral research project. Rules regarding who may chair master’s theses may not be as stringent as those concerning doctoral dissertations. Because practice varies on who may and who may not serve as dissertation chairs, we recommend that you learn your institution’s rules as soon as possible. Knowing your institution’s local ground rules will help you avoid considering a potential chairperson who is not eligible to chair a dissertation or thesis.</p>
+<div id="criteria-to-consider-in-selecting-a-chair" class="section level3 unnumbered">
+<h3>Criteria to Consider in Selecting a Chair</h3>
+<p>You must consider the following factors in choosing a chair: (a) expertise, (b) accessibility, (c) feedback, (d) success, (e) personality style, and (f) attitudes toward methodology. The importance of each one will be discussed in turn.</p>
+</div>
+<div id="expertise" class="section level3 unnumbered">
+<h3>Expertise</h3>
+<p>Ideally, it is in your best interest to find a chair with expertise in your topic area. You may want to read some of your potential chair’s publications. In our opinion, following this advice generally will produce a better product. Obviously, the closer your chair’s area of expertise is to your topic, the more competent he or she will be to (a) identify difficulties you may encounter as you proceed with your study, (b) direct you toward literature sources pertinent to your topic, and (c) guide your choice of methods for collecting and anlayzing data. Furthermore, a chair who has an interest and competence in your topic area is likely to be more invested in your project; that is, think through the project more fully and keep a vigilant eye on your progress than one who is not knowledgeable about your topic area, and, therefore, may lack interest in it as well.</p>
+</div>
+<div id="accessibility" class="section level3 unnumbered">
+<h3>Accessibility</h3>
+<p>Another important factor to consider in selecting a chair is accessibility. Several things can interfere with a chair being consistently accessible to you during the life of your project. When considering someone as a possible chair, you should think about these things. Nationally known scholars may be too busy with their own research activity to give you the time you need. Other faculty may have active clinical practices or be away from campus frequently due to consulting commitments. Faculty members who have nine-month contracts with the university may not be available during the summer. Faculty who are planning a sabbatical leave may potentially interrupt your progress. Another faculty member may be planning to take a position in another university and, therefore, may not be available during the progress of your project. One of the authors of this book had her chair go on sabbatical leave during the final semester of her dissertation work; therefore, a new chair had to be appointed. Popular chairs may have an excessive number of dissertations or theses to monitor, because they are in high demand.</p>
+<p>Then there is the issue of tenure. Whereas nontenured faculty contracts may not be renewed, tenured faculty members are likely to be more stable. You will need to consider the relative accessibility and stability of potential chairs, along with your own time constraints and projections for completion.</p>
+</div>
+<div id="feedback" class="section level3 unnumbered">
+<h3>Feedback</h3>
+<p>Typically, the chair provides the first line of quality control for the dissertation or thesis. And usually the chair will approve the proposal and final version of the project before you will be permitted to forward chapters of the dissertation or thesis to other committee members. Therefore, look for a chair with a reputation for reading, critiquing, and returning written drafts promptly.</p>
+<p>What is a good turnaround time? A good rule of thumb is to allow two weeks for a response. After that, a tactful inquiry may be appropriate. Obviously, students should recognize that it might take longer during very busy periods (e.g., end of grading periods, holidays, and before graduation deadlines when all students want to finish their projects).</p>
+<p>You should balance timelines of response with the thoroughness with which the potential chairperson reads submitted material. Some chairs provide vague feedback (e.g., rewrite this section), while others may provide detailed comments (e.g., “You need to identify the three main factors and then evaluate them in light of the theories you have discussed.”). Waiting longer for a chapter to be returned by a chair may have some positive consequences. First, if you satisfy a chair who provides a thorough critique of your work, you are less likely to encounter serious problems with other committee members. Second, you will be better prepared for your proposal defense and final oral defense of your dissertation or thesis. Third, once you have satisfied your chair’s standards, he or she is more likely to support you if one of your other committee members becomes overly or unreasonably critical of your work.</p>
+</div>
+<div id="success" class="section level3 unnumbered">
+<h3>Success</h3>
+<p>Success at bringing students to graduation is an important factor to consider when selecting a chair. Because you are concerned with completing your degree, count how many successful students your potential chair has; that is, what percentage of the chair’s students finish their degrees. Consider that criterion cautiously because some faculty members may not have had the opportunity to chair doctoral dissertations or master’s theses.</p>
+</div>
+<div id="personality-styles" class="section level3 unnumbered">
+<h3>Personality Styles</h3>
+<p>Personality styles matter to some people. Writing a dissertation or thesis is a collaborative process between you and your chairperson. Obviously, you want a chair with whom you can work reasonably well. You will need to assess the match between what you expect from your chair and your chair’s notion of the best way to perform his or her role.</p>
+<p>Chairpersons vary greatly in how they work with students on dissertations and theses. Those at one end of the continuum closely monitor each phase of the students’ work, in some cases stipulating exactly what is to be done at every step, and then require the student to submit each section of material for critique. Chairs at the other end of the continuum tell students to progress on their own and to finish a complete draft of the project before submitting it for evaluation. Most chairs will probably fall somewhere between these two extremes. Chairpersons also differ in the way they provide criticism. Some are blunt and even derisive. Others are direct and kindly in critiquing students’ work. Still others are so cautious of students’ feeling when pointing out weaknesses that they fail to guide their students in correcting deficiencies. In the latter case, someone else on the committee will have to step up and perform that duty; for the role of the chair and committee is to ensure that the candidate has met the university, college, and department standards.</p>
+<p>Students also have personal preferences with whom they want to work, in general. For example, some students prefer to work with female faculty members, while others prefer to work with male faculty. Some students prefer to work with older people, while others prefer younger faculty.</p>
+</div>
+<div id="attitudes-toward-methodology" class="section level3 unnumbered">
+<h3>Attitudes Toward Methodology</h3>
+<p>Faculty members often differ concerning their preferences for a particular research method. A research method comprises the strategy followed in collecting and analysing data. The major distinction in classifying research by method is the distinction between quantitative and qualitative research <span class="citation">(Gay, Mills, and Airasian 2006)</span>. Quantitative and qualitative research can be broken down further into several distinct types, each designed to answer a different kind of research question. Quantitative research involves the collection and analysis of numerical data, which are usually rendered in the form of statistics. Advocates of quantitative studies tend to prefer such types as descriptive (or survey), correlational, causal-comparative, and experimental research. Proponents of such studies claim that their work is done from within a value-free framework <span class="citation">(Denzin and Lincoln 2005)</span>.</p>
+<p>Qualitative research involves mostly nonnumerical data, such as extensive notes taken at a research site, interview data, videotape and audiotape recordings, and other nonnumerical artifacts. Qualitative researchers stress the socially constructed nature of reality, the intimate relationship between the researcher and the participant, and the situational constraints that shape inquiry. Qualitative researchers emphasize the value-laden nature of inquiry <span class="citation">(Denzin and Lincoln 2005)</span>. Proponents of qualitative studies tend to favor such research approaches as case study, ethnography, ethology, ethnomethodology, grounded theory, phenomenology, symbolic interaction, and historical research.</p>
+<p>You need to examine the match between your preference and your potential chair’s preference for a research method. Many faculty members accept both quantitative and qualitative research methods, including the authors of this text. We believe that the issue is not which method is better, but rather which method (quantitative, qualitative, or mixed methods) will best answer the particular research question or direction of inquiry.</p>
+</div>
+</div>
+<div id="questions-to-consider-in-selecting-an-advisor" class="section level2 unnumbered">
+<h2>Questions to consider in selecting an advisor</h2>
+<p>These questions have been adapted from a document prepared by the Graduate School at the University of Pittsburgh.</p>
+<ol style="list-style-type: decimal">
+<li>Is the advisor an expert in the area of research or scholarship that you intend to pursue? Is his/her critical or theoretical orientation consistent with yours?</li>
+<li>How much freedom will you have in your choice of dissertation topic with this advisor?</li>
+<li>What is the reputation of the advisor within the discipline?</li>
+<li>How responsive is the advisor? How long does it take him/her to return written material with comments?</li>
+<li>How accessible is the advisor for discussion?</li>
+<li>Is the advisor likely to remain on the faculty for the duration of your degree work?</li>
+<li>How many students does he/she advise? If none, why? If a large number, does this affect the attention that he/she pays to individual students?</li>
+<li>How much time does he/she spend away from campus? Is he/she available during the summer?</li>
+<li>How long do students take to complete their degrees with this advisor?</li>
+<li>What proportion of this advisor’s students successfully complete the program?</li>
+<li>What is the placement record of this advisor’s students? Where do they get jobs?</li>
+<li>Does the advisor publish with his/her students as first author?</li>
+<li>How many publications does the typical student accumulate with this advisor?</li>
+<li>Do the advisor’s students go to disciplinary or professional conferences?</li>
+<li>Do the advisor’s students make presentations of their own work at conferences? Do they make presentations of joint work with the advisor?</li>
+<li>How much interaction is there with other advisees of this faculty member? Does he/she direct a research group or rather a series of individuals?</li>
+<li>How much of the research is collaborative with the advisor and/or other advisees?</li>
+<li>How much involvement is expected in ``group’’ research projects that are not appropriate for inclusion in your dissertation? How much of this contributes to your professional development and marketability?</li>
+<li>How is credit for collaborative work assigned?</li>
+<li>Is the advisor’s work funded? What are the guarantees of funding for the advisor’s students? Do the advisor’s students get summer support?</li>
+<li>Does the advisor assist his/her students in obtaining their own funding from outside sources such as fellowship programs?</li>
+<li>Does the advisor have good relations with other faculty in the program?</li>
+<li>Does the advisor have a reputation for ethical behavior?</li>
+<li>Are the advisor’s work habits compatible with your own?</li>
+</ol>
+<blockquote>
+<p><strong><em>Note</em></strong> Not all of these questions are equally important when choosing a Major Professor to direct an MA thesis. You should, however, consider these issues when choosing someone to work with, whether it be at the MA or the PhD level. Also, don;t be afraid to ask your professors for ideas about topics. At the MA level, you aren’t necessarily expected to come armed with a full-fledged research topic in hand.</p>
+</blockquote>
+<hr />
+</div>
+<div id="guidelines-for-good-practice-in-graduate-education" class="section level2 unnumbered">
+<h2>Guidelines for Good Practice in Graduate Education</h2>
+<p>The expectations for each graduate student are to develop an understanding of and capacity for scholarship, independent judgment, academic rigor, and intellectual honesty. As such, graduate faculty are responsible for fostering and facilitating the student’s professional development to meet these expectations.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>Guiding principles for which both graduate faculty and students share responsibility:</p>
+<ol style="list-style-type: decimal">
+<li>Ensure that the relationship between faculty and students and among students is constructive, encourages freedom of inquiry, and fosters mutual respect.</li>
+<li>Work respectfully with diverse faculty, students and peers regardless of race, gender, religion, sexual orientation, or national origin.</li>
+<li>Act with professionalism, ethical conduct, and personal accountability during all academic endeavors and interactions among students and faculty.</li>
+<li>Make explicit the expectations of graduate students and faculty for relevant elements of graduate student activities; assess progress in meeting these expectations and provide/use constructive feedback.</li>
+<li>Put forth sufficient effort to ensure the graduate student completes the degree and assistantship responsibilities in timely manner.</li>
+<li>Agree that students are expected to take initiative in learning and carrying out other responsibilities (versus expecting faculty to provide everything). Faculty are expected to facilitate learning and professional development (versus expecting students to be able to carry out all responsibilities, e.g., teaching with no guidance).</li>
+<li>Have reasonable expectations for the time available for graduate student-related tasks. Faculty and students have many responsibilities. Thus, both parties need to respect the others’ need for sufficient time to complete all responsibilities.</li>
+<li>Avoid conflicts of interest of any nature between faculty and graduate students.</li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="a-guide-to-your-research" class="section level1">
+<h1><span class="header-section-number">5</span> A Guide to Your Research</h1>
+<blockquote>
+<p><strong><em>Note</em></strong> This section is still very much under construction [insert animated icon of worker here].</p>
+</blockquote>
+<p>Much of the following information is summarized from <a href="http://people.cs.umass.edu/~wallach/how_to_be_a_successful_phd_student.pdf">How to Be a Successful PhD Student</a> (by Mark Dredze at Johns Hopkins University and Hanna M. Wallach University of Massachusetts Amherst). The this document is directed primarily at doctoral students, though much of the advice applies equally well for MA students.</p>
+<div id="managing-your-time" class="section level2">
+<h2><span class="header-section-number">5.1</span> Managing your time</h2>
+<p>Transitioning into a graduate program (especially if you’re teaching) involves a good deal of time management. It’s often difficult (at least it was for me) to start thinking of your chosen discipline (e.g., Spanish, linguistics) as a job rather than as a hobby. It will help if you start treating your time as you would if you had a `normal’, 9-to-5 job.</p>
+<ol style="list-style-type: decimal">
+<li>You are in graduate school, and <strong>research</strong> should be your main focus. Developing good habits in your teaching is certainly important at this stage. But your the lion’s share of your attention should be paid to your research agenda. As Dredze and Wallach note, ``[d]o well enough in your <a href="#teaching">teaching</a> but focus on publishing high quality research papers.’’</li>
+<li><strong>Interacting</strong> with other students in your program (and from other programs) is crucial. Research should not be done (at least not exclusively) by yourself alone in a room with books. Create mechanism for getting feedback from your colleagues.</li>
+<li>Keeping a <strong>regular work schedule</strong> in graduate school is crucial. This is especially true as you move into the thesis or dissertation writing phase.</li>
+<li>You should <strong>keep a work log</strong>. This should include (a) projects that you’re developing, (b) ideas you have about those projects, (c) records for data gathering/analysis. As a linguist, having a notebook to jot down the quirky and interesting things that people say will become second nature. Many famous papers started out as doodles and scribbled notes.</li>
+</ol>
+</div>
+<div id="research" class="section level2">
+<h2><span class="header-section-number">5.2</span> Research</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Read!</strong> Much of the time you spend doing `research’ should be spent (1) reading articles, books, chapters, etc. related to your work and (2) (re-)reading your own work. Keeping up with the current trends in the discipline means investing considerable time in reading other people’s (and your own) research.</li>
+<li>Coming up with a topic is perhaps one of the most difficult parts of the research process. <a href="http://people.cs.umass.edu/~wallach/how_to_be_a_successful_phd_student.pdf">Dredze and Wallach</a> provide a nice overview of how to approach this issue. Keep in mind that if you plan to have a career in academia, there will be plenty of time for you to work on different topics down the road (thus the need for a notebook to write down those ideas).</li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="funding-resources" class="section level1">
+<h1><span class="header-section-number">6</span> Funding resources</h1>
+<p>If you plan to work with me, chances are that you will be encouraged/required (1) to conduct fieldwork as part of your thesis/dissertation project and (2) attend conferences. All these endeavors cost money, but fortunately there are some funds available for you (as well as access to the types of equipment you’ll need to actually conduct your work). Here are a few possible sources that you should consider when planning your research projects.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Funded projects</strong>: In some cases, your professors will have projects that have been funded by internal or external grant agencies. Sometimes, funds are ear-marked for paying graduate students to do tasks related to the project (e.g., transcribing data, travel, etc.). You should inquire with your professors about these types of opportunities. For the most part, if a particular professor has a project with funding for graduate student participation, s/he will come looking for a possible RA.</li>
+<li><a href="https://lacsi.uga.edu/funding-available-tinker-graduate-research-award">Tinker Graduate Research Award</a>: These grants are administered through the <a href="https://lacsi.uga.edu/">Latin American and Caribbean Studies Institute</a> (though they aren’t always referred to as Tinker Grants) and are designed to fund research for the completion of MA thesis or doctoral dissertations. The deadline for submitting applications is usually early to mid Spring. If you would like a sample application or comments on your application, just ask me or one of your other professors; we are always glad to help.</li>
+<li><a href="https://willson.uga.edu/opportunities/fellowships-grants/willson-grants-awards/">Willson Center Graduate Research Award</a>: The Willson Center offers opportunities for Graduate Students, in particular the <strong>Graduate Research Award</strong>, with deadlines in September and January. This award provides support of up to $1,250 (subject to change) to arts and humanities graduate students for relevant expenses related to completion of their degrees. Graduate students may be supported in travel to archives, installations and performances. Reason must be given for support of the proposed activity in context of research excellence. There are two deadlines during the year: <font size="3" color="red">August 29</font> and <font size="3" color="red">January</font>. The Willson Center also provides funds for travel to conferences and professional meetings.</li>
+<li><strong>Funds for Graduate Student Travel</strong>: Though the funds are limited (and the competition fierce), you should consider applying for travel funds through the <a href="https://grad.uga.edu/">Graduate School</a>. The funds are usually just for Doctoral students, but it never hurts to ask. There are also funds available through the the Department of Romance Languages and the Department of Linguistics.</li>
+<li><strong>Dissertation Completion Award</strong> This is a highly competitive award for doctoral students who have passed to candidacy (i.e. ABD). This awards typically requires nomination and selection at the Departmental level. The applications are typically due in the spring, but if you’re interested you should inquire early.</li>
+<li><a href="https://rom.uga.edu/dolores-artau-scholarship">The Dolores Artau Scholarship</a>: The Department of Romance Languages has a limited number of funding opportunities available to grad students (e.g., the Dolores Artau Scholarship).</li>
+<li><a href="https://pivot.proquest.com/">Pivot COS</a> is a subscription database of more than 25,000 funding opportunities from numerous sponsors across all disciplines. UGA faculty, students, and staff can search the database and create custom email funding alerts based on the criteria provided by the individual COS user. You can also share funding opportunities with groups, and save and track opportunities. It’s a  useful tool. I would recommend that you start using it immediately. The library offers <a href="https://guides.libs.uga.edu/grants/pivot">a nice tutorial on how to use this resource</a>.</li>
+<li><strong>Fulbright Grants for student research abroad</strong>: This is a great source of funds. The deadline is usually sometime in the early fall.</li>
+</ol>
+<p>There are of course other sources of funding that you can take advantage of. If you happen to run across any others that look particularly appealing, let me know. In all of these cases, I will be happy to provide you with letters of support.</p>
+<hr />
+</div>
+<div id="prospectus-outline" class="section level1">
+<h1><span class="header-section-number">7</span> Prospectus Outline</h1>
+<p>The following are guidelines for preparing your thesis or dissertation prospectus (prepared by Dr. Margaret Lubbers Quesada). Your prospectus should be approximately 10 pages (for MA thesis) or 20+ pages (for dissertation).</p>
+<ol style="list-style-type: decimal">
+<li><strong>Statement of Problem</strong> (1/2-1 page): What is the problem to be studied and why is it of interest? Illustrate with examples and mention 2-3 sources/studies that have been carried out covering this topic.</li>
+<li><strong>Review of the literature</strong> (4-6 pages) In this section, you will briefly describe the studies that have been carried out on this topic and upon which your own research is based. For each study, include what the purpose was, what the methodology was (who the participants were, what the instruments were, how the data were analyzed), and what the results were. Use this section to justify your research and specifically, point out how these studies are related to yours and what your study will do to answer questions about the topic that these studies do not answer. For the prospectus, 6-8 studies should be reviewed. For the thesis, you will expand this section to 10-12 studies. At the end of this section, it should clear to your readers what the open questions in the literature are.</li>
+<li><strong>Research questions and/or hypotheses</strong> (1/2-1 page): You should have 2-3 questions that will guide your research. If there has been enough research done on the topic or if you are choosing an experimental or quasi-experimental design, you can postulate hypotheses, which should result from the questions. For example, a research question might be: <em>Do Spanish/English bilinguals have higher rates of overt subject expression in Spanish than monolinguals?</em> And the hypothesis set up to answer the question would be: <em>Spanish/English bilinguals have higher rates of overt subject expression due to contact with English</em>. The hypotheses have to be worded so that they are testable and falsifiable. Also, define any terms that have not been defined in the literature review.</li>
+<li><strong>Methodology</strong> (2-3 pages): Include in this section, the following:
+<ul>
+<li><strong>Participants</strong> (age, language level or knowledge, gender, social or economic level if related to research questions).</li>
+<li><strong>Context</strong> (i.e. where the data will be gathered)</li>
+<li><strong>Instruments</strong> (if you have already worked out the data collection instrument(s), attach this as an appendix)</li>
+<li>Procedure for <strong>collecting</strong> data</li>
+<li>Procedures for <strong>analysis</strong> including any statistical analyses that may be applied</li>
+</ul></li>
+<li><strong>Expected results and conclusions</strong> (1/2-1 page): Discuss to what extent you expect to answer your research questions and/or prove or disprove your hypotheses.</li>
+<li><strong>References</strong>: For linguistics and applied linguistics thesis, the <a href="http://www.linguisticsociety.org/files/style-sheet.pdf">LSA format is preferred</a> but you can also use the APA or MLA formats.</li>
+</ol>
+<hr />
+<p>Last updated on <strong>2020-03-29</strong>.</p>
+<hr />
+<div id="refs" class="references">
+<div id="ref-denzin_sage_2005">
+<p>Denzin, Norman K., and Yvonna S. Lincoln. 2005. <em>The SAGE Handbook of Qualitative Research</em>. 3rd ed. Thousand Oaks, CA: SAGE.</p>
+</div>
+<div id="ref-desagulier_corpus_2017">
+<p>Desagulier, Guillaume. 2017. <em>Corpus Linguistics and Statistics with R Introduction to Quantitative Methods in Linguistics</em>. 1st ed. 2017.. Quantitative Methods in the Humanities and Social Sciences. Cham: Springer International Publishing.</p>
+</div>
+<div id="ref-gay_educational_2006">
+<p>Gay, Lorraine R., Geoffrey E. Mills, and Peter Airasian. 2006. <em>Educational Research: Competencies for Analysis and Applications</em>. 8th ed. Upper Saddle River, NJ: Merrille/Prentice Hall.</p>
+</div>
+<div id="ref-gries_statistics_2013">
+<p>Gries, Stefan Thomas. 2013. <em>Statistics for Linguistics with R a Practical Introduction / by Stefan Th. Gries.</em> 2nd ed.. Mouton Textbook. Berlin: De Gruyter Mouton.</p>
+</div>
+<div id="ref-winter_statistics_2020">
+<p>Winter, Bodo. 2020. <em>Statistics for Linguists: An Introduction Using R</em>. New York: Routledge.</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>For an exhaustive list of the theses I’ve directed, along with abstracts, see the <a href="https://chadhoweuga.github.io/chowe/students/%7D%7BStudent%20Section%20of%20my%20personal%20website%20for%20more%20examples">Student Section of my personal website for more examples</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Guidelines are for instructive purposes and do not constitute statements of institutional policy or requirements. Approved by the University of Georgia Graduate Council on April 18, 2007.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+<footer role="contentinfo" id="site-footer">
+
+<!-- /.bottom-menu -->
+	<p class="copyright">&#169; 2020,
+		powered by <a href="http://www.r-project.org">R</a> + <a href="http://rmarkdown.rstudio.com">RMarkdown</a> + <a href="http://github.com">Github</a>.</p>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
