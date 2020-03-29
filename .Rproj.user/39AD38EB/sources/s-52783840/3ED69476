@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585495147057.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1924309242",
+    "id" : "3ED69476",
+    "lastKnownWriteTime" : 1585487143,
+    "last_content_update" : 1585487143,
+    "path" : "~/Documents/GitHub/chowe/AdviseeGuide.Rmd",
+    "project_path" : "AdviseeGuide.Rmd",
+    "properties" : {
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
