@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Variación y sociolingüística en español</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Chad Howe, Ph.D.</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="research.html">Research</a>
+</li>
+<li>
+  <a href="students.html">Students</a>
+</li>
+<li>
+  <a href="resources.html">Resources</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Variación y sociolingüística en español</h1>
+
+</div>
+
+
+<hr />
+<div id="la-variación-en-el-español-de-américa" class="section level1">
+<h1>La variación en el español de América</h1>
+<div id="observaciones-preliminares" class="section level2">
+<h2>Observaciones preliminares</h2>
+<ul>
+<li>La gran mayoría de los hablantes de español, más de 300 millones, se encuentra en América Latina.</li>
+<li>Cada rasgo dialectal observado en español de Hispanoamérica ocupa su propia área, que raramente coincide con el área de cualquier otro rasgo y mucho menos con las fronteras políticas</li>
+<li>Con la excepción de las innovaciones léxicas, hay muy pocos rasgos que se observen en el español de Hispanoamérica que no pertenezcan también a alguna variedad o variedades del español peninsular, y que, probablemente, no tengan sus orígenes en España.</li>
+<li>Según Penny, en todos los niveles sociales, el grado de variación geográfica dentro del español de América es considerablemente menor que la variación que se observa en el español peninsular (según el número de isoglosas que hay entre dos puntos separados por la misma distancia).</li>
+</ul>
+</div>
+<div id="la-colonización" class="section level2">
+<h2>La colonización</h2>
+<ul>
+<li>El español llegó a las Américas en el siglo XV.</li>
+<li>Durante un periodo de 100 años, los españoles habían llegado, por el norte, a lo que hoy es el territorio del suroeste de los Estado Unidos y, por el sur, hasta Chile y el norte de Argentina.</li>
+<li>Siglo XV: asentamientos en el caribe; Siglo XVI: exploración de Florida y México; 1519: fundación del Virreinato de Nueva España sobre la capital azteca de Tenochtitlán.</li>
+<li>Desde México, los españoles fueron a Centroamérica y al suroeste de los EEUU. - Fundaron la ciuidad de Lima, después de la conquista de los Inca, en 1535.</li>
+<li>Desde Lima, viajaron a las regiones que son Chile, Bolivia, Paraguay, Argentina, y Uruguay; Virreinato del Río de la Plata en 1776.</li>
+<li>Factores dialectales: las diversas características sociopolíticas; la distancia que tenías estas regiones a las capitales del virreinato; los ragos dialectales de los primeros pobladores; las características que tenían grupos originarios</li>
+</ul>
+<div class="figure">
+<img src="images/ColonialMap.gif" alt="Mapa de América Colonial (siglo 18)" />
+<p class="caption">Mapa de América Colonial (siglo 18)</p>
+</div>
+</div>
+<div id="divisiones-dialectales" class="section level2">
+<h2>Divisiones dialectales</h2>
+<p>Según algunos autores, se identifican seis zonas dialectales dentro de Hispanoamerica:</p>
+<ol style="list-style-type: decimal">
+<li>el <strong>español caribeño</strong> (que incluye las islas del Caribe y las zonas costeras de los países que lo rodean)</li>
+<li>el <strong>español mexicano/centroamericano</strong> (que podríamos también dividir en al menos dos dialectos diferentes, el mexicano y el centroamericano)</li>
+<li>el <strong>español andino</strong> (que incluye las zonas altas de Venezuela, Colombia, Ecuador, Perú, Bolivia, y el norte de Argentina)</li>
+<li>el <strong>español paraguayo</strong></li>
+<li>el <strong>español argentino/uruguayo</strong></li>
+<li>el <strong>español chileno</strong></li>
+</ol>
+<p>Hay otras posibles divisiones (p.ej. la existencia de un español centroamericano, combinar el español paraguayo con el español argentino/uruguayo)</p>
+<p>Esta división considera <strong>tres isoglosas</strong> que se emplean en el estudio de los dialectos americanos, combinados con el momento de colonización y la presencia de lenguas indígenas específicas. El español en el territorio americano es lo que se conoce como una lengua colonial, una lengua en <strong>su diáspora</strong>, fuera de su territorio originario. Las isoglosas son:</p>
+<ol style="list-style-type: decimal">
+<li>la /s/ en posición final de sílaba</li>
+<li>la /ɾ/ en posición final de sílaba</li>
+<li>la diferenciación entre /ʝ/ y /ʎ/</li>
+</ol>
+<p>Una curiosidad histórica que diferencia el mundo hispanohablante del anglohablante es que, en el nivel de la pronunciación, en el español es el sistema consonántico el que explica la gran mayoría de los casos de variación, mientras que en el inglés la variación se centra en la pronunciación de las vocales.</p>
+<div class="figure">
+<img src="images/MapaDialectal.png" alt="Mapa dialectal (6 divisiones)" />
+<p class="caption">Mapa dialectal (6 divisiones)</p>
+</div>
+<table style="width:100%;">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rasgos</th>
+<th>Caribeño</th>
+<th>Mexicano</th>
+<th>Andino</th>
+<th>Paraguayo</th>
+<th>Argentino</th>
+<th>Chileno</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>/s/ final</strong></td>
+<td>[h] o 0</td>
+<td>se conserva</td>
+<td>se conserva</td>
+<td>se conserva</td>
+<td>[h] o 0</td>
+<td>[h] o 0</td>
+</tr>
+<tr class="even">
+<td><strong>/ɾ/ implosiva</strong></td>
+<td>[ɾ],[l] o 0</td>
+<td>[ɾ] asibilada</td>
+<td>[ɾ] asibilada</td>
+<td>[ɾ]</td>
+<td>[ɾ]</td>
+<td>[ɾ]</td>
+</tr>
+<tr class="odd">
+<td><strong>/ʝ/ y /ʎ/</strong></td>
+<td>yeísmo</td>
+<td>yeísmo</td>
+<td>/ʝ/ y /ʎ/</td>
+<td>/ʝ/ y /ʎ/</td>
+<td>yeísmo (zeísmo)</td>
+<td>yeísmo</td>
+</tr>
+<tr class="even">
+<td><strong>leng. orig.</strong></td>
+<td>arahuaco (extinta)</td>
+<td>náhuatl maya</td>
+<td>quechua aimara</td>
+<td>guaraní</td>
+<td>guaraní mapundungu</td>
+<td>mapundungu aimara</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<hr />
+</div>
+<div id="rasgos-lingüísticos" class="section level2">
+<h2>Rasgos lingüísticos</h2>
+<div id="rasgos-sociofonológicos" class="section level3">
+<h3>Rasgos (socio)fonológicos</h3>
+<ul>
+<li>La vibrante múltiple se velariza [ʁ] en Puerto Rico, especialmente: <em>carro</em> [ka.ʁo], <em>perro</em> [pe.ʁo]</li>
+<li>La vibrante simple se lateraliza en el Caribe, especialmente en Puerto Rico y la República Dominicana, en posición implosiva: <em>verdad</em> [bel.ða], <em>amor</em> [a.mol]</li>
+<li>Las vocales se nasalizan en contacto con nasal en el Caribe (como en Andalucía)</li>
+<li>La nasal se velariza [ŋ] en el Caribe, el sur de México (zona de Yucatán), Centroamérica y la zona andina, pero no así en el cono sur (Paraguay, Argentina/Uruguay y Chile): <em>compró pa</em>[ŋ], <em>baila muy bie</em>[ŋ]</li>
+<li>La aspiración de la /h/ proveniente de la /f/ latina se conserva en algunas palabras en Puerto Rico, la DR y Panamá: <em>harto</em> [haɾ.to], <em>hambre</em> [ham.bɾe], <em>humo</em> [hu.mo], <em>harina</em> [ha.ɾi.na]</li>
+<li>Las oclusivas sonoras tienden a mantenerse oclusivas tras cualquier consonante o semivocal en partes de Centroamérica, Colombia y la zona andina: [aɾ.bol], [dew.da]</li>
+<li>Las vocales se tienden a perder en sílaba átona, especialmente en México y la zona andina: <em>todos</em> [toðs] <em>pues</em> [ps]</li>
+<li>Los hiatos muestran una fuerte tendencia a diptongarse en México y en la zona andina especialmente, si bien - es un fenómeno general en casi toda Latinoamérica: <em>real</em> &gt; <em>rial</em>, <em>poema</em> &gt; <em>puema</em>, <em>peón</em> &gt; <em>pión</em></li>
+<li>La vibrante múltiple se asibila en la zona andina (y en partes de Centroamérica—Costa Rica y Guatemala). En México se asibila la vibrante en posición final.</li>
+<li>La /d/ en final absoluta puede pronunciarse como una sorta [t] en Paraguay: <em>usted</em> &gt; <em>ustet</em>; <em>ataúd</em> &gt; <em>ataút</em></li>
+<li>La /x/ se pronuncia como [ç] ante las vocales anteriores /e/, /i/ en el habla de Chile: <em>gente</em> [çen.te], <em>mujer</em> [mu.çeɾ]</li>
+<li>El yeísmo se expresa mediante [ʒ] (o [ʃ]) en Argentina: <em>playa</em> [pla.ʒa]</li>
+</ul>
+</div>
+<div id="rasgos-sociomorfológicos" class="section level3">
+<h3>Rasgos (socio)morfológicos</h3>
+<ul>
+<li>La marca de plural con /-se/ en algunas variedades sociolingüísticas de la RD: <em>cafés &gt; cafése, gallinas &gt; gallínase, muchachas &gt; mucháchase, latas &gt; látase</em></li>
+<li>El uso extendido del diminutivo, especialmente en México y la zona andina: <em>callandito, corriendito, dositos, ahisito, acasito, estito</em></li>
+<li>El empleo del pronombre <em>le</em> en ciertas expresiones mexicanas con función discursiva: <em>híjole, ándale pues, órale</em></li>
+<li>El <strong>voseo</strong> se percibe como característica Argentina, aunque tienen una extensión geográfica mucho mayor (Centroamérica, partes de Venezuela y de Colombia, Bolivia, Chile, etc.)</li>
+<li>El empleo de <em>che</em> en Paraguay en Argentina: <em>¿qué tomás, che?</em></li>
+<li>El empleo del leísmo animado en la zona andina, en Paraguay y en partes del Caribe: <em>¿Llamaste a Juan?/ Me olvidé llamarle</em></li>
+<li>El empleo del artículo con pronombres propios, en Chile (como en la región catalana o en el portugués): <em>Vimos a la Tere en el cine / la Susana me visitó ayer</em>.</li>
+<li>El empleo ocasional de la terminación /-sen/ con verbos reflexivos en imperativos plurales en el Caribe: <em>siéntensen, vístansen</em>. Este fenómeno también se da dialectalmente en España.</li>
+<li>La pluralización de <em>haber y hacer</em> en construcciones impersonales: <em>habían muchas personas, hacían tres años que llegó</em></li>
+<li>El uso de sujetos expletivos en el español del caribe (la DR): <em>Ello llueve , Ello hay maíz</em></li>
+</ul>
+</div>
+<div id="rasgos-sintácticos" class="section level3">
+<h3>Rasgos sintácticos</h3>
+<ul>
+<li>La tendencia a no invertir el pronombre sujeto en preguntas en el Caribe: <em>¿Qué tú dices? ¿Cómo tú estás?</em></li>
+<li>El empleo del verbo en infinitivo con pronombre sujeto prepuesto después de para en la Venezuela y Panamá especialmente, pero también en el Caribe: <em>para yo poder venir</em> (<em>“para que yo pueda venir/para poder venir yo”</em>)</li>
+<li>El empleo del posesivo con el artículo indefinido, similar al español antiguo, en Centroamérica: <em>una mi amiga, un su caballo</em></li>
+<li>El empleo de la preposición hasta con función de inicio, en lugar de límite final, en México y Centroamérica: <em>abre hasta las nueve</em> (<em>“no abre hasta las nueve”</em>), <em>empieza hasta la tarde</em> (<em>“empieza en la tarde”</em>)</li>
+<li>El empleo del presente del subjuntivo en oraciones subordinadas que requieren el imperfecto del subjuntivo en otras variedades, se emplea especialmente en México y en la zona andina: <em>quise que venga</em> (&lt; <em>viniera</em>)</li>
+<li>El empleo del presente del indicativo en oraciones subordinadas que requieren el presente de subjuntivo en otras variedades, se emplea especialmente en México y en la zona andina: <em>no creo qu que viene</em> (&lt; <em>venga</em>)</li>
+<li>La duplicación del objetivo directo cuando es animado y determinado en Chile, el dialecto porteño (Buenos Aires y sus alrededores) y la zona andina: <em>la via a tu hermana</em></li>
+<li>El empleo de la preposición en delante de adverbios de lugar en la zona andina: <em>en aquí, en su delante</em></li>
+</ul>
+<div class="figure">
+<img src="images/TablaDeRasgos.png" alt="Rasgos lingüísticos" />
+<p class="caption">Rasgos lingüísticos</p>
+</div>
+<div class="figure">
+<img src="images/SubjectPronouns.png" alt="Uso de pronombres de sujeto (Limerick 2017)" />
+<p class="caption">Uso de pronombres de sujeto (Limerick 2017)</p>
+</div>
+<hr />
+</div>
+<div id="rasgos-léxicos" class="section level3">
+<h3>Rasgos léxicos</h3>
+<ul>
+<li><strong>Arcaísmos</strong>: <em>amarrar, gaveta, mata, botar, alcanzar, calentura, candela, bravo, liviano</em></li>
+<li><strong>Préstamos</strong>:
+<ul>
+<li><strong>arahuaco o taíno</strong>: <em>ají, barbacoa, cacique, hamaca, canoa, maíz, tabaco, huracán, loro, caimán</em></li>
+<li><strong>náhuatl</strong>: <em>cuate, chamaco, elote, tomate, chocolate, chicle, aguacate, cacahuete, tiza</em></li>
+<li><strong>quechua</strong>: <em>papa, palta, puna, chacra, choclo, soroche, cóndor, cancha, ñato, alpaca</em></li>
+<li><strong>mapundungu</strong>: <em>poncho, guata</em></li>
+<li><strong>guaraní</strong>: <em>jaguar, tapioca, petunia, tucán, mangangá</em></li>
+</ul></li>
+<li><strong>Agronegrismos</strong>: <em>banana(o), bemba, cachimbo, mucama, dengue, guandú, molinga, bochinche</em></li>
+<li><strong>Regionalismos</strong>:
+<ul>
+<li><strong>mexicanismos</strong>: <em>chambear (trabajar), alberca (piscina), amolar (dañar), caco (ladrón)</em></li>
+<li><strong>peruanismos</strong>: <em>calato (desnudo), pata (amigo), chato (bajo), huachafo (cursi), ñeque (tacaño)</em></li>
+<li><strong>venezolanismos</strong>: <em>arrecho (molesto), chévere (bueno), chamo (muchacho), cuaima (ser listo)</em></li>
+<li><strong>argentinismos</strong>: <em>barrilete (cometa), campera (chaqueta), pelado (calvo), atorrate (un vago)</em></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="tarea" class="section level2">
+<h2>Tarea</h2>
+<p>Para la tarea, vais a explorar la variación en el español de América Latina. Para empezar, hay que elegir uno de los siguientes sitios:</p>
+<ul>
+<li><a href="http://dialectos.osu.edu/">Voices of the Hispanic World</a></li>
+<li><a href="https://cvc.cervantes.es/lengua/voces_hispanicas/">Catálogo de voces hispánicas</a></li>
+</ul>
+<p>Estos dos recursos presentan información sobre las variedades del español. Vuestro objetivo será encontrar dos rasgos que se hayan mencionado todavía. Prefiero que los dos rasgos sean de dos tipos distintos (es decir, fonológico o morfológico), pero no es un requisito fijo para la tarea. Estas observaciones se entregarán por eLC (Tools &gt; Discussions &gt; Tareas).</p>
+</div>
+</div>
+
+<footer role="contentinfo" id="site-footer">
+
+<!-- /.bottom-menu -->
+	<p class="copyright">&#169; 2020,
+		powered by <a href="http://www.r-project.org">R</a> + <a href="http://rmarkdown.rstudio.com">RMarkdown</a> + <a href="http://github.com">Github</a>.</p>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+---
+title: "Dialectos, lenguas y variedades"
+author: "Chad Howe"
+date: "7/1/2020"
+output:
+  pdf_document:
+    toc: no
+    toc_depth: '4'
+  html_document:
+    number_sections: yes
+    theme: paper
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
+subtitle: Observaciones preliminares
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Conceptos de 'lengua'
+
+1. la *lengua* española
+2. forma estándar (prestigioso)
+3. caracterización política
+4. sistema abstracto
+
+
+<!--
+```{r cars}
+summary(cars)
+```
+-->
+
+## Dialectos
+
+- No tienen fronteras
+- Cada tipo de elemento lingüístico (p.e., palabras, rasgos fonéticos, etc.) ocupa una zona que es continua y que se distingue de otro valor del elemento.
+- Dado el número grande de rasgos lingüísticos del habla de una localidad, es de esperar que haya un número casi infinito de ‘dialectos’ que se puedan distinguir.
+
+## Isoglosas: Perspectiva tradicional
+![Mapa de Penny (2000)](issoglossmap.png)
+
+## Isoglosas: Perspectiva moderna
+![Soda vs. Pop vs. ?](sodapopmap.jpg)
+
+## Las Lenguas
+
+- ¿Tienen fronteras temporales?
+    + En un momento dado, el habla de una comunidad es distinta del habla de las generaciones anteriores.
+    + ¿Por qué tienen nombres distintos las lenguas romances?
+- ¿Se pueden delimitar?
+    + fronteras geográficas
+    + comprensión mutua
+    + sistemas ortográficos distintos
+    + razones políticas
+    
+## Lenguas y dialectos
+
+- ¿Qué significa la siguiente expresión?
+    + X es un dialecto de la lengua Y.
+
+- Se asume en cada generación que el habla cotidiana es una corrupción de algún estado idealizado de la lengua.
+    + jerga; texting
+
+_ El argumento que “X es un dialecto de la lengua Y” es inválido.
+Ser un dialecto de una lengua, en la mayoría de los casos, tiene un significado geográfico o político (y no lingüístico).
+
+## Tipos de lectos
+
+![Mapa de Silva-Corvalán](TiposDeLectos.png)
+
+
+# Relación entre variedades
+
+- La relación entre dos variedades de una lengua es continua. Es decir, no hay fronteras definitivas.
+
+- Según Penny, distancias equivalentes no implican grados equivalentes de variación.
+
+## Evolución dialectal
+
+![Figura de Moreno-Fernández](ArbolDialectal.png)
+
+## Evolución lingüística
+
+![Figura de Penny](ArbolLinguistico.png)
+
+
+## El árbol lingüístico
+
+1. ¿Qué es lo que nos muestra el árbol lingüístico?
+    + relaciones geneológicas
+    + división geográfica
+    + tiene su origen en la biología
+
+2.¿Cuáles son los problemas?
+    + se presupone que las variedades del habla son como organismos biológicos
+    + se presupone un origen único y uniforme de las ramas del árbol (e.g., el 'latín')
+    + no son capaces de representar las relaciones lingüísticas en cuanto a los rasgos individuales
+
+## Las lenguas románicas
+
+![Figura de Penny](LenguasRomancas1.png)
+
+## Las lenguas románicas
+
+![Figura de Penny](LenguasRomanicas2.png)
+
+## Discontinuidad geográfica
+Bajo ciertas circunstancias, se puede observar líneas claras de transición lingüística.
+
+1.  la transmisión (continua) de rasgos de centros de prestigio se puede parar por cuestión de una frontera política.
+2.  el movimiento (p.e. inmigración) de personas a lugares nuevos donde la población indígena habla de una manera distinta
+
+# Sistemas multi-lingüísticos
+## Diasistemas
+Esta noción describe la relación entre variedades adyacentes. Por ejemplo:
+
+1.  Español Peninsular (centro-norteño):
+   + /`r linguisticsdown::cond_cmpl("θ")`/ vs. /s/ vs. /x/ (p.e., caza vs. casa vs. caja)
+2.  Español Peninsular (andaluz):
+    + /s/ vs. /x/
+
+**Andaluz del oeste**	y **Anadaluz del este**		
+<!--
+-  *hambre* /xámbɾe / ~	/ámbɾe/
+-  *ahogar* /axoɣáɾ/ ~ /aoɣáɾ/
+-  *juego* /xuéɣo/ ~	/xuéɣo/
+-  *caja* /káxa/ ~ /káxa/
+-->
+
+## Multilinguismo
+
+El término "multilingüe" cubre todas las situaciones en que se hablan dos o más lenguas. Así que, el bilingüismo es un subtipo de multilingüismo. Se puede analizar los casos de multilingüismo desde dos perspectivas:
+
+1.  Como un fenómeno individual:
+    + ¿Cómo adquieren dos o más lenguas un hablante?
+    + ¿Cómo se representan estas lenguas en la mente del hablante?
+    + ¿Cómo son utilizadas para el habla, la escritura, y la comprensión?
+2.  Como un fenómeno de la sociedad:
+    + ¿Cuáles son los papeles y los estatus de lenguas que están en ‘competición’?
+    + ¿Cómo son las actitudes hacia estas lenguas?
+    + ¿Qué determina la elección de una lengua versus otra?
+    + ¿Qué son las correlaciones entre la elección lingüística y factores sociales? 
+
+## La diglosia
+
+**La diglosia** describe una situación en la cual se utilizan dos (o más) variedades distintas en la misma comunidad. Normalmente, una de las variedades tiene un estatus más elevado (medido por su uso en los dominios oficiales) y la otra tiene un estatus más bajo.
+
+- Casos en el mundo hispanohablante:
+    + el español de Paraguay con el guaraní
+    + el español y el quechua en Perú, Ecuador, Bolivia
+    + en Galicia: el español y el gallego (¿?)
+    + el vasco y el español
+    + el catalán y el español 
+    + ¿el español y el inglés?
+
+
+<!--
+# Metodologías sociolingüísticas
+
+
+```{r libs, message=FALSE, warning=FALSE}
+library(sf)
+library(maps)
+library(dplyr)
+library(classInt)
+library(sp)
+library(spdep)
+```
+
+dfd
+
+```{r}
+county_map <- map('italy', fill = TRUE)
+```
+
+-->
+
