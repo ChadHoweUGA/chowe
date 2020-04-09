@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3923883033",
+    "hash" : "0",
     "id" : "4F4DF555",
-    "lastKnownWriteTime" : 1586371659,
-    "last_content_update" : 1586371659743,
+    "lastKnownWriteTime" : 1586456311,
+    "last_content_update" : 1586456311403,
     "path" : "~/Documents/GitHub/chowe/AdviseeGuide.Rmd",
     "project_path" : "AdviseeGuide.Rmd",
     "properties" : {
-        "cursorPosition" : "329,104",
-        "scrollLine" : "326"
+        "cursorPosition" : "102,189",
+        "scrollLine" : "102"
     },
     "read_only" : false,
     "read_only_alternatives" : [
