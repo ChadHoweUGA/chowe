@@ -40,6 +40,7 @@ Below is a list a resources that students might find useful for their research (
 - <a href="https://rmarkdown.rstudio.com/">RMarkdown</a>: A markup language useful for creating documents and presentations (and other delights)
 - <a href="https://www.linguisticsociety.org/sites/default/files/style-sheet.pdf"><em>Language</em> style sheet</a>
 - <a href="http://www.overleaf.com">Overleaf</a>: A nifty resource for creating LaTeX documents online. Also has some very handy collaboration functions.
+- [Digital Pedagogy in the Humanities](https://digitalpedagogy.hcommons.org/?utm_campaign=digestapr20non&utm_medium=email&utm_source=mlaoutreach): This is a cool collection of materials and tools curated by the MLA.
 
 ## Resources for Graduate Students
 - <a href="https://tomprof.stanford.edu/posting/1482">"Choosing a Dissertation Topic"</a>&nbsp;(Post from&nbsp;<em>Tomorrow's Professor)</em>
