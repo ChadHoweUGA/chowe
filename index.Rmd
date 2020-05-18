@@ -16,16 +16,16 @@ Current students are encouraged to consult the [Resources page of my website](ht
 
 ----
 
-## Teaching Schedule (Spring 2020)
-1.  LING 2100: The Study of Language
-2.  SPAN 6450: Variación y sociolingüística en español
-3.  Office Hours: Fridays from 9:00-11:00 (or by appointment)
+## Teaching Schedule (Summer 2020/Fall 2020)
+1.  LING 4910/ROML 4120/6120: The Digital Life of Language (Summer Online!)
+2.  SPAN 8450: Spanish in the age of big data: Corpus-based approaches to language and grammar
+3.  SPAN 3050: Introducción a la lingüística hispánica
+3.  Office Hours: TBD
 
 | Time | Tuesdays | Thursdays |
 | ----------- | ----------- |  ----------- |
-| 9:30-10:45 | SPAN 6450 | SPAN 6450 |
-| 11:00-12:15 | LING 2100 | LING 2100 |
-| 12:30-1:45 | LING 2100 | LING 2100 |
+| 9:30-10:45 | SPAN 3050 | SPAN 3050 |
+| 11:00-12:15 | SPAN 8650 | SPAN 8650 |
 
 
 ----
