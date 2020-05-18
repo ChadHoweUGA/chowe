@@ -61,10 +61,10 @@ Below is a list a resources that students might find useful for their research (
 - <a href="http://www.quechua.org.uk/">Quechua</a>: A somewhat dated but <strong>very </strong>useful collection of resources for folks interested in Quechua/Quichua/Runasimi
 
 ## Digital Humanities
-I'm not particularly qualified to provide a list of useful resources for this topic, but that hasn't stopped be thus far. Again, I'm taking heavily from resources that have been suggested to me by students and colleagues (specifically [Dr. Nora Benedict](https://norabenedict.github.io/index.html))
+I'm not particularly qualified to provide a list of useful resources for this topic, but that hasn't stopped me thus far. Again, I'm taking heavily from resources that have been suggested to me by students and colleagues (specifically [Dr. Nora Benedict](https://norabenedict.github.io/index.html))
 
 - [UGA DigiLab](https://digi.uga.edu/digilab/#1544564021635-6ae22572-cb2d): In addition to being a cool physical space, the DigiLab, directed by Dr. Emily McGinn, offers **lots** of resources and events for faculty and students.
-- [Digital Pedagogy in the Humanities](https://digitalpedagogy.hcommons.org/?utm_campaign=digestapr20non&utm_medium=email&utm_source=mlaoutreach): This is a cool collection of materials and tools curated by the MLA.
+- [Digital Pedagogy in the Humanities](https://digitalpedagogy.hcommons.org/?utm_campaign=digestapr20non&utm_medium=email&utm_source=mlaoutreach): This is a useful collection of materials and tools curated by the MLA.
 - [*Debates in the Digital Humanities*](https://dhdebates.gc.cuny.edu/): This a nice resource for up-to-date research.
 - [RAWGraphs](https://rawgraphs.io/): I've not used this one, but Dr. Benedict endorses it.
 - [Palladio](https://hdlab.stanford.edu/palladio/): This is a handy visualization tool. It's particularly useful for historical data.
