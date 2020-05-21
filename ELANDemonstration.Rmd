@@ -18,9 +18,13 @@ In this tutorial, we will be discussing the use of ELAN, which, according to the
 | Cost | Often free but could include licensing fee | **Very** Expensive | Free |
 | Versatility | minimal | Very Versitile | Very Versitile |
 
-## Getting Started
+# Getting Started
 
 The first thing you'll need to do is download ELAN, [which you can do here](https://archive.mpi.nl/tla/elan/download). 
+
+![Download ELAN](images/ELANIntro.png)
+
+# Other stuff
 
 ## Observaciones preliminares
 - La gran mayoría de los hablantes de español, más de 300 millones, se encuentra en América Latina.
