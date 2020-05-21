@@ -17,7 +17,7 @@ params:
 
 ----
 
-<center> The more you know, the more you know what you don't know" -Richard Feynman</center>
+<center> "The more you know, the more you know what you don't know" -Richard Feynman</center>
 
 ----
 
