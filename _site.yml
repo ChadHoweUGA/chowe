@@ -8,6 +8,9 @@ navbar:
       href: students.html
     - text: "Resources"
       href: resources.html
+  right:
+    - icon: ion-social-twitter
+    - href: https://twitter.com/ChoweAthens
 output_dir: "."
 output:
   html_document:
