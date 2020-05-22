@@ -12,7 +12,7 @@ navbar:
       href: https://twitter.com/ChoweAthens
     - icon: fa-github
       href: https://github.com/ChadHoweUGA
-    - icon: fab fa-researchgate
+    - icon: fa-researchgate
       href: https://www.researchgate.net/profile/Chad_Howe2
 output_dir: "."
 output:
