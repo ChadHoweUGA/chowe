@@ -2,6 +2,9 @@ name: "Chad Howe, Ph.D."
 navbar:
   title: "Chad Howe, Ph.D."
   left:
+    - text: "Home"
+      icon: fa-home
+      href: index.html
     - text: "Research"
       href: research.html
     - text: "Students"
