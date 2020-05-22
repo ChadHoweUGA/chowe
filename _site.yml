@@ -14,8 +14,6 @@ navbar:
       href: https://github.com/ChadHoweUGA
     - icon: fa-researchgate
       href: https://www.researchgate.net/profile/Chad_Howe2
-    - icon: fa-orcid
-      href: https://www.researchgate.net/profile/Chad_Howe2
 output_dir: "."
 output:
   html_document:
