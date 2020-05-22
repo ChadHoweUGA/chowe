@@ -8,11 +8,11 @@ navbar:
       href: students.html
     - text: "Resources"
       href: resources.html
-    - icon: ion-social-twitter
+    - icon: fa-twitter
       href: https://twitter.com/ChoweAthens
     - icon: fa-github
       href: https://github.com/ChadHoweUGA
-    - icon: fa-researchgate
+    - icon: fab fa-researchgate
       href: https://www.researchgate.net/profile/Chad_Howe2
 output_dir: "."
 output:
