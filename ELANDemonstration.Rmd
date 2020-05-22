@@ -9,7 +9,30 @@ output:
 
 ---
 
-# Working with data using ELAN
+# Introduction
+
+---
+
+:::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+
+::: {}
+![ELAN](images/ELAN128.png)
+
+:::
+
+::: {}
+In this tutorial, we will be discussing the use of ELAN, which, according to the website, is "an annotation tool for audio and video recordings". This program, brought to you by the great folks at [The Language Archive](https://archive.mpi.nl/tla/), is quite versatile. In addition to being free, there's an active and response community of users who are more than willing to answer your questions.
+
+
+:::
+
+::::
+
+
+
+<!--
+![ELAN logo](images/ELAN128.png)
+-->
 
 In this tutorial, we will be discussing the use of ELAN, which, according to the website, is "an annotation tool for audio and video recordings". This program, brought to you by the great folks at [The Language Archive](https://archive.mpi.nl/tla/), is quite versatile. In addition to being free, there's an active and response community of users who are more than willing to answer your questions.
 
