@@ -27,7 +27,9 @@ In this tutorial, we will be discussing the use of ELAN, which, according to the
 :::
 
 ::::
-
+<!--
+https://bookdown.org/yihui/rmarkdown-cookbook/multi-column-layout.html
+-->
 
 | Programs | Word (or other) | Adobe Audition | ELAN |
 | ------ |------ | ------ | ------ |
