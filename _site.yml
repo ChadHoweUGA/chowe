@@ -16,8 +16,10 @@ navbar:
       href: https://twitter.com/ChoweAthens
     - icon: fa-github
       href: https://github.com/ChadHoweUGA
-    - icon: fa-researchgate
+    - text: RG
       href: https://www.researchgate.net/profile/Chad_Howe2
+    - text: ORCiD
+      href: https://orcid.org/0000-0002-3044-1443
 output_dir: "."
 output:
   html_document:
