@@ -42,6 +42,7 @@ Below is a list a resources that students might find useful for their research (
 - <a href="https://rmarkdown.rstudio.com/">RMarkdown</a>: A markup language useful for creating documents and presentations (and other delights)
 - <a href="https://www.linguisticsociety.org/sites/default/files/style-sheet.pdf"><em>Language</em> style sheet</a>
 - <a href="http://www.overleaf.com">Overleaf</a>: A nifty resource for creating LaTeX documents online. Also has some very handy collaboration functions.
+- [Bib Converter](http://glottotopia.org/doc2tex/doc2bib): This is a **very** nifty tool to convert a Unified Style Sheet bibliography to bibtex.
 
 
 ## Resources for Graduate Students
