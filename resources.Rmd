@@ -28,7 +28,7 @@ Below is a list a resources that students might find useful for their research (
 - <a href="http://www.rae.es/recursos/banco-de-datos">Real Academia Española</a>: different synchronic and diachronic corpora
 - <a href="https://www.webcorpora.org/">COW</a>: High Quality Web Corpora
 - <a href="http://corpora.lancs.ac.uk/lancsbox/">LANCSBox</a>: software package for the analysis of language data and corpora
-- [Lancaster Stats Tools online](http://corpora.lancs.ac.uk/stats/index.php)
+- [Lancaster Stats Tools online](http://corpora.lancs.ac.uk/stats/index.php): The website provides practical support for the analysis of corpus data using a range of statistical techniques.
 - <a href="https://uclouvain.be/en/research-institutes/ilc/cecl/corpora.html">Center for English Corpus Linguistics (Louvain)</a>: A collection of several useful corpus resources
 - <a href="http://lingtools.uoregon.edu/coraal/explorer/">CoRAAL</a>: Corpus of Regional African American Language, developed and hosted by the University Oregon
 - <a href="https://cqpweb.lancs.ac.uk/">Lancaster Corpus Resources</a>
