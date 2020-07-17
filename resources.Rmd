@@ -19,6 +19,7 @@ Below is a list a resources that students might find useful for their research (
 - [SPPAS](http://www.sppas.org/): "The automatic annotation and analyses of speech, is a scientific computer software tool, daily developed with the aim to be a robust and reliable software."
 - [Praat](http://www.fon.hum.uva.nl/praat/): The (linguistics) industry standard in doing phonetic analysis
 - [Soundtrap](https://www.soundtrap.com/): This is a nifty online platform for conducting and recording interviews. In addition to a wide range of users (e.g., podcasters, radio programs, etc.), it allows for different linguist-friendly functions, such as good-quality audio and (some) automatic transcriptions (in English).
+- [Data Collection in Sociolinguistics: Methods and Applications](https://sociolinguisticdatacollection.com/): This is a very nice volume edited by Christine Mallison, Becky Childs, and Gerard Van Herk. The website has lots of useful resources.
 
 ## Corpora and Corpus tools
 - [Collection of corpus resources available to UGA faculty and students](http://research.franklin.uga.edu/linglab/corpora)
