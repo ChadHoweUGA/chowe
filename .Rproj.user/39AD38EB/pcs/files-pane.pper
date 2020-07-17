@@ -1,9 +1,9 @@
 {
-    "path" : "~/Documents/GitHub/chowe",
-    "sortOrder" : [
+    "path": "~/Documents/GitHub/chowe",
+    "sortOrder": [
         {
-            "ascending" : true,
-            "columnIndex" : 2
+            "columnIndex": 2,
+            "ascending": true
         }
     ]
 }
