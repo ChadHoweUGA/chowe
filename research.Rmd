@@ -78,13 +78,13 @@ In coordination with the Latin American Indigenous Languages Initiative, this p
 
 **Descripción**
 
-Nuestro objetivo con este taller es ofrecer una introducción general al uso de [ELAN](https://archive.mpi.nl/tla/elan) para la trascripción, la anotación y el análisis de archivos orales (y visuales). ELAN es distribuido por [The Language Archive](https://archive.mpi.nl/tla/) y se puede utilizar, gratuitamente, tanto con un PC como con un MAC (y Linux). Este taller ofrecerá un resumen de las funciones básicas de ELAN como la manipulación de los archivos orales y la transcripción de entrevistas con distintos niveles de análisis (p.e. oración, palabra, etc.). Los participantes tendrán acceso a materiales en quechua y español que se utilizarán durante el taller. 
+Nuestro objetivo con este taller es ofrecer una introducción general al uso de [ELAN](https://archive.mpi.nl/tla/elan) para la trascripción, la anotación y el análisis de archivos orales (y visuales). ELAN es distribuido por [The Language Archive](https://archive.mpi.nl/tla/) y se puede utilizar, gratuitamente, tanto con un PC como con un MAC (y Linux). Este taller ofrecerá un resumen de las funciones básicas de ELAN como la manipulación de los archivos orales y la transcripción de entrevistas con distintos niveles de análisis (p.e. oración, palabra, etc.). Los participantes tendrán acceso a materiales en español (y muestras en el quechua) que se utilizarán durante el taller. 
 
 Los materiales para este taller [se pueden encontrar aquí](https://drive.google.com/file/d/1m4M8T6oROfO4rj78V7ccQJbpi8yqw2Rn/view?usp=sharing). Esta carpeta contiene los siguientes archivos:
 
 | Archivo          | Descripción  |
 | -------------    |-------------|
-| *ELAN_5-9_mac.zip*  | Program de ELAN |
+| *ELAN_5-9_mac.zip*  | Programa de ELAN |
 | *TallerDeELAN.pdf* | Presentación del Taller |
 | *ra.rqa clip_056EBVU.wav*      | Archivo oral de muestra (Quechua)     |
 | *056_Sound Clip.zip* | Otra muestra de transcripción (Bethany)|
