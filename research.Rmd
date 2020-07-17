@@ -18,7 +18,8 @@ My principle area of research is language variation and change, primarily focusi
 
 
 ## Recent/Upcoming
-- 2020 (April-<font size="3" color="red">CANCELED!</font>) Howe, Chad, Sarah Hubbel, and Bethany Bateman. Transfer in discourse: The case of Quechua *na*. [10th International Workshop on Spanish Sociolinguistics](https://wss10.modlangs.gatech.edu/). Georgia Tech. [Abstract](https://drive.google.com/open?id=10MYJy8qPeAyFwEAuGn-P2qIMF9NR-7gu)
+- 2020. Bateman McDonald, Bethany, Sarah Hubbel, and Chad Howe. From placeholder to pause filler: *na* in Quechua/Spanish bilingual speech. [2020 Andean Research Proseminar](https://thinkingandeanstudies.com/)
+- 2020 (April-<font size="3" color="red">CANCELED!</font>) Howe, Chad, Sarah Hubbel, and Bethany Bateman McDonald. Transfer in discourse: The case of Quechua *na*. [10th International Workshop on Spanish Sociolinguistics](https://wss10.modlangs.gatech.edu/). Georgia Tech. [Abstract](https://drive.google.com/open?id=10MYJy8qPeAyFwEAuGn-P2qIMF9NR-7gu)
 - Howe, Chad and Camila Lívio. 2020. Intensification in diachrony:A corpus analysis of *muito* and *bem* in Portuguese. [50th Linguistic Symposium on Romance Languages](http://sites.utexas.edu/lsrl50/2019/09/05/info-post/). University of Texas at Austin. [Abstract](https://drive.google.com/open?id=1jHdtj10c6dRzxZbuxXHE4e1XCxOvh9nK)
 - Lívio, Camila and Chad Howe. 2019. Intensiﬁcation in Brazilian Portuguese: muito, bem and beyon.Poster presentation at New Ways of Analyzing Variation 48. University of Oregon.
 - Howe, Chad, Sarah Hubbel, and Bethany Bateman McDonald. 2019. "From placeholder to hesitation marker: na in Quechua/Spanish bilingual speech". Poster presentation at New Ways of Analyzing Variation 48. University of Oregon. [Poster](https://drive.google.com/open?id=1dhE9oBcFdeLwC_QZfTeoKwfAy1I0g7GN) [Examples](https://drive.google.com/open?id=1kgGVrpn-CRjObB5n_UxhMMwimIkIDYu8)
@@ -62,4 +63,21 @@ In coordination with the Latin American Indigenous Languages Initiative, this p
 
 ----
 
+## Workshops
 
+### ELAN (en español)
+
+1.  [Bethany Bateman McDonald (Doctoral Student, Department of Romance Languages at the University of Georgia)](https://www.rom.uga.edu/directory/people/bethany-bateman-mcdonald)
+2.  [Chad Howe (University of Georgia, Departments of Romance Languages and Linguistics)](https://chadhoweuga.github.io/chowe/index.html)
+3.  [Sarah Hubbel (Doctoral Student, Department of Romance Languages at the University of Georgia)](https://www.rom.uga.edu/directory/people/sarah-bigger)
+
+Nuestro objetivo con este taller es ofrecer una introducción general al uso de [ELAN](https://archive.mpi.nl/tla/elan) para la trascripción, la anotación y el análisis de archivos orales (y visuales). ELAN es distribuido por [The Language Archive](https://archive.mpi.nl/tla/) y se puede utilizar, gratuitamente, tanto con un PC como con un MAC (y Linux). Este taller ofrecerá un resumen de las funciones básicas de ELAN como la manipulación de los archivos orales y la transcripción de entrevistas con distintos niveles de análisis (p.e. oración, palabra, etc.). Los participantes tendrán acceso a materiales en quechua y español que se utilizarán durante el taller. 
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+
+![Taller de ELAN](images/ELAN128.png)
