@@ -8,57 +8,66 @@ output:
 
 ----
 
+<style>
+.column-left{
+  float: left;
+  width: 50%;
+  text-align: left;
+}
+.column-right{
+  float: right;
+  width: 50%;
+  text-align: left;
+}
+</style>
+
+<div class="column-left">
+
 I am [Associate Professor of Spanish Linguistics](http://rom.uga.edu/directory/people/chad-howe) with a joint appointment in the [Department of Romance Languages](http://rom.uga.edu/) and the [Department of Linguistics](http://www.linguistics.uga.edu/) at the University of Georgia. I am also faculty in the [Latin American and Caribbean Studies Institute](http://lacs.franklin.uga.edu/) where I serve as the coordinator for the [Quechua Language Program](http://lacs.franklin.uga.edu/quechua-language).
+
+</div>
+<div class="column-center">
+<center><img src="images/ChadHowe1.jpg" width="175px"></center>  
+</div>
+
+----
+
+### Goings on
 
 For an overview of my current (and recent) projects, go to my [research page](research.html), which also includes recent/forthcoming publications and presentations. For news regarding current research, teaching, graduate student goings-on, and other follies, please check out [my Twitter feed](https://twitter.com/ChoweAthens). For information regarding my current class schedule and office hours, please consult my contact information below. [My current cv](https://drive.google.com/open?id=12AJlAyBTaXN46iEJOa2ko8zDzXhHKNwI) has the most up-to-date summary of what's going on.
 
 Current students are encouraged to consult the [Resources page of my website](https://chadhoweuga.github.io/chowe/resources.html). This (non)exhaustive list provides an overview of different resources that will help in your research, teaching, and non-UGA life. Prospective students might have a look at the list of students whose work I've directed.
 
-I also serve as the **Review Editor** for the journal [Studies in Hispanic and Lusophone Linguistics](https://www.degruyter.com/view/journals/shll/shll-overview.xml?language=en&tab_body=editorialContent-75079). Reviews of academic books (e.g., monographs, edited volumes, handbooks, etc.) are generally solicited individually. If you would like for your book or volume to be considered for a review in SHLL, please have your commissioning editor arrange for a copy to be delivered to us. If you are working on a review, I strongly suggest reading the many excellent samples that have been published in previous volumes. There are also a number of useful guides and how-to's available that can help you as you put together your submission--such as [this article by Casey Brienza from Inside Higher Ed](https://www.insidehighered.com/advice/2015/03/27/essay-writing-academic-book-reviews) and [this insightful resource prepared by Tala Khanmalek](https://ideasonfire.net/how-to-write-a-book-review/). 
-
 ----
 
-## Teaching Schedule (Summer 2020/Fall 2020)
-1.  LING 4910/ROML 4120/6120: The Digital Life of Language (Summer Online!)
-2.  SPAN 8450: Spanish in the age of big data: Corpus-based approaches to language and grammar
-3.  SPAN 3050: Introducción a la lingüística hispánica
-3.  Office Hours: TBD
+### Teaching Schedule (Fall 2020)
+
+1.  SPAN 8450: Spanish in the age of big data: Corpus-based approaches to language and grammar
+2.  SPAN 3050: Introducción a la lingüística hispánica
+3.  FYOS 1001: Endangered Languages: Preserving the World's Voices
+3.  Office Hours: Tuesdays from 1:00-3:00 (via Zoom)
 
 | Time | Tuesdays | Thursdays |
 | ----------- | ----------- |  ----------- |
 | 9:30-10:45 | SPAN 3050 | SPAN 3050 |
 | 11:00-12:15 | SPAN 8650 | SPAN 8650 |
-
+| 12:30-1:45 | --- | FYOS 1001 |
 
 ----
 
-<!---From http://stackoverflow.com/questions/31753897/2-column-section-in-r-markdown:
-Put in your css file or directly in rmarkdown--->
-<style>
-  .col2 {
-    columns: 2 200px;         /* number of columns and width in pixels*/
-    -webkit-columns: 2 200px; /* chrome, safari */
-    -moz-columns: 2 200px;    /* firefox */
-  }
-</style>
- 
-<div class="col2">
+### Graduate Coordinator
 
-<center><img src="images/ChadHowe1.jpg" width="200px"></center>
+As of Fall 2020, I will be serving as [Graduate Coordinator](https://www.linguistics.uga.edu/graduate-program) in the Department of Linguistics. Current students should feel free to contact me regarding advisement and any other program-related questions. I will be holding open office hours for graduate students on **Fridays from 1:00-3:00 (via Zoom)**. Prospectus students are encouraged to contact me as well with questions related to UGA's graduate offerings in linguistics. Below are a few helpful links for students (current and prospective):
 
-<br>
-<br>
+- [UGA Graduate School](https://grad.uga.edu/)
+- [UGA Grad School Calendar](https://grad.uga.edu/index.php/current-students/important-dates-deadlines/)
+- [UGA Department of Linguistics Graduate Handbook](https://ling.franklin.uga.edu/sites/default/files/inline-files/Graduate%20Handbook%20Revised%20July%202019.pdf)
 
-**Contact Information**
+----
 
-- Office: [218 Gilbert Hall](https://goo.gl/maps/8dMQbqdPuK94ttTY6)
-- Mail: Dept. of Romance Languages, 218 Gilbert Hall, Athens, GA 30602-1815
-- Phone: (706) 583-0792 (Office)
-- Fax: (706) 542-3287
-- [ORCID](https://orcid.org/0000-0002-3044-1443)
+### Review Editor for SHLL
 
-</div>
-
+I also serve as the Review Editor for the journal [Studies in Hispanic and Lusophone Linguistics](https://www.degruyter.com/view/journals/shll/shll-overview.xml?language=en&tab_body=editorialContent-75079). Reviews of academic books (e.g., monographs, edited volumes, handbooks, etc.) are generally solicited individually. If you would like for your book or volume to be considered for a review in SHLL, please have your commissioning editor arrange for a copy to be delivered to us. If you are working on a review, I strongly suggest reading the many excellent samples that have been published in previous volumes. There are also a number of useful guides and how-to's available that can help you as you put together your submission--such as [this article by Casey Brienza from Inside Higher Ed](https://www.insidehighered.com/advice/2015/03/27/essay-writing-academic-book-reviews) and [this insightful resource prepared by Tala Khanmalek](https://ideasonfire.net/how-to-write-a-book-review/). 
 
 ----
 
