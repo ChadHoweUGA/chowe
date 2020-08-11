@@ -66,6 +66,7 @@ Below is a list a resources that students might find useful for their research (
 - <a href="http://amlq.org.pe/">Academia Mayor de la Lengua Quechua</a>: Information about Quechua language and culture
 - <a href="http://www.clacs.illinois.edu/quechua/">Quechua at UIUC</a>: Information about the Quechua offerings at the University of Illinois Urbana-Champaign
 - <a href="http://www.quechua.org.uk/">Quechua</a>: A somewhat dated but <strong>very </strong>useful collection of resources for folks interested in Quechua/Quichua/Runasimi
+- [Linguistics Summer School Bolivia](https://www.lssbolivia.com/?fbclid=IwAR0RdJpESc70ZuTjig1HtGsB2k9cRdb5lAzF3wzkuBe0nDFbATUjN7oYdCY): This institution offers training to speakers of indigenous languages and applied linguistics students.
 
 ## Digital Humanities
 I'm not particularly qualified to provide a list of useful resources for this topic, but that hasn't stopped me thus far. Again, I'm taking heavily from resources that have been suggested to me by students and colleagues (specifically [Dr. Nora Benedict](https://norabenedict.github.io/index.html))
