@@ -1,0 +1,69 @@
+---
+title: "Corpus Resources"
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+---
+
+Below is a list a resources that students might find useful for their research (and teaching). I've pillaged heavily (and, in some instances, copied) [Dr. Peggy Renwick's thorough list of resources](http://faculty.franklin.uga.edu/mrenwick/phonetics-phonology-resources). Suggestions welcome!
+
+----
+
+## General Corpus Tools
+- [Collection of corpus resources available to UGA faculty and students](http://research.franklin.uga.edu/linglab/corpora)
+- [The IMS Open Corpus Workbench](http://cwb.sourceforge.net/): The IMS Open Corpus Workbench (CWB) is a collection of open-source tools for managing and querying large text corpora (ranging from 10 million to 2 billion words) with linguistic annotations. Its central component is the flexible and efficient query processor CQP.
+- [LANCSBox](http://corpora.lancs.ac.uk/lancsbox/): software package for the analysis of language data and corpora
+- [Lancaster Stats Tools online](http://corpora.lancs.ac.uk/stats/index.php): The website provides practical support for the analysis of corpus data using a range of statistical techniques.
+- [Linguistic Data Consortium](https://www.ldc.upenn.edu/): A great resource for language corpora; and UGA has an institutional subscription!!
+- [Tools for Corpus Linguistics](https://corpus-analysis.com/): A long list of corpus-related resources that's always being updated
+
+----
+
+## Spanish Corpora
+### General Corpora
+- [Corpus del Español](http://www.corpusdelespanol.org/): Spanish corpus compiled by BYU
+- [El Corpus de Referencia del Español Actual (CREA)](https://www.rae.es/recursos/banco-de-datos/crea)
+- [El Atlas Sintáctico del Español (ASinEs)](https://www.rae.es/recursos/enlaces-externos/atlas-sintactico-del-espanol)
+
+### Historical
+
+- [El Corpus Diacrónico del Español (CORDE)](https://www.rae.es/recursos/banco-de-datos/corde)
+- [Corpus del Nuevo Diccionario Histórico del Español](http://web.frl.es/CNDHE/view/inicioExterno.view;jsessionid=2E34C1C1AF321C2A31535DD5369E994F)
+- [Corpus Diacrónico y Diatópico del Español de América](http://www.cordiam.org/): El Corpus Diacrónico y Diatópico del Español de América reúne tres conjuntos documentales; Cordiam-Documentos, Cordiam-Literatura y Cordiam-Prensa.
+- [Corpus Hispánico y Americano en la Red: Textos Antiguos](http://www.corpuscharta.es/): CHARTA se concibe como un proyecto global para la edición y análisis lingüístico de textos archivísticos en español de los siglos XII al XIX.
+- [El corpus CODEA (Corpus de Documentos Españoles Anteriores a 1800)](http://corpuscodea.es/)
+- [Project P.S. Post Scriptum](http://ps.clul.ul.pt/)
+- [Biblia Medieval](http://www.bibliamedieval.es/index.php)
+
+-----
+
+### Sociolinguistic
+
+- [Corpus del Español en el Sur de Arizona (CESA)](https://cesa.arizona.edu/)
+- [El Corpus del Español del Siglo XXI (CORPES XXI)](https://www.rae.es/recursos/banco-de-datos/corpes-xxi)
+- [PRESEEA](http://preseea.linguas.net/): A collection of sociolinguistic data from around the Spanish-speaking world.
+- [CANOLFAN: The Miami corpus consists of conversations by Spanish-English bilinguals](http://bangortalk.org.uk/speakers.php?c=miami)
+- [Corpus MIAMI](http://bangortalk.org.uk/speakers.php?c=miami&fbclid=IwAR1gYuXaXUhYw-u7_B0zS2kMwdMYyd-pQW_JGTkjrGxdoL11AgpcRsZFYI8)
+- [Corpus of Mexican Spanish in Salinas](https://itcdland.csumb.edu/~eabrown/)
+- [COSER: Corpus oral y Sonora del Español Rural](http://corpusrural.es/)
+- [Spanish in Texas](http://spanishintexas.org/)
+
+### Digital Spanish
+
+- [Bilingual Youth Texts](https://byts.commons.gc.cuny.edu/)
+- [COW](https://www.webcorpora.org/): High Quality Web Corpora
+
+## Other Languages
+
+- [Corpus do Português](http://www.corpusdoportugues.org/): Portuguese corpus compiled by BYU
+
+
+- <a href="https://uclouvain.be/en/research-institutes/ilc/cecl/corpora.html">Center for English Corpus Linguistics (Louvain)</a>: A collection of several useful corpus resources
+- <a href="http://lingtools.uoregon.edu/coraal/explorer/">CoRAAL</a>: Corpus of Regional African American Language, developed and hosted by the University Oregon
+- <a href="https://cqpweb.lancs.ac.uk/">Lancaster Corpus Resources</a>
+- <a href="https://cesa.arizona.edu/links-other-sociolinguistic-corpora">University of Arizona Corpus Resources</a>
+- [SPeech Across Dialects of English (SPADE)](https://spade.glasgow.ac.uk/): This is a very cool project that seeks to develop tools for doing large-scale analysis of speech data.
+
