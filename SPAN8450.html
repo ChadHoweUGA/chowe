@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>El análisis del español mediante los corpus</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Chad Howe, Ph.D.</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="research.html">Research</a>
+</li>
+<li>
+  <a href="students.html">Students</a>
+</li>
+<li>
+  <a href="resources.html">Resources</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://twitter.com/ChoweAthens">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ChadHoweUGA">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.researchgate.net/profile/Chad_Howe2">RG</a>
+</li>
+<li>
+  <a href="https://orcid.org/0000-0002-3044-1443">ORCiD</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">El análisis del español mediante los corpus</h1>
+
+</div>
+
+
+<div id="introducción" class="section level2">
+<h2><span class="header-section-number">0.1</span> Introducción</h2>
+<p><strong>Descripción del curso:</strong></p>
+<p>En este curso, utilizaremos los corpus para explorar cuestiones lingüísticas del español. Además, desarrollaremos un conocimiento más amplio del campo de la Lingüística de Corpus (LC), tanto como una perspectiva metodológica como una sub-disciplina dentro de las ciencias de la lengua. Los estudiantes aprenderán una variedad de técnicas para el estudio de los corpus, entre ellos el uso del UGA Corpus Server y el CQP Query Language. Las áreas de estudio incluirán (i) diferentes aspectos del análisis lingüístico (p.e. la semántica léxica, las colocaciones, la adquisición, y la variación gramatical) y (ii) algunas perspectivas del campo de las humanidades digitales sobre los textos electrónicos como la codificación, la manipulación de archivos, y (tal vez) la estilística. Los estudiantes tendrán que realizar proyectos de investigación originales en los cuales se integran las diferentes perspectivas y metodologías presentadas en clase. Los temas comparativos (p.e. el español y el portugués) también son bienvenidos.</p>
+<hr />
+</div>
+<div id="a-semana" class="section level2">
+<h2><span class="header-section-number">0.2</span> 1a Semana</h2>
+<div id="qué-es-un-corpus" class="section level3">
+<h3><span class="header-section-number">0.2.1</span> ¿Qué es un corpus?</h3>
+<p>En esta clase se introducirá el uso de los corpus para el análisis del español (y otras lenguas). Nuestra primera cuestión se contestará así</p>
+<blockquote>
+<p>El análisis de corpus es el uso de métodos, normalmente computacionales, de colecciones de lengua humana con el fin de sacar conclusiones sobre el lenguaje o alguna característica de los usuarios del lenguaje (p.e. el/la autor(a), grupos demográficos, etc.).</p>
+</blockquote>
+<p>Para este primer día de clase, hableremos de uso del <strong>UGA corpus server</strong>. El programa que utilizaremos hoy para explorar esta colección de corpus se llama <a href="http://cwb.sourceforge.net/documentation.php">el Corpus Query Processor (CQP)</a>. El CQP te ofrece ciertas herramientas que facilitan el proceso de trabajar con datos electrónicos. Se introducirán otras técnicas durante el curso, pero es sumamente importante que tengamos una base sólida del CQP para poder seguir con los temas del curso. Por favor, consulta los mandatos del CQP descritos en el Manual. Entiendo que el uso del CQP puede ser intimidante, pero espero poder guiaros paso a paso.</p>
+<hr />
+</div>
+<div id="el-uso-del-server" class="section level3">
+<h3><span class="header-section-number">0.2.2</span> El uso del server</h3>
+<p>Para poder utilizar CQP, tenemos que empezar con un programa que nos permite acceso al server:</p>
+<ol style="list-style-type: decimal">
+<li>Hay que conectar directamente al UGA campus network o al <a href="https://uga.view.usg.edu/d2l/le/content/2064782/viewContent/31621926/View">Virtual Private Network</a>.</li>
+<li>Hay que tener una cuenta para el servir. Ya os he creado cuentas para todos. Estas cuentas requieren tu <strong>UGA myID</strong> y tu contraseña.</li>
+</ol>
+<p>El server existe como parte del sistema operador de linus. Se puede convertir temporalmente la computadora donde trabajas en <a href="https://uga.view.usg.edu/d2l/le/content/2064782/viewContent/31621926/ViewEte">un terminal</a> para el server mediante el uso del mandato <code>ssh</code>. Las instrucciones presentadas en el documento que se llama “Utilizing the UGA Corpus Server” describen este proceso.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Para esta fase del curso, trabajaremos con dos programas que facilitan el proceso de acceder al servidor: <strong>Terminal</strong> (macOS) o <a href="https://uga.view.usg.edu/d2l/le/content/2064782/viewContent/31621926/View">Putty</a> (Windows).</p>
+<p>El primero paso al abrir el programa relevante (es decir, Terminal o Putty) será hacer el login con tu UGA myID. Una vez que se haya conectado al server, hay que iniciar CQP desde el mensaje (‘prompt’) de linux, con el uso de las etiquetas <code>e</code> y <code>c</code>:<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<ul>
+<li><code>kucera $ cqp -eC</code></li>
+</ul>
+<p>La etiqueta <code>-e</code> te ofrece opciones limitadas para revisar líneas del código, como el acceso a mandotos previous con el <code>up-arrow key'. La etiqueta</code>-C’ produce los colores que observas. Al comenzar, el mensaje de linux (<code>$</code>) se reemplaza con el mensaje del CQP, lo cual es <code>[no corpus]</code> en el estado inicial.</p>
+<hr />
+<!--
+## General Corpus Tools
+- [Collection of corpus resources available to UGA faculty and students](http://research.franklin.uga.edu/linglab/corpora)
+- [The IMS Open Corpus Workbench](http://cwb.sourceforge.net/): The IMS Open Corpus Workbench (CWB) is a collection of open-source tools for managing and querying large text corpora (ranging from 10 million to 2 billion words) with linguistic annotations. Its central component is the flexible and efficient query processor CQP.
+- [LANCSBox](http://corpora.lancs.ac.uk/lancsbox/): software package for the analysis of language data and corpora
+- [Lancaster Stats Tools online](http://corpora.lancs.ac.uk/stats/index.php): The website provides practical support for the analysis of corpus data using a range of statistical techniques.
+- [Linguistic Data Consortium](https://www.ldc.upenn.edu/): A great resource for language corpora; and UGA has an institutional subscription!!
+- [Tools for Corpus Linguistics](https://corpus-analysis.com/): A long list of corpus-related resources that's always being updated
+
+----
+
+## Spanish Corpora
+### General Corpora
+- [Corpus del Español](http://www.corpusdelespanol.org/): Spanish corpus compiled by BYU
+- [El Corpus de Referencia del Español Actual (CREA)](https://www.rae.es/recursos/banco-de-datos/crea)
+- [El Atlas Sintáctico del Español (ASinEs)](https://www.rae.es/recursos/enlaces-externos/atlas-sintactico-del-espanol)
+
+### Historical
+
+- [El Corpus Diacrónico del Español (CORDE)](https://www.rae.es/recursos/banco-de-datos/corde)
+- [Corpus del Nuevo Diccionario Histórico del Español](http://web.frl.es/CNDHE/view/inicioExterno.view;jsessionid=2E34C1C1AF321C2A31535DD5369E994F)
+- [Corpus Diacrónico y Diatópico del Español de América](http://www.cordiam.org/): El Corpus Diacrónico y Diatópico del Español de América reúne tres conjuntos documentales; Cordiam-Documentos, Cordiam-Literatura y Cordiam-Prensa.
+- [Corpus Hispánico y Americano en la Red: Textos Antiguos](http://www.corpuscharta.es/): CHARTA se concibe como un proyecto global para la edición y análisis lingüístico de textos archivísticos en español de los siglos XII al XIX.
+- [El corpus CODEA (Corpus de Documentos Españoles Anteriores a 1800)](http://corpuscodea.es/)
+- [Project P.S. Post Scriptum](http://ps.clul.ul.pt/)
+- [Biblia Medieval](http://www.bibliamedieval.es/index.php)
+
+-----
+
+### Sociolinguistic
+
+- [Corpus del Español en el Sur de Arizona (CESA)](https://cesa.arizona.edu/)
+- [El Corpus del Español del Siglo XXI (CORPES XXI)](https://www.rae.es/recursos/banco-de-datos/corpes-xxi)
+- [PRESEEA](http://preseea.linguas.net/): A collection of sociolinguistic data from around the Spanish-speaking world.
+- [CANOLFAN: The Miami corpus consists of conversations by Spanish-English bilinguals](http://bangortalk.org.uk/speakers.php?c=miami)
+- [Corpus MIAMI](http://bangortalk.org.uk/speakers.php?c=miami&fbclid=IwAR1gYuXaXUhYw-u7_B0zS2kMwdMYyd-pQW_JGTkjrGxdoL11AgpcRsZFYI8)
+- [Corpus of Mexican Spanish in Salinas](https://itcdland.csumb.edu/~eabrown/)
+- [COSER: Corpus oral y Sonora del Español Rural](http://corpusrural.es/)
+- [Spanish in Texas](http://spanishintexas.org/)
+
+### Digital Spanish
+
+- [Bilingual Youth Texts](https://byts.commons.gc.cuny.edu/)
+- [COW](https://www.webcorpora.org/): High Quality Web Corpora
+
+## Other Languages
+
+- [Corpus do Português](http://www.corpusdoportugues.org/): Portuguese corpus compiled by BYU
+
+
+- <a href="https://uclouvain.be/en/research-institutes/ilc/cecl/corpora.html">Center for English Corpus Linguistics (Louvain)</a>: A collection of several useful corpus resources
+- <a href="http://lingtools.uoregon.edu/coraal/explorer/">CoRAAL</a>: Corpus of Regional African American Language, developed and hosted by the University Oregon
+- <a href="https://cqpweb.lancs.ac.uk/">Lancaster Corpus Resources</a>
+- <a href="https://cesa.arizona.edu/links-other-sociolinguistic-corpora">University of Arizona Corpus Resources</a>
+- [SPeech Across Dialects of English (SPADE)](https://spade.glasgow.ac.uk/): This is a very cool project that seeks to develop tools for doing large-scale analysis of speech data.
+
+-->
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Gracias a Donald Dunagan por la prepación de este documento.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Verifica que la versión del CQP que utilizas es la versión apropiada con el mandadato <code>cqp -version</code>. Debe ser la versión 3.4.22.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+<footer role="contentinfo" id="site-footer">
+
+<!-- /.bottom-menu -->
+	<p class="copyright">&#169; 2020,
+		powered by <a href="http://www.r-project.org">R</a> + <a href="http://rmarkdown.rstudio.com">RMarkdown</a> + <a href="http://github.com">Github</a>.</p>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

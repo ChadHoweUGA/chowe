@@ -1,0 +1,108 @@
+---
+title: "El análisis del español mediante los corpus"
+output:
+  html_document:
+    toc: yes
+    number_sections: true
+    toc_float: yes
+  pdf_document:
+    toc: yes
+params:
+    n: 100
+    d: !r Sys.Date()
+---
+
+## Introducción
+
+**Descripción del curso:**
+
+En este curso, utilizaremos los corpus para explorar cuestiones lingüísticas del español. Además, desarrollaremos un conocimiento más amplio del campo de la Lingüística de Corpus (LC), tanto como una perspectiva metodológica como una sub-disciplina dentro de las ciencias de la lengua. Los estudiantes aprenderán una variedad de técnicas para el estudio de los corpus, entre ellos el uso del UGA Corpus Server y el CQP Query Language. Las áreas de estudio incluirán (i) diferentes aspectos del análisis lingüístico (p.e. la semántica léxica, las colocaciones, la adquisición, y la variación gramatical) y (ii) algunas perspectivas del campo de las humanidades digitales sobre los textos electrónicos como la codificación, la manipulación de archivos, y (tal vez) la estilística. Los estudiantes tendrán que realizar proyectos de investigación originales en los cuales se integran las diferentes perspectivas y metodologías presentadas en clase. Los temas comparativos (p.e. el español y el portugués) también son bienvenidos.
+
+----
+
+## 1a Semana
+
+### ¿Qué es un corpus?
+
+En esta clase se introducirá el uso de los corpus para el análisis del español (y otras lenguas). Nuestra primera cuestión se contestará así
+
+> El análisis de corpus es el uso de métodos, normalmente computacionales, de colecciones de lengua humana con el fin de sacar conclusiones sobre el lenguaje o alguna característica de los usuarios del lenguaje (p.e. el/la autor(a), grupos demográficos, etc.).   
+
+Para este primer día de clase, hableremos de uso del **UGA corpus server**. El programa que utilizaremos hoy para explorar esta colección de corpus se llama [el Corpus Query Processor (CQP)](http://cwb.sourceforge.net/documentation.php). El CQP te ofrece ciertas herramientas que facilitan el proceso de trabajar con datos electrónicos. Se introducirán otras técnicas durante el curso, pero es sumamente importante que tengamos una base sólida del CQP para poder seguir con los temas del curso. Por favor, consulta los mandatos del CQP descritos en el Manual. Entiendo que el uso del CQP puede ser intimidante, pero espero poder guiaros paso a paso.
+
+***
+
+### El uso del server
+
+Para poder utilizar CQP, tenemos que empezar con un programa que nos permite acceso al server:
+
+1.  Hay que conectar directamente al UGA campus network o al [Virtual Private Network](https://uga.view.usg.edu/d2l/le/content/2064782/viewContent/31621926/View).
+2.  Hay que tener una cuenta para el servir. Ya os he creado cuentas para todos. Estas cuentas requieren tu **UGA myID** y tu contraseña.
+
+El server existe como parte del sistema operador de linus. Se puede convertir temporalmente la computadora donde trabajas en [un terminal](https://uga.view.usg.edu/d2l/le/content/2064782/viewContent/31621926/ViewEte) para el server mediante el uso del mandato `ssh`. Las instrucciones presentadas en el documento que se llama "Utilizing the UGA Corpus Server" describen este proceso.^[Gracias a Donald Dunagan por la prepación de este documento.] Para esta fase del curso, trabajaremos con dos programas que facilitan el proceso de acceder al servidor: **Terminal** (macOS) o [Putty](https://uga.view.usg.edu/d2l/le/content/2064782/viewContent/31621926/View) (Windows).
+
+El primero paso al abrir el programa relevante (es decir, Terminal o Putty) será hacer el login con tu UGA myID. Una vez que se haya conectado al server, hay que iniciar CQP desde el mensaje ('prompt') de linux, con el uso de las etiquetas `e` y `c`:^[Verifica que la versión del CQP que utilizas es la versión apropiada con el mandadato `cqp -version`. Debe ser la versión 3.4.22.]
+
+* `kucera $ cqp -eC`
+
+La etiqueta `-e` te ofrece opciones limitadas para revisar líneas del código, como el acceso a mandotos previous con el `up-arrow key'. La etiqueta `-C' produce los colores que observas. Al comenzar, el mensaje de linux (`$`) se reemplaza con el mensaje del CQP, lo cual es `[no corpus]` en el estado inicial.
+
+
+***
+<!--
+## General Corpus Tools
+- [Collection of corpus resources available to UGA faculty and students](http://research.franklin.uga.edu/linglab/corpora)
+- [The IMS Open Corpus Workbench](http://cwb.sourceforge.net/): The IMS Open Corpus Workbench (CWB) is a collection of open-source tools for managing and querying large text corpora (ranging from 10 million to 2 billion words) with linguistic annotations. Its central component is the flexible and efficient query processor CQP.
+- [LANCSBox](http://corpora.lancs.ac.uk/lancsbox/): software package for the analysis of language data and corpora
+- [Lancaster Stats Tools online](http://corpora.lancs.ac.uk/stats/index.php): The website provides practical support for the analysis of corpus data using a range of statistical techniques.
+- [Linguistic Data Consortium](https://www.ldc.upenn.edu/): A great resource for language corpora; and UGA has an institutional subscription!!
+- [Tools for Corpus Linguistics](https://corpus-analysis.com/): A long list of corpus-related resources that's always being updated
+
+----
+
+## Spanish Corpora
+### General Corpora
+- [Corpus del Español](http://www.corpusdelespanol.org/): Spanish corpus compiled by BYU
+- [El Corpus de Referencia del Español Actual (CREA)](https://www.rae.es/recursos/banco-de-datos/crea)
+- [El Atlas Sintáctico del Español (ASinEs)](https://www.rae.es/recursos/enlaces-externos/atlas-sintactico-del-espanol)
+
+### Historical
+
+- [El Corpus Diacrónico del Español (CORDE)](https://www.rae.es/recursos/banco-de-datos/corde)
+- [Corpus del Nuevo Diccionario Histórico del Español](http://web.frl.es/CNDHE/view/inicioExterno.view;jsessionid=2E34C1C1AF321C2A31535DD5369E994F)
+- [Corpus Diacrónico y Diatópico del Español de América](http://www.cordiam.org/): El Corpus Diacrónico y Diatópico del Español de América reúne tres conjuntos documentales; Cordiam-Documentos, Cordiam-Literatura y Cordiam-Prensa.
+- [Corpus Hispánico y Americano en la Red: Textos Antiguos](http://www.corpuscharta.es/): CHARTA se concibe como un proyecto global para la edición y análisis lingüístico de textos archivísticos en español de los siglos XII al XIX.
+- [El corpus CODEA (Corpus de Documentos Españoles Anteriores a 1800)](http://corpuscodea.es/)
+- [Project P.S. Post Scriptum](http://ps.clul.ul.pt/)
+- [Biblia Medieval](http://www.bibliamedieval.es/index.php)
+
+-----
+
+### Sociolinguistic
+
+- [Corpus del Español en el Sur de Arizona (CESA)](https://cesa.arizona.edu/)
+- [El Corpus del Español del Siglo XXI (CORPES XXI)](https://www.rae.es/recursos/banco-de-datos/corpes-xxi)
+- [PRESEEA](http://preseea.linguas.net/): A collection of sociolinguistic data from around the Spanish-speaking world.
+- [CANOLFAN: The Miami corpus consists of conversations by Spanish-English bilinguals](http://bangortalk.org.uk/speakers.php?c=miami)
+- [Corpus MIAMI](http://bangortalk.org.uk/speakers.php?c=miami&fbclid=IwAR1gYuXaXUhYw-u7_B0zS2kMwdMYyd-pQW_JGTkjrGxdoL11AgpcRsZFYI8)
+- [Corpus of Mexican Spanish in Salinas](https://itcdland.csumb.edu/~eabrown/)
+- [COSER: Corpus oral y Sonora del Español Rural](http://corpusrural.es/)
+- [Spanish in Texas](http://spanishintexas.org/)
+
+### Digital Spanish
+
+- [Bilingual Youth Texts](https://byts.commons.gc.cuny.edu/)
+- [COW](https://www.webcorpora.org/): High Quality Web Corpora
+
+## Other Languages
+
+- [Corpus do Português](http://www.corpusdoportugues.org/): Portuguese corpus compiled by BYU
+
+
+- <a href="https://uclouvain.be/en/research-institutes/ilc/cecl/corpora.html">Center for English Corpus Linguistics (Louvain)</a>: A collection of several useful corpus resources
+- <a href="http://lingtools.uoregon.edu/coraal/explorer/">CoRAAL</a>: Corpus of Regional African American Language, developed and hosted by the University Oregon
+- <a href="https://cqpweb.lancs.ac.uk/">Lancaster Corpus Resources</a>
+- <a href="https://cesa.arizona.edu/links-other-sociolinguistic-corpora">University of Arizona Corpus Resources</a>
+- [SPeech Across Dialects of English (SPADE)](https://spade.glasgow.ac.uk/): This is a very cool project that seeks to develop tools for doing large-scale analysis of speech data.
+
+-->
