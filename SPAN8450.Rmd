@@ -3,7 +3,7 @@ title: "El análisis del español mediante los corpus"
 output:
   html_document:
     toc: yes
-    number_sections: true
+    number_sections: false
     toc_float: yes
   pdf_document:
     toc: yes
