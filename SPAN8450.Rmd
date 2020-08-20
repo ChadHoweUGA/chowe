@@ -12,7 +12,7 @@ params:
     d: !r Sys.Date()
 ---
 
-## Introducción
+# Introducción
 
 **Descripción del curso:**
 
@@ -20,9 +20,9 @@ En este curso, utilizaremos los corpus para explorar cuestiones lingüísticas 
 
 ----
 
-## 1a Semana
+# 1a Semana
 
-### ¿Qué es un corpus?
+## ¿Qué es un corpus?
 
 En esta clase se introducirá el uso de los corpus para el análisis del español (y otras lenguas). Nuestra primera cuestión se contestará así
 
@@ -32,7 +32,7 @@ Para este primer día de clase, hableremos de uso del **UGA corpus server**. El 
 
 ***
 
-### El uso del server
+## El uso del servidor
 
 Para poder utilizar CQP, tenemos que empezar con un programa que nos permite acceso al server:
 
@@ -45,10 +45,19 @@ El primero paso al abrir el programa relevante (es decir, Terminal o Putty) ser�
 
 * `kucera $ cqp -eC`
 
-La etiqueta `-e` te ofrece opciones limitadas para revisar líneas del código, como el acceso a mandotos previous con el `up-arrow key'. La etiqueta `-C' produce los colores que observas. Al comenzar, el mensaje de linux (`$`) se reemplaza con el mensaje del CQP, lo cual es `[no corpus]` en el estado inicial.
+La etiqueta `-e` te ofrece opciones limitadas para revisar líneas del código, como el acceso a mandotos previous con el `up-arrow key'. La etiqueta `-C' produce los colores que observas. Al comenzar, el mensaje de linux (`$`) se reemplaza con el mensaje del CQP, lo cual es `[no corpus]` en el estado inicial. Puedes pedir que te muestre la lista de los corpus disponibles así. Notad que todos los mandatos del CQP se debe finalizar con el punto y coma.
 
+* `[no corpus]> show corpora;`
+
+![CQP](images/CQPImage1.png)
+
+No todos los corpus que existen como parte de [la colección del Departamento de Lingüística de UGA](http://research.franklin.uga.edu/linglab/corpora) son accesibles mediante CQP. Para averiguar más sobre un corpus partícular, utiliza el mandato `info`. Puedes salir de CQP con el mandato `exit`; otro uso de `exit` o `logout` te quitará del servidor. 
+
+![CQP](images/CQPImage2.png)
 
 ***
+
+
 <!--
 ## General Corpus Tools
 - [Collection of corpus resources available to UGA faculty and students](http://research.franklin.uga.edu/linglab/corpora)
@@ -60,13 +69,13 @@ La etiqueta `-e` te ofrece opciones limitadas para revisar líneas del código, 
 
 ----
 
-## Spanish Corpora
-### General Corpora
+Spanish Corpora
+General Corpora
 - [Corpus del Español](http://www.corpusdelespanol.org/): Spanish corpus compiled by BYU
 - [El Corpus de Referencia del Español Actual (CREA)](https://www.rae.es/recursos/banco-de-datos/crea)
 - [El Atlas Sintáctico del Español (ASinEs)](https://www.rae.es/recursos/enlaces-externos/atlas-sintactico-del-espanol)
 
-### Historical
+Historical
 
 - [El Corpus Diacrónico del Español (CORDE)](https://www.rae.es/recursos/banco-de-datos/corde)
 - [Corpus del Nuevo Diccionario Histórico del Español](http://web.frl.es/CNDHE/view/inicioExterno.view;jsessionid=2E34C1C1AF321C2A31535DD5369E994F)
@@ -78,7 +87,7 @@ La etiqueta `-e` te ofrece opciones limitadas para revisar líneas del código, 
 
 -----
 
-### Sociolinguistic
+Sociolinguistic
 
 - [Corpus del Español en el Sur de Arizona (CESA)](https://cesa.arizona.edu/)
 - [El Corpus del Español del Siglo XXI (CORPES XXI)](https://www.rae.es/recursos/banco-de-datos/corpes-xxi)
@@ -89,12 +98,12 @@ La etiqueta `-e` te ofrece opciones limitadas para revisar líneas del código, 
 - [COSER: Corpus oral y Sonora del Español Rural](http://corpusrural.es/)
 - [Spanish in Texas](http://spanishintexas.org/)
 
-### Digital Spanish
+Digital Spanish
 
 - [Bilingual Youth Texts](https://byts.commons.gc.cuny.edu/)
 - [COW](https://www.webcorpora.org/): High Quality Web Corpora
 
-## Other Languages
+Other Languages
 
 - [Corpus do Português](http://www.corpusdoportugues.org/): Portuguese corpus compiled by BYU
 
