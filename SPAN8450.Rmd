@@ -41,7 +41,7 @@ Para poder utilizar CQP, tenemos que empezar con un programa que nos permite acc
 
 El server existe como parte del sistema operador de linus. Se puede convertir temporalmente la computadora donde trabajas en [un terminal](https://uga.view.usg.edu/d2l/le/content/2064782/viewContent/31621926/ViewEte) para el server mediante el uso del mandato `ssh`. Las instrucciones presentadas en el documento que se llama "Utilizing the UGA Corpus Server" describen este proceso.^[Gracias a Donald Dunagan por la prepación de este documento.] Para esta fase del curso, trabajaremos con dos programas que facilitan el proceso de acceder al servidor: **Terminal** (macOS) o [Putty](https://uga.view.usg.edu/d2l/le/content/2064782/viewContent/31621926/View) (Windows).
 
-El primero paso al abrir el programa relevante (es decir, Terminal o Putty) será hacer el login con tu UGA myID. Una vez que se haya conectado al server, hay que iniciar CQP desde el mensaje ('prompt') de linux, con el uso de las etiquetas `e` y `c`:^[Verifica que la versión del CQP que utilizas es la versión apropiada con el mandadato `cqp -version`. Debe ser la versión 3.4.22.]
+El primero paso al abrir el programa relevante (es decir, Terminal o Putty) será hacer el login con tu UGA myID. Una vez que se haya conectado al server, hay que iniciar CQP desde el mensaje ('prompt') de linux, con el uso de las etiquetas `e` y `c`:^[Verifica que la versión del CQP que utilizas es la versión apropiada con el mandato `cqp -version`. Debe ser la versión 3.4.22.]
 
 * `kucera $ cqp -eC`
 
