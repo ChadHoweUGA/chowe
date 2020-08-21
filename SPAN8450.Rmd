@@ -98,6 +98,12 @@ Sociolinguistic
 - [COSER: Corpus oral y Sonora del Español Rural](http://corpusrural.es/)
 - [Spanish in Texas](http://spanishintexas.org/)
 
+Acquisition
+
+- [CEDEL2: Corpus Escrito del Español L2 (versión 2)](http://cedel2.learnercorpora.com/)
+- [Spanish Learner Language Oral Corpora (splloc)](http://www.splloc.soton.ac.uk/)
+- [El Corpus de aprendices del español (CAES)](https://hispanismo.cervantes.es/congresos-y-cursos/corpus-aprendices-espanol-caes-concepcion-explotacion-caes)
+
 Digital Spanish
 
 - [Bilingual Youth Texts](https://byts.commons.gc.cuny.edu/)
