@@ -49,20 +49,6 @@ Below is a list a resources that students might find useful for their research (
 - [Bib Converter](http://glottotopia.org/doc2tex/doc2bib): This is a **very** nifty tool to convert a Unified Style Sheet bibliography to bibtex.
 
 
-## Resources for Graduate Students
-- [UGA Grad School Professional Development](https://grad.uga.edu/index.php/current-students/professional-development/): Services, resources, and opportunities available through the UGA Grad School
-- <a href="https://tomprof.stanford.edu/posting/1482">"Choosing a Dissertation Topic"</a>&nbsp;(Post from&nbsp;<em>Tomorrow's Professor)</em>
-- <a href="http://www.nature.com/nchembio/journal/v6/n2/full/nchembio.310.html">"On citing well", in <em>Nature Chemical Biology</em></a>
-- <a href="http://www.phdcomics.com/comics.php">PhD Comics</a>
-- <a href="http://www.cascadilla.com/surviving.html"><em>Surviving Linguistics: A Guide for Graduate Students</em> (Monica Macaulay)</a>
-- <a href="http://www.amazon.com/Writing-Your-Dissertation-Fifteen-Minutes/dp/080504891X"><em>Writing your dissertation in 15 minutes a day</em> (Joan Bolker)</a>
-- ["How to edit your own writing", NYT article by Harry Guinness](https://www.nytimes.com/2020/04/07/smarter-living/how-to-edit-your-own-writing.html?algo=identity&fellback=false&imp_id=366739603&imp_id=908833036&action=click&module=Smarter%20Living&pgtype=Homepage)
-- [The Professor is In](http://theprofessorisin.com/): Blog, book, and other materials by Dr. Karen L. Kelsky
-- [*Handbook for Academic Authors* by Beth Luey](http://www.bethluey.com/handbook_for_academic_authors_47173.htm) [[Amazon](https://www.amazon.com/Handbook-Academic-Authors-Beth-Luey/dp/0521144094)]
-- [*Stylish Academic Writing* by Helen Sword](https://www.helensword.com/)  [[Amazon](https://www.amazon.com/Stylish-Academic-Writing-Helen-Sword/dp/0674064488)]
-- [The MLA's Line by Line: How to Edit Your Own Writing](https://www.amazon.com/MLAs-Line-Writing-Language-Association/dp/B004XTN9HU)
-- [*The Sense of Style: the Thinking Person's Guide to Writing in the 21st Century* by Steven Pinker](http://xidian-usa.org/wp-content/uploads/2019/07/The-Sense-of-Style.pdf)
-
 ## Runasimimanta
 - <a href="https://web.sas.upenn.edu/quechua/">Quechua at Penn</a>: Quechua and Andean Culture (University of Pennsylvania)
 - <a href="https://as.nyu.edu/content/nyu-as/as/research-centers/clacs/quechua.html">Quechua @ NYU</a>: Information about Quechua offerings at NYU
