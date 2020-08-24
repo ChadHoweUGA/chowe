@@ -148,7 +148,7 @@ También, podemos buscar por lemas; es decir, variantes morfológicas de una pal
 
 Los elementos `word` y `lemma` son atributos posicionales; es decir, son definidos para cada caso para toda posición en el corpus. Los otros atributos posicionales se pueden averiguar con el corpus actual/activo mediante el mandato `show cd`.
 
-## Consultas con nombre
+### Consultas con nombre
 
 Las consultas se pueden nombrar:
 
