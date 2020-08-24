@@ -18,9 +18,9 @@ params:
 
 En este curso, utilizaremos los corpus para explorar cuestiones lingüísticas del español. Además, desarrollaremos un conocimiento más amplio del campo de la Lingüística de Corpus (LC), tanto como una perspectiva metodológica como una sub-disciplina dentro de las ciencias de la lengua. Los estudiantes aprenderán una variedad de técnicas para el estudio de los corpus, entre ellos el uso del UGA Corpus Server y el CQP Query Language. Las áreas de estudio incluirán (i) diferentes aspectos del análisis lingüístico (p.e. la semántica léxica, las colocaciones, la adquisición, y la variación gramatical) y (ii) algunas perspectivas del campo de las humanidades digitales sobre los textos electrónicos como la codificación, la manipulación de archivos, y (tal vez) la estilística. Los estudiantes tendrán que realizar proyectos de investigación originales en los cuales se integran las diferentes perspectivas y metodologías presentadas en clase. Los temas comparativos (p.e. el español y el portugués) también son bienvenidos.
 
-----
+***
 
-# 1a Semana
+# 1a Semana {#introduccion}
 
 ## ¿Qué es un corpus? {-}
 
@@ -54,13 +54,16 @@ La etiqueta `-e` te ofrece opciones limitadas para revisar líneas del código, 
 No todos los corpus que existen como parte de [la colección del Departamento de Lingüística de UGA](http://research.franklin.uga.edu/linglab/corpora) son accesibles mediante CQP. Para averiguar más sobre un corpus partícular, utiliza el mandato `info`. Puedes salir de CQP con el mandato `exit`; otro uso de `exit` o `logout` te quitará del servidor. 
 
 ![Selección de corpus](images/CQPImage2.png)
+
+<center> [Arriba](#introduccion) </center>
+
 ***
 
 # 2a Semana
 
 
 ***
-# Recursos {.tabset}
+# Recursos {.tabset .tabset-fade .tabset-pills}
 
 ## Tools {-}
 - [Collection of corpus resources available to UGA faculty and students](http://research.franklin.uga.edu/linglab/corpora)
