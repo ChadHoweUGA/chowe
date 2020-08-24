@@ -61,6 +61,112 @@ No todos los corpus que existen como parte de [la colección del Departamento de
 
 # 2a Semana
 
+## Nuestra primera consulta {-}
+
+Las consultas más simples son palabras simples. Si se busca una palabra entre comillas (""), lo que se produce es una **concordancia** del tipo KWIC ('Key Words in Context') [CQP, sección 2.3](http://cwb.sourceforge.net/files/CQP_Tutorial/node9.html).
+
+* `WUTHERING> "hardly" ;`
+
+Para navegar los resultados, hay que utilizar el *spacebar* (lo cual avanza los resultados página por página), el *returEn key* (línea por línea), o `q` para terminar la búsqueda. En la visualización de KWIC, la palabra que concuerda con tu consulta se identifica con corchetes ángulares. Los números a la izquierda representan posiciones en el corpus. Estos números se pueden suprimir con el siguiente mandato:
+
+* `WUTHERING> show -cpos ;`
+
+Hay otras opciones que se pueden modificar. Por ejemplo, el mandato `+cpos` restaura los números para las próximas consultas. También, puedes pedir que CQP te produzca una cabecera para cada concordancia (CQP, sección 2.4). Para terminar con esta opción, hay que hacer el siguiente:
+
+* `WUTHERING> show PrintOptions hdr;`
+* `WUTHERING> show PrintOptions nohdr;`
+
+## Contar los ejemplos
+
+El CQP te puede contar los ejemplos de una palabra, pero es importante considerar lo significan estos números. Consideremos nuestra consulta de "hardly" con el corpus de WUTHERING. Se puede pedir que el CQP te cuente el número de ejemplos de la última consulta con el mandato `count` (CQP, sección 2.9).
+
+* `WUTHERING> "hardly";`
+* `WUTHERING> count by word;`
+`43       hardly     [#0-#42]`
+
+El número que se encuentra a la izquierda es el número total de atestaciones de "hardly" en la novela *Wuthering Heights*--es decir, 43. Si comparamos este número con otra colección del siglo 19 (Charles Dickens, CQP sección 1.3), conseguimos los siguientes resultados:
+
+* `WUTHERING> DICKENS;`
+* `DICKENS> "hardly";`
+* `DICKENS> count by word;`
+`451       hardly     [#0-#450]`
+
+Con estos resultados, ¿debemos concluir que el uso de "hardly" es mayor en Dickens que el trabajo de Brontë? La respuesta es que NO. Si consultamos la información de estos dos corpus (con el mandato `info`), veremos que el tamaño (indicado en la sección de `size`) del corpus de DICKENS es mucho mayor (3.4 millones de casos de varios libros) que el de *Wuthering Heights*, con su 1.400 casos. Entonces, lo que tenemos que hacer es *relativizar* las frecuencias. Veremos esto más adelante.
+
+## Los casos ('tokens')
+
+Los corpora son divididos en casos ('tokens') discretos. Un casos es simplemente un elemento que ocupa una posición específica. Típicamente, un caso es una palabra (sobre todo con los corpus canónicos), pero hay casos no tan claros. Por ejemplo, con el corpus de *Wuthering Heights*, la 's' con el apóstrofe también es un caso.
+
+* `WUTHERING> "'s'";`
+
+Las consultas con CQP son especificaciones de propiedades que deben de tener casos particulares. Por ejemplo, cuando escribimos la palabra "hardly" entre comillas, pedimos que CQP nos encuentre un caso que se escribe 'h-a-r-d-l-y'. Dicho de otra forma, pedimos que nos de un caso donde el atributo `word` tiene con su valor la serie 'h-a-r-d-l-y'. Encontonces, consulta que realizamos anteriomente es igual al siguiente:
+
+* `WUTHERING> [ word="hardly" ] ;`
+
+Toda expresión que se escriba entre corchetes ("[...]") describe un caso simple. Este método de realizar una consulta señala al CQP que lo que importa para esta consulta es la ortografía de la palabra. Sin embargo, los casos pueden tener otro atributos y podemos realizar una consulta con más de un conjunto de corchetes. La siguiente consulta encuentra casos de "hardly know" y "hardly knew" ya que las dos formas de la segunda forma comparten el mismo **lema**.
+
+* `WUTHERING> [ word="hardly" ] [ lemma="know" ] ;`
+
+**Los lemas** están disponibles como atributo adicional en algunos de los corpus que se encuentran en el servidor. Nos facilita el proceso de buscar casos sin preocuparnos de formas variantes morfológicas. 
+
+Si no imponenos ninguna restricción y dejamos que los corchetes estén vacíos, el CQP nos encuentra todos los casos que concuerden con estas posiciones.  Así que, ¿cuáles son las palabras que co-ocurren con "hardly"?
+
+* `WUTHERING> [ ] [ lemma="know" ] ;`
+* `WUTHERING> count by word ;`
+
+Para especificar la consulta, podemos añadir el elemento `cut` que requiere que no se imprima las concordancias con menos de un número específico de casos.
+
+* `WUTHERING> count by word cut 2 ;`
+
+Con los resultados del mandato `count`, se nota que el número a la izquierda representa el número total de casos de secuencias de dos palabras que aparecen con "hardly" en *Wuthering Heights*. Se nota que el grupo más frecuente es la secuencia "I hardly", seguida de grupos con los verbos modales *can* y *could*. Ahora, inténtalo con el corpus de Dickens.
+
+¿y qué pasa con un corpus mucho más grande como el NYT (1.35 mil millones de palabras)?
+
+![Secuencias con 'hardly' en el NYT](images/CQPHardlyNYT.png)
+
+En el estilo del periodisimo representando por el corpus del NYT, se observa que las combinaciones con los verbos copulativos y los verbos modales son las secuencias más frecuentes, mientras que la secuencia de "I hardly" no es tan prominente. Lo que nos muestran estos resultados es que los corpus nos ofrecen una forma de observar **el uso lingüístico**. Es obvio pero importante destacar que el análsis lingüístico mediante corpus depende de los corpus, que son **muestras de una lengua**. Estas muestras son ejemplos de registros, estilos y contextos específicos. Si replicamos la misma consulta con el Spoken British National Corpus del año 2014, vemos de nuevo que la secuenca "I hardly" es algo frecuente. El texto de los periodicos, la producción literaria y el habla son todos registros distintos.
+
+![Secuencias con 'hardly' en el Spoken BNC 2014](images/CQPBNChardly.png)
+
+**Pregunta**: Con el uso del corpus ANCORA, contesta las siguientes preguntas:
+
+1.  ¿Cuántos casos hay de la palabra *todo* en el corpus?
+2.  ¿Cuáles son las formas de la palabra *todo* en el corpus?
+3.  ¿Cuántos casos hay de cada uno de estas formas?
+4.  ¿Cuáles son las palabras que ocurren antes de la palabra *todos*? Y después?
+
+## Las distribuciones
+
+En el análsis de corpus, a veces queremos ignorar variaciones que ocurren como función de, por ejemplo, la ortografía. Si utilizamos el corpus BNC-BABY (una muestra limitada del BNC), podemos ignorar la diferencias entre letras mayúsculas y minúsculas con la etiqueta `%c`.
+
+* `BNC-BABY> [ word="bank"];`
+* `BNC-BABY> [ word="bank" %c];`
+
+También, podemos buscar por lemas; es decir, variantes morfológicas de una palabra:
+
+* `DICKENS> [ lemma="go" ] ;`
+
+Los elementos `word` y `lemma` son atributos posicionales; es decir, son definidos para cada caso para toda posición en el corpus. Los otros atributos posicionales se pueden averiguar con el corpus actual/activo mediante el mandato `show cd`.
+
+## Consultas con nombre
+
+Las consultas se pueden nombrar:
+
+* `ANCORA> Ahora = "ahora";`
+
+Nótete que no se produce un resultado. Sin embargo, podemos utilizar el output de esto proceso para ver, por ejemplo, la concordancia. Por ejemplo, con el mandato `cat`, podemos pedir que nos muestre la concordancia. También, podemos encontrar el número de casos con el mandato `size` (CQP, sección 3.1).
+
+* `ANCORA> cat Ahora;`
+* `ANCORA > size Ahora;`
+
+De hecho, todas las consultas reciben, por defeto, el nombre `Last`. Si realizas una consulta sin especificar un nombre, puedes asignar un nombre con el "=".
+
+* `ANCORA> "desde" ;`
+* `ANCORA> d = Last ;`
+* `ANCORA> "entonces" ;`
+* `ANCORA> show named;`
+
+El mandato `show named` produce una lista de todas las consultas que se han hecho durante la sesión actual, entre ellas los que tienen el nombre implícito de `Last`. Estas consultas se guardan en la memoria (m) y desaparecen cuando terminas las sesión, o si pides que las discartes.
 
 ***
 # Recursos {.tabset .tabset-fade .tabset-pills}
