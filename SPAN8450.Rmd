@@ -22,7 +22,7 @@ En este curso, utilizaremos los corpus para explorar cuestiones lingüísticas 
 
 # 1a Semana
 
-## ¿Qué es un corpus?
+## ¿Qué es un corpus? {-}
 
 En esta clase se introducirá el uso de los corpus para el análisis del español (y otras lenguas). Nuestra primera cuestión se contestará así
 
@@ -32,7 +32,7 @@ Para este primer día de clase, hableremos de uso del **UGA corpus server**. El 
 
 ***
 
-## El uso del servidor
+## El uso del servidor {-}
 
 Para poder utilizar CQP, tenemos que empezar con un programa que nos permite acceso al server:
 
@@ -49,13 +49,42 @@ La etiqueta `-e` te ofrece opciones limitadas para revisar líneas del código, 
 
 * `[no corpus]> show corpora;`
 
-![CQP](images/CQPImage1.png)
+![Colección de corpora](images/CQPImage1.png)
 
 No todos los corpus que existen como parte de [la colección del Departamento de Lingüística de UGA](http://research.franklin.uga.edu/linglab/corpora) son accesibles mediante CQP. Para averiguar más sobre un corpus partícular, utiliza el mandato `info`. Puedes salir de CQP con el mandato `exit`; otro uso de `exit` o `logout` te quitará del servidor. 
 
-![CQP](images/CQPImage2.png)
+![Selección de corpus](images/CQPImage2.png)
+***
+
+# 2a Semana
+
 
 ***
+# Recursos {.tabset}
+
+## Tools {-}
+- [Collection of corpus resources available to UGA faculty and students](http://research.franklin.uga.edu/linglab/corpora)
+- [The IMS Open Corpus Workbench](http://cwb.sourceforge.net/): The IMS Open Corpus Workbench (CWB) is a collection of open-source tools for managing and querying large text corpora (ranging from 10 million to 2 billion words) with linguistic annotations. Its central component is the flexible and efficient query processor CQP.
+- [LANCSBox](http://corpora.lancs.ac.uk/lancsbox/): software package for the analysis of language data and corpora
+- [Lancaster Stats Tools online](http://corpora.lancs.ac.uk/stats/index.php): The website provides practical support for the analysis of corpus data using a range of statistical techniques.
+- [Linguistic Data Consortium](https://www.ldc.upenn.edu/): A great resource for language corpora; and UGA has an institutional subscription!!
+- [Tools for Corpus Linguistics](https://corpus-analysis.com/): A long list of corpus-related resources that's always being updated
+
+## Generales {-}
+
+- [Corpus del Español](http://www.corpusdelespanol.org/): Spanish corpus compiled by BYU
+- [El Corpus de Referencia del Español Actual (CREA)](https://www.rae.es/recursos/banco-de-datos/crea)
+- [El Atlas Sintáctico del Español (ASinEs)](https://www.rae.es/recursos/enlaces-externos/atlas-sintactico-del-espanol)
+
+## Históricos {-}
+
+- [El Corpus Diacrónico del Español (CORDE)](https://www.rae.es/recursos/banco-de-datos/corde)
+- [Corpus del Nuevo Diccionario Histórico del Español](http://web.frl.es/CNDHE/view/inicioExterno.view;jsessionid=2E34C1C1AF321C2A31535DD5369E994F)
+- [Corpus Diacrónico y Diatópico del Español de América](http://www.cordiam.org/): El Corpus Diacrónico y Diatópico del Español de América reúne tres conjuntos documentales; Cordiam-Documentos, Cordiam-Literatura y Cordiam-Prensa.
+- [Corpus Hispánico y Americano en la Red: Textos Antiguos](http://www.corpuscharta.es/): CHARTA se concibe como un proyecto global para la edición y análisis lingüístico de textos archivísticos en español de los siglos XII al XIX.
+- [El corpus CODEA (Corpus de Documentos Españoles Anteriores a 1800)](http://corpuscodea.es/)
+- [Project P.S. Post Scriptum](http://ps.clul.ul.pt/)
+- [Biblia Medieval](http://www.bibliamedieval.es/index.php)
 
 
 <!--
