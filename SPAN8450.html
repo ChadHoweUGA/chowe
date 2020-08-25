@@ -510,7 +510,7 @@ div.tocify {
 <img src="images/CQPHardlyNYT.png" alt="" />
 <p class="caption">Secuencias con ‘hardly’ en el NYT</p>
 </div>
-<p>En el estilo del periodisimo representando por el corpus del NYT, se observa que las combinaciones con los verbos copulativos y los verbos modales son las secuencias más frecuentes, mientras que la secuencia de “I hardly” no es tan prominente. Lo que nos muestran estos resultados es que los corpus nos ofrecen una forma de observar <strong>el uso lingüístico</strong>. Es obvio pero importante destacar que el análsis lingüístico mediante corpus depende de los corpus, que son <strong>muestras de una lengua</strong>. Estas muestras son ejemplos de registros, estilos y contextos específicos. Si replicamos la misma consulta con el Spoken British National Corpus del año 2014, vemos de nuevo que la secuenca “I hardly” es algo frecuente. El texto de los periodicos, la producción literaria y el habla son todos registros distintos.</p>
+<p>En el estilo del periodisimo representando por el corpus del NYT, se observa que las combinaciones con los verbos copulativos y los verbos modales son las secuencias más frecuentes, mientras que la secuencia de “I hardly” no es tan prominente. Lo que nos muestran estos resultados es que los corpus nos ofrecen una forma de observar <strong>el uso lingüístico</strong>. Es obvio pero importante destacar que el análsis lingüístico mediante corpus depende de los corpus, que son <strong>muestras de una lengua</strong>. Estas muestras son ejemplos de registros, estilos y contextos específicos. Si replicamos la misma consulta con el Spoken British National Corpus del año 2014, vemos de nuevo que la secuenca “I hardly” es algo frecuente. El texto de los periódicos, la producción literaria y el habla son todos registros distintos.</p>
 <div class="figure">
 <img src="images/CQPBNChardly.png" alt="" />
 <p class="caption">Secuencias con ‘hardly’ en el Spoken BNC 2014</p>
@@ -554,6 +554,30 @@ div.tocify {
 <li><code>ANCORA&gt; show named;</code></li>
 </ul>
 <p>El mandato <code>show named</code> produce una lista de todas las consultas que se han hecho durante la sesión actual, entre ellas los que tienen el nombre implícito de <code>Last</code>. Estas consultas se guardan en la memoria (m) y desaparecen cuando terminas las sesión, o si pides que las discartes.</p>
+</div>
+<div id="el-mandato-group" class="section level3">
+<h3>El mandato <code>group</code></h3>
+<p>El mandato <code>group</code> es similar a otros mandatos de CQP como <code>cat</code>, <code>sort</code>, <code>count</code>, y <code>size</code> en que requiere el nombre de una consulta como un argumento. En el siguiente ejemplo, la consulta tiene el nombre K. Luego, aplicamos el mandato <code>group</code> a la consulta K y pedimos que nos muestre la distribución de frecuencias de las palabras que concuerden con la consulta:</p>
+<div class="figure">
+<img src="images/CQPKnock.png" alt="" />
+<p class="caption">El uso del mandato group</p>
+</div>
+<p>El mismo grupo de mandatos también se pueden aplicar a las consultas de casos múltiples. Pregunta: ¿Cuánto son los casos de combinaciones de dos palabras como “knock out”?</p>
+<div class="figure">
+<img src="images/CQPKnock2.png" alt="" />
+<p class="caption">Casos de “knock out”</p>
+</div>
+<p>Ahora podemos aplicar el mandato <code>group</code> a esta consulta también. Solo tiene que especificar cuál es el grupo que queremos. En esta situación, queremos la primera palabra a la derecha del elemento que buscamos, de acuerdo con su atributo de <code>word</code>.</p>
+<div class="figure">
+<img src="images/CQPKnock3.png" alt="" />
+<p class="caption">Casos de “knock out”</p>
+</div>
+<p>Según estos resultados, los casos de “knock out” son menos frequentes que los casos de “knock on”. Con el uso de la palabra clave <code>by</code>, podemos crear una tabla de dos dimensiones para considerar detalladamente esta distribución. En este caso, <code>hw</code> significa ‘headword’, lo cual representa el atributo del BNC que identifica la raíz morfológica (similar a <code>lemma</code>).</p>
+<div class="figure">
+<img src="images/CQPKnock4.png" alt="" />
+<p class="caption">Casos de “knock out”</p>
+</div>
+<p>Estos números en la columna a la derecha del output de <code>group</code> representan una distribución de frecuencia. Son una medida cuantitativa que describe la frecuencia de de una forma partícular.</p>
 <hr />
 </div>
 </div>

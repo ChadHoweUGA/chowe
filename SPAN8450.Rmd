@@ -124,7 +124,7 @@ Con los resultados del mandato `count`, se nota que el número a la izquierda re
 
 ![Secuencias con 'hardly' en el NYT](images/CQPHardlyNYT.png)
 
-En el estilo del periodisimo representando por el corpus del NYT, se observa que las combinaciones con los verbos copulativos y los verbos modales son las secuencias más frecuentes, mientras que la secuencia de "I hardly" no es tan prominente. Lo que nos muestran estos resultados es que los corpus nos ofrecen una forma de observar **el uso lingüístico**. Es obvio pero importante destacar que el análsis lingüístico mediante corpus depende de los corpus, que son **muestras de una lengua**. Estas muestras son ejemplos de registros, estilos y contextos específicos. Si replicamos la misma consulta con el Spoken British National Corpus del año 2014, vemos de nuevo que la secuenca "I hardly" es algo frecuente. El texto de los periodicos, la producción literaria y el habla son todos registros distintos.
+En el estilo del periodisimo representando por el corpus del NYT, se observa que las combinaciones con los verbos copulativos y los verbos modales son las secuencias más frecuentes, mientras que la secuencia de "I hardly" no es tan prominente. Lo que nos muestran estos resultados es que los corpus nos ofrecen una forma de observar **el uso lingüístico**. Es obvio pero importante destacar que el análsis lingüístico mediante corpus depende de los corpus, que son **muestras de una lengua**. Estas muestras son ejemplos de registros, estilos y contextos específicos. Si replicamos la misma consulta con el Spoken British National Corpus del año 2014, vemos de nuevo que la secuenca "I hardly" es algo frecuente. El texto de los periódicos, la producción literaria y el habla son todos registros distintos.
 
 ![Secuencias con 'hardly' en el Spoken BNC 2014](images/CQPBNChardly.png)
 
@@ -167,6 +167,29 @@ De hecho, todas las consultas reciben, por defeto, el nombre `Last`. Si realizas
 * `ANCORA> show named;`
 
 El mandato `show named` produce una lista de todas las consultas que se han hecho durante la sesión actual, entre ellas los que tienen el nombre implícito de `Last`. Estas consultas se guardan en la memoria (m) y desaparecen cuando terminas las sesión, o si pides que las discartes.
+
+### El mandato `group`
+
+El mandato `group` es similar a otros mandatos de CQP como `cat`, `sort`, `count`, y `size` en que requiere el nombre de una consulta como un argumento. En el siguiente ejemplo, la consulta tiene el nombre K. Luego, aplicamos el mandato `group` a la consulta K y pedimos que nos muestre la distribución de frecuencias de las palabras que concuerden con la consulta:
+
+![El uso del mandato group](images/CQPKnock.png)
+
+
+El mismo grupo de mandatos también se pueden aplicar a las consultas de casos múltiples. Pregunta: ¿Cuánto son los casos de combinaciones de dos palabras como "knock out"?
+
+![Casos de "knock out"](images/CQPKnock2.png)
+
+Ahora podemos aplicar el mandato `group` a esta consulta también. Solo tiene que especificar cuál es el grupo que queremos. En esta situación, queremos la primera palabra a la derecha del elemento que buscamos, de acuerdo con su atributo de `word`.
+
+![Casos de "knock out"](images/CQPKnock3.png)
+
+Según estos resultados, los casos de "knock out" son menos frequentes que los casos de "knock on". Con el uso de la palabra clave `by`, podemos crear una tabla de dos dimensiones para considerar detalladamente esta distribución. En este caso, `hw` significa 'headword', lo cual representa el atributo del BNC que identifica la raíz morfológica (similar a `lemma`).
+
+![Casos de "knock out"](images/CQPKnock4.png)
+
+Estos números en la columna a la derecha del output de `group` representan una distribución de frecuencia. Son una medida cuantitativa que describe la frecuencia de de una forma partícular.
+
+
 
 ***
 # Recursos {.tabset .tabset-fade .tabset-pills}
