@@ -189,6 +189,30 @@ Según estos resultados, los casos de "knock out" son menos frequentes que los c
 
 Estos números en la columna a la derecha del output de `group` representan una distribución de frecuencia. Son una medida cuantitativa que describe la frecuencia de de una forma partícular.
 
+## Los metadatos ('metadata')
+
+El término 'metadata' se refiere a esta información que describe los diferentes aspectos (sociales, dialectales, entre muchos otros) del corpus. Por ejemplo, abajo se presentan algunos de los atributos disponibles con el BNC:
+
+![Structural Attributes for the BNC](images/BNCAttributes.png)
+Podemos utilizar estos atributos para realizar una consulta más precisa:
+
+*  `BNC-BABY>[word="fantastic"]::match.text_mode="spoken" & match.u_sex="female";`
+
+Con esta consulta, estamos buscando la palabra 'fantastic', pero hemos especificado que queremos de los casos (i) de la porción oral del corpus (`match-text_mode="spoken"`) y (ii) producidos por las personas indicadas como mujeres (`match.u_sex="female"`). Estos atributos se describen como *s-attributes* (donde la *s* = 'estructura'). El corpus de EUROPARL-ES, por ejemplo, contiene los siguientes s-attributes:
+
+![Structural Attributes for the BNC](images/EUROPARL-ESAttributes.png)
+Se puede encontrar más información sobre estos atributos en [la documentación sobre el corpus](http://www.statmt.org/europarl/). Como un ejemplo, el atributo `speaker_language` indica la lengua original del hablante que produjo el caso.
+
+Para ver un ejemplo tal vez más concreto, consideremos el corpus BNC-BABY, un sub-corpus del BNC. Con la siguiente consulta, utilizamos el mandato `match` para pedir los casos de la palabra 'lovely' según el sexo del/de la autor(a):
+
+* `BNC-BABY> L = "lovely";`
+* `BNC-BABY> group L match text_author_sex ;`
+
+![Casos de "lovely" en el BNC según sexo](images/BNCLovely.png)
+
+Podemos también utilizar el elemento `::` para indicar un 'global constraint' (manual de CQP, sección 4.1). En la siguiente consulta, definimos un elemento ('M') que contiene los casos de la palabra "mate". Además, especificamos (con el `::`) que no queremos casos que tengan el valor "unknown".
+
+![Casos de "mate" en el BNC según edad](images/BNCMate.png)
 
 
 ***

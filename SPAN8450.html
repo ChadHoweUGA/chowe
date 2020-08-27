@@ -578,8 +578,23 @@ div.tocify {
 <p class="caption">Casos de “knock out”</p>
 </div>
 <p>Estos números en la columna a la derecha del output de <code>group</code> representan una distribución de frecuencia. Son una medida cuantitativa que describe la frecuencia de de una forma partícular.</p>
-<hr />
 </div>
+</div>
+<div id="los-metadatos-metadata" class="section level2">
+<h2>Los metadatos (‘metadata’)</h2>
+<p>El término ‘metadata’ se refiere a esta información que describe los diferentes aspectos (sociales, dialectales, entre muchos otros) del corpus. Por ejemplo, abajo se presentan algunos de los atributos disponibles con el BNC:</p>
+<p><img src="images/BNCAttributes.png" alt="Structural Attributes for the BNC" /> Podemos utilizar estos atributos para realizar una consulta más precisa:</p>
+<ul>
+<li><code>BNC-BABY&gt;[word="fantastic"]::match.text_mode="spoken" &amp; match.u_sex="female";</code></li>
+</ul>
+<p>Con esta consulta, estamos buscando la palabra ‘fantastic’, pero hemos especificado que queremos de los casos (i) de la porción oral del corpus (<code>match-text_mode="spoken"</code>) y (ii) producidos por las personas indicadas como mujeres (<code>match.u_sex="female"</code>). Estos atributos se describen como <em>s-attributes</em> (donde la <em>s</em> = ‘estructura’). El corpus de EUROPARL-ES, por ejemplo, contiene los siguientes s-attributes:</p>
+<p><img src="images/EUROPARL-ESAttributes.png" alt="Structural Attributes for the BNC" /> Se puede encontrar más información sobre estos atributos en <a href="http://www.statmt.org/europarl/">la documentación sobre el corpus</a>. Como un ejemplo, el atributo <code>speaker_language</code> indica la lengua original del hablante que produjo el caso.</p>
+<p>Para ver un ejemplo tal vez más concreto, consideremos el corpus BNC-BABY, un sub-corpus del BNC. Con la siguiente consulta, utilizamos el mandato <code>match</code> para pedir los casos de la palabra ‘lovely’ según el género del/de la autor(a):</p>
+<ul>
+<li><code>BNC-BABY&gt; L = "lovely";</code></li>
+<li><code>BNC-BABY&gt; group L match text_author_sex ;</code></li>
+</ul>
+<hr />
 </div>
 </div>
 <div id="recursos" class="section level1 tabset tabset-fade tabset-pills">
