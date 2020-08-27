@@ -589,11 +589,20 @@ div.tocify {
 </ul>
 <p>Con esta consulta, estamos buscando la palabra ‘fantastic’, pero hemos especificado que queremos de los casos (i) de la porción oral del corpus (<code>match-text_mode="spoken"</code>) y (ii) producidos por las personas indicadas como mujeres (<code>match.u_sex="female"</code>). Estos atributos se describen como <em>s-attributes</em> (donde la <em>s</em> = ‘estructura’). El corpus de EUROPARL-ES, por ejemplo, contiene los siguientes s-attributes:</p>
 <p><img src="images/EUROPARL-ESAttributes.png" alt="Structural Attributes for the BNC" /> Se puede encontrar más información sobre estos atributos en <a href="http://www.statmt.org/europarl/">la documentación sobre el corpus</a>. Como un ejemplo, el atributo <code>speaker_language</code> indica la lengua original del hablante que produjo el caso.</p>
-<p>Para ver un ejemplo tal vez más concreto, consideremos el corpus BNC-BABY, un sub-corpus del BNC. Con la siguiente consulta, utilizamos el mandato <code>match</code> para pedir los casos de la palabra ‘lovely’ según el género del/de la autor(a):</p>
+<p>Para ver un ejemplo tal vez más concreto, consideremos el corpus BNC-BABY, un sub-corpus del BNC. Con la siguiente consulta, utilizamos el mandato <code>match</code> para pedir los casos de la palabra ‘lovely’ según el sexo del/de la autor(a):</p>
 <ul>
 <li><code>BNC-BABY&gt; L = "lovely";</code></li>
 <li><code>BNC-BABY&gt; group L match text_author_sex ;</code></li>
 </ul>
+<div class="figure">
+<img src="images/BNCLovely.png" alt="" />
+<p class="caption">Casos de “lovely” en el BNC según sexo</p>
+</div>
+<p>Podemos también utilizar el elemento <code>::</code> para indicar un ‘global constraint’ (manual de CQP, sección 4.1). En la siguiente consulta, definimos un elemento (‘M’) que contiene los casos de la palabra “mate”. Además, especificamos (con el <code>::</code>) que no queremos casos que tengan el valor “unknown”.</p>
+<div class="figure">
+<img src="images/BNCMate.png" alt="" />
+<p class="caption">Casos de “mate” en el BNC según edad</p>
+</div>
 <hr />
 </div>
 </div>
