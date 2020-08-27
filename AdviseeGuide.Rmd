@@ -64,6 +64,15 @@ In completing your thesis or dissertation, you should make every effort to learn
 
 This (woefully inadequate) list should provide you with a sense of my expectations regarding the skills you should be learning. There will be many other resources that will be useful as you navigate your research and teaching interests. If you have no background in coding or using programs like these, welcome to the club.  Remember that now is the time for you to expose yourself to as many new ideas and techniques as possible. Take this time to push yourself into new areas, even it requires moving out of your tech-comfort zone. I strongly encourage you to interact with me and your fellow students in learning more about these resources. If you would like for me (or someone else) to arrange a workshop that covers any of these resources, I am more than happy to do that.
 
+<!--
+## Make yourself known
+
+add discussion of elements at uga
+add discussion of orcid
+add discussion of webpages
+
+-->
+
 ## Get a Graduate Certificate
 
 While at UGA, you should consider expanding your training by enrolling in one of the many interesting and useful graduate certificate programs offered. If you're considering a career in academia, a certificate can help to distinguish you from other candidates and can also demonstrate your skills beyond your core areas of interest. A certificate is also quite handy for careers oustide of academia (see the following section on Alt-Ac careers). Here are a few possibilities for certificates you might pursue at UGA:
