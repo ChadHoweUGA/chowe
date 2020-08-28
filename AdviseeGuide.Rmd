@@ -64,14 +64,18 @@ In completing your thesis or dissertation, you should make every effort to learn
 
 This (woefully inadequate) list should provide you with a sense of my expectations regarding the skills you should be learning. There will be many other resources that will be useful as you navigate your research and teaching interests. If you have no background in coding or using programs like these, welcome to the club.  Remember that now is the time for you to expose yourself to as many new ideas and techniques as possible. Take this time to push yourself into new areas, even it requires moving out of your tech-comfort zone. I strongly encourage you to interact with me and your fellow students in learning more about these resources. If you would like for me (or someone else) to arrange a workshop that covers any of these resources, I am more than happy to do that.
 
-<!--
 ## Make yourself known
 
-add discussion of elements at uga
-add discussion of orcid
-add discussion of webpages
+As you start developing a research program at UGA, you will want to make this work visible. In addition to  being active with conferences and paper submissions, you should also make your work known via the web and other social media. To be clear, you do not need to be an avid Twitter or Instagram user, but you should make full use of the web resources available to you.
 
--->
+To begin, you should make sure that your university webpage is complete--i.e. includes as much information about you and your work as possible. [Here's](https://rom.uga.edu/directory/people/camila-livio-emidio) a good example of a student website that is (a) informative and (b) easy to find. [Here's another](http://ianbstewart.github.io/) that isn't hosted on a university server. I encourage you to look into other options as well, for instance, creating a website through [GitHub](https://github.com/) or [WordPress](https://wordpress.com/). The one advantage of using your UGA webpage is visibility, which is crucial when you're hoping that people will come across your work. Other alternatives include [Academia.edu](https://www.academia.edu/) or [Researchgate](https://www.researchgate.net/), both of which have their drawbacks. I recommend that you look around to see what's the best option for you. 
+
+In addition to fleshing out your UGA webpage (at the very least), you will be **required** to do two additional things if you're working with me. First, you will need to register for an ORCID. Here's a brief description:
+
+> Your ORCID ID is a persistent and unique digital identifier that distinguishes your research identity from others. ORCID assigns you this identifier that is associated with your research and scholarly work throughout your research workflow, including grant and manuscript submission all the way to publication and beyond.
+
+Additional information on obtaining and using your ORCID can be found [here](https://www.libs.uga.edu/orcid). Once you've obtained your ORCID, you can now use it to update your profile on [UGA Elements](https://elements.uga.edu/), which is "a web-based system that enables the university to collect, search, and report on the research, scholarship, creative works, and professional activities". You and I will use UGA Elements to keep track of your yearly evaluations.
+
 
 ## Get a Graduate Certificate
 
