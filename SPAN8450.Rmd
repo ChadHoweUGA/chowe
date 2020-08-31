@@ -214,6 +214,18 @@ Podemos también utilizar el elemento `::` para indicar un 'global constraint' (
 
 ![Casos de "mate" en el BNC según edad](images/BNCMate.png)
 
+***
+# 3a Semana
+
+En inglés, existe una clase de verbos auxiliares que expresan la "modalidad":
+
+> In linguistics and philosophy, modality is the phenomenon whereby language is used to discuss non-actual situations. For instance, a modal expression may convey that something is likely, desirable, or permissible. Quintessential modal expressions include modal auxiliaries such as English "should" [Descripción](https://en.wikipedia.org/wiki/Modality_(linguistics))
+
+Según Biber (2012), los verbos modales son más comunes en la lengua hablada que en el lengua escrita. Su argumento se basa en el corpus **Longman Spoken and Written English** (40 millones de palabras). Examinemos la hipótesis de Biber con el BNC (100+ millones de palabras).
+
+
+
+
 
 ***
 # Recursos {.tabset .tabset-fade .tabset-pills}
