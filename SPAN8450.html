@@ -613,6 +613,33 @@ div.tocify {
 <p>In linguistics and philosophy, modality is the phenomenon whereby language is used to discuss non-actual situations. For instance, a modal expression may convey that something is likely, desirable, or permissible. Quintessential modal expressions include modal auxiliaries such as English “should” <a href="https://en.wikipedia.org/wiki/Modality_(linguistics)">Descripción</a></p>
 </blockquote>
 <p>Según Biber (2012), los verbos modales son más comunes en la lengua hablada que en el lengua escrita. Su argumento se basa en el corpus <strong>Longman Spoken and Written English</strong> (40 millones de palabras). Examinemos la hipótesis de Biber con el BNC (100+ millones de palabras).</p>
+<dl>
+<dt>: <code>BNC&gt; SPOK = "should" :: match.text_mode="spoken";</code></dt>
+<dd><code>BNC&gt; WRIT =  "should" :: match.text_mode="written";</code>
+</dd>
+<dd><code>BNC&gt; size SPOK;</code>
+</dd>
+<dd><code>11676</code>
+</dd>
+<dd><code>BNC&gt; size WRIT;</code>
+</dd>
+<dd><code>94884</code>
+</dd>
+</dl>
+<p>Debemos reconozer que estos resultados parecen producir una asimetría, pero que no concuerda la hipótesis de Biber. Hasta ahora, hemos ignorado que las secciones orales y escritas del BNC no son de tamaños equivalentes. Los valores del verbo <em>should</em> se tienen que relativizar para que comparemos dos corpus de tamaños distintos. Para hacer esto, podemos pedir que el CQP nos produzca una total de palabras en las secciones correspondientes con una consulta sin ninguna restricción; es decir, unos corchetes vacíos.</p>
+<dl>
+<dt>: <code>BNC&gt; ALLSPOK = [ ] :: match.text_mode="spoken";</code></dt>
+<dd><code>BNC&gt; size ALLSPOK;</code>
+</dd>
+<dd><code>11983120</code>
+</dd>
+<dd><code>BNC&gt; ALLWRIT = [ ] :: match.text_mode="written";</code>
+</dd>
+<dd><code>BNC&gt; size ALLWRIT;</code>
+</dd>
+<dd><code>100119205</code>
+</dd>
+</dl>
 <hr />
 </div>
 <div id="recursos" class="section level1 tabset tabset-fade tabset-pills">
