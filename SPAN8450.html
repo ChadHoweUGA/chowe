@@ -608,6 +608,8 @@ div.tocify {
 </div>
 <div id="a-semana-1" class="section level1">
 <h1>3a Semana</h1>
+<div id="los-verbos-modales" class="section level2">
+<h2>Los verbos modales</h2>
 <p>En inglés, existe una clase de verbos auxiliares que expresan la “modalidad”:</p>
 <blockquote>
 <p>In linguistics and philosophy, modality is the phenomenon whereby language is used to discuss non-actual situations. For instance, a modal expression may convey that something is likely, desirable, or permissible. Quintessential modal expressions include modal auxiliaries such as English “should” <a href="https://en.wikipedia.org/wiki/Modality_(linguistics)">Descripción</a></p>
@@ -636,7 +638,358 @@ div.tocify {
 <li><em>should</em><sub>BNCwritten</sub> = <span class="math inline">\(\frac{94884 x 1000000}{11983120}\)</span> = 947.4wpm</li>
 </ul>
 <p>Según estos resultados, se nota la preponderancia de la palabra <em>should</em> en la sección escrita (974 wpm) comparada con la sección oral (947 wpm). Estas frecuencias se llaman frecuencias relativas (‘relative frequencies’) en el sentido descrito por Brezina (2018, p. 43)</p>
+</div>
+<div id="la-historia-y-la-geografía" class="section level2">
+<h2>La historia y la geografía</h2>
+<p>Esta dicción ignora una variedad de otros factores, como el registro, que sirven como vehículos sociales del uso lingüístico. Examinemos la distinción entre ‘can’ y ‘may’a través de uno de estos factores. Biber (2012, p. 203) nos dice que el verbo ’may’ se está perdiendo por cuestión del cambio lingüístico. ¿Se manifiesta este fenómeno en algún registro específico?</p>
+<p>Para empezar, observemos los géneros específicos anotatos en el BNC. Podemos observar los valores de este atributo con otra consulta sin restricción, combinado con el uso del mandadto <code>group</code>.</p>
+<div class="figure">
+<img src="images/BNC-BABY-ALL.png" alt="" />
+<p class="caption">Los géneros del BNC</p>
+</div>
+<p>Este ejemplo del mandato <code>group</code> nos permite observar todos los valores del atributo <code>text_derived_type</code> en el corpus. Estas categorías se describen en el documento de Susanne Flach con una tabla de los metados del BNC. Con el uso de la restricción global <code>::</code>, se puede concentrar en un género específico:</p>
+<div class="figure">
+<img src="images/BNC-MayCan.png" alt="" />
+<p class="caption">La distribución de ‘may’ y ‘can’ en el BNC (newspaper)</p>
+</div>
+<p>Esta diferencia de distribuciones concuerda con lo que dice Biber cuando propone que ‘may’ es menos frecuente que ‘can’. ¿Cómo compara estos datos con el inglés de los EE.UU.? Utilizemos el <a href="http://korpus.uib.no/icame/manuals/BROWN/">Brown Corpus</a>, lo cual representa el primer corpus de tamaño grande para el inglés americano. Toma su nombre de Brown University donde fue creado en el año 1961 por Henry Kučera y W. Nelson Francis. La próxima tabla muestra de diferentes textos incluídos en este corpous.</p>
+<ul>
+<li>Tabla 1: Muestra de la distribución en el corpus de Brown</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Genre</th>
+<th align="left">Subgenre/Topic Area</th>
+<th></th>
+<th align="right">Samples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Non-fiction</td>
+<td align="left">Religion</td>
+<td>Books</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td>Periodicals</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Tracts</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Skills and Hobbies</td>
+<td>Books</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Periodicals</td>
+<td align="right">34</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Popular Lore</td>
+<td>Books</td>
+<td align="right">23</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Periodicals</td>
+<td align="right">25</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Belles Lettres, Biography, Memoirs, etc.</td>
+<td>Books</td>
+<td align="right">38</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Periodicals</td>
+<td align="right">37</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Miscellaneous</td>
+<td>Government Documents</td>
+<td align="right">24</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Foundation Reports</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td>Industry Reports</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>College Catalog</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td>Industry House organ</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Learned</td>
+<td>Natural Sciences</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td>Medicine</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Mathematics</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td>Social and Behavioral Sciences</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Political Science, Law, Education</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td>Humanities</td>
+<td align="right">18</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Technology and Engineering</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Fiction</td>
+<td align="left">General</td>
+<td>Novels</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Short Stories</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Mystery and Detective</td>
+<td>Novels</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Short Stories</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Science Fiction</td>
+<td>Novels</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Short Stories</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Adventure and Western</td>
+<td>Novels</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Short Stories</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Romance and Love Story</td>
+<td>Novels</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Short Stories</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Humor</td>
+<td>Novels</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Essays, etc.</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">Press</td>
+<td align="left">Reportage</td>
+<td>Political</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Sports</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td>Society</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Spot news</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td>Financial</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Cultural</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Editorial</td>
+<td>Institutional</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td>Personal</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td>Letters to the Editor</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Reviews (theatre, books, music, dance)</td>
+<td></td>
+<td align="right">17</td>
+</tr>
+</tbody>
+</table>
+<p>Use show cd to discover a metadata attribute that identifies a text’s “Subgenre/Topic Area” in Brown. Did you notice text_category? Again, an unconstrained query reveals what the possible values are:</p>
+<p>Podemos utilizar <code>cd</code> para descubrir los atributos que identifican los “Subgenre/Topic Area” de los textos de Brown. También podemos utilizar una consulta sin restricción:</p>
+<ul>
+<li><code>BROWN&gt; ALL = [ ] ;</code></li>
+<li><code>group ALL match text_category:</code></li>
+</ul>
+<p>Ahora, ¿se observa la misma asimetría entre ‘may’ y ‘can’ en el inglés americano?</p>
+<div class="figure">
+<img src="images/BROWN-MayCan.png" alt="" />
+<p class="caption">La distribución de ‘may’ y ‘can’ en el corpus de Brown (newspaper)</p>
+</div>
+<p>Parece que sí; el verbo ‘may’ es menos frecuente, tanto en la muestra inglesa como en la muestra americana, que el verbo ‘can’ en los textos periodísticos.</p>
+<ul>
+<li><strong>Tarea:</strong> Examina los verbos ‘may’ y ‘can’ en el género <code>fiction</code>. ¿Se observa la misma asimestría? ¿Cómo se comparan los datos del inglés británico y el inglés americano? Ahora, exmamina la categoría de textos con el valor <code>learned</code> o <code>academic</code>. ¿Está disminuyendo el verbo ‘may’ en estos géneros?</li>
+</ul>
+</div>
+<div id="contruir-una-hipótesis" class="section level2">
+<h2>Contruir una hipótesis</h2>
+<p>En la sección anterior, se presentó la idea de que el verbo ‘may’ está desapareciendo en inglés, tal vez debido al uso elevado del verbo ‘can’ para expresar los mismos signficados. En esta sección, examinemos nuestra propia hipótesis sobre los modales de obligación (deónticos), ‘should’ y ‘ought’.</p>
+<ul>
+<li><strong>Hipótesis:</strong> El verbo ‘should’ ha reemplazado la forma ‘ought’, lo cual expresa aproximadamente el mismo significado.</li>
+</ul>
+<p>Una hipótesis es una adivinanza educada. Sin embargo, si es verdad, debemos observar menos casos de ‘ought’ que ’should.</p>
+<div class="figure">
+<img src="images/BROWN-ShouldOught.png" alt="" />
+<p class="caption">La distribución de ‘should’ y ‘ought’ en los corpora de Brown y del BNC</p>
+</div>
+<p>Parece que, sí, esta hipótesis es válida. Las tasas de atestación de ‘should’ y ‘ought’ se diferencian por un ordén de magnitud entre los dos corpus.</p>
+<ul>
+<li>Tabla 2: Frecuencias normalizadas en dos corpora del inglés</li>
+</ul>
+<table>
+<colgroup>
+<col width="47%" />
+<col width="28%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">expresión</th>
+<th align="left">Brown</th>
+<th align="left">BNC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">should</td>
+<td align="left"><span class="math inline">\(\frac{865 x 1M}{brownsize}\)</span> = 744wpm</td>
+<td align="left"><span class="math inline">\(\frac{106597 x 1M}{bncsize}\)</span> = 950wpm</td>
+</tr>
+<tr class="even">
+<td align="left">ought</td>
+<td align="left"><span class="math inline">\(\frac{66 x 1M}{brownsize}\)</span> = 56wpm</td>
+<td align="left"><span class="math inline">\(\frac{5757 x 1M}{bncsize}\)</span> = 51wpm</td>
+</tr>
+</tbody>
+</table>
+<p>Ahora, comparemos la forma modal de obligación ‘must’ con su homólogo ‘have to’. ¿Qué pensamos sobre la siguiente hipótesis?</p>
+<ul>
+<li><strong>Hipótesis:</strong> La estructura ‘have to’ es menos formal que ‘must’.</li>
+</ul>
+<p>If this hypothesis is true, we should expect more “have to” than “must” in an informal genre such spoken_conversations.</p>
 <hr />
+</div>
 </div>
 <div id="recursos" class="section level1 tabset tabset-fade tabset-pills">
 <h1>Recursos</h1>

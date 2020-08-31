@@ -217,12 +217,13 @@ Podemos también utilizar el elemento `::` para indicar un 'global constraint' (
 ***
 # 3a Semana
 
+## Los verbos modales
+
 En inglés, existe una clase de verbos auxiliares que expresan la "modalidad":
 
 > In linguistics and philosophy, modality is the phenomenon whereby language is used to discuss non-actual situations. For instance, a modal expression may convey that something is likely, desirable, or permissible. Quintessential modal expressions include modal auxiliaries such as English "should" [Descripción](https://en.wikipedia.org/wiki/Modality_(linguistics))
 
 Según Biber (2012), los verbos modales son más comunes en la lengua hablada que en el lengua escrita. Su argumento se basa en el corpus **Longman Spoken and Written English** (40 millones de palabras). Examinemos la hipótesis de Biber con el BNC (100+ millones de palabras).
-
 
 *   `BNC> SPOK = "should" :: match.text_mode="spoken";`
 *   `BNC> WRIT =  "should" :: match.text_mode="written";`
@@ -230,7 +231,6 @@ Según Biber (2012), los verbos modales son más comunes en la lengua hablada qu
 *   `11676`
 *   `BNC> size WRIT;`
 *   `94884`
-
 
 Debemos reconozer que estos resultados parecen producir una asimetría, pero que no concuerda la hipótesis de Biber. Hasta ahora, hemos ignorado que las secciones orales y escritas del BNC no son de tamaños equivalentes. Los valores del verbo *should* se tienen que relativizar para que comparemos dos corpus de tamaños distintos. Para hacer esto, podemos pedir que el CQP nos produzca una total de palabras en las secciones correspondientes con una consulta sin ninguna restricción; es decir, unos corchetes vacíos.
 
@@ -247,6 +247,109 @@ Ahora tenemos la información cuantitativa que se necesita para poder determinar
 *   *should*~BNCwritten~ = $\frac{94884 x 1000000}{11983120}$ = 947.4wpm
 
 Según estos resultados, se nota la preponderancia de la palabra *should* en la sección escrita (974 wpm) comparada con la sección oral (947 wpm). Estas frecuencias se llaman frecuencias relativas ('relative frequencies') en el sentido descrito por Brezina (2018, p. 43)
+
+## La historia y la geografía
+
+Esta dicción ignora una variedad de otros factores, como el registro, que sirven como vehículos sociales del uso lingüístico. Examinemos la distinción entre 'can' y 'may'a través de uno de estos factores. Biber (2012, p. 203) nos dice que el verbo 'may' se está perdiendo por cuestión del cambio lingüístico. ¿Se manifiesta este fenómeno en algún registro específico? 
+
+Para empezar, observemos los géneros específicos anotatos en el BNC. Podemos observar los valores de este atributo con otra consulta sin restricción, combinado con el uso del mandadto `group`.
+
+![Los géneros del BNC](images/BNC-BABY-ALL.png) 
+
+
+Este ejemplo del mandato `group` nos permite observar todos los valores del atributo `text_derived_type` en el corpus. Estas categorías se describen en el documento de Susanne Flach con una tabla de los metados del BNC. Con el uso de la restricción global `::`, se puede concentrar en un género específico:
+
+![La distribución de 'may' y 'can' en el BNC (newspaper)](images/BNC-MayCan.png) 
+
+Esta diferencia de distribuciones concuerda con lo que dice Biber cuando propone que 'may' es menos frecuente que 'can'. ¿Cómo compara estos datos con el inglés de los EE.UU.? Utilizemos el [Brown Corpus](http://korpus.uib.no/icame/manuals/BROWN/), lo cual representa el primer corpus de tamaño grande para el inglés americano. Toma su nombre de Brown University donde fue creado en el año 1961 por Henry Kučera y W. Nelson Francis. La próxima tabla muestra de diferentes textos incluídos en este corpous.
+
+* Tabla 1: Muestra de la distribución en el corpus de Brown
+
+| Genre | Subgenre/Topic Area | | Samples|
+|:------|:--------------------|--|----:|
+| Non-fiction | Religion | Books | 7 |
+| | | Periodicals | 6 |
+| | | Tracts | 4 |
+| | Skills and Hobbies | Books | 2 |
+| | | Periodicals | 34 |
+| | Popular Lore | Books | 23 |
+| | | Periodicals | 25 |
+| | Belles Lettres, Biography, Memoirs, etc. | Books | 38 |
+| | | Periodicals | 37 |
+| | Miscellaneous | Government Documents | 24 |
+| | | Foundation Reports | 2 |
+| | | Industry Reports | 2 |
+| | | College Catalog | 1 |
+| | | Industry House organ | 1 |
+| | Learned | Natural Sciences | 12 |
+| | | Medicine | 5 |
+| | | Mathematics | 4 |
+| | | Social and Behavioral Sciences | 14 |
+| | | Political Science, Law, Education | 15 |
+| | | Humanities | 18 |
+| | | Technology and Engineering | 12 |
+| Fiction | General | Novels | 20 |
+| | | Short Stories | 9 |
+|  | Mystery and Detective | Novels | 20 |
+| | | Short Stories | 4 |
+|  | Science Fiction | Novels | 3 |
+| | | Short Stories | 3 |
+|  | Adventure and Western | Novels | 15 |
+| | | Short Stories | 14 |
+|  | Romance and Love Story | Novels | 14 |
+| | | Short Stories | 15 |
+|  | Humor | Novels | 3 |
+| | | Essays, etc. | 6 |
+| Press | Reportage | Political | 14 |
+| | | Sports | 7 |
+| | | Society | 3 |
+| | | Spot news | 9 |
+| | | Financial | 4 |
+| | | Cultural | 7 |
+| | Editorial | Institutional | 10 |
+| | | Personal | 10 |
+| | | Letters to the Editor | 7 |
+| | Reviews (theatre, books, music, dance) |  | 17 |
+
+Use show cd to discover a metadata attribute that identifies a text's "Subgenre/Topic Area" in Brown. Did you notice text_category? Again, an unconstrained query reveals what the possible values are:
+
+Podemos utilizar `cd` para descubrir los atributos que identifican los "Subgenre/Topic Area" de los textos de Brown. También podemos utilizar una consulta sin restricción:
+
+* `BROWN> ALL = [ ] ;`
+* `group ALL match text_category:`
+
+Ahora, ¿se observa la misma asimetría entre 'may' y 'can' en el inglés americano?
+
+![La distribución de 'may' y 'can' en el corpus de Brown (newspaper)](images/BROWN-MayCan.png) 
+
+Parece que sí; el verbo 'may' es menos frecuente, tanto en la muestra inglesa como en la muestra americana, que el verbo 'can' en los textos periodísticos.
+
+*   **Tarea:** Examina los verbos 'may' y 'can' en el género `fiction`. ¿Se observa la misma asimestría? ¿Cómo se comparan los datos del inglés británico y el inglés americano? Ahora, exmamina la categoría de textos con el valor `learned` o `academic`. ¿Está disminuyendo el verbo 'may' en estos géneros?
+
+## Contruir una hipótesis
+
+En la sección anterior, se presentó la idea de que el verbo 'may' está desapareciendo en inglés, tal vez debido al uso elevado del verbo 'can' para expresar los mismos signficados. En esta sección, examinemos nuestra propia hipótesis sobre los modales de obligación (deónticos), 'should' y 'ought'.
+
+* **Hipótesis:** El verbo 'should' ha reemplazado la forma 'ought', lo cual expresa aproximadamente el mismo significado.
+
+Una hipótesis es una adivinanza educada. Sin embargo, si es verdad, debemos observar menos casos de 'ought' que 'should. 
+
+![La distribución de 'should' y 'ought' en los corpora de Brown y del BNC](images/BROWN-ShouldOught.png)
+
+Parece que, sí, esta hipótesis es válida. Las tasas de atestación de 'should' y 'ought' se diferencian por un ordén de magnitud entre los dos corpus.
+
+* Tabla 2: Frecuencias normalizadas en dos corpora del inglés
+
+| expresión | Brown | BNC |
+|:---------|:-----|:----|
+| should | $\frac{865 x 1M}{brownsize}$ = 744wpm | $\frac{106597 x 1M}{bncsize}$ = 950wpm |
+| ought | $\frac{66 x 1M}{brownsize}$ = 56wpm | $\frac{5757 x 1M}{bncsize}$ = 51wpm |
+
+Ahora, comparemos la forma modal de obligación 'must' con su homólogo 'have to'. ¿Qué pensamos sobre la siguiente hipótesis?
+
+* **Hipótesis:** La estructura 'have to' es menos formal que 'must'.
+
+If this hypothesis is true, we should expect more "have to" than "must" in an informal genre such  spoken_conversations.
 
 ***
 # Recursos {.tabset .tabset-fade .tabset-pills}
