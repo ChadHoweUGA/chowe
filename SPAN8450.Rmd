@@ -224,25 +224,29 @@ En inglés, existe una clase de verbos auxiliares que expresan la "modalidad":
 Según Biber (2012), los verbos modales son más comunes en la lengua hablada que en el lengua escrita. Su argumento se basa en el corpus **Longman Spoken and Written English** (40 millones de palabras). Examinemos la hipótesis de Biber con el BNC (100+ millones de palabras).
 
 
-:   `BNC> SPOK = "should" :: match.text_mode="spoken";`
-:   `BNC> WRIT =  "should" :: match.text_mode="written";`
-:   `BNC> size SPOK;`
-:   `11676`
-:   `BNC> size WRIT;`
-:   `94884`
+*   `BNC> SPOK = "should" :: match.text_mode="spoken";`
+*   `BNC> WRIT =  "should" :: match.text_mode="written";`
+*   `BNC> size SPOK;`
+*   `11676`
+*   `BNC> size WRIT;`
+*   `94884`
 
 
 Debemos reconozer que estos resultados parecen producir una asimetría, pero que no concuerda la hipótesis de Biber. Hasta ahora, hemos ignorado que las secciones orales y escritas del BNC no son de tamaños equivalentes. Los valores del verbo *should* se tienen que relativizar para que comparemos dos corpus de tamaños distintos. Para hacer esto, podemos pedir que el CQP nos produzca una total de palabras en las secciones correspondientes con una consulta sin ninguna restricción; es decir, unos corchetes vacíos.
 
+*   `BNC> ALLSPOK = [ ] :: match.text_mode="spoken";`
+*   `BNC> size ALLSPOK;`
+*   `11983120`
+*   `BNC> ALLWRIT = [ ] :: match.text_mode="written";`
+*   `BNC> size ALLWRIT;`
+*   `100119205`
 
-:   `BNC> ALLSPOK = [ ] :: match.text_mode="spoken";`
-:   `BNC> size ALLSPOK;`
-:   `11983120`
-:   `BNC> ALLWRIT = [ ] :: match.text_mode="written";`
-:   `BNC> size ALLWRIT;`
-:   `100119205`
+Ahora tenemos la información cuantitativa que se necesita para poder determinar la realización relativizada (por millón de palabras-`wpm`).
 
+*   *should*~BNCspoken~ = $\frac{11676 x 1000000}{11983120}$ = 974.3wpm
+*   *should*~BNCwritten~ = $\frac{94884 x 1000000}{11983120}$ = 947.4wpm
 
+Según estos resultados, se nota la preponderancia de la palabra *should* en la sección escrita (974 wpm) comparada con la sección oral (947 wpm). Estas frecuencias se llaman frecuencias relativas ('relative frequencies') en el sentido descrito por Brezina (2018, p. 43)
 
 ***
 # Recursos {.tabset .tabset-fade .tabset-pills}
