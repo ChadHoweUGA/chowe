@@ -217,7 +217,7 @@ Podemos también utilizar el elemento `::` para indicar un 'global constraint' (
 ***
 # 3a Semana
 
-## Los verbos modales
+## Los verbos modales^[Estos apuntes se han basado en los apuntos de curso del profesor John Hale.]
 
 En inglés, existe una clase de verbos auxiliares que expresan la "modalidad":
 
@@ -349,7 +349,78 @@ Ahora, comparemos la forma modal de obligación 'must' con su homólogo 'have to
 
 * **Hipótesis:** La estructura 'have to' es menos formal que 'must'.
 
-If this hypothesis is true, we should expect more "have to" than "must" in an informal genre such  spoken_conversations.
+Si esta hipótesis es correcta, esperamos tener más casos de 'have to' que 'must' en un género informal como `spoken_conversations`.
+
+*   `BNC> HT = "have" "to" :: match.text_derived_type="spoken_conversation";`
+*   `BNC> M = "must" :: match.text_derived_type="spoken_conversation" ;`
+*   `BNC> size HT;`
+*   `5141`
+*   `BNC> size M;`
+*   `2780`
+
+Vemos que nuestra hipótesis es correcta. ¿Qué observamos en un género como la escritura académica?
+
+*   `BNC> M = "must" :: match.text_derived_type="academic";`
+*   `BNC> HT = "have" "to" :: match.text_derived_type="academic";`
+*   `BNC> size M ;`
+*   `13514`
+*   `BNC> size HT ;`
+*   `3615`
+*   `BROWN> M = "must" :: match.text_category="learned";`     
+*   `BROWN> HT = "have" "to" :: match.text_category="learned";`
+*   `BROWN> size M ;`
+*   `202`
+*   `BROWN> size HT ;`
+*   `24`
+
+En un género formal, se obsera que hay más casos de 'must' comparado con 'have to', un resultado que es consistente con nuestra hipótesis. [Dejamos el proceso de la normalización como una tarea de casa.]
+
+***
+
+## Las listas de palabras
+
+El trabajo de Biber (2012) identifica tres tipos de significados que puden expresear los verbos modales del inglés:
+
+1.    permisión o posibilidad
+2.    obligación o necesidad lógica
+3.    voluntad o predicción
+
+Cada uno de estos significados se pueden asociar con una lista de palabras. El CQP ofrece un mecanismo ([manual, sección 6.2](http://cwb.sourceforge.net/files/CQP_Tutorial.pdf)) que permite definir una lista y asociar palabras específicas con estas listas. Este proceso hace posible evitar la necesidad de escribir manualmente secuencias largas separadas por barras verticales.
+
+*   `BROWN> define $perm = "can could may might"`
+*   `BROWN> define $oblig = "must should ought"`
+*   `BROWN> define $volit = "will would shall"`
+
+Estas variables, cuyos nombres comienzan con un `$`, se pueden utilizar en toda situación en la cual se podría haber utilizado una seria individual en una consulta.
+
+*   `BROWN> O = $oblig ;`
+*   `BROWN> group O match text_category ;`
+*   `BNC> O = $oblig ;`
+*   `BNC> group O match text_derived_type ;`
+
+¿Qué observamos en cuanto a la formalidad con estos resultados? Ahora podemos forma la unión de todas las formas modales:
+
+*   `BNC> define $modal = $perm`
+*   `BNC> define $modal += $oblig`
+*   `BNC> define $modal += $volit`
+*   `BNC> show $modal`
+*   `$modal = can could may might must should ought will would shall`
+
+La posibilidad de referirse a todas las formas modales a la vez facilita la búsqueda de las formas modales dobles. Estas formas se aceptan en [algunas variedades del inglés](https://ygdp.yale.edu/phenomena/multiple-modals).
+
+![Las formas modales dobles en el inglés](images/COCA-DoubleModals.png)
+
+Algunos de estos casos parecen ser errores, los cuales son inevitables en un corpus. Otros casos no son modales de verdad; por ejemplo, la palabra 'will' se entiende también como el sustantivo *voluntad*.
+
+*   `1433741433: at his will be done . And <God 's will will> be done voice-over And i`
+*   `429416972: at this second gesture of <good will will> be met with a similar ge`
+*   `429589131: this humanitarian aid and <good will will> help bring down some of`
+*   `297895587: ple call you . Enough ill <will can> turn anything into an at`
+*   `325323612:  official . But political <will can> be found " to do more to`
+*   `486055689:  message to them that our <will can> not be broken by terror`
+
+Sin embargo, si observamos de forma más específica los casos de la forma 'might could', se encuentran algunos casos legítimos. En cuanto a la comparación entre el inglés británico y el inglés americano: no existe ningún caso en el BNC y  solo se encuentran dos casos en el SPOKENBNC2014, los cuales no parecen ser casos legítmos. Estas observaciones son consistentes con el uso de 'might could' con un fenómeno especificamente americano. (p. 44 de Hoffman et al.)
+
 
 ***
 # Recursos {.tabset .tabset-fade .tabset-pills}

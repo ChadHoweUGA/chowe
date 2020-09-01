@@ -609,7 +609,7 @@ div.tocify {
 <div id="a-semana-1" class="section level1">
 <h1>3a Semana</h1>
 <div id="los-verbos-modales" class="section level2">
-<h2>Los verbos modales</h2>
+<h2>Los verbos modales<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></h2>
 <p>En inglés, existe una clase de verbos auxiliares que expresan la “modalidad”:</p>
 <blockquote>
 <p>In linguistics and philosophy, modality is the phenomenon whereby language is used to discuss non-actual situations. For instance, a modal expression may convey that something is likely, desirable, or permissible. Quintessential modal expressions include modal auxiliaries such as English “should” <a href="https://en.wikipedia.org/wiki/Modality_(linguistics)">Descripción</a></p>
@@ -987,7 +987,78 @@ div.tocify {
 <ul>
 <li><strong>Hipótesis:</strong> La estructura ‘have to’ es menos formal que ‘must’.</li>
 </ul>
-<p>If this hypothesis is true, we should expect more “have to” than “must” in an informal genre such spoken_conversations.</p>
+<p>Si esta hipótesis es correcta, esperamos tener más casos de ‘have to’ que ‘must’ en un género informal como <code>spoken_conversations</code>.</p>
+<ul>
+<li><code>BNC&gt; HT = "have" "to" :: match.text_derived_type="spoken_conversation";</code></li>
+<li><code>BNC&gt; M = "must" :: match.text_derived_type="spoken_conversation" ;</code></li>
+<li><code>BNC&gt; size HT;</code></li>
+<li><code>5141</code></li>
+<li><code>BNC&gt; size M;</code></li>
+<li><code>2780</code></li>
+</ul>
+<p>Vemos que nuestra hipótesis es correcta. ¿Qué observamos en un género como la escritura académica?</p>
+<ul>
+<li><code>BNC&gt; M = "must" :: match.text_derived_type="academic";</code></li>
+<li><code>BNC&gt; HT = "have" "to" :: match.text_derived_type="academic";</code></li>
+<li><code>BNC&gt; size M ;</code></li>
+<li><code>13514</code></li>
+<li><code>BNC&gt; size HT ;</code></li>
+<li><code>3615</code></li>
+<li><code>BROWN&gt; M = "must" :: match.text_category="learned";</code><br />
+</li>
+<li><code>BROWN&gt; HT = "have" "to" :: match.text_category="learned";</code></li>
+<li><code>BROWN&gt; size M ;</code></li>
+<li><code>202</code></li>
+<li><code>BROWN&gt; size HT ;</code></li>
+<li><code>24</code></li>
+</ul>
+<p>En un género formal, se obsera que hay más casos de ‘must’ comparado con ‘have to’, un resultado que es consistente con nuestra hipótesis. [Dejamos el proceso de la normalización como una tarea de casa.]</p>
+<hr />
+</div>
+<div id="las-listas-de-palabras" class="section level2">
+<h2>Las listas de palabras</h2>
+<p>El trabajo de Biber (2012) identifica tres tipos de significados que puden expresear los verbos modales del inglés:</p>
+<ol style="list-style-type: decimal">
+<li>permisión o posibilidad</li>
+<li>obligación o necesidad lógica</li>
+<li>voluntad o predicción</li>
+</ol>
+<p>Cada uno de estos significados se pueden asociar con una lista de palabras. El CQP ofrece un mecanismo (<a href="http://cwb.sourceforge.net/files/CQP_Tutorial.pdf">manual, sección 6.2</a>) que permite definir una lista y asociar palabras específicas con estas listas. Este proceso hace posible evitar la necesidad de escribir manualmente secuencias largas separadas por barras verticales.</p>
+<ul>
+<li><code>BROWN&gt; define $perm = "can could may might"</code></li>
+<li><code>BROWN&gt; define $oblig = "must should ought"</code></li>
+<li><code>BROWN&gt; define $volit = "will would shall"</code></li>
+</ul>
+<p>Estas variables, cuyos nombres comienzan con un <code>$</code>, se pueden utilizar en toda situación en la cual se podría haber utilizado una seria individual en una consulta.</p>
+<ul>
+<li><code>BROWN&gt; O = $oblig ;</code></li>
+<li><code>BROWN&gt; group O match text_category ;</code></li>
+<li><code>BNC&gt; O = $oblig ;</code></li>
+<li><code>BNC&gt; group O match text_derived_type ;</code></li>
+</ul>
+<p>¿Qué observamos en cuanto a la formalidad con estos resultados? Ahora podemos forma la unión de todas las formas modales:</p>
+<ul>
+<li><code>BNC&gt; define $modal = $perm</code></li>
+<li><code>BNC&gt; define $modal += $oblig</code></li>
+<li><code>BNC&gt; define $modal += $volit</code></li>
+<li><code>BNC&gt; show $modal</code></li>
+<li><code>$modal = can could may might must should ought will would shall</code></li>
+</ul>
+<p>La posibilidad de referirse a todas las formas modales a la vez facilita la búsqueda de las formas modales dobles. Estas formas se aceptan en <a href="https://ygdp.yale.edu/phenomena/multiple-modals">algunas variedades del inglés</a>.</p>
+<div class="figure">
+<img src="images/COCA-DoubleModals.png" alt="" />
+<p class="caption">Las formas modales dobles en el inglés</p>
+</div>
+<p>Algunos de estos casos parecen ser errores, los cuales son inevitables en un corpus. Otros casos no son modales de verdad; por ejemplo, la palabra ‘will’ se entiende también como el sustantivo <em>voluntad</em>.</p>
+<ul>
+<li><code>1433741433: at his will be done . And &lt;God 's will will&gt; be done voice-over And i</code></li>
+<li><code>429416972: at this second gesture of &lt;good will will&gt; be met with a similar ge</code></li>
+<li><code>429589131: this humanitarian aid and &lt;good will will&gt; help bring down some of</code></li>
+<li><code>297895587: ple call you . Enough ill &lt;will can&gt; turn anything into an at</code></li>
+<li><code>325323612:  official . But political &lt;will can&gt; be found " to do more to</code></li>
+<li><code>486055689:  message to them that our &lt;will can&gt; not be broken by terror</code></li>
+</ul>
+<p>Sin embargo, si observamos de forma más específica los casos de la forma ‘might could’, se encuentran algunos casos legítimos. En cuanto a la comparación entre el inglés británico y el inglés americano: no existe ningún caso en el BNC y solo se encuentran dos casos en el SPOKENBNC2014, los cuales no parecen ser casos legítmos. Estas observaciones son consistentes con el uso de ‘might could’ con un fenómeno especificamente americano. (p. 44 de Hoffman et al.)</p>
 <hr />
 </div>
 </div>
@@ -1093,6 +1164,7 @@ Other Languages
 <ol>
 <li id="fn1"><p>Gracias a Donald Dunagan por la prepación de este documento.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p>Verifica que la versión del CQP que utilizas es la versión apropiada con el mandato <code>cqp -version</code>. Debe ser la versión 3.4.22.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Estos apuntes se han basado en los apuntos de curso del profesor John Hale.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
