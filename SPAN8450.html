@@ -1070,11 +1070,29 @@ div.tocify {
 <ul>
 <li><code>BNC-BABY&gt; DRINK = "drink|drank|drunk" ;</code></li>
 <li><code>BNC-BABY&gt; "dr.nk" ;</code></li>
-<li>`#—————————————</li>
-<li><code>(none)                drink           552</code></li>
-<li><pre><code>                    `drunk           99`</code></pre></li>
-<li><pre><code>                    `drank           67`</code></pre></li>
 </ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Palabra</th>
+<th align="left">Frecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">drink</td>
+<td align="left">552</td>
+</tr>
+<tr class="even">
+<td align="left">drunk</td>
+<td align="left">99</td>
+</tr>
+<tr class="odd">
+<td align="left">drank</td>
+<td align="left">67</td>
+</tr>
+</tbody>
+</table>
 <p>No hay que saber de antemano cuáles serán los elementos que se encuentren. Las letras ~d, r, n, y k~ se expresan explícitamente. Entonces, las expresiones regulares incluyen los tipos de palabras completas (es decir, con todas las letras explícitas) que ya hemos buscado con las consultas.</p>
 </div>
 <div id="clases-de-carácteres" class="section level3">
@@ -1122,6 +1140,283 @@ div.tocify {
 </tr>
 </tbody>
 </table>
+<p>Este ejemplo arriba utiliza el punto dos veces para pedir casos de cinco letras, donde no se especifica el carácter específico de las dos últimas letras. Fíjate que estas consultas responden al tipo de letra (es decir, mayúscula vs. minúscula). La siguiente consulta produce casos de palabras (a) con cinco letras y (b) con una letra inicial mayúscula.</p>
+<ul>
+<li><code>BNC-BABY&gt; "[ABCDEFGHIJKLMNOPQRSTUVWXYZ].... ;</code></li>
+</ul>
+<p>Estos corchetes no son iguales a los que hemos utilizado antes con las consultas de CQP (e.g., <code>[word = "lovely"]</code>). Representan una lista explícita de los carácteres individuales que se pueden encontrar en la posición inicial de la palabra.</p>
+</div>
+<div id="un-rango-de-carácteres" class="section level3">
+<h3>Un rango de carácteres</h3>
+<p>La consulta que realizamos con las letras mayúsculas se pueden re-escribir de forma más concisa. Dentro de los corchetes, podemos especificar un rango de carácteres con el uso de un guion.</p>
+<ul>
+<li><code>BNC-BABY&gt; "[A-Z]...." ;</code></li>
+</ul>
+<p>Ahora podemos verificar que esta consulta produce los mismos resultados que la última. El ordén que se utiliza para definir los rangos sigue el <a href="https://share.ansi.org/Shared%20Documents/News%20and%20Publications/Brochures/What%20Is%20ANSI%202019%20Brochure,%20Single%20Pages.pdf">American National Standard for Information Exchange (ANSI)</a>. En el prompt de unix, puedes leer más con el mandato <code>man ascii</code>.</p>
+</div>
+<div id="la-morfología" class="section level3">
+<h3>La morfología</h3>
+<p><strong>La opcionalidad:</strong></p>
+<p>Hay una variedad operadores que especifican la repetición. El signo de interrogación (<code>?</code>) indica que la expresión regular que precede es un elemento opcional; es decir, se puede repetir zero o una vez. Por ejemplo, podemos utilizar esta operador para buscar las formas singulares y plurales de una palabra como ‘dog’ si indicamos que la <em>s</em> es opcional.</p>
+<ul>
+<li><code>BNC-BABY&gt; "dogs?" ;</code></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Palabra</th>
+<th align="left">Frecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">dog</td>
+<td align="left">321</td>
+</tr>
+<tr class="even">
+<td align="left">dogs</td>
+<td align="left">140</td>
+</tr>
+</tbody>
+</table>
+<p>Este operador se puede colocar en cualquier parte del string. Por ejemplo, podemos observar variaciones ortográficos del inglés británico y el americano.</p>
+<ul>
+<li><code>BNC-BABY&gt; "favou?r" ;</code></li>
+<li><code>BNC-BABY&gt; group Last match word by match text_id cut 10 ;</code></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Texto</th>
+<th align="left">Palabra</th>
+<th align="left">Frecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ACJ</td>
+<td align="left">favour</td>
+<td align="left">16</td>
+</tr>
+<tr class="even">
+<td align="left">J57</td>
+<td align="left">favor</td>
+<td align="left">11</td>
+</tr>
+</tbody>
+</table>
+<p>Si consultamos el texto J57 en <a href="http://www.natcorp.ox.ac.uk/docs/URG/bibliog.html">la bibliografía contenida con el Reference Guide for the British National Corpus</a>, se nota que este texto es un libro de texto sobre Inglaterra cuyo audiencia tal vez sea estudiantes americanos.</p>
+<p><strong>Agrupar:</strong></p>
+<p>Dentro de una expresión regular, los elementos se pueden agrupar con el uso de los paréntesis. De allí, los operadores de repetición (como <code>?</code>) se pueden aplicar al grupo entero. Esta posibilidad nos facilita el proceso de observar de la opcionalidad de, por ejemplo, el prefijo <em>un-</em> en inglés:</p>
+<ul>
+<li><code>BNC-BABY&gt; "(un)?thinkable" ;</code></li>
+<li><code>BNC-BABY&gt; group Last match word ;</code></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Palabra</th>
+<th align="left">Frecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">unthinkable</td>
+<td align="left">11</td>
+</tr>
+<tr class="even">
+<td align="left">thinkable</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<p>o con el sufijo <em>-ren</em> de ‘children’.</p>
+<ul>
+<li><code>BNC-BABY&gt; "child(ren)?" ;</code></li>
+<li><code>BNC-BABY&gt; group Last match word ;</code></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Palabra</th>
+<th align="left">Frecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">children</td>
+<td align="left">1541</td>
+</tr>
+<tr class="even">
+<td align="left">child</td>
+<td align="left">782</td>
+</tr>
+</tbody>
+</table>
+<p><strong>La alternación:</strong></p>
+<p>Como ya hemos visto, la barra vertical (la pipa), puede separar las series alternativas. Por ejemplo, podemos combinar el uso de los operadores de opcionalidad y de repetición para considerar más bases léxicas:</p>
+<ul>
+<li><code>BNC-BABY&gt; "(un)?(think|know|believ|answer|recover)able";</code></li>
+<li><code>BNC-BABY&gt; group Last match word ;</code></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Palabra</th>
+<th align="left">Frecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">unbelievable</td>
+<td align="left">21</td>
+</tr>
+<tr class="even">
+<td align="left">unthinkable</td>
+<td align="left">11</td>
+</tr>
+<tr class="odd">
+<td align="left">recoverable</td>
+<td align="left">8</td>
+</tr>
+<tr class="even">
+<td align="left">unanswerable</td>
+<td align="left">7</td>
+</tr>
+<tr class="odd">
+<td align="left">answerable</td>
+<td align="left">6</td>
+</tr>
+<tr class="even">
+<td align="left">unknowable</td>
+<td align="left">5</td>
+</tr>
+<tr class="odd">
+<td align="left">believable</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">thinkable</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<p>Esta diferentes bases, separadas por barras verticales, se tratan como <strong>alternativas disyuntivas</strong>. No se aplican un operador de repetición, lo cual significa que una de las alternativas tienen que corresponder en la consulta. Además, el prefijo (la serie) <em>-able</em> tiene que aparece al final de la palabra buscada.</p>
+<p>Las alternativas disjuntivas son útiles en el proceso de encontrar formas morfológicas de verbos (regulares). Para leer más sobre “Complex Regular Expression”, se debe consultar <a href="http://cwb.sourceforge.net/files/CQP_Tutorial/node52.html">el manual (A.1)</a>.</p>
+<ul>
+<li><code>BNC-BABY&gt; "(call|talk|help)(s|ed|ing)" ;</code></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Palabra</th>
+<th align="left">Frecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">called</td>
+<td align="left">1279</td>
+</tr>
+<tr class="even">
+<td align="left">talking</td>
+<td align="left">740</td>
+</tr>
+<tr class="odd">
+<td align="left">helped</td>
+<td align="left">315</td>
+</tr>
+<tr class="even">
+<td align="left">calls</td>
+<td align="left">223</td>
+</tr>
+<tr class="odd">
+<td align="left">talked</td>
+<td align="left">192</td>
+</tr>
+<tr class="even">
+<td align="left">talks</td>
+<td align="left">178</td>
+</tr>
+<tr class="odd">
+<td align="left">calling</td>
+<td align="left">144</td>
+</tr>
+<tr class="even">
+<td align="left">helping</td>
+<td align="left">122</td>
+</tr>
+<tr class="odd">
+<td align="left">helps</td>
+<td align="left">80</td>
+</tr>
+</tbody>
+</table>
+<p><strong>El uso del ‘plus’ (y otros):</strong></p>
+<p>El operador plus (<code>+</code>) señala que queremos una o más repeticiones de un elemento (o grupo de elementos). Como el signo de interrogación, es un operador sufijo (‘postfix’) que se aplica a la expresión regular que precede. Si el elemento o la expresión que precede es el operador de ’wildcard, podemos encontrar, por ejemplo, todas las palabras que terminan con <em>-ly</em>–es decir, los adverbios en inglés.</p>
+<ul>
+<li><code>BNC-BABY&gt; ".+ly" ;</code></li>
+</ul>
+<p>Bueno, se nota que no todos los casos encontrados son adverbios (p.e., ‘Holly’). Refinemos esta consulta mediante el rasgo que vimos con las listas de palabras (manual, sección 6.2). El operador <code>!=</code> señala que <strong>no</strong> debe corresponder (manual, sección 2.5). El signo <code>&amp;</code> significa ‘and’ y requiere que los casos encontrados concuerden con las dos restricciones especificadas–es decir, que terminen con <em>-ly</em> y que no sean “stopwords”.</p>
+<ul>
+<li><code>BNC-BABY&gt; define $nothanks = "Holly Billy Italy July" ;</code></li>
+<li><code>BNC-BABY&gt; [ word = ".+ly" &amp; word != $nothanks ] ;</code></li>
+</ul>
+<p>El proceso de descubrir las excepciones (p.e. <em>Sally</em> y <em>Willy</em>) es iterativo. Al encontrar estas palabras, se pueden añadir a la lista de stopwords.</p>
+<p><strong>Una cantidad específica de repeticiones:</strong></p>
+<p>Las llaves (<code>{ }</code>) permiten que especifiquemos un número específico, o un rango número de repeticiones. Por ejemplo, podemos revisar una de nuestras consultas anteriores de la siguiente manera:</p>
+<ul>
+<li><code>BNC-BABY&gt; "gl[aeiou].{2}";</code></li>
+</ul>
+<p><strong>Negación de un rango:</strong></p>
+<p>Además, podemos definir de manera negativa con el uso del signo de intercalación (<code>^</code>), indicado al inicio de una lista de carácteres. En este caso, estos carácteres no se deben incluir con las correspondencias. Como ejemplo, presento la siguiente consulta que intenta caracterizar todas las palabras monosilábicas del inglés con <strong>un ataque</strong> consonantal, <strong>un núcleo</strong> vocálico, y <strong>una coda</strong>, donde el ataque y la coda son opcionales y consisten de, como máximo, tres letras.</p>
+<ul>
+<li><code>BNC-BABY&gt; MONOSYLL = "[^aeiou]{0,3}[aeiou]+[^aeiou]{0,3}";</code></li>
+</ul>
+<hr />
+</div>
+<div id="otra-vez-con-la-morfología" class="section level3">
+<h3>Otra vez con la morfología</h3>
+<p>Ahora, volvamos a Wuthering Heights. Si pedimos todas las palabras que terminan con <code>-ity</code>, ¿cuáles son las categorías gramaticales que esperamos encontrar?</p>
+<ul>
+<li><code>WUTHERING&gt; ".+ity";</code></li>
+</ul>
+<p>Si consultamos el <code>info</code> de WUTHERING con el mando <code>show cd</code>. Las palabras de este corpus tienen las etiquetas de clase léxica (‘Parts of Speech’ / <code>pos</code>).</p>
+<ul>
+<li><code>WUTHERING&gt; group Last match pos ;</code></li>
+</ul>
+<p>Y, ¿qué decimos sobre las palabras que terminan con <em>-ous</em>? ¿Cuál es la léxica de estas palabras? Utilicemos el atributo de <code>pos</code> de WUTHERING para probar esta cuestión. Podemos pedir que el CQP nos muestre en el KWIC (‘Key-Words-In-Context’) estas etiquetas con el siguiente mandato:</p>
+<ul>
+<li><code>WUTHERING&gt; show +pos ;</code></li>
+</ul>
+<p>Cambiamos este valor con el siguiente mandato <code>show -pos</code>. Las etiquetas para las clases léxicas se pueden leer en <a href="http://cwb.sourceforge.net/files/CQP_Tutorial/node53.html">el manual (sección A.2.0.1)</a>.</p>
+<p>Ahora busquemos las palabras con el sufijo <em>-ful</em>.</p>
+<ul>
+<li><code>WUTHERING&gt; ".+ful" ;</code></li>
+<li><code>WUTHERING&gt; group Last match pos ;</code></li>
+</ul>
+<p>¿Qué encontramos? ¿Cuáles son las clases léxicas de las palabras excepcionales (es decir, palabras que no sean adjetivos) como ‘spoonful’ y ‘mouthful’? Utilicemos una consulta disjuntiva para encontrar todos los miembros de esta categoría minoritaria.</p>
+<ul>
+<li><code>WUTHERING&gt; [ word = ".+ful" &amp; pos=ALGO QUE TÚ ESPECIFICAS];</code></li>
+</ul>
+<p>¿Y qué pasa con el sufijo <code>-less</code>? ¿Cuál son los marcadores discursivos que no sigan la generalización? Hagamos la misma búsqueda con el subconjunto de Wuthering Heights que se encuentra en el BNC.</p>
+<ul>
+<li><code>BNC&gt; ".+less" :: match.text_id = "GWH" ;</code></li>
+<li><code>68775950: /PRF a/AT0 wild/AJ0 ,/PUN &lt;hatless/AJ0&gt; girl/NN1 ,/PUN we/PNP sa</code></li>
+<li><code>68776660: VVD ,/PUN hot/AJ0 and/CJC &lt;breathless/AJ0&gt; ./PUN ``/PUQ That/DT0 'l</code></li>
+<li><code>68778512: you/PNP tonight/AV0 ,/PUN &lt;unless/CJS&gt; perhaps/AV0 I/PNP set/VV</code></li>
+<li><code>68780542: N1 ,/PUN wild/AJ0 and/CJC &lt;breathless/AJ0&gt; ./PUN She/PNP threw/VVD</code></li>
+<li><code>68788920: ,/PUN and/CJC arrived/VVD &lt;breathless/AJ0&gt; at/PRP Wuthering/VVG Hei</code></li>
+<li><code>68791639: y/PRP next/ORD summer/NN1 &lt;unless/CJS&gt; you/PNP help/VVB him/PNP</code></li>
+</ul>
+<p>Se puede consultar <a href="http://ucrel.lancs.ac.uk/claws5tags.html">el conjunto de etiquetas (CLAWS5) aquí</a>. Esta comparación muestra que el mismo texto se puede interpretar con dos equemas diferentes de anotación léxica. Cada equema viene con su propia perspectiva teórica.</p>
+</div>
+<div id="tareas-8-de-sept." class="section level3">
+<h3>Tareas (8 de sept.)</h3>
+<p><strong>1a Parte:</strong> Con el uso del atributo <code>pos</code>, utiliza CQP para encontrar los sustantivos más observados en el corpus de Ancora. Determina si este resultado es esperado o no esperado de acuerdo con el “sampling frame” de Ancora (según el capítulo 1, sección 1.4 de Brezina).</p>
+<p><strong>2a Parte:</strong> ¿Cuáles son la segunda palabra y la tercera palabra más observadas en el corpus Ancora que (a) tienen una letra mayúscula inicial y (b) continúan con todas letras minúsculas? Crea una expresión regular para encontrar estas palabras que exluya las siglas. Otra vez, compara tus resultados con el sampling frame de Ancora.</p>
+<p><strong>3a Parte:</strong> Utiliza los operadores de alternativas y de repetición para crear una expresión regular que encuentre todas las formas del presente <a href="https://www.wordreference.com/conj/FrVerbs.aspx?v=lire">del verbo <em>lire</em> ‘to read’</a> del francés. Utiliza el corpus FRWAC para buscar estas formas del verbo <em>lire</em>.</p>
+<p>Verifique los resultados por una consulta de <a href="https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/french-tagset.html">las clases léxicas observadas</a>. ¡Cuidado! La palabra francesa para ‘cama’ tiene la misma forma ortográfica que una de las formas verbales del verbo <em>lire</em>. Revisa tu consulta para que las formas de ciertas clases léxicas se excluyan.</p>
 <hr />
 </div>
 </div>
