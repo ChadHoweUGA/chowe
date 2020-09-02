@@ -232,7 +232,7 @@ Según Biber (2012), los verbos modales son más comunes en la lengua hablada qu
 *   `BNC> size WRIT;`
 *   `94884`
 
-Debemos reconozer que estos resultados parecen producir una asimetría, pero que no concuerda la hipótesis de Biber. Hasta ahora, hemos ignorado que las secciones orales y escritas del BNC no son de tamaños equivalentes. Los valores del verbo *should* se tienen que relativizar para que comparemos dos corpus de tamaños distintos. Para hacer esto, podemos pedir que el CQP nos produzca una total de palabras en las secciones correspondientes con una consulta sin ninguna restricción; es decir, unos corchetes vacíos.
+Debemos reconocer que estos resultados parecen producir una asimetría, pero que no concuerda la hipótesis de Biber. Hasta ahora, hemos ignorado que las secciones orales y escritas del BNC no son de tamaños equivalentes. Los valores del verbo *should* se tienen que relativizar para que comparemos dos corpus de tamaños distintos. Para hacer esto, podemos pedir que el CQP nos produzca una total de palabras en las secciones correspondientes con una consulta sin ninguna restricción; es decir, unos corchetes vacíos.
 
 *   `BNC> ALLSPOK = [ ] :: match.text_mode="spoken";`
 *   `BNC> size ALLSPOK;`
@@ -248,9 +248,9 @@ Ahora tenemos la información cuantitativa que se necesita para poder determinar
 
 Según estos resultados, se nota la preponderancia de la palabra *should* en la sección escrita (974 wpm) comparada con la sección oral (947 wpm). Estas frecuencias se llaman frecuencias relativas ('relative frequencies') en el sentido descrito por Brezina (2018, p. 43)
 
-## La historia y la geografía
+### La historia y la geografía
 
-Esta dicción ignora una variedad de otros factores, como el registro, que sirven como vehículos sociales del uso lingüístico. Examinemos la distinción entre 'can' y 'may'a través de uno de estos factores. Biber (2012, p. 203) nos dice que el verbo 'may' se está perdiendo por cuestión del cambio lingüístico. ¿Se manifiesta este fenómeno en algún registro específico? 
+Esta sección ignora una variedad de otros factores, como el registro, que sirven como vehículos sociales del uso lingüístico. Examinemos la distinción entre 'can' y 'may'a través de uno de estos factores. Biber (2012, p. 203) nos dice que el verbo 'may' se está perdiendo por cuestión del cambio lingüístico. ¿Se manifiesta este fenómeno en algún registro específico? 
 
 Para empezar, observemos los géneros específicos anotatos en el BNC. Podemos observar los valores de este atributo con otra consulta sin restricción, combinado con el uso del mandadto `group`.
 
@@ -377,7 +377,7 @@ En un género formal, se obsera que hay más casos de 'must' comparado con 'have
 
 ***
 
-## Las listas de palabras
+### Las listas de palabras
 
 El trabajo de Biber (2012) identifica tres tipos de significados que puden expresear los verbos modales del inglés:
 
@@ -421,6 +421,41 @@ Algunos de estos casos parecen ser errores, los cuales son inevitables en un cor
 
 Sin embargo, si observamos de forma más específica los casos de la forma 'might could', se encuentran algunos casos legítimos. En cuanto a la comparación entre el inglés británico y el inglés americano: no existe ningún caso en el BNC y  solo se encuentran dos casos en el SPOKENBNC2014, los cuales no parecen ser casos legítmos. Estas observaciones son consistentes con el uso de 'might could' con un fenómeno especificamente americano. (p. 44 de Hoffman et al.)
 
+***
+
+## Las expresiones regulares con el CQP
+
+Las expresiones regulares representan una notación para especificar diferentes conjuntos de 'strings'. Con una consulta de corpus, se utilizan las expresiones regulares para determinar el conjunto de casos posibles que podemos obtener con la consulta. Las expresiones regulares se puden utilizar en cualquier posición en el CQP y su descripción se presenta en el [Appendix A.1 del manual](http://cwb.sourceforge.net/files/CQP_Tutorial/node52.html). Hay una variedad de diferentes sabores de expresiones regulares; la versión de CQP del servidor utiliza expresiones regulares 'normales de unix (es decir, no son compatibles con la lengua `perl`). Por el momento, estas distinciones no nos distraen.
+
+### El 'wildcard'
+
+Busquemos las diferentes formas del verbo 'drink' en el `BNC-BABY`. Sería posible realizar consultas distintas o, por ejemplo, definir un grupo con el uso de la pipa `|`. Otra opción, es dejar que la vocal no se especifique con el símbolo `.` .   
+
+*  `BNC-BABY> DRINK = "drink|drank|drunk" ;`
+*  `BNC-BABY> "dr.nk" ;`
+*  `#---------------------------------------
+  +   `(none)                drink           552`
+  +                         `drunk           99`
+  +                         `drank           67`
+
+No hay que saber de antemano cuáles serán los elementos que se encuentren. Las letras ~d, r, n, y k~ se expresan explícitamente. Entonces, las expresiones regulares incluyen los tipos de palabras completas (es decir, con todas las letras explícitas) que ya hemos buscado con las consultas.
+
+### Clases de carácteres
+
+¿Cuáles son las palabras de cinco letras que empiezan con 'gl' y una vocal? Se puede especificar esto con el uso de las vocales ortográficas entre corchetes `[ ]`.
+
+*   `BNC-BABY> "gl[aeiou].." ;`
+*   `BNC-BABY> group Last match word cut 10 ;`
+
+| Palabra | Frecuencia |
+|:--------|:-----------|
+| glass | 389 |
+| glory | 46 |
+| gloom | 28 |
+| glare | 19 |
+| glove | 14 |
+| gloss | 12 |
+| glide | 11 |
 
 ***
 # Recursos {.tabset .tabset-fade .tabset-pills}

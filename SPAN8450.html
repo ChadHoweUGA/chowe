@@ -623,7 +623,7 @@ div.tocify {
 <li><code>BNC&gt; size WRIT;</code></li>
 <li><code>94884</code></li>
 </ul>
-<p>Debemos reconozer que estos resultados parecen producir una asimetría, pero que no concuerda la hipótesis de Biber. Hasta ahora, hemos ignorado que las secciones orales y escritas del BNC no son de tamaños equivalentes. Los valores del verbo <em>should</em> se tienen que relativizar para que comparemos dos corpus de tamaños distintos. Para hacer esto, podemos pedir que el CQP nos produzca una total de palabras en las secciones correspondientes con una consulta sin ninguna restricción; es decir, unos corchetes vacíos.</p>
+<p>Debemos reconocer que estos resultados parecen producir una asimetría, pero que no concuerda la hipótesis de Biber. Hasta ahora, hemos ignorado que las secciones orales y escritas del BNC no son de tamaños equivalentes. Los valores del verbo <em>should</em> se tienen que relativizar para que comparemos dos corpus de tamaños distintos. Para hacer esto, podemos pedir que el CQP nos produzca una total de palabras en las secciones correspondientes con una consulta sin ninguna restricción; es decir, unos corchetes vacíos.</p>
 <ul>
 <li><code>BNC&gt; ALLSPOK = [ ] :: match.text_mode="spoken";</code></li>
 <li><code>BNC&gt; size ALLSPOK;</code></li>
@@ -638,10 +638,9 @@ div.tocify {
 <li><em>should</em><sub>BNCwritten</sub> = <span class="math inline">\(\frac{94884 x 1000000}{11983120}\)</span> = 947.4wpm</li>
 </ul>
 <p>Según estos resultados, se nota la preponderancia de la palabra <em>should</em> en la sección escrita (974 wpm) comparada con la sección oral (947 wpm). Estas frecuencias se llaman frecuencias relativas (‘relative frequencies’) en el sentido descrito por Brezina (2018, p. 43)</p>
-</div>
-<div id="la-historia-y-la-geografía" class="section level2">
-<h2>La historia y la geografía</h2>
-<p>Esta dicción ignora una variedad de otros factores, como el registro, que sirven como vehículos sociales del uso lingüístico. Examinemos la distinción entre ‘can’ y ‘may’a través de uno de estos factores. Biber (2012, p. 203) nos dice que el verbo ’may’ se está perdiendo por cuestión del cambio lingüístico. ¿Se manifiesta este fenómeno en algún registro específico?</p>
+<div id="la-historia-y-la-geografía" class="section level3">
+<h3>La historia y la geografía</h3>
+<p>Esta sección ignora una variedad de otros factores, como el registro, que sirven como vehículos sociales del uso lingüístico. Examinemos la distinción entre ‘can’ y ‘may’a través de uno de estos factores. Biber (2012, p. 203) nos dice que el verbo ’may’ se está perdiendo por cuestión del cambio lingüístico. ¿Se manifiesta este fenómeno en algún registro específico?</p>
 <p>Para empezar, observemos los géneros específicos anotatos en el BNC. Podemos observar los valores de este atributo con otra consulta sin restricción, combinado con el uso del mandadto <code>group</code>.</p>
 <div class="figure">
 <img src="images/BNC-BABY-ALL.png" alt="" />
@@ -942,6 +941,7 @@ div.tocify {
 <li><strong>Tarea:</strong> Examina los verbos ‘may’ y ‘can’ en el género <code>fiction</code>. ¿Se observa la misma asimestría? ¿Cómo se comparan los datos del inglés británico y el inglés americano? Ahora, exmamina la categoría de textos con el valor <code>learned</code> o <code>academic</code>. ¿Está disminuyendo el verbo ‘may’ en estos géneros?</li>
 </ul>
 </div>
+</div>
 <div id="contruir-una-hipótesis" class="section level2">
 <h2>Contruir una hipótesis</h2>
 <p>En la sección anterior, se presentó la idea de que el verbo ‘may’ está desapareciendo en inglés, tal vez debido al uso elevado del verbo ‘can’ para expresar los mismos signficados. En esta sección, examinemos nuestra propia hipótesis sobre los modales de obligación (deónticos), ‘should’ y ‘ought’.</p>
@@ -1014,9 +1014,8 @@ div.tocify {
 </ul>
 <p>En un género formal, se obsera que hay más casos de ‘must’ comparado con ‘have to’, un resultado que es consistente con nuestra hipótesis. [Dejamos el proceso de la normalización como una tarea de casa.]</p>
 <hr />
-</div>
-<div id="las-listas-de-palabras" class="section level2">
-<h2>Las listas de palabras</h2>
+<div id="las-listas-de-palabras" class="section level3">
+<h3>Las listas de palabras</h3>
 <p>El trabajo de Biber (2012) identifica tres tipos de significados que puden expresear los verbos modales del inglés:</p>
 <ol style="list-style-type: decimal">
 <li>permisión o posibilidad</li>
@@ -1060,6 +1059,71 @@ div.tocify {
 </ul>
 <p>Sin embargo, si observamos de forma más específica los casos de la forma ‘might could’, se encuentran algunos casos legítimos. En cuanto a la comparación entre el inglés británico y el inglés americano: no existe ningún caso en el BNC y solo se encuentran dos casos en el SPOKENBNC2014, los cuales no parecen ser casos legítmos. Estas observaciones son consistentes con el uso de ‘might could’ con un fenómeno especificamente americano. (p. 44 de Hoffman et al.)</p>
 <hr />
+</div>
+</div>
+<div id="las-expresiones-regulares-con-el-cqp" class="section level2">
+<h2>Las expresiones regulares con el CQP</h2>
+<p>Las expresiones regulares representan una notación para especificar diferentes conjuntos de ‘strings’. Con una consulta de corpus, se utilizan las expresiones regulares para determinar el conjunto de casos posibles que podemos obtener con la consulta. Las expresiones regulares se puden utilizar en cualquier posición en el CQP y su descripción se presenta en el <a href="http://cwb.sourceforge.net/files/CQP_Tutorial/node52.html">Appendix A.1 del manual</a>. Hay una variedad de diferentes sabores de expresiones regulares; la versión de CQP del servidor utiliza expresiones regulares ’normales de unix (es decir, no son compatibles con la lengua <code>perl</code>). Por el momento, estas distinciones no nos distraen.</p>
+<div id="el-wildcard" class="section level3">
+<h3>El ‘wildcard’</h3>
+<p>Busquemos las diferentes formas del verbo ‘drink’ en el <code>BNC-BABY</code>. Sería posible realizar consultas distintas o, por ejemplo, definir un grupo con el uso de la pipa <code>|</code>. Otra opción, es dejar que la vocal no se especifique con el símbolo <code>.</code> .</p>
+<ul>
+<li><code>BNC-BABY&gt; DRINK = "drink|drank|drunk" ;</code></li>
+<li><code>BNC-BABY&gt; "dr.nk" ;</code></li>
+<li>`#—————————————</li>
+<li><code>(none)                drink           552</code></li>
+<li><pre><code>                    `drunk           99`</code></pre></li>
+<li><pre><code>                    `drank           67`</code></pre></li>
+</ul>
+<p>No hay que saber de antemano cuáles serán los elementos que se encuentren. Las letras ~d, r, n, y k~ se expresan explícitamente. Entonces, las expresiones regulares incluyen los tipos de palabras completas (es decir, con todas las letras explícitas) que ya hemos buscado con las consultas.</p>
+</div>
+<div id="clases-de-carácteres" class="section level3">
+<h3>Clases de carácteres</h3>
+<p>¿Cuáles son las palabras de cinco letras que empiezan con ‘gl’ y una vocal? Se puede especificar esto con el uso de las vocales ortográficas entre corchetes <code>[ ]</code>.</p>
+<ul>
+<li><code>BNC-BABY&gt; "gl[aeiou].." ;</code></li>
+<li><code>BNC-BABY&gt; group Last match word cut 10 ;</code></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Palabra</th>
+<th align="left">Frecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">glass</td>
+<td align="left">389</td>
+</tr>
+<tr class="even">
+<td align="left">glory</td>
+<td align="left">46</td>
+</tr>
+<tr class="odd">
+<td align="left">gloom</td>
+<td align="left">28</td>
+</tr>
+<tr class="even">
+<td align="left">glare</td>
+<td align="left">19</td>
+</tr>
+<tr class="odd">
+<td align="left">glove</td>
+<td align="left">14</td>
+</tr>
+<tr class="even">
+<td align="left">gloss</td>
+<td align="left">12</td>
+</tr>
+<tr class="odd">
+<td align="left">glide</td>
+<td align="left">11</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
 </div>
 </div>
 <div id="recursos" class="section level1 tabset tabset-fade tabset-pills">
