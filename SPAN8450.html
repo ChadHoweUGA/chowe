@@ -1421,6 +1421,334 @@ div.tocify {
 </div>
 </div>
 </div>
+<div id="a-semana-2" class="section level1">
+<h1>4a Semana</h1>
+<div id="más-sobre-las-clases-léxicas" class="section level2">
+<h2>Más sobre las clases léxicas</h2>
+<p>Como que describimos en la clase anterior, muchos corpus tienen las anotaciones léxicas. El CQP permite que definamos fácilimente una búsqueda con etiquetas particulares. El siguiente ejemplo muestra las palabras con la etiqueta del determinante <code>DT</code>.</p>
+<ul>
+<li><code>DICKENS&gt; [ pos = "DT" ] cut 10;</code></li>
+<li><code>&lt;A&gt; CHRISTMAS CAROL by Charl</code></li>
+<li><code>ens I have endeavoured in &lt;this&gt; Ghostly little book , to</code></li>
+<li><code>ly little book , to raise &lt;the&gt; Ghost of an Idea , which</code></li>
+<li><code>k , to raise the Ghost of &lt;an&gt; Idea , which shall not p</code></li>
+</ul>
+<p>Podemos pedir que las etiquetas se vean con el siguiente mandato:</p>
+<ul>
+<li><code>DICKENS&gt; show +pos;</code></li>
+<li><code>&lt;A/DT&gt; CHRISTMAS/NP CAROL/NN by</code></li>
+<li><code>10: VBP endeavoured/VBN in/IN &lt;this/DT&gt; Ghostly/JJ little/JJ boo</code></li>
+<li><code>17: ook/NN ,/, to/TO raise/VB &lt;the/DT&gt; Ghost/NN of/IN an/DT Ide</code></li>
+</ul>
+<p>Con los corpus tempranos, las etiquetas se asignaron manualmente; luego, estos datos manuales sirvieron como apoyo estadístico para los “POS-Taggers” automáticos que son imperfectos. Fue medio complicado el proceso de determinar las etiqutas. Por ejemplo, en <a href="https://repository.upenn.edu/cis_reports/570/">el trabajo de Beatrice Santorini (1990)</a> se describen algunas decisiones confusas en la sección “Confusing Parts of Speech” (p. 9.)</p>
+</div>
+<div id="algunas-búsquedas" class="section level2">
+<h2>Algunas búsquedas</h2>
+<div id="cuáles-son-los-sustantivos-comunes-más-utilizados-por-charles-dickens" class="section level3">
+<h3>¿Cuáles son los sustantivos comunes más utilizados por Charles Dickens?</h3>
+<ul>
+<li><code>DICKENS&gt; Nouns = [ pos = "NN" ];</code></li>
+<li><code>DICKENS&gt; group Nouns match word cut 2000;</code></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Palabra</th>
+<th align="left">Frecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">man</td>
+<td align="left">5923</td>
+</tr>
+<tr class="even">
+<td align="left">time</td>
+<td align="left">5100</td>
+</tr>
+<tr class="odd">
+<td align="left">Mrs</td>
+<td align="left">3797</td>
+</tr>
+<tr class="even">
+<td align="left">hand</td>
+<td align="left">3530</td>
+</tr>
+<tr class="odd">
+<td align="left">head</td>
+<td align="left">3479</td>
+</tr>
+<tr class="even">
+<td align="left">gentleman</td>
+<td align="left">3319</td>
+</tr>
+<tr class="odd">
+<td align="left">sir</td>
+<td align="left">3289</td>
+</tr>
+<tr class="even">
+<td align="left">way</td>
+<td align="left">3247</td>
+</tr>
+<tr class="odd">
+<td align="left">face</td>
+<td align="left">2985</td>
+</tr>
+<tr class="even">
+<td align="left">day</td>
+<td align="left">2730</td>
+</tr>
+<tr class="odd">
+<td align="left">night</td>
+<td align="left">2571</td>
+</tr>
+<tr class="even">
+<td align="left">door</td>
+<td align="left">2543</td>
+</tr>
+<tr class="odd">
+<td align="left">lady</td>
+<td align="left">2511</td>
+</tr>
+<tr class="even">
+<td align="left">room</td>
+<td align="left">2367</td>
+</tr>
+<tr class="odd">
+<td align="left">house</td>
+<td align="left">2223</td>
+</tr>
+<tr class="even">
+<td align="left">nothing</td>
+<td align="left">2133</td>
+</tr>
+<tr class="odd">
+<td align="left">friend</td>
+<td align="left">2022</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="entre-dos-palabras" class="section level3">
+<h3>Entre dos palabras</h3>
+<p>Los corchetes vacíos se pueden utilizar elementos sin propiedades. Con otras expresiones regulares, como el plus, podemos especificar que, por lo menos debe haber un elemento que ocurre entre dos palabras.</p>
+<ul>
+<li><code>DICKENS&gt; "either" []+ "or";</code></li>
+<li><code>...</code></li>
+<li><code>DICKENS&gt; size Last;</code></li>
+<li><code>453</code></li>
+</ul>
+<p>Ahora podemos imponer más restricciones con esta consulta. Por ejemplo, podemos requerir que los casos aparezcan en posición interna de oración o podemos eliminar los casos de ‘either’ como un determinante. Acordáos que el signo de exclamación es el operador de negación (manual, sección 2.6).</p>
+<ul>
+<li><code>DICKENS&gt; [ word="either" &amp; !pos="DT"] []+ "or" within s;</code></li>
+<li><code>DICKENS&gt; size Last;</code></li>
+<li><code>199</code></li>
+</ul>
+<p>Podemos seguir con aun más restricciones. Por ejemplo, podemos requerir que solo pueda haber cinco o menos casos entre ‘either’ y ‘or’.</p>
+<ul>
+<li><code>DICKENS&gt; [ word="either" &amp; !pos="DT"] []{1,5} "or" withi</code>n s;`</li>
+<li><code>DICKENS&gt; size Last;</code></li>
+<li><code>131</code></li>
+</ul>
+</div>
+<div id="los-verbos-frasales-con-out" class="section level3">
+<h3>Los verbos frasales con “out”</h3>
+<p>¿Cuáles son los verbos que co-ocurren con la palabra “out”? Este ejemplo incluye el uso de las consultas nombradas. El signo arroba (<code>@</code>) determina el blanco. Los usuarios del CQP pueden agrupar los resultados según el blanco de la consulta. En este caso, el mandato <code>cut</code> define un límite; es decir, los resultados que se observan menos de 10 veces no se muestran.</p>
+<ul>
+<li><code>DICKENS&gt; PhrasalV = @[ pos="V.*" ] [ word="out" ];</code></li>
+<li><code>DICKENS&gt; group PhrasalV target word cut 10;</code></li>
+</ul>
+<p><strong>Pregunta</strong> ¿Son todos estos casos “verbo” + “out”? ¿Cómo se sabe?</p>
+</div>
+<div id="más-con-secuencias-de-palabras" class="section level3">
+<h3>Más con secuencias de palabras</h3>
+<p>Podemos utilizar las expresiones regulares al nivel del de los casos también (<a href="http://cwb.sourceforge.net/files/CQP_Tutorial/node13.html">sección 2.7 del manual</a>).</p>
+<ul>
+<li><code>DICKENS&gt; [pos = "IN"] [pos = "DT"]? ( [pos = "RB"]? [pos = "JJ.*"]) * [pos = "N.*"]+ ;</code></li>
+</ul>
+<p>¿Qué significa exactamente esta consulta?</p>
+</div>
+<div id="el-caso-en-el-alemán" class="section level3">
+<h3>El caso en el alemán</h3>
+<p>El mandato <code>show</code> revela otro nivel de anotación. Consideremos las Figuras 7 y 8 de <a href="http://cwb.sourceforge.net/files/CQP_Tutorial/node39.html">la sección 6.6 del manual</a>. Verifique que tu terminal esté configurado para la visualización de Latin1, y no UTF8. (Por ejemplo, Mac OS X Terminal: Preferences &gt; Settings &gt; Advanced. Después, encuentra la sección llamada “International” y verifique que el “Character encoding” esté configurado para el conjunto de ISO Latin 1. Con el PuTTY de Windows, hay que seleccionar ISO-8859 en <a href="http://the.earth.li/~sgtatham/putty/0.65/htmldoc/Chapter4.html#config-translation">el Translation panel</a>.</p>
+<ul>
+<li><code>GERMAN-LAW&gt; show +agr;</code></li>
+<li><code>GERMAN-LAW&gt; [ pos= "ART" &amp; agr contains "Akk.*" ] cut 10 ;</code></li>
+</ul>
+<p>¿Se entiende porqué el atributo <code>agr</code> tiene varios elementos? Examinemos cuidadosamente los determinantes del alemán que empiezan con la letra <d>. ¿Cuáles son los determinantes que sean claramente <strong>nominativos</strong>? Cuáles son los determinantes que sean claramente <strong>acusativos</strong>?</p>
+<ul>
+<li><code>GERMAN-LAW&gt; dacc = [ pos= "ART" &amp; word="[dD].*" &amp; agr contains "Akk.*" ];</code></li>
+<li><code>GERMAN-LAW&gt; dnom = [ pos= "ART" &amp; word="[dD].*" &amp; agr contains "Nom.*" ];</code></li>
+<li><code>GERMAN-LAW&gt; group dacc match word ;</code></li>
+<li><code>GERMAN-LAW&gt; onlyacc = difference dacc dnom ;</code></li>
+<li><code>GERMAN-LAW&gt; onlynom = difference dnom dacc;</code></li>
+<li><code>GERMAN-LAW&gt; group onlynom match word ;</code></li>
+<li><code>GERMAN-LAW&gt; group onlyacc match word ;</code></li>
+</ul>
+<p>El operador <code>set</code> se introduce en <a href="http://cwb.sourceforge.net/files/CQP_Tutorial/node21.html">la sección 3.5 del manual</a>.</p>
+</div>
+<div id="los-grupos-verbales-en-el-francés" class="section level3">
+<h3>Los grupos verbales en el francés</h3>
+<p>La instalación del CQP está configurado para el uso de la colección Europarl 3 de los dabates parlimentarios de la U.E. entre los años 1996 y 2003. Esta colección incluye 40 millones de palabaras en cada una de seis lenguas: inglés, alemán, francés, italiano y holandés. Las categorías léxicas se asignaron automaticamente con el uso de TreeTagger. El conjunto de etiquetas para cada lengua se describen en <a href="https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/">el sitio de TreeTagger</a>. Consideremos <a href="https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/french-tagset.html">las etiquetas para el francés</a>, en las cuales se distinguen los verbos infinitos de otros.</p>
+<ul>
+<li><code>EUROPARL-FR&gt; show +pos ;</code></li>
+<li><code>EUROPARL-FR&gt; InfVCluster = @[ pos = "VER:infi"] [ pos = "VER.infi"]+  ;</code></li>
+<li><code>EUROPARL-FR&gt; group InfVCluster target word cut 100;</code></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Palabra</th>
+<th align="left">Frecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">faire</td>
+<td align="left">12658</td>
+</tr>
+<tr class="even">
+<td align="left">pouvoir</td>
+<td align="left">8360</td>
+</tr>
+<tr class="odd">
+<td align="left">s</td>
+<td align="left">2206</td>
+</tr>
+<tr class="even">
+<td align="left">vouloir</td>
+<td align="left">1753</td>
+</tr>
+<tr class="odd">
+<td align="left">devoir</td>
+<td align="left">1441</td>
+</tr>
+<tr class="even">
+<td align="left">voir</td>
+<td align="left">1273</td>
+</tr>
+<tr class="odd">
+<td align="left">laisser</td>
+<td align="left">1135</td>
+</tr>
+<tr class="even">
+<td align="left">l</td>
+<td align="left">845</td>
+</tr>
+<tr class="odd">
+<td align="left">savoir</td>
+<td align="left">689</td>
+</tr>
+<tr class="even">
+<td align="left">m</td>
+<td align="left">463</td>
+</tr>
+<tr class="odd">
+<td align="left">entendre</td>
+<td align="left">295</td>
+</tr>
+<tr class="even">
+<td align="left">aller</td>
+<td align="left">275</td>
+</tr>
+<tr class="odd">
+<td align="left">d</td>
+<td align="left">256</td>
+</tr>
+<tr class="even">
+<td align="left">venir</td>
+<td align="left">224</td>
+</tr>
+<tr class="odd">
+<td align="left">espérer</td>
+<td align="left">165</td>
+</tr>
+<tr class="even">
+<td align="left">prétendre</td>
+<td align="left">137</td>
+</tr>
+<tr class="odd">
+<td align="left">oser</td>
+<td align="left">129</td>
+</tr>
+<tr class="even">
+<td align="left">n</td>
+<td align="left">115</td>
+</tr>
+<tr class="odd">
+<td align="left">dire</td>
+<td align="left">100</td>
+</tr>
+</tbody>
+</table>
+<p>Si encontramos el verbo “faire”, podemos explorar su significado de estos grupos con el uso de los <strong>aligned corpora</strong>.</p>
+<div class="figure">
+<img src="images/AlignedCorpora.png" alt="" />
+<p class="caption">Los corpus alineados del Europarl 3 al nivel de la oración (Koehn 2005)</p>
+</div>
+<p>El “context descriptor” (cd) indica cuáles son los corpus alineados con el corpus seleccionado.</p>
+<ul>
+<li><code>EUROPARL-FR&gt; show cd;</code></li>
+<li><code>===Context Descriptor==================================</code></li>
+<li><code>.....</code></li>
+<li><code>Aligned Corpora:</code></li>
+<li><code>europarl-nl</code></li>
+<li><code>europarl-de</code></li>
+<li><code>europarl-en</code></li>
+<li><code>europarl-es</code></li>
+<li><code>europarl-it</code></li>
+<li><code>=======================================================</code></li>
+</ul>
+<p>Con el mandato <code>show</code>, podemos cambiar el alineamiento. Este cambio significa que cada caso estará acompañado por la oración correspondiente del mismo alineamiento.</p>
+<ul>
+<li><code>EUROPARL-FR&gt; show -pos ;</code></li>
+<li><code>EUROPARL-FR&gt; set context sentence;</code></li>
+<li><code>EUROPARL-FR&gt; faireVinf = [ word="faire" ] @[ pos="VER:infi"] ;</code></li>
+<li><code>EUROPARL-FR&gt; show +europarl-en ;</code></li>
+<li><code>EUROPARL-FR&gt; cat faireVinf cut 100;</code></li>
+</ul>
+<p><strong>Ejercicio:</strong> Basado en el texto alineado del inglés, ¿cómo traduciríamos <em>faire avancer</em> o <em>faire passer</em>? ¿Cómo traduciríamos estas estructuras al español?</p>
+</div>
+<div id="los-grupos-con-faire-en-francés-e-italiano" class="section level3">
+<h3>Los grupos con <em>faire</em> en francés e italiano</h3>
+<p>¿Cuál elemento viene después del grupo verbal con <em>faire</em> en francés?</p>
+<ul>
+<li><em>le,la</em> vs. <em>lui,leu</em> + <em>faire</em> + VER:infi + <strong>blanco</strong></li>
+<li>pronombre + ‘hacer’ + verbo infinito + categoría desconocida</li>
+</ul>
+<p>Para investigar esta pregunta, haremos dos consultas, una que contiene los casos donde un pronombre de objeto directo precede el verbo <em>faire</em> y otra donde un pronombre de objeto indirecto precede el verbo <em>faire</em>. Eliminemos los casos que ocurren en posición final de oración y los casos que terminan con un signo de puntuación.</p>
+<ul>
+<li><code>EUROPARL-FR&gt; define $faire = "fais fait faisons faites font faire";</code></li>
+<li><code>EUROPARL-FR&gt; direct = [ word="le|la" ] [ word=$faire ] [ pos="VER:infi"] @[ pos != "SENT|PUN"];</code></li>
+<li><code>EUROPARL-FR&gt; indirect = [ word="lui|leur" ] [ word=$faire ] [ pos="VER:infi"] @[ pos != "SENT|PUN"];</code></li>
+<li><code>EUROPARL-FR&gt; group direct target word by target pos ;</code></li>
+<li><code>EUROPARL-FR&gt; group indirect target word by target pos ;</code></li>
+</ul>
+<p>Si el grupo con <em>faire</em> está precedida por un pronombre de objeto directo, observamos que las palabras más populares son las preposiciones como <em>à</em> ‘to’, <em>dans</em> ‘inside’, o <em>en</em> ‘in’. Si el group está precedida por un pronombre de objeto indirecto, estas palabras apenas se observan.</p>
+<p>De hecho, los cuatro casos que ocurren con <em>à</em> son todos adjuntos temporales:</p>
+<ul>
+<li><code>EUROPARL-FR&gt; anomalous = [ word="lui|leur" ] [ word=$faire ] [ pos="VER:infi"] @[ word="à"];</code></li>
+<li><code>EUROPARL-FR&gt; set RightContext 2 s ;</code></li>
+<li><code>EUROPARL-FR&gt; cat anomalous ;</code></li>
+</ul>
+<p>Un pronombre de objeto indirecto que precede la construcción <em>faire</em> + verbo infinito corresponde con el objeto indirecto del verbo infinitivo. Este elemento es, probablemente, el recipiente, lo cual se habría marcado con una preposición si hubiera ocurrido en posicón posverbal (<a href="https://www.thoughtco.com/french-causative-le-causatif-1368818">lección sobre el francés</a>).</p>
+<p>Además, podemos realizar esta consulta para el italiano:</p>
+<ul>
+<li><code>EUROPARL-IT&gt; define $fare = "faccio fai fa facciamo fate fanno fare far";</code></li>
+<li><code>EUROPARL-IT&gt; direct = [ word="lo|li" ] [ word=$fare ] [ pos="VER:infi" ] @[ pos != "SENT|PON"];</code></li>
+<li><code>EUROPARL-IT&gt; indirect = [ word="gli" ] [ word=$fare ] [ pos="VER:infi" ] @[ pos != "SENT|PON"];</code></li>
+</ul>
+<p>Otra vez, si un pronombre de objeto directo precede el grupo verbal, los complementos preposicionales son acaptables. Si un pronombre de objeto indirecto precede el grupo, casi no se observan los complementos preposicionales.</p>
+<ul>
+<li><code>EUROPARL-IT&gt; group direct target word by target pos;</code></li>
+<li><code>EUROPARL-IT&gt; group indirect target word by target pos;</code></li>
+</ul>
+<p>El único caso anómolo, “gli fanno perdere di vista”, se traduce así: “lose sight of”. Esto sugiere que la preposición “di” sirve como parte de un complejo verbal “perdere di vista.”</p>
+<p><strong>Ejercicio:</strong> Investigemos el español del mismo modo. Empezemos con el verbo <em>hacer</em> y la distinción entre <em>lo,la</em> vs. <em>le</em>. ¿Tiene español el mismo comportamiento que el francés y el italiano con respeto a los complementos preposicionales después de los grupos verbales que son precedidos por pronombres de objeto directo vs. indirecto?</p>
+<hr />
+</div>
+</div>
+</div>
 <div id="recursos" class="section level1 tabset tabset-fade tabset-pills">
 <h1>Recursos</h1>
 <div id="tools" class="section level2 unnumbered">

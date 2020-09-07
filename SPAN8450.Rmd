@@ -631,6 +631,210 @@ Se puede consultar [el conjunto de etiquetas (CLAWS5) aquí](http://ucrel.lancs.
 Verifique los resultados por una consulta de [las clases léxicas observadas](https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/french-tagset.html). ¡Cuidado! La palabra francesa para 'cama' tiene la misma forma ortográfica que una de las formas verbales del verbo *lire*. Revisa tu consulta para que las formas de ciertas clases léxicas se excluyan.
 
 ***
+# 4a Semana
+
+## Más sobre las clases léxicas
+
+Como que describimos en la clase anterior, muchos corpus tienen las anotaciones léxicas. El CQP permite que definamos fácilimente una búsqueda con etiquetas particulares. El siguiente ejemplo muestra las palabras con la etiqueta del determinante `DT`.
+
+*   `DICKENS> [ pos = "DT" ] cut 10;`
+*   `<A> CHRISTMAS CAROL by Charl`
+*   `ens I have endeavoured in <this> Ghostly little book , to`
+*   `ly little book , to raise <the> Ghost of an Idea , which`
+*   `k , to raise the Ghost of <an> Idea , which shall not p`
+
+Podemos pedir que las etiquetas se vean con el siguiente mandato:
+
+*   `DICKENS> show +pos;`
+*   `<A/DT> CHRISTMAS/NP CAROL/NN by`
+*   `10: VBP endeavoured/VBN in/IN <this/DT> Ghostly/JJ little/JJ boo`
+*   `17: ook/NN ,/, to/TO raise/VB <the/DT> Ghost/NN of/IN an/DT Ide`
+
+Con los corpus tempranos, las etiquetas se asignaron manualmente; luego, estos datos manuales sirvieron como apoyo estadístico para los "POS-Taggers" automáticos que son imperfectos. Fue medio complicado el proceso de determinar las etiqutas. Por ejemplo, en [el trabajo de Beatrice Santorini (1990)](https://repository.upenn.edu/cis_reports/570/) se describen algunas decisiones confusas en la sección "Confusing Parts of Speech" (p. 9.)
+
+## Algunas búsquedas
+
+### ¿Cuáles son los sustantivos comunes más utilizados por Charles Dickens?
+
+*   `DICKENS> Nouns = [ pos = "NN" ];`
+*   `DICKENS> group Nouns match word cut 2000;`
+
+| Palabra | Frecuencia |
+|:--------|:-----------|
+| man | 5923 |
+| time | 5100 |
+| Mrs | 3797 |
+| hand | 3530 |
+| head | 3479 |
+| gentleman | 3319 |
+| sir | 3289 |
+| way | 3247 |
+| face | 2985 |
+| day | 2730 |
+| night | 2571 |
+| door | 2543 |
+| lady | 2511 |
+| room | 2367 |
+| house | 2223 |
+| nothing | 2133 |
+| friend | 2022|
+
+### Entre dos palabras
+
+Los corchetes vacíos se pueden utilizar elementos sin propiedades. Con otras expresiones regulares, como el plus, podemos especificar que, por lo menos debe haber un elemento que ocurre entre dos palabras.
+
+*   `DICKENS> "either" []+ "or";`
+*   `...`
+*   `DICKENS> size Last;`
+*   `453`
+
+Ahora podemos imponer más restricciones con esta consulta. Por ejemplo, podemos requerir que los casos aparezcan en posición interna de oración o podemos eliminar los casos de 'either' como un determinante. Acordáos que el signo de exclamación es el operador de negación (manual, sección 2.6).
+
+*   `DICKENS> [ word="either" & !pos="DT"] []+ "or" within s;`
+*   `DICKENS> size Last;`
+*   `199`
+
+Podemos seguir con aun más restricciones. Por ejemplo, podemos requerir que solo pueda haber cinco o menos casos entre 'either' y 'or'.
+
+*   `DICKENS> [ word="either" & !pos="DT"] []{1,5} "or" withi`n s;`
+*   `DICKENS> size Last;`
+*   `131`
+
+### Los verbos frasales con "out"
+
+¿Cuáles son los verbos que co-ocurren con la palabra "out"? Este ejemplo incluye el uso de las consultas nombradas. El signo arroba (`@`) determina el blanco. Los usuarios del CQP pueden agrupar los resultados según el blanco de la consulta. En este caso, el mandato `cut` define un límite; es decir, los resultados que se observan menos de 10 veces no se muestran.
+
+*   `DICKENS> PhrasalV = @[ pos="V.*" ] [ word="out" ];`
+*   `DICKENS> group PhrasalV target word cut 10;`
+
+**Pregunta** ¿Son todos estos casos "verbo" + "out"? ¿Cómo se sabe?
+
+### Más con secuencias de palabras
+
+Podemos utilizar las expresiones regulares al nivel del de los casos también ([sección 2.7 del manual](http://cwb.sourceforge.net/files/CQP_Tutorial/node13.html)).
+
+*   `DICKENS> [pos = "IN"] [pos = "DT"]? ( [pos = "RB"]? [pos = "JJ.*"]) * [pos = "N.*"]+ ;`
+
+¿Qué significa exactamente esta consulta?
+
+### El caso en el alemán
+
+El mandato `show` revela otro nivel de anotación. Consideremos las Figuras 7 y 8 de [la sección 6.6 del manual](http://cwb.sourceforge.net/files/CQP_Tutorial/node39.html). Verifique que tu terminal esté configurado para la visualización de Latin1, y no UTF8. (Por ejemplo, Mac OS X Terminal: Preferences > Settings > Advanced. Después, encuentra la sección llamada "International" y verifique que el "Character encoding" esté configurado para el conjunto de ISO Latin 1. Con el PuTTY de Windows, hay que seleccionar ISO-8859 en [el Translation panel](http://the.earth.li/~sgtatham/putty/0.65/htmldoc/Chapter4.html#config-translation).  
+
+*   `GERMAN-LAW> show +agr; `
+*   `GERMAN-LAW> [ pos= "ART" & agr contains "Akk.*" ] cut 10 ;`
+
+¿Se entiende porqué el atributo `agr` tiene varios elementos? Examinemos cuidadosamente los determinantes del alemán que empiezan con la letra <d>. ¿Cuáles son los determinantes que sean claramente **nominativos**? Cuáles son los determinantes que sean claramente **acusativos**?
+
+*   `GERMAN-LAW> dacc = [ pos= "ART" & word="[dD].*" & agr contains "Akk.*" ];`
+*   `GERMAN-LAW> dnom = [ pos= "ART" & word="[dD].*" & agr contains "Nom.*" ];`
+*   `GERMAN-LAW> group dacc match word ;`
+*   `GERMAN-LAW> onlyacc = difference dacc dnom ;`
+*   `GERMAN-LAW> onlynom = difference dnom dacc;`
+*   `GERMAN-LAW> group onlynom match word ;`
+*   `GERMAN-LAW> group onlyacc match word ;`
+
+El operador `set` se introduce en [la sección 3.5 del manual](http://cwb.sourceforge.net/files/CQP_Tutorial/node21.html).
+
+### Los grupos verbales en el francés
+
+La instalación del CQP está configurado para el uso de la colección Europarl 3 de los dabates parlimentarios de la U.E. entre los años 1996 y 2003. Esta colección incluye 40 millones de palabaras en cada una de seis lenguas: inglés, alemán, francés, italiano y holandés. Las categorías léxicas se asignaron automaticamente con el uso de TreeTagger. El conjunto de etiquetas para cada lengua se describen en [el sitio de TreeTagger](https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/). Consideremos [las etiquetas para el francés](https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/french-tagset.html), en las cuales se distinguen los verbos infinitos de otros.
+
+*   `EUROPARL-FR> show +pos ;`
+*   `EUROPARL-FR> InfVCluster = @[ pos = "VER:infi"] [ pos = "VER.infi"]+  ;`
+*   `EUROPARL-FR> group InfVCluster target word cut 100; `
+
+| Palabra | Frecuencia |
+|:--------|:-----------|
+| faire | 12658 |
+| pouvoir | 8360 |
+| s | 2206 |
+| vouloir | 1753 |
+| devoir | 1441 |
+| voir | 1273 |
+| laisser | 1135 |
+| l | 845 |
+| savoir | 689 |
+| m | 463 |
+| entendre | 295 |
+| aller | 275 |
+| d | 256 |
+| venir | 224 |
+| espérer | 165 |
+| prétendre | 137 |
+| oser | 129 |
+| n | 115 |
+| dire | 100 |
+
+Si encontramos el verbo "faire", podemos explorar su significado de estos grupos con el uso de los **aligned corpora**.
+
+![Los corpus alineados del Europarl 3 al nivel de la oración (Koehn 2005)](images/AlignedCorpora.png)
+
+El "context descriptor" (cd) indica cuáles son los corpus alineados con el corpus seleccionado.
+
+*   `EUROPARL-FR> show cd;`
+*   `===Context Descriptor==================================`
+*   `.....`
+*   `Aligned Corpora:`
+*   `europarl-nl`
+*   `europarl-de`
+*   `europarl-en`
+*   `europarl-es`
+*   `europarl-it`
+*   `=======================================================`
+
+Con el mandato `show`, podemos cambiar el alineamiento. Este cambio significa que cada caso estará acompañado por la oración correspondiente del mismo alineamiento.
+
+*   `EUROPARL-FR> show -pos ;`
+*   `EUROPARL-FR> set context sentence;`
+*   `EUROPARL-FR> faireVinf = [ word="faire" ] @[ pos="VER:infi"] ;`
+*   `EUROPARL-FR> show +europarl-en ;`
+*   `EUROPARL-FR> cat faireVinf cut 100;`
+
+**Ejercicio:** Basado en el texto alineado del inglés, ¿cómo traduciríamos *faire avancer* o *faire passer*? ¿Cómo traduciríamos estas estructuras al español?
+
+### Los grupos con *faire* en francés e italiano
+
+¿Cuál elemento viene después del grupo verbal con *faire* en francés?
+
+*   *le,la* vs. *lui,leu* + *faire* + VER:infi + **blanco**
+*   pronombre + 'hacer' + verbo infinito + categoría desconocida
+
+Para investigar esta pregunta, haremos dos consultas, una que contiene los casos donde un pronombre de objeto directo precede el verbo *faire* y otra donde un pronombre de objeto indirecto precede el verbo *faire*. Eliminemos los casos que ocurren en posición final de oración y los casos que terminan con un signo de puntuación.
+
+*   `EUROPARL-FR> define $faire = "fais fait faisons faites font faire";`
+*   `EUROPARL-FR> direct = [ word="le|la" ] [ word=$faire ] [ pos="VER:infi"] @[ pos != "SENT|PUN"];`
+*   `EUROPARL-FR> indirect = [ word="lui|leur" ] [ word=$faire ] [ pos="VER:infi"] @[ pos != "SENT|PUN"];`
+*   `EUROPARL-FR> group direct target word by target pos ;`
+*   `EUROPARL-FR> group indirect target word by target pos ;`
+
+Si el grupo con *faire* está precedida por un pronombre de objeto directo, observamos que las palabras más populares son las preposiciones como *à* 'to', *dans* 'inside', o *en* 'in'. Si el group está precedida por un pronombre de objeto indirecto, estas palabras apenas se observan.
+
+De hecho, los cuatro casos que ocurren con *à* son todos adjuntos temporales:
+
+*   `EUROPARL-FR> anomalous = [ word="lui|leur" ] [ word=$faire ] [ pos="VER:infi"] @[ word="à"];`
+*   `EUROPARL-FR> set RightContext 2 s ;`
+*   `EUROPARL-FR> cat anomalous ;`
+
+Un pronombre de objeto indirecto que precede la construcción *faire* + verbo infinito corresponde con el objeto indirecto del verbo infinitivo. Este elemento es, probablemente, el recipiente, lo cual se habría marcado con una preposición si hubiera ocurrido en posicón posverbal ([lección sobre el francés](https://www.thoughtco.com/french-causative-le-causatif-1368818)).
+
+Además, podemos realizar esta consulta para el italiano:
+
+*   `EUROPARL-IT> define $fare = "faccio fai fa facciamo fate fanno fare far";`
+*   `EUROPARL-IT> direct = [ word="lo|li" ] [ word=$fare ] [ pos="VER:infi" ] @[ pos != "SENT|PON"];`
+*  ` EUROPARL-IT> indirect = [ word="gli" ] [ word=$fare ] [ pos="VER:infi" ] @[ pos != "SENT|PON"];`
+
+Otra vez, si un pronombre de objeto directo precede el grupo verbal, los complementos preposicionales son acaptables. Si un pronombre de objeto indirecto precede el grupo, casi no se observan los complementos preposicionales.
+
+*   `EUROPARL-IT> group direct target word by target pos;` 
+*   `EUROPARL-IT> group indirect target word by target pos;`
+
+El único caso anómolo, "gli fanno perdere di vista", se traduce así: "lose sight of". Esto sugiere que la preposición "di" sirve como parte de un complejo verbal "perdere di vista." 
+
+**Ejercicio:** Investigemos el español del mismo modo. Empezemos con el verbo *hacer* y la distinción entre *lo,la* vs. *le*. ¿Tiene español el mismo comportamiento que el francés y el italiano con respeto a los complementos preposicionales después de los grupos verbales que son precedidos por pronombres de objeto directo vs. indirecto?
+
+
+***
 # Recursos {.tabset .tabset-fade .tabset-pills}
 
 ## Tools {-}
