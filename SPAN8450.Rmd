@@ -833,6 +833,155 @@ El único caso anómolo, "gli fanno perdere di vista", se traduce así: "lose si
 
 **Ejercicio:** Investigemos el español del mismo modo. Empezemos con el verbo *hacer* y la distinción entre *lo,la* vs. *le*. ¿Tiene español el mismo comportamiento que el francés y el italiano con respeto a los complementos preposicionales después de los grupos verbales que son precedidos por pronombres de objeto directo vs. indirecto?
 
+***
+
+# 5a Semana
+
+## Atributos posicionales
+
+Como ya hemos visto, muchos de los corpus tienen las anotaciones para clases léxicas que se pueden utilar con el atributo `pos`. Por ejemplo, el corpus COCA tiene las anotaciones basadas en [el claws C7 tagset](http://ucrel.lancs.ac.uk/claws7tags.html). Aunque todos los sub-tipos de verbso llevan etiquetas distintas, todas las etiquetas de los elementos verbales empiezan con la letra 'v'.
+
+*   `COCA> VERBS = [ pos="v.*" ] ;`
+*   `COCA> group VERBS match lemma cut 1000000 ;`
+
+Las combinaciones de diferentes etiquetas de clases léxicas nos facilitan el proceso de encontrar construcciones específicas. Por ejemplo, para encontrar un objeto directo que ocurre durante los dos espacios después de un verbo donde no interviene un complementizador, podemos realizar la siguiente consulta:
+
+*   COCA> VOBJ = [ pos="v.*" ] [ pos != "cs.*"]{0,2} [ pos="nn(1|2)?"] ;
+
+Esta consulta no se permite mediante [el sitio de web del COCA](https://www.english-corpora.org/coca/). ESte tipo de anotación al nivel de la palabra, no se limita a la morfosintáxis. El corpus SPOKENBNC2014 viene con una anotación conceptual-semántica que se llama [USAS](http://ucrel.lancs.ac.uk/usas/). Esta anotación se puede utilizar para encontrar, por ejemplo, las palabras relacionadas con los cigarrillos, es decir, la categoría `F3` según la tabla de USAS.
+
+*   `SPOKENBNC2014> VICE = [ usas="F3" ] ;`
+*   `SPOKENBNC2014> group VICE match word  cut 30; `
+
+Exactamente como podemos utilizar `show +pos` y `show -pos` para activar o reprimir la muestra de las etiquestas, también podemos mostrar las anotaciones de USAS en el SPOKENBNC2014 con el mandato `show +usas`.
+
+### El modelo
+
+Para los atributos posicionales, el modelo subyacente es una tabla donde cada fila es una palabra y cada atributo es una columna, como se observa en la siguiente tabla.
+
+![Model de los datos con los atributos posicionales](images/ModeloAtributosPosicionales.png)
+
+## Los atributos estructurales
+
+Nuestro sistema de corpus diferencia los atributos posicionales de los atributos estructurales. Como ya hemos visto, el segundo se utilizan en muchos casos para indicar los metadatos. Por ejemplo:
+
+1.  Las obras de Shakespeare se identifican por el título: `text_title="Romeo and Juliet"`
+2.  Las expresiones del BNC se clasifican con la edad del hablantes: `u_age_group="15-24"`.
+3.  Las muestras de textos de BROWn son divididas por el sub-género: `text_category="romance|science_fiction".
+
+Estos atributos estructurales se pueden considerar como elementos invisibles, por ejemplo `<text_category>`, que aparecen al princippio de cada extracto individual representado en BROWN. Dentro de estos corchetes angulures, se observa también otro símbolo de indica la categoría textual--news, editorial, reviews, religion, etc.
+
+*   `<text_category news>The Fulton County Grand Jury s`
+*   `<text_category editorial>Assembly session brought `
+*   `<text_category reviews>It is not news that Nathan `
+*   `<text_category religion>As a result , although we` 
+*   `<text_category hobbies>Too often a beginning bodyb`
+*   `<text_category lore>In American romance , almost n`
+*   `<text_category belles_lettres>Northern liberals ar`
+*   `<text_category government>The Office of Business E`
+*   `<text_category learned>1 . Introduction It has rec`
+*   `<text_category fiction>Thirty-three Scotty did not`
+*   `<text_category mystery>There were thirty-eight pat`
+*   `<text_category science_fiction>Now that he knew hi`
+*   `<text_category adventure>Dan Morgan told himself h`
+*   `<text_category romance>They neither liked nor disl`
+*   `<text_category humor>It was among these that Hinkl`
+
+Estos elementos que aparacen al principio del extracto (`<text_category>`) van juntos con otro elemento que ocurre al final del extracto (`</text_category>`).
+
+
+*   `asn't a bit of trouble '' .</text_category>`
+*  `pendency and illegitimacy .</text_category>`
+*   `esident Kennedy's in 1961 .</text_category>`
+*   `ons under 18 years of age .</text_category>`
+*   ` for the simplest offense .</text_category>`
+*   `on the national committee .</text_category>`
+*   `or a coalition Government .</text_category>`
+*   ` some of these criticisms .</text_category>`
+*   `m a government on its own .</text_category>`
+*   `es and presented its case .</text_category>`
+
+Estos elementos no son casos (tokens), pero sí delimitan diferentes regiones del corpus; es decir, tienen un comienzo y un fin. Visto de esta manera, parecen mucho a las etiquetas con corchetas angulares que se utilizan en otros tipos de [markup languages como SGML, HTML y XML](https://en.wikipedia.org/wiki/IBM_Generalized_Markup_Language). El "eXtensible" markup language XML es una de las opciones más populares para la anotación de los corpus de lenguas naturales. [Las secciones 4.1 y 4.2 del capítulo 11 del libro de NLTK (Natural Language Tool Kit)](http://www.nltk.org/book/ch11.html#sec-working-with-xml) explican cómo se utiliza XML para separar las anotaciones lingüísticas de los textos anotados.
+
+Abajo se presenta la forma subyacente del BNC, anotada con XML antes de que se haya preparado para el uso con el CQP. Cada palabra empieza y termina con los símbolos `<w>` y `</w>`. El elemento `w` tiene el atributo `c5` de las etiquetas de CLWAS-C5 y el elemento `hw` para headword.
+
+*   `<w c5="NP0" hw="michael" pos="SUBST">Michael</w>`
+*   `<w c5="NP0" hw="palin" pos="SUBST">Palin</w>`
+*   `<w c5="VVZ" hw="seem" pos="VERB">seems</w>`
+*   `<w c5="AT0" hw="an" pos="ART">an</w>`
+*   `<w c5="AJ0" hw="unlikely" pos="ADJ">unlikely</w>`
+*   `<w c5="NN1" hw="double" pos="SUBST">double</w>`
+*   `<w c5="PRP" hw="for" pos="PREP">for</w>`
+*   `<w c5="AT0" hw="the" pos="ART">the</w>`
+*   `<w c5="AJ0" hw="archetypal" pos="ADJ">archetypal</w>`
+*   `<w c5="NN1-AJ0" hw="stiff" pos="SUBST">stiff</w>`
+*   `<w c5="VVD-AJ0" hw="upperlip" pos="VERB">upperlipped</w>`
+*   `<w c5="AJ0" hw="phlegmatic" pos="ADJ">phlegmatic</w>`
+*   `<w c5="NP0-NN1" hw="englsihman" pos="SUBST">Englsihman</w>`
+*   `<w c5="NP0" hw="phileas" pos="SUBST">Phileas</w>`
+*   `<w c5="NP0" hw="fogg" pos="SUBST">Fogg</w>`
+*   `<c c5="PUN">, </c`>`
+
+Podemos comparar esta anotación con la figura 5 de Gries y Berez 2017. Las figuras 3, 6, y 18 de ese capítulo ilustra otras maneras de utilizar XML con los corpus lingüísticos anotados.
+
+Según la manera en que el corpus fue anotado, estas anotaciones de XML se pueden utilizar de manera más o menos directa en las búsquedas. Por ejemplo, en la forma subyacente del XML del corpus de DICKENS, los sintagmas nominales y los sintagmas preposiciones son anotados, como se muestra en el siguiente ejemplo sacado de [la sección 4.3 del manual](http://cwb.sourceforge.net/files/CQP_Tutorial/node27.html).
+
+![Anotación sintáctica](images/SyntacticAnnotation.png)
+Con esta anotaciones, podemos realizar una consulta con las etiquetas `<np>` y `<\np>`. Por ejemplo, la siguiente búsqueda pide los casos de sintagmas nominales que empiezan con "a", "some", o "many":
+
+*   `DICKENS> INITIALQUANT = <np> [word = "a|some|many" ] ;`
+
+Podemos utilizar otras combinaciones de etiquetas iniciales y finales. La siguiente consulta encuentra todos los sintagmas nominales que contienen la palabra "door":
+
+*   `DICKENS> DOORPP = <pp> []* "door" []* </pp> ;`
+
+El elemento `within` permite que simplifiquemos la consulta:
+
+*   `DICKENS> D = "door" within pp;`
+
+## El modelo subyacente
+
+El modelo completo del CWB (Corpus Work Bench) combina las anotaciones al de los casos y las anotaciones al nivel de las regiones:
+
+![El model completo de los datos de CQP que incluye las etiquetas XML](images/ModeloCompleto.png)
+## Los atributos estructurales ('s-attributes')
+
+Las regiones se pueden delimitar con las etiquetas XML. Estas etiquetas también pueden tener diferentes propiedades. Al compilar el corpus, estas propiedades se definen una vez, en vez de definirlas para casa caso.
+
+### La duración
+
+Por ejemplo, en el corpus de DICKENS tanto la duración de las palabras (`lens`) como la cabeza sintáctica (`h`) de los sintagmas nominales son indicados. El atributo de duración se convierte en `np_len` dentro del CQP. Este atributo se puede utilizar con una expresión regular (es decir, `3|4|5|6`) o se puede cambiar a un valor con el rasgo del CQP `int()`. Este rasgo permite que utilice propiedades como "más de" y "menos de":
+
+*   `DICKENS> DOORNP = <np> [ word != "," ]* d:"door" [ word != ","]* </np> :: int(d.np_len) > 7;`
+
+Esta búsqueda intenta encontrar los sintagmas nominales largas en el corpus de DICKENS que mencionan una puerta pero que no contienen una comma. En esta búsqueda, la lentra `d` minúscula funciona como un label, como se explica en [la sección 4.1 del manual](http://cwb.sourceforge.net/files/CQP_Tutorial/node25.html). Es similar al signo `@`, lo cual determina el blanco de la búsqueda.
+
+### El género
+
+Como ya se sabe, en el español las palabras son especificadas por el género gramatical (masculina vs. femenina). El corpus ANCORA viene con etiquetas para las constituyentes sintácticas como los sintagmas nominales (`grup.nom`), sintagmas verbales (`grup.verb`), etc. La forma XML tiene la siguiente estructura:
+
+![XML del AnCora](images/XMLAnCora.png)
+
+Como los atribuotos de `h` y `len` de DICKENS, los atributos XML `gen` y `num` en el corpus de AnCora se han convertido en atributos estructurales especializados para la constituyente sintáctica donde se manifiestan. Consideremos los sintagmas (`grup`) que son adjetivales (`a`) y que son clasificados por género (`gen`).
+
+*   `ANCORA> P = [ lemma="primero" ];`
+*   `ANCORA> group P match grup_a_gen by match word cut 30;` 
+
+### Fecha
+
+El Royal Society Corpus viene anotado con fechas. Con estas fechas, podemos presentar preguntas históricas como "¿Cuándo se utilizaba la palabra *divers*?"
+
+*   `RSC> D = "divers";`
+*   `RSC> group D match text_year ;`
+
+Y con algunos mandatos de unix, podemos organizar estos resultados por fecha:
+
+*   `group D match text_year cut 10  > "| tail -n +2  | sed 's/(none)/      /' | sort -nr";`
+
+Para más información sobre el proceso de reenviar los resultados de una búsqueda a un archivo o una barra/pipa, se puede consultar la sección 3.2 del manual.
+
+
+
 
 ***
 # Recursos {.tabset .tabset-fade .tabset-pills}

@@ -1749,6 +1749,150 @@ div.tocify {
 </div>
 </div>
 </div>
+<div id="a-semana-3" class="section level1">
+<h1>5a Semana</h1>
+<div id="atributos-posicionales" class="section level2">
+<h2>Atributos posicionales</h2>
+<p>Como ya hemos visto, muchos de los corpus tienen las anotaciones para clases léxicas que se pueden utilar con el atributo <code>pos</code>. Por ejemplo, el corpus COCA tiene las anotaciones basadas en <a href="http://ucrel.lancs.ac.uk/claws7tags.html">el claws C7 tagset</a>. Aunque todos los sub-tipos de verbso llevan etiquetas distintas, todas las etiquetas de los elementos verbales empiezan con la letra ‘v’.</p>
+<ul>
+<li><code>COCA&gt; VERBS = [ pos="v.*" ] ;</code></li>
+<li><code>COCA&gt; group VERBS match lemma cut 1000000 ;</code></li>
+</ul>
+<p>Las combinaciones de diferentes etiquetas de clases léxicas nos facilitan el proceso de encontrar construcciones específicas. Por ejemplo, para encontrar un objeto directo que ocurre durante los dos espacios después de un verbo donde no interviene un complementizador, podemos realizar la siguiente consulta:</p>
+<ul>
+<li>COCA&gt; VOBJ = [ pos="v.*" ] [ pos != "cs.*"]{0,2} [ pos=“nn(1|2)?”] ;</li>
+</ul>
+<p>Esta consulta no se permite mediante <a href="https://www.english-corpora.org/coca/">el sitio de web del COCA</a>. ESte tipo de anotación al nivel de la palabra, no se limita a la morfosintáxis. El corpus SPOKENBNC2014 viene con una anotación conceptual-semántica que se llama <a href="http://ucrel.lancs.ac.uk/usas/">USAS</a>. Esta anotación se puede utilizar para encontrar, por ejemplo, las palabras relacionadas con los cigarrillos, es decir, la categoría <code>F3</code> según la tabla de USAS.</p>
+<ul>
+<li><code>SPOKENBNC2014&gt; VICE = [ usas="F3" ] ;</code></li>
+<li><code>SPOKENBNC2014&gt; group VICE match word  cut 30;</code></li>
+</ul>
+<p>Exactamente como podemos utilizar <code>show +pos</code> y <code>show -pos</code> para activar o reprimir la muestra de las etiquestas, también podemos mostrar las anotaciones de USAS en el SPOKENBNC2014 con el mandato <code>show +usas</code>.</p>
+<div id="el-modelo" class="section level3">
+<h3>El modelo</h3>
+<p>Para los atributos posicionales, el modelo subyacente es una tabla donde cada fila es una palabra y cada atributo es una columna, como se observa en la siguiente tabla.</p>
+<div class="figure">
+<img src="images/ModeloAtributosPosicionales.png" alt="" />
+<p class="caption">Model de los datos con los atributos posicionales</p>
+</div>
+</div>
+</div>
+<div id="los-atributos-estructurales" class="section level2">
+<h2>Los atributos estructurales</h2>
+<p>Nuestro sistema de corpus diferencia los atributos posicionales de los atributos estructurales. Como ya hemos visto, el segundo se utilizan en muchos casos para indicar los metadatos. Por ejemplo:</p>
+<ol style="list-style-type: decimal">
+<li>Las obras de Shakespeare se identifican por el título: <code>text_title="Romeo and Juliet"</code></li>
+<li>Las expresiones del BNC se clasifican con la edad del hablantes: <code>u_age_group="15-24"</code>.</li>
+<li>Las muestras de textos de BROWn son divididas por el sub-género: `text_category=“romance|science_fiction”.</li>
+</ol>
+<p>Estos atributos estructurales se pueden considerar como elementos invisibles, por ejemplo <code>&lt;text_category&gt;</code>, que aparecen al princippio de cada extracto individual representado en BROWN. Dentro de estos corchetes angulures, se observa también otro símbolo de indica la categoría textual–news, editorial, reviews, religion, etc.</p>
+<ul>
+<li><code>&lt;text_category news&gt;The Fulton County Grand Jury s</code></li>
+<li><code>&lt;text_category editorial&gt;Assembly session brought</code></li>
+<li><code>&lt;text_category reviews&gt;It is not news that Nathan</code></li>
+<li><code>&lt;text_category religion&gt;As a result , although we</code></li>
+<li><code>&lt;text_category hobbies&gt;Too often a beginning bodyb</code></li>
+<li><code>&lt;text_category lore&gt;In American romance , almost n</code></li>
+<li><code>&lt;text_category belles_lettres&gt;Northern liberals ar</code></li>
+<li><code>&lt;text_category government&gt;The Office of Business E</code></li>
+<li><code>&lt;text_category learned&gt;1 . Introduction It has rec</code></li>
+<li><code>&lt;text_category fiction&gt;Thirty-three Scotty did not</code></li>
+<li><code>&lt;text_category mystery&gt;There were thirty-eight pat</code></li>
+<li><code>&lt;text_category science_fiction&gt;Now that he knew hi</code></li>
+<li><code>&lt;text_category adventure&gt;Dan Morgan told himself h</code></li>
+<li><code>&lt;text_category romance&gt;They neither liked nor disl</code></li>
+<li><code>&lt;text_category humor&gt;It was among these that Hinkl</code></li>
+</ul>
+<p>Estos elementos que aparacen al principio del extracto (<code>&lt;text_category&gt;</code>) van juntos con otro elemento que ocurre al final del extracto (<code>&lt;/text_category&gt;</code>).</p>
+<ul>
+<li><code>asn't a bit of trouble '' .&lt;/text_category&gt;</code></li>
+<li><code>pendency and illegitimacy .&lt;/text_category&gt;</code></li>
+<li><code>esident Kennedy's in 1961 .&lt;/text_category&gt;</code></li>
+<li><code>ons under 18 years of age .&lt;/text_category&gt;</code></li>
+<li><code>for the simplest offense .&lt;/text_category&gt;</code></li>
+<li><code>on the national committee .&lt;/text_category&gt;</code></li>
+<li><code>or a coalition Government .&lt;/text_category&gt;</code></li>
+<li><code>some of these criticisms .&lt;/text_category&gt;</code></li>
+<li><code>m a government on its own .&lt;/text_category&gt;</code></li>
+<li><code>es and presented its case .&lt;/text_category&gt;</code></li>
+</ul>
+<p>Estos elementos no son casos (tokens), pero sí delimitan diferentes regiones del corpus; es decir, tienen un comienzo y un fin. Visto de esta manera, parecen mucho a las etiquetas con corchetas angulares que se utilizan en otros tipos de <a href="https://en.wikipedia.org/wiki/IBM_Generalized_Markup_Language">markup languages como SGML, HTML y XML</a>. El “eXtensible” markup language XML es una de las opciones más populares para la anotación de los corpus de lenguas naturales. <a href="http://www.nltk.org/book/ch11.html#sec-working-with-xml">Las secciones 4.1 y 4.2 del capítulo 11 del libro de NLTK (Natural Language Tool Kit)</a> explican cómo se utiliza XML para separar las anotaciones lingüísticas de los textos anotados.</p>
+<p>Abajo se presenta la forma subyacente del BNC, anotada con XML antes de que se haya preparado para el uso con el CQP. Cada palabra empieza y termina con los símbolos <code>&lt;w&gt;</code> y <code>&lt;/w&gt;</code>. El elemento <code>w</code> tiene el atributo <code>c5</code> de las etiquetas de CLWAS-C5 y el elemento <code>hw</code> para headword.</p>
+<ul>
+<li><code>&lt;w c5="NP0" hw="michael" pos="SUBST"&gt;Michael&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="NP0" hw="palin" pos="SUBST"&gt;Palin&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="VVZ" hw="seem" pos="VERB"&gt;seems&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="AT0" hw="an" pos="ART"&gt;an&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="AJ0" hw="unlikely" pos="ADJ"&gt;unlikely&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="NN1" hw="double" pos="SUBST"&gt;double&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="PRP" hw="for" pos="PREP"&gt;for&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="AT0" hw="the" pos="ART"&gt;the&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="AJ0" hw="archetypal" pos="ADJ"&gt;archetypal&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="NN1-AJ0" hw="stiff" pos="SUBST"&gt;stiff&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="VVD-AJ0" hw="upperlip" pos="VERB"&gt;upperlipped&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="AJ0" hw="phlegmatic" pos="ADJ"&gt;phlegmatic&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="NP0-NN1" hw="englsihman" pos="SUBST"&gt;Englsihman&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="NP0" hw="phileas" pos="SUBST"&gt;Phileas&lt;/w&gt;</code></li>
+<li><code>&lt;w c5="NP0" hw="fogg" pos="SUBST"&gt;Fogg&lt;/w&gt;</code></li>
+<li><code>&lt;c c5="PUN"&gt;, &lt;/c</code>&gt;`</li>
+</ul>
+<p>Podemos comparar esta anotación con la figura 5 de Gries y Berez 2017. Las figuras 3, 6, y 18 de ese capítulo ilustra otras maneras de utilizar XML con los corpus lingüísticos anotados.</p>
+<p>Según la manera en que el corpus fue anotado, estas anotaciones de XML se pueden utilizar de manera más o menos directa en las búsquedas. Por ejemplo, en la forma subyacente del XML del corpus de DICKENS, los sintagmas nominales y los sintagmas preposiciones son anotados, como se muestra en el siguiente ejemplo sacado de <a href="http://cwb.sourceforge.net/files/CQP_Tutorial/node27.html">la sección 4.3 del manual</a>.</p>
+<p><img src="images/SyntacticAnnotation.png" alt="Anotación sintáctica" /> Con esta anotaciones, podemos realizar una consulta con las etiquetas <code>&lt;np&gt;</code> y <code>&lt;\np&gt;</code>. Por ejemplo, la siguiente búsqueda pide los casos de sintagmas nominales que empiezan con “a”, “some”, o “many”:</p>
+<ul>
+<li><code>DICKENS&gt; INITIALQUANT = &lt;np&gt; [word = "a|some|many" ] ;</code></li>
+</ul>
+<p>Podemos utilizar otras combinaciones de etiquetas iniciales y finales. La siguiente consulta encuentra todos los sintagmas nominales que contienen la palabra “door”:</p>
+<ul>
+<li><code>DICKENS&gt; DOORPP = &lt;pp&gt; []* "door" []* &lt;/pp&gt; ;</code></li>
+</ul>
+<p>El elemento <code>within</code> permite que simplifiquemos la consulta:</p>
+<ul>
+<li><code>DICKENS&gt; D = "door" within pp;</code></li>
+</ul>
+</div>
+<div id="el-modelo-subyacente" class="section level2">
+<h2>El modelo subyacente</h2>
+<p>El modelo completo del CWB (Corpus Work Bench) combina las anotaciones al de los casos y las anotaciones al nivel de las regiones:</p>
+<p><img src="images/ModeloCompleto.png" alt="El model completo de los datos de CQP que incluye las etiquetas XML" /> ## Los atributos estructurales (‘s-attributes’)</p>
+<p>Las regiones se pueden delimitar con las etiquetas XML. Estas etiquetas también pueden tener diferentes propiedades. Al compilar el corpus, estas propiedades se definen una vez, en vez de definirlas para casa caso.</p>
+<div id="la-duración" class="section level3">
+<h3>La duración</h3>
+<p>Por ejemplo, en el corpus de DICKENS tanto la duración de las palabras (<code>lens</code>) como la cabeza sintáctica (<code>h</code>) de los sintagmas nominales son indicados. El atributo de duración se convierte en <code>np_len</code> dentro del CQP. Este atributo se puede utilizar con una expresión regular (es decir, <code>3|4|5|6</code>) o se puede cambiar a un valor con el rasgo del CQP <code>int()</code>. Este rasgo permite que utilice propiedades como “más de” y “menos de”:</p>
+<ul>
+<li><code>DICKENS&gt; DOORNP = &lt;np&gt; [ word != "," ]* d:"door" [ word != ","]* &lt;/np&gt; :: int(d.np_len) &gt; 7;</code></li>
+</ul>
+<p>Esta búsqueda intenta encontrar los sintagmas nominales largas en el corpus de DICKENS que mencionan una puerta pero que no contienen una comma. En esta búsqueda, la lentra <code>d</code> minúscula funciona como un label, como se explica en <a href="http://cwb.sourceforge.net/files/CQP_Tutorial/node25.html">la sección 4.1 del manual</a>. Es similar al signo <code>@</code>, lo cual determina el blanco de la búsqueda.</p>
+</div>
+<div id="el-género" class="section level3">
+<h3>El género</h3>
+<p>Como ya se sabe, en el español las palabras son especificadas por el género gramatical (masculina vs. femenina). El corpus ANCORA viene con etiquetas para las constituyentes sintácticas como los sintagmas nominales (<code>grup.nom</code>), sintagmas verbales (<code>grup.verb</code>), etc. La forma XML tiene la siguiente estructura:</p>
+<div class="figure">
+<img src="images/XMLAnCora.png" alt="" />
+<p class="caption">XML del AnCora</p>
+</div>
+<p>Como los atribuotos de <code>h</code> y <code>len</code> de DICKENS, los atributos XML <code>gen</code> y <code>num</code> en el corpus de AnCora se han convertido en atributos estructurales especializados para la constituyente sintáctica donde se manifiestan. Consideremos los sintagmas (<code>grup</code>) que son adjetivales (<code>a</code>) y que son clasificados por género (<code>gen</code>).</p>
+<ul>
+<li><code>ANCORA&gt; P = [ lemma="primero" ];</code></li>
+<li><code>ANCORA&gt; group P match grup_a_gen by match word cut 30;</code></li>
+</ul>
+</div>
+<div id="fecha" class="section level3">
+<h3>Fecha</h3>
+<p>El Royal Society Corpus viene anotado con fechas. Con estas fechas, podemos presentar preguntas históricas como “¿Cuándo se utilizaba la palabra <em>divers</em>?”</p>
+<ul>
+<li><code>RSC&gt; D = "divers";</code></li>
+<li><code>RSC&gt; group D match text_year ;</code></li>
+</ul>
+<p>Y con algunos mandatos de unix, podemos organizar estos resultados por fecha:</p>
+<ul>
+<li><code>group D match text_year cut 10  &gt; "| tail -n +2  | sed 's/(none)/      /' | sort -nr";</code></li>
+</ul>
+<p>Para más información sobre el proceso de reenviar los resultados de una búsqueda a un archivo o una barra/pipa, se puede consultar la sección 3.2 del manual.</p>
+<hr />
+</div>
+</div>
+</div>
 <div id="recursos" class="section level1 tabset tabset-fade tabset-pills">
 <h1>Recursos</h1>
 <div id="tools" class="section level2 unnumbered">
