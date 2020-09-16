@@ -1889,6 +1889,94 @@ div.tocify {
 <li><code>group D match text_year cut 10  &gt; "| tail -n +2  | sed 's/(none)/      /' | sort -nr";</code></li>
 </ul>
 <p>Para más información sobre el proceso de reenviar los resultados de una búsqueda a un archivo o una barra/pipa, se puede consultar la sección 3.2 del manual.</p>
+</div>
+</div>
+<div id="tipos-y-casos" class="section level2">
+<h2>Tipos y casos</h2>
+<p>Esta distinción se refiere a la idea de que <strong>un caso (‘token’)</strong> es un ejemplo concreto; por otro lado, <strong>los tipos (‘types’)</strong> representan las categorías que incluyen estos ejemplos.</p>
+<div id="la-misma-palabra" class="section level3">
+<h3>La misma palabra</h3>
+<p>Consideremos la siguiente oración “El ayuda a un montón de gente que no es conocida y se dedica a otra cosa”. En esta oración hay 17 palabras, donde dos de ellas son casos de la palabra <em>a</em>. En este caso, podemos decir que hay dos casos del mismo tipo. Cuando pedimos que el CQP nos cuente el número de observacioens de una palabra, lo que que nos da es el “token frequency” de este tipo.</p>
+<ul>
+<li><code>CDE&gt; MONTON = "montón";</code></li>
+<li><code>CDE&gt; size MONTON;</code></li>
+<li><code>57362</code></li>
+</ul>
+</div>
+<div id="lemas" class="section level3">
+<h3>Lemas</h3>
+<p>A veces los tipos de palabras son demasiado específicos. Por ejemplo, si hacemos un estudio sobre el uso del verbo <em>ask</em>, no nos preocupa el tipo de letra (mayúscula vs. minúscula). Las propiedades relevantes son (i) su estatus como un verbo y (ii) y su raíz morfológica.</p>
+<p>En el BNC, estas dos propiedades se combinan en un atributo posicional que se llama <code>lemma</code>. La clase léxica, en el sentido normal, se indica en el atributo headword <code>hw</code>. El atributo <code>lemma</code> incluye un símbolo que <a href="http://www.natcorp.ox.ac.uk/docs/URG/codes.html#klettpos">representa una etiqueta simplificada</a>. Esta etiqueta nos permite observar los resultados por caso y variación morfológica. El siguiente ejemplo utiliza el mandato <code>count</code> (<a href="http://cwb.sourceforge.net/files/CQP_Tutorial/node15.html">sección 2.9 del manual</a>) permite que hagamos una distribución de frecuencias que es algo similar a lo que se produce con el mandato <code>group</code>.</p>
+<ul>
+<li><code>BNC&gt; ASK = [ lemma="ask_VERB" ];</code></li>
+<li><code>BNC&gt; count ASK by word ;</code></li>
+<li><code>30803   asked  [#19152-#49954]</code></li>
+<li><code>17469   ask  [#1683-#19151]</code></li>
+<li><code>5928    asking  [#49955-#55882]</code></li>
+<li><code>1925    asks  [#55883-#57807]</code></li>
+<li><code>1086    Ask  [#80-#1165]</code></li>
+<li><code>402     Asked  [#1166-#1567]</code></li>
+<li><code>105     Asking  [#1568-#1672]</code></li>
+<li><code>56      ASK  [#0-#55]</code></li>
+<li><code>13      ASKED  [#56-#68]</code></li>
+<li><code>9       ASKS  [#71-#79]</code></li>
+<li><code>9       Asks  [#1673-#1681]</code></li>
+<li><code>2       ASKING  [#69-#70]</code></li>
+<li><code>1       asKed  [#1682]</code></li>
+<li><code>BNC&gt; size ASK;</code></li>
+<li><code>57808</code></li>
+</ul>
+<p>El mandato <code>size</code> nos indica que la frecuencia de caso de este lema es 57808. Estas observaciones se distribuyen por trece tipos distintos, donde cada uno de ellos se muestra en una línea separada con <code>count</code>. Por lo tanto, la frecuencia de tipo (‘type frequency’) de este lema es 13.</p>
+<p><strong>PREGUNTA:</strong> ¿Qué es la frecuencia de tipo del verbo <em>decir</em> en ANCORA?</p>
+</div>
+</div>
+<div id="la-riqueza-léxica-y-ttr" class="section level2">
+<h2>La riqueza léxica y TTR</h2>
+<p>La cantidad de tipos en un corpus es necesariamente menos de (o a veces equivale a) la cantidad de casos. Sin embargo, ¿cómo debemos entender esta diferencia? La proporción entre los tipos y los casos–TTR (‘type-token-ratio’)–cuantifica el grado de diversidad de una selección de lengua. Es decir, cuanto más alta es el TTA, más diversa es el vocabulario. Si dividimos por el número de casos en el corpus, producimos una normalización por la cantidad de ‘’oportunidades’’ disponibles para observar una palabra nueva. Entonces, la TTR es una manera de cuantificar la riqueza léxica.</p>
+<ul>
+<li>TTR = <span class="math inline">\(\frac{n(tipos)}{n(casos)}\)</span></li>
+</ul>
+<p>Como un ejemplo, comparemos la riqueza léxia entre diferentes géneros de textos escritos. Acordáos que el mándato <code>size</code> nos produce frecuencias de casos:</p>
+<ul>
+<li><code>BNC&gt; FICTION = [ pos != "PU.*" ] :: match.text_genre = "W:fict.*"  ;</code></li>
+<li><code>BNC&gt; size FICTION</code></li>
+<li><code>16303411</code></li>
+<li><code>BNC&gt; NEWS = [ pos != "PU.*" ] :: match.text_genre = "W:newsp:.*" ;</code></li>
+<li><code>BNC&gt; size NEWS</code></li>
+<li><code>9412245</code></li>
+<li><code>BNC&gt; randomize 51;</code></li>
+<li><code>BNC&gt; reduce FICTION to 9412245;</code></li>
+<li><code>BNC&gt; size FICTION</code></li>
+<li><code>9412245</code></li>
+</ul>
+<p>Con esta consulta, hemos excluído los casos de puntuación y hemos reducido la sección de FICTION a una selección aleatoria para que concuerde con el tamaño de la sub-sección NEWS (<a href="http://cwb.sourceforge.net/files/CQP_Tutorial/node22.html">sección 3.6 del manual</a>). Este paso permite que los denominadores de las TTR tengan el mismo valor, 94122245.</p>
+<p>Para obtener los numeradores, tenemos que contar los tipos. Una forma fácil de realizar este paso es contar la cantidad de líneas que se producen con los resultados de un mandato de CQP como <code>count</code> o <code>group</code>. Con el operador <code>&gt;</code> podemos “enviar” los resultados a un archivo mediante una “pipa” (‘pipe’) que contiene una función de unix como <code>wc</code>, lo cual nos cuenta las líneas (ya vimos este proceso el martes y se describe en <a href="http://cwb.sourceforge.net/files/CQP_Tutorial/node18.html">la sección 3.2 del manual</a>). Se escribes <code>man wc</code> la próxima vez que te encuentras en el mensaje de unix, se puede apreder más sobre este programa. La etiqueta <code>%c</code> tiene el efecto de ignorar las distinciones entre letra mayúscula vs. minúscula (<a href="http://cwb.sourceforge.net/files/CQP_Tutorial/node8.html">sección 2.2 del manual</a>).</p>
+<pre class="r"><code># BNC&gt; count FICTION by word %c &gt; &quot;| wc -l&quot;;
+# 131476
+# BNC&gt; count NEWS by word %c  &gt; &quot;| wc -l&quot;;
+# 152648</code></pre>
+<p>Ahora podemos calcular las TTR relevantes:</p>
+<ul>
+<li>TTR<sub>fiction</sub> = <span class="math inline">\(\frac{131476}{9412245}\)</span> = 0.013</li>
+<li>TTR<sub>news</sub> = <span class="math inline">\(\frac{152648}{9412245}\)</span> = 0.16</li>
+</ul>
+<p>Según <a href="https://langsci-press.org/catalog/book/148">Stefanowitsch</a>, la TTR se puede interpretar como la probabilidad de encontrar un tipo nuevo, si seguimos encontrando nuevos tipos al mismo ritmo.</p>
+</div>
+<div id="los-afijos" class="section level2">
+<h2>Los afijos</h2>
+<p>Ahora podemos extender estas observaciones a la morfología. Stefanowitsch considera esta cuestión en el dominio de la morfología, especifícamente el uso del sufijo <em>-ly</em>. Si nuestro corpus consistiera de la siguiente oración de Shakespeare:</p>
+<ul>
+<li><code>CINNA: ...Am I a married man, or a bachelor? Then, to answer every man directly and briefly, wisely and truly: wisely I say, I am a bachelor.</code></li>
+</ul>
+<p>La frecuencia de casos del sufijo <em>-ly</em> sería 5 porque se observa en las palabras <em>directly</em>, <em>briefly</em>, <em>wisely</em>, <em>truly</em>, and <em>wisely</em>. Su frecuencia de tipo–es decir, el número de ejemplos de palabras específicas que tiene el sufijo <em>-ly</em>–es 4. Los dos ejemplos de <em>wisely</em> se consideran ejemplos del mismo tipo.</p>
+<p>Podemos aplicar esta idea para entender los afijos <em>-icle</em> y <em>mini-</em>. Por ejemplo, un “denticle” es un diente pequeño, un “pellicle” es una membrana fina, y un “cubicle” es un seudo-oficina. Tal vez tenemos la intuición de que el sufijo <em>-icle</em> tiene una distribución más limitada que el prefijo <em>mini-</em>. También podemos cuantificar esta pregunta con el uso de la frecuencia de tipo.</p>
+<div id="el-elemento--icle-como-un-sufijo" class="section level3">
+<h3>El elemento <em>-icle</em> como un sufijo</h3>
+<p>Empezemos con una búsqueda del sufijo <em>-icle</em> en casos singulares y plurales, sin considerar las variantes ortográficas:</p>
+<pre class="r"><code># BNC&gt; [ word = &quot;.+icles?&quot; %c ] ;
+# BNC&gt; size Last ;
+# 20854
+# BNC&gt; group Last match word &gt; &quot;icle-hits.txt&quot;;</code></pre>
 <hr />
 </div>
 </div>

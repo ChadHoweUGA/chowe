@@ -980,8 +980,103 @@ Y con algunos mandatos de unix, podemos organizar estos resultados por fecha:
 
 Para más información sobre el proceso de reenviar los resultados de una búsqueda a un archivo o una barra/pipa, se puede consultar la sección 3.2 del manual.
 
+## Tipos y casos
 
+Esta distinción se refiere a la idea de que **un caso ('token')** es un ejemplo concreto; por otro lado, **los tipos ('types')** representan las categorías que incluyen estos ejemplos.
 
+### La misma palabra
+
+Consideremos la siguiente oración "El ayuda a un montón de gente que no es conocida y se dedica a otra cosa". En esta oración hay 17 palabras, donde dos de ellas son casos de la palabra *a*. En este caso, podemos decir que hay dos casos del mismo tipo. Cuando pedimos que el CQP nos cuente el número de observacioens de una palabra, lo que que nos da es el "token frequency" de este tipo.
+
+*   `CDE> MONTON = "montón";`
+*   `CDE> size MONTON;`
+*   `57362`
+
+### Lemas
+
+A veces los tipos de palabras son demasiado específicos. Por ejemplo, si hacemos un estudio sobre el uso del verbo *ask*, no nos preocupa el tipo de letra (mayúscula vs. minúscula). Las propiedades relevantes son (i) su estatus como un verbo y (ii) y su raíz morfológica.
+
+En el BNC, estas dos propiedades se combinan en un atributo posicional que se llama `lemma`. La clase léxica, en el sentido normal, se indica en el atributo headword `hw`. El atributo `lemma` incluye un símbolo que [representa una etiqueta simplificada](http://www.natcorp.ox.ac.uk/docs/URG/codes.html#klettpos). Esta etiqueta nos permite observar los resultados por caso y variación morfológica. El siguiente ejemplo utiliza el mandato `count` ([sección 2.9 del manual](http://cwb.sourceforge.net/files/CQP_Tutorial/node15.html)) permite que hagamos una distribución de frecuencias que es algo similar a lo que se produce con el mandato `group`.
+
+*   `BNC> ASK = [ lemma="ask_VERB" ];`
+*   `BNC> count ASK by word ;`
+*   `30803   asked  [#19152-#49954]`
+*   `17469   ask  [#1683-#19151]`
+*   `5928    asking  [#49955-#55882]`
+*   `1925    asks  [#55883-#57807]`
+*   `1086    Ask  [#80-#1165]`
+*   `402     Asked  [#1166-#1567]`
+*   `105     Asking  [#1568-#1672]`
+*   `56      ASK  [#0-#55]`
+*   `13      ASKED  [#56-#68]`
+*   `9       ASKS  [#71-#79]`
+*   `9       Asks  [#1673-#1681]`
+*   `2       ASKING  [#69-#70]`
+*   `1       asKed  [#1682]`
+*   `BNC> size ASK;`
+*   `57808`
+
+El mandato `size` nos indica que la frecuencia de caso de este lema es 57808. Estas observaciones se distribuyen por trece tipos distintos, donde cada uno de ellos se muestra en una línea separada con `count`. Por lo tanto, la frecuencia de tipo ('type frequency') de este lema es 13.
+
+**PREGUNTA:** ¿Qué es la frecuencia de tipo del verbo *decir* en ANCORA?
+
+## La riqueza léxica y TTR
+
+La cantidad de tipos en un corpus es necesariamente menos de (o a veces equivale a) la cantidad de casos. Sin embargo, ¿cómo debemos entender esta diferencia? La proporción entre los tipos y los casos--TTR ('type-token-ratio')--cuantifica el grado de diversidad de una selección de lengua. Es decir, cuanto más alta es el TTA, más diversa es el vocabulario. Si dividimos por el número de casos en el corpus, producimos una normalización por la cantidad de ''oportunidades'' disponibles para observar una palabra nueva. Entonces, la TTR es una manera de cuantificar la riqueza léxica.
+
+*   TTR = $\frac{n(tipos)}{n(casos)}$
+
+Como un ejemplo, comparemos la riqueza léxia entre diferentes géneros de textos escritos. Acordáos que el mándato `size` nos produce frecuencias de casos:
+
+*   `BNC> FICTION = [ pos != "PU.*" ] :: match.text_genre = "W:fict.*"  ;`
+*   `BNC> size FICTION`
+*   `16303411`
+*   `BNC> NEWS = [ pos != "PU.*" ] :: match.text_genre = "W:newsp:.*" ;`
+*   `BNC> size NEWS`
+*   `9412245`
+*   `BNC> randomize 51;`
+*   `BNC> reduce FICTION to 9412245;`
+*   `BNC> size FICTION`
+*   `9412245`
+
+Con esta consulta, hemos excluído los casos de puntuación y hemos reducido la sección de FICTION a una selección aleatoria para que concuerde con el tamaño de la sub-sección NEWS ([sección 3.6 del manual](http://cwb.sourceforge.net/files/CQP_Tutorial/node22.html)). Este paso permite que los denominadores de las TTR tengan el mismo valor, 94122245.
+
+Para obtener los numeradores, tenemos que contar los tipos. Una forma fácil de realizar este paso es contar la cantidad de líneas que se producen con los resultados de un mandato de CQP como `count` o `group`. Con el operador `>` podemos "enviar" los resultados a un archivo mediante una "pipa" ('pipe') que contiene una función de unix como `wc`, lo cual nos cuenta las líneas (ya vimos este proceso el martes y se describe en [la sección 3.2 del manual](http://cwb.sourceforge.net/files/CQP_Tutorial/node18.html)). Se escribes `man wc` la próxima vez que te encuentras en el mensaje de unix, se puede apreder más sobre este programa. La etiqueta `%c` tiene el efecto de ignorar las distinciones entre letra mayúscula vs. minúscula ([sección 2.2 del manual](http://cwb.sourceforge.net/files/CQP_Tutorial/node8.html)). 
+
+```{r}
+# BNC> count FICTION by word %c > "| wc -l";
+# 131476
+# BNC> count NEWS by word %c  > "| wc -l";
+# 152648
+```
+
+Ahora podemos calcular las TTR relevantes:
+
+*   TTR~fiction~ = $\frac{131476}{9412245}$ = 0.013
+*   TTR~news~ = $\frac{152648}{9412245}$ = 0.16
+
+Según [Stefanowitsch](https://langsci-press.org/catalog/book/148), la TTR se puede interpretar como la probabilidad de encontrar un tipo nuevo, si seguimos encontrando nuevos tipos al mismo ritmo.
+
+## Los afijos
+
+Ahora podemos extender estas observaciones a la morfología. Stefanowitsch considera esta cuestión en el dominio de la morfología, especifícamente el uso del sufijo *-ly*. Si nuestro corpus consistiera de la siguiente oración de Shakespeare:
+
+*   `CINNA: ...Am I a married man, or a bachelor? Then, to answer every man directly and briefly, wisely and truly: wisely I say, I am a bachelor.`
+
+La frecuencia de casos del sufijo *-ly* sería 5 porque se observa en las palabras *directly*, *briefly*, *wisely*, *truly*, and *wisely*. Su frecuencia de tipo--es decir, el número de ejemplos de palabras específicas que tiene el sufijo *-ly*--es 4. Los dos ejemplos de *wisely* se consideran ejemplos del mismo tipo.
+
+Podemos aplicar esta idea para entender los afijos *-icle* y *mini-*. Por ejemplo, un "denticle" es un diente pequeño, un "pellicle" es una membrana fina, y un "cubicle" es un seudo-oficina. Tal vez tenemos la intuición de que el sufijo *-icle* tiene una distribución más limitada que el prefijo *mini-*. También podemos cuantificar esta pregunta con el uso de la frecuencia de tipo.
+
+### El elemento *-icle* como un sufijo
+
+Empezemos con una búsqueda del sufijo *-icle* en casos singulares y plurales, sin considerar las variantes ortográficas:
+
+```{r}
+# BNC> [ word = ".+icles?" %c ] ;
+# BNC> size Last ;
+# 20854
+# BNC> group Last match word > "icle-hits.txt";
+```
 
 ***
 # Recursos {.tabset .tabset-fade .tabset-pills}
