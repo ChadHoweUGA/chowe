@@ -1081,7 +1081,8 @@ Empezemos con una búsqueda del sufijo *-icle* en casos singulares y plurales, s
 Después, utilicemos el programa `SCP` para transferir este archivo 'icle-hits.txt' a nuestra máquina local (página 13 del documento "Utilizing the UGA Corpus Server"). Después de limpiar la concordancia, los resultados salen en la Tabla 1:
 
 *   Tabla 1: ejemplos de los tipos de *-icle* (casos de errores ortográficos se han quitado)
-|    |    |    |    |     |
+
+| Palabra   | Palabra   | Palabra   | Palabra   | Palabra    |
 |:-----------|:-----------|:-----------|:-----------|:-----------|
 | article 9515 | cronicles 1 |	fascicle 8 |	pedicle 1 |	testicle 128 |
 | astricles 2 | cubicle 233 |	follicle 69 |	pellicle 1 |	tunicles 1 |
@@ -1091,11 +1092,61 @@ Después, utilicemos el programa `SCP` para transferir este archivo 'icle-hits.t
 | chicles 3 |	dicle 1 |	mesocuticle 1 |	procuticle 8 |	versicles 2 |
 | chronicle 639 |	endocuticle 4 |	ossicles 3 |	radicle 2 |	vesicle 144 |
 | clavicle 15 |	epicuticle 9 |	panicles 5 |	runnicles 4 |   |
-| conventicle 22 |	exocuticle 5 |	particle 2447 |	subcuticle 1|   |	 
+| conventicle 22 |	exocuticle 5 |	particle 2447 |	subcuticle 1 |   |	 
 
 Observamos 43 tipos y 20850 casos. De hecho, podemos mejorar bastante los resultados con el uso de un "stoplist" en CQP. De esta forma, ignoramos los casos que no buscamos.
 
 ### El elemento *mini-* como un prefijo
+
+```{r}
+# BNC> define $stopword < "not-instances-of-mini.txt" ;
+# BNC> MINI1 = [ word="mini(-)?.+" %c & word != RE($stopword) %c] ;
+# BNC> size MINI1
+# 1840
+# BNC> count MINI1 by word %c > "| wc -l";
+# 510
+```
+
+En esta consulta, estamos eliminando las palabras que aparecen en nuestra lista de palabras. El operator `RE()` del CPQ interpreta esta lista como una lista de expresiones regulures en vez de ser una simple grupo de palabras. La lista representada en "not-instances-of-mini.txt" se encuentra en la Tabla 2:
+
+| Palabra | Palabra |
+|:-----------|:-----------|
+| minimi[sz].* |	miniver |
+| minim(al? $|$ um $|$ i[sz]e)(ist $|$ ly $|$ ism)?.*	| miniate |
+| mininal |	miniutes |
+| miniatur.*	| minim.* |
+| minist[eéè]?r.*	| mininum |
+| min(e| ing).*	| minimu |
+| minimum	| minite? |
+| minions?	| miniuscula |
+| minims? |	miniutes |
+| miniscule	| minimse |
+
+### Downsampling
+
+Los denominadores en el último ejempo no son equivalentes. Según Brezina (§ 2.6), los textos más largos presentan la oportunidad de reciclar la misma forma. ¿Es que el sufijo *-cle* combine con las mismas bases o es que las mismas mismas se observen varias veces? Lo que podemos hacer es producir un "downsample"--es decir, un conjunto aleatorio de observaciones de *-icle* que es igual de tamaño al número de observaciones de *mini*.
+
+```{r}
+# BNC> randomize 37;
+# BNC> ICLE = [ word = ".+icles?" %c ] ;
+# BNC> reduce ICLE to 1840 ;
+# BNC> group ICLE match word > "icle1840.txt";
+```
+
+Ahora podemos limpiar el archivo "icle1840.txt" y determinar que solo hay 17 diferentes tipos. Comparemos las TTR de *-icle* y de *mini-*. 
+
+*   TTR~icle~ = $\frac{17}{1840}$ = 0.009
+*   TTR~mini~ = $\frac{510}{1840}$ = 0.277
+
+Se nota que la TTR~icle~ es mucho menos de la TTR~mini~. Es decir, la asimetría entre las frecuencias de *-icle* y *mini-* es consistent con el hecho de que el segundo sea más "importante" en el lexicón del inglés, tal vez por cuestión de que se puede combinar más libremente con otras palabras. Según Stefanowitsch, es importante notar que todavía no hemos hecho ningún argumento estadístico.
+
+### Tarea
+
+Con esta tarea exploremos la distribución de los sufijos *-azo(s)/-aza(s)* y *-ito(s)/-ita(s)* en el corpus de ANCORA. 
+
+**1^a Parte** Realiza unas búsquedas de las palabras terminadas en los sufijos *-azo(s)/-aza(s)* y *-ito(s)/-ita(s)*. ¿Cuántos casos se encuentran?
+
+**2^a Parte** Produce las TTR de estos dos elementos. ¡Cuidado! Hay que eliminar las palabas que no tengan estos elementos como prefijos (p.e. *necesito*). ¿Cómo se compara el uso de *-azo(s)/-aza(s)* con *-ito(s)/-ita(s)* en este corpus?
 
 
 
@@ -1126,37 +1177,7 @@ Observamos 43 tipos y 20850 casos. De hecho, podemos mejorar bastante los result
 - [Project P.S. Post Scriptum](http://ps.clul.ul.pt/)
 - [Biblia Medieval](http://www.bibliamedieval.es/index.php)
 
-
-<!--
-## General Corpus Tools
-- [Collection of corpus resources available to UGA faculty and students](http://research.franklin.uga.edu/linglab/corpora)
-- [The IMS Open Corpus Workbench](http://cwb.sourceforge.net/): The IMS Open Corpus Workbench (CWB) is a collection of open-source tools for managing and querying large text corpora (ranging from 10 million to 2 billion words) with linguistic annotations. Its central component is the flexible and efficient query processor CQP.
-- [LANCSBox](http://corpora.lancs.ac.uk/lancsbox/): software package for the analysis of language data and corpora
-- [Lancaster Stats Tools online](http://corpora.lancs.ac.uk/stats/index.php): The website provides practical support for the analysis of corpus data using a range of statistical techniques.
-- [Linguistic Data Consortium](https://www.ldc.upenn.edu/): A great resource for language corpora; and UGA has an institutional subscription!!
-- [Tools for Corpus Linguistics](https://corpus-analysis.com/): A long list of corpus-related resources that's always being updated
-
-----
-
-Spanish Corpora
-General Corpora
-- [Corpus del Español](http://www.corpusdelespanol.org/): Spanish corpus compiled by BYU
-- [El Corpus de Referencia del Español Actual (CREA)](https://www.rae.es/recursos/banco-de-datos/crea)
-- [El Atlas Sintáctico del Español (ASinEs)](https://www.rae.es/recursos/enlaces-externos/atlas-sintactico-del-espanol)
-
-Historical
-
-- [El Corpus Diacrónico del Español (CORDE)](https://www.rae.es/recursos/banco-de-datos/corde)
-- [Corpus del Nuevo Diccionario Histórico del Español](http://web.frl.es/CNDHE/view/inicioExterno.view;jsessionid=2E34C1C1AF321C2A31535DD5369E994F)
-- [Corpus Diacrónico y Diatópico del Español de América](http://www.cordiam.org/): El Corpus Diacrónico y Diatópico del Español de América reúne tres conjuntos documentales; Cordiam-Documentos, Cordiam-Literatura y Cordiam-Prensa.
-- [Corpus Hispánico y Americano en la Red: Textos Antiguos](http://www.corpuscharta.es/): CHARTA se concibe como un proyecto global para la edición y análisis lingüístico de textos archivísticos en español de los siglos XII al XIX.
-- [El corpus CODEA (Corpus de Documentos Españoles Anteriores a 1800)](http://corpuscodea.es/)
-- [Project P.S. Post Scriptum](http://ps.clul.ul.pt/)
-- [Biblia Medieval](http://www.bibliamedieval.es/index.php)
-
------
-
-Sociolinguistic
+## Sociolingüístico {-}
 
 - [Corpus del Español en el Sur de Arizona (CESA)](https://cesa.arizona.edu/)
 - [El Corpus del Español del Siglo XXI (CORPES XXI)](https://www.rae.es/recursos/banco-de-datos/corpes-xxi)
@@ -1166,23 +1187,21 @@ Sociolinguistic
 - [Corpus of Mexican Spanish in Salinas](https://itcdland.csumb.edu/~eabrown/)
 - [COSER: Corpus oral y Sonora del Español Rural](http://corpusrural.es/)
 - [Spanish in Texas](http://spanishintexas.org/)
+- [Bilingual Youth Texts](https://byts.commons.gc.cuny.edu/)
+- [COW](https://www.webcorpora.org/): High Quality Web Corpora
 
-Acquisition
+
+## Adquisición {-}
 
 - [CEDEL2: Corpus Escrito del Español L2 (versión 2)](http://cedel2.learnercorpora.com/)
 - [Spanish Learner Language Oral Corpora (splloc)](http://www.splloc.soton.ac.uk/)
 - [El Corpus de aprendices del español (CAES)](https://hispanismo.cervantes.es/congresos-y-cursos/corpus-aprendices-espanol-caes-concepcion-explotacion-caes)
 
-Digital Spanish
-
-- [Bilingual Youth Texts](https://byts.commons.gc.cuny.edu/)
-- [COW](https://www.webcorpora.org/): High Quality Web Corpora
-
-Other Languages
+## Otras lenguas románicas {-}
 
 - [Corpus do Português](http://www.corpusdoportugues.org/): Portuguese corpus compiled by BYU
 
-
+<!--
 - <a href="https://uclouvain.be/en/research-institutes/ilc/cecl/corpora.html">Center for English Corpus Linguistics (Louvain)</a>: A collection of several useful corpus resources
 - <a href="http://lingtools.uoregon.edu/coraal/explorer/">CoRAAL</a>: Corpus of Regional African American Language, developed and hosted by the University Oregon
 - <a href="https://cqpweb.lancs.ac.uk/">Lancaster Corpus Resources</a>
