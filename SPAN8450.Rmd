@@ -1167,6 +1167,7 @@ Con esta tarea exploremos la distribución de los sufijos *-azo(s)/-aza(s)* y *-
 - [El Corpus de Referencia del Español Actual (CREA)](https://www.rae.es/recursos/banco-de-datos/crea)
 - [El Atlas Sintáctico del Español (ASinEs)](https://www.rae.es/recursos/enlaces-externos/atlas-sintactico-del-espanol)
 - [European Language Resources Association (ELRA)](http://catalog.elra.info/en-us/repository/search/?q=Spanish)
+- [ESLORA 2.0: Corpus para el estudio del español oral](http://eslora.usc.es/)
 
 ## Históricos {-}
 
