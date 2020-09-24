@@ -1149,6 +1149,113 @@ Con esta tarea exploremos la distribución de los sufijos *-azo(s)/-aza(s)* y *-
 **2^a Parte** Produce las TTR de estos dos elementos. ¡Cuidado! Hay que eliminar las palabas que no tengan estos elementos como prefijos (p.e. *necesito*). ¿Cómo se compara el uso de *-azo(s)/-aza(s)* con *-ito(s)/-ita(s)* en este corpus?
 
 
+# 6a Semana
+
+## La ley de Zipf
+:
+Con las búsquedas que hemos realizado hasta ahora, hemos notado un patrón interesante (¿sospechoso?). Las expresiones bien representadas son muy muy frecuentes. Pero, cuando vemos las otras partes de la lista, se observa que entramos rápidamente en el territorio de los *hapax legomena*^[Los *Hapax Legomena* son palabras que solo aparecen una vez. En la sección 2.3 de Brezina, este término griego se introduce.] Por ejemplo, si volvemos a la consulta que ya hicimos sobre las costrucciones verbales frasales, se observa que, si aun se excluyen los casos de "be out" and "turned out that", las estructuras como "go out", "look out" y "get out" son *mucho* más frecuentes que las demás. ¿Cómo se explica esta distribución? 
+
+```{r}
+# DICKENS> PhrasalV = @[ pos="V.*" & lemma != "be" ] [ word="out" ] [ word != "that"];
+# DICKENS> group PhrasalV target lemma cut 100 ;
+```
+
+### Observamos todas las palabras
+
+Vamos a cambiar de corpus y ver si esta distribución se aplica cuando consideramos todas las palabras (menos la puntuación) a la vez:
+
+```{r}
+# BROWN> NONPUNCT = [ pos != "(\.|\(|\)|\*|--|\,|:|``|''|')(-(HL|TL|NC)){0,2}" ] ;
+# BROWN> count NONPUNCT by word %c ;
+```
+
+Estos resultados nos muestran que las palabras funcionales como "the" y "of" son las más frecuentes en la distribución de frecuencias. Sin embargo, ¡**más de la mitad** de los tipos solo se observan una vez! Este efecto se puede observar por contar las líneas individuales el output de `count` con el mandato de unix que vimos la semana pasada (para más información sobre `egrep`, se debe consultar la sección 2.3 del capítulo de Lu 2014).
+
+```{r}
+# BROWN> count NONPUNCT by word %c > "| egrep '^1[[:blank:]]' | wc -l" ;
+# 22012
+# BROWN> count NONPUNCT by word %c > "|  wc -l" ;
+# 49804
+```
+
+Esta situación, donde una cantidad pequeña de expresiones son **super** frecuentes y las demás tienen una frecuencia que se acerca a 1, se llama **la Ley de Zipf**.
+
+## La "ley" de Zipf
+
+La ley de Zipf es una "regularidad empírica", motivado por George Kingsley Zipf en su libro del año 1935 con el título, *The Psycho-biology of language*. La "regularidad" se puede describir con el argument que la frecuencia $f$ de una palabra es inversamente proporcional a su rango $r$ en una lista (ordenada) de palabras frecuentes.La ecuación que presenta Brezina en la página 44 representa esta idea. Consideremos esta situación con el corpus de Brown:
+
+| palabra |	frecuencia	| rango |
+|:-----|:-----|:-----|
+| the	| 69971	| 1 |
+| of	| 36412 |	2 |
+| and	| 28853	| 3 |
+| to	| 26158	| 4 |
+| a	| 23195	| 5 | 
+| in	| 21337	| 6 |
+| that	| 10594	| 7 |
+| is	| 10109	| 8 |
+| was	| 9815	| 9 |
+| he	| 9548	| 10 | 
+| i	| 5164	| 20 |
+| which	| 3561	| 30 |
+| we	| 2652	| 40 |
+| out	| 2097	| 50 |
+| can	| 1772	| 60 |
+| then	| 1380	| 70 |
+| man	| 1207	| 80 |
+| must	| 1013	| 90 |
+| down	| 895	| 100 |
+| little	| 831	| 110 |
+| work	| 762	| 120 |
+| day	| 687	| 130 |
+| year	| 658	| 140 |
+| three	| 610	| 150 |
+
+Este argumento sobre la proporcionalidad inversa significa que las proporciones de los rangos deben ser proporciones de las frecuencias: es decir, la 50a palabra más común debe tener una frecuencia que es, más o menos, tres veces más que la 150a palabra más común. En esta tabla, 2097 (la frecuencia de la 50a palabra-"out") sí tiene esta propiedad: $3*610=1830$, donde $f_{150}=610$. La forma típica de visualizar esta distribución es con un cuadro logorítmico, donde se calcula el logoritmo de los dos lados:
+
+![El cáluco de los logoritmos](images/Logorithm.png)
+
+El paso del (1) a (2) nos produce un elemento constante de proporcionalidad, `h`. El paso (3) sigue del paso (2) mediante la ley de los logaritmos. Este elemento constante `h` produce la tendencia decresciente que se observa con la ley de Zipf.
+
+Las distribuciones de Zipf ("Zipfian") son muy comunes en la lengua natural, para todos tipos de expresiones lingüísticas y con escalas de diferentes niveles.
+
+**Ejercicio**: Completemos la tabla en la pregunta 5 de Brezina (página 63).
+
+### La visualización
+
+Cuando se producen distribuciones de frecuencias con el CQP, las podemos compartir con otros programs. Por ejemplo, podemos utilizar [el programa estadística y gráfica R](https://www.r-project.org/). Para poder sacar una distibución de frecuencia con el CQP, podeos utilizar un mandato de unix que pertenece a la familia `awk` (sección 2.3.5 de Lu 2014). En el siguiente ejemplo, `awk` se utiliza para extraer la primera columna (el "attestation count") y la columna 2 (la palabra). La tercera y la última columna que produce el mandato `count` son los que se utilizan para producir la concordancia de KWIC y, por lo tanto, no se tienen que guardar.
+
+```{r}
+# BROWN> count NONPUNCT by word %c > "| awk '{print $1,$2}' > brown-nonpunct.cnt" ;
+```
+
+El signo `>` es lo que se llama un "output redirection operator" del CPQ. El signo `|` es otro símbolo que se utiliza dentro de las comillas que signifca que los resultados de `count` serán eviandos ('piped') a otro mandato, en este caso `awk`. Finalmente, el signo `>` dentro de las comillas es otro operador de redistribución, pero en este caso queremos tomar los resultados de `awk` y producir un archivo con un nombre específico--`brown-nonpunct.cnt`. Con este archivo, ahora podemos utilizar SCP para transferir el archivo a nuestro laptop:
+
+```{r}
+# laptop% scp ugaMyID@corpus.uga.edu:brown-nonpunct.cnt .
+```
+
+Lo que hace el mandato de scp es extraer el archivo `brown-nonpunct` del servidor y guardarlo a un espacio local, indicador con el punto. Ahora podemos utilizar el programa R para producir un gráfico:
+
+```{r}
+# library(ggplot2)
+# brown <- read.table("brown-nonpunct.cnt",header=F,colClasses=c("integer","character"),sep=" "))
+# names(brown) <- c("attestations","word")
+# quickplot(1:100,brown$attestations[1:100],main="Brown corpus",xlab="rank",ylab="attestations",log="xy",geom=c("point","smooth"),method="lm",se=F)
+```
+
+![La distribución Zipf de todas las palabras del corpus Brown](images/Zipf1.png)
+
+### Algunas observaciones importantes
+
+1.  La ley de Zipf es la norma. Se espera observarla en todos los niveles del análisis lingüístico.
+2.  Por consiguiente, nunca hay datos suficientes.
+3.  Si un elemento (o una estructura) no aparece en el corpus, **NO* significa que no sea parte de la lengua.
+
+## Tarea
+Para el próximo jueves, vamos a calcular la distribución Zipfiana de diferentes secciones del Corpus del Español siguiendo los mismos pasos que acabamos de realizar con Brown.
+
+
 
 ***
 # Recursos {.tabset .tabset-fade .tabset-pills}

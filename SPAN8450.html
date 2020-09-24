@@ -2138,8 +2138,200 @@ div.tocify {
 <p>Con esta tarea exploremos la distribución de los sufijos <em>-azo(s)/-aza(s)</em> y <em>-ito(s)/-ita(s)</em> en el corpus de ANCORA.</p>
 <p><strong>1^a Parte</strong> Realiza unas búsquedas de las palabras terminadas en los sufijos <em>-azo(s)/-aza(s)</em> y <em>-ito(s)/-ita(s)</em>. ¿Cuántos casos se encuentran?</p>
 <p><strong>2^a Parte</strong> Produce las TTR de estos dos elementos. ¡Cuidado! Hay que eliminar las palabas que no tengan estos elementos como prefijos (p.e. <em>necesito</em>). ¿Cómo se compara el uso de <em>-azo(s)/-aza(s)</em> con <em>-ito(s)/-ita(s)</em> en este corpus?</p>
-<hr />
 </div>
+</div>
+</div>
+<div id="a-semana-4" class="section level1">
+<h1>6a Semana</h1>
+<div id="la-ley-de-zipf" class="section level2">
+<h2>La ley de Zipf</h2>
+<p>: Con las búsquedas que hemos realizado hasta ahora, hemos notado un patrón interesante (¿sospechoso?). Las expresiones bien representadas son muy muy frecuentes. Pero, cuando vemos las otras partes de la lista, se observa que entramos rápidamente en el territorio de los <em>hapax legomena</em><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> Por ejemplo, si volvemos a la consulta que ya hicimos sobre las costrucciones verbales frasales, se observa que, si aun se excluyen los casos de “be out” and “turned out that”, las estructuras como “go out”, “look out” y “get out” son <em>mucho</em> más frecuentes que las demás. ¿Cómo se explica esta distribución?</p>
+<pre class="r"><code># DICKENS&gt; PhrasalV = @[ pos=&quot;V.*&quot; &amp; lemma != &quot;be&quot; ] [ word=&quot;out&quot; ] [ word != &quot;that&quot;];
+# DICKENS&gt; group PhrasalV target lemma cut 100 ;</code></pre>
+<div id="observamos-todas-las-palabras" class="section level3">
+<h3>Observamos todas las palabras</h3>
+<p>Vamos a cambiar de corpus y ver si esta distribución se aplica cuando consideramos todas las palabras (menos la puntuación) a la vez:</p>
+<pre class="r"><code># BROWN&gt; NONPUNCT = [ pos != &quot;(\.|\(|\)|\*|--|\,|:|``|&#39;&#39;|&#39;)(-(HL|TL|NC)){0,2}&quot; ] ;
+# BROWN&gt; count NONPUNCT by word %c ;</code></pre>
+<p>Estos resultados nos muestran que las palabras funcionales como “the” y “of” son las más frecuentes en la distribución de frecuencias. Sin embargo, ¡<strong>más de la mitad</strong> de los tipos solo se observan una vez! Este efecto se puede observar por contar las líneas individuales el output de <code>count</code> con el mandato de unix que vimos la semana pasada (para más información sobre <code>egrep</code>, se debe consultar la sección 2.3 del capítulo de Lu 2014).</p>
+<pre class="r"><code># BROWN&gt; count NONPUNCT by word %c &gt; &quot;| egrep &#39;^1[[:blank:]]&#39; | wc -l&quot; ;
+# 22012
+# BROWN&gt; count NONPUNCT by word %c &gt; &quot;|  wc -l&quot; ;
+# 49804</code></pre>
+<p>Esta situación, donde una cantidad pequeña de expresiones son <strong>super</strong> frecuentes y las demás tienen una frecuencia que se acerca a 1, se llama <strong>la Ley de Zipf</strong>.</p>
+</div>
+</div>
+<div id="la-ley-de-zipf-1" class="section level2">
+<h2>La “ley” de Zipf</h2>
+<p>La ley de Zipf es una “regularidad empírica”, motivado por George Kingsley Zipf en su libro del año 1935 con el título, <em>The Psycho-biology of language</em>. La “regularidad” se puede describir con el argument que la frecuencia <span class="math inline">\(f\)</span> de una palabra es inversamente proporcional a su rango <span class="math inline">\(r\)</span> en una lista (ordenada) de palabras frecuentes.La ecuación que presenta Brezina en la página 44 representa esta idea. Consideremos esta situación con el corpus de Brown:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">palabra</th>
+<th align="left">frecuencia</th>
+<th align="left">rango</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">the</td>
+<td align="left">69971</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">of</td>
+<td align="left">36412</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">and</td>
+<td align="left">28853</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">to</td>
+<td align="left">26158</td>
+<td align="left">4</td>
+</tr>
+<tr class="odd">
+<td align="left">a</td>
+<td align="left">23195</td>
+<td align="left">5</td>
+</tr>
+<tr class="even">
+<td align="left">in</td>
+<td align="left">21337</td>
+<td align="left">6</td>
+</tr>
+<tr class="odd">
+<td align="left">that</td>
+<td align="left">10594</td>
+<td align="left">7</td>
+</tr>
+<tr class="even">
+<td align="left">is</td>
+<td align="left">10109</td>
+<td align="left">8</td>
+</tr>
+<tr class="odd">
+<td align="left">was</td>
+<td align="left">9815</td>
+<td align="left">9</td>
+</tr>
+<tr class="even">
+<td align="left">he</td>
+<td align="left">9548</td>
+<td align="left">10</td>
+</tr>
+<tr class="odd">
+<td align="left">i</td>
+<td align="left">5164</td>
+<td align="left">20</td>
+</tr>
+<tr class="even">
+<td align="left">which</td>
+<td align="left">3561</td>
+<td align="left">30</td>
+</tr>
+<tr class="odd">
+<td align="left">we</td>
+<td align="left">2652</td>
+<td align="left">40</td>
+</tr>
+<tr class="even">
+<td align="left">out</td>
+<td align="left">2097</td>
+<td align="left">50</td>
+</tr>
+<tr class="odd">
+<td align="left">can</td>
+<td align="left">1772</td>
+<td align="left">60</td>
+</tr>
+<tr class="even">
+<td align="left">then</td>
+<td align="left">1380</td>
+<td align="left">70</td>
+</tr>
+<tr class="odd">
+<td align="left">man</td>
+<td align="left">1207</td>
+<td align="left">80</td>
+</tr>
+<tr class="even">
+<td align="left">must</td>
+<td align="left">1013</td>
+<td align="left">90</td>
+</tr>
+<tr class="odd">
+<td align="left">down</td>
+<td align="left">895</td>
+<td align="left">100</td>
+</tr>
+<tr class="even">
+<td align="left">little</td>
+<td align="left">831</td>
+<td align="left">110</td>
+</tr>
+<tr class="odd">
+<td align="left">work</td>
+<td align="left">762</td>
+<td align="left">120</td>
+</tr>
+<tr class="even">
+<td align="left">day</td>
+<td align="left">687</td>
+<td align="left">130</td>
+</tr>
+<tr class="odd">
+<td align="left">year</td>
+<td align="left">658</td>
+<td align="left">140</td>
+</tr>
+<tr class="even">
+<td align="left">three</td>
+<td align="left">610</td>
+<td align="left">150</td>
+</tr>
+</tbody>
+</table>
+<p>Este argumento sobre la proporcionalidad inversa significa que las proporciones de los rangos deben ser proporciones de las frecuencias: es decir, la 50a palabra más común debe tener una frecuencia que es, más o menos, tres veces más que la 150a palabra más común. En esta tabla, 2097 (la frecuencia de la 50a palabra-“out”) sí tiene esta propiedad: <span class="math inline">\(3*610=1830\)</span>, donde <span class="math inline">\(f_{150}=610\)</span>. La forma típica de visualizar esta distribución es con un cuadro logorítmico, donde se calcula el logoritmo de los dos lados:</p>
+<div class="figure">
+<img src="images/Logorithm.png" alt="" />
+<p class="caption">El cáluco de los logoritmos</p>
+</div>
+<p>El paso del (1) a (2) nos produce un elemento constante de proporcionalidad, <code>h</code>. El paso (3) sigue del paso (2) mediante la ley de los logaritmos. Este elemento constante <code>h</code> produce la tendencia decresciente que se observa con la ley de Zipf.</p>
+<p>Las distribuciones de Zipf (“Zipfian”) son muy comunes en la lengua natural, para todos tipos de expresiones lingüísticas y con escalas de diferentes niveles.</p>
+<p><strong>Ejercicio</strong>: Completemos la tabla en la pregunta 5 de Brezina (página 63).</p>
+<div id="la-visualización" class="section level3">
+<h3>La visualización</h3>
+<p>Cuando se producen distribuciones de frecuencias con el CQP, las podemos compartir con otros programs. Por ejemplo, podemos utilizar <a href="https://www.r-project.org/">el programa estadística y gráfica R</a>. Para poder sacar una distibución de frecuencia con el CQP, podeos utilizar un mandato de unix que pertenece a la familia <code>awk</code> (sección 2.3.5 de Lu 2014). En el siguiente ejemplo, <code>awk</code> se utiliza para extraer la primera columna (el “attestation count”) y la columna 2 (la palabra). La tercera y la última columna que produce el mandato <code>count</code> son los que se utilizan para producir la concordancia de KWIC y, por lo tanto, no se tienen que guardar.</p>
+<pre class="r"><code># BROWN&gt; count NONPUNCT by word %c &gt; &quot;| awk &#39;{print $1,$2}&#39; &gt; brown-nonpunct.cnt&quot; ;</code></pre>
+<p>El signo <code>&gt;</code> es lo que se llama un “output redirection operator” del CPQ. El signo <code>|</code> es otro símbolo que se utiliza dentro de las comillas que signifca que los resultados de <code>count</code> serán eviandos (‘piped’) a otro mandato, en este caso <code>awk</code>. Finalmente, el signo <code>&gt;</code> dentro de las comillas es otro operador de redistribución, pero en este caso queremos tomar los resultados de <code>awk</code> y producir un archivo con un nombre específico–<code>brown-nonpunct.cnt</code>. Con este archivo, ahora podemos utilizar SCP para transferir el archivo a nuestro laptop:</p>
+<pre class="r"><code># laptop% scp ugaMyID@corpus.uga.edu:brown-nonpunct.cnt .</code></pre>
+<p>Lo que hace el mandato de scp es extraer el archivo <code>brown-nonpunct</code> del servidor y guardarlo a un espacio local, indicador con el punto. Ahora podemos utilizar el programa R para producir un gráfico:</p>
+<pre class="r"><code># library(ggplot2)
+# brown &lt;- read.table(&quot;brown-nonpunct.cnt&quot;,header=F,colClasses=c(&quot;integer&quot;,&quot;character&quot;),sep=&quot; &quot;))
+# names(brown) &lt;- c(&quot;attestations&quot;,&quot;word&quot;)
+# quickplot(1:100,brown$attestations[1:100],main=&quot;Brown corpus&quot;,xlab=&quot;rank&quot;,ylab=&quot;attestations&quot;,log=&quot;xy&quot;,geom=c(&quot;point&quot;,&quot;smooth&quot;),method=&quot;lm&quot;,se=F)</code></pre>
+<div class="figure">
+<img src="images/Zipf1.png" alt="" />
+<p class="caption">La distribución Zipf de todas las palabras del corpus Brown</p>
+</div>
+</div>
+<div id="algunas-observaciones-importantes" class="section level3">
+<h3>Algunas observaciones importantes</h3>
+<ol style="list-style-type: decimal">
+<li>La ley de Zipf es la norma. Se espera observarla en todos los niveles del análisis lingüístico.</li>
+<li>Por consiguiente, nunca hay datos suficientes.</li>
+<li>Si un elemento (o una estructura) no aparece en el corpus, **NO* significa que no sea parte de la lengua.</li>
+</ol>
+</div>
+</div>
+<div id="tarea-1" class="section level2">
+<h2>Tarea</h2>
+<p>Para el próximo jueves, vamos a calcular la distribución Zipfiana de diferentes secciones del Corpus del Español siguiendo los mismos pasos que acabamos de realizar con Brown.</p>
+<hr />
 </div>
 </div>
 <div id="recursos" class="section level1 tabset tabset-fade tabset-pills">
@@ -2221,6 +2413,7 @@ div.tocify {
 <li id="fn1"><p>Gracias a Donald Dunagan por la prepación de este documento.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p>Verifica que la versión del CQP que utilizas es la versión apropiada con el mandato <code>cqp -version</code>. Debe ser la versión 3.4.22.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 <li id="fn3"><p>Estos apuntes se han basado en los apuntos de curso del profesor John Hale.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Los <em>Hapax Legomena</em> son palabras que solo aparecen una vez. En la sección 2.3 de Brezina, este término griego se introduce.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
