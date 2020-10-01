@@ -2395,7 +2395,7 @@ Sys.getenv(&quot;CORPUS_REGISTRY&quot;) # check that it was successfully set</co
 <p>El mandato de <code>kwic</code> produce una concordancia de ‘keyword-in-context’. El primero argumento es el nombre del corpus, y el segundo es la búsqueda. El programa R reconoce los argumentos de una fución o por su posición o por la sintáxis <code>name=arg</code>. Por eso, los dos siguientes mandatos son equivalentes.</p>
 <pre class="r"><code>kwic(&quot;DICKENS&quot;,&quot;door-nail&quot;)</code></pre>
 <pre class="r"><code>kwic(&quot;DICKENS&quot;,query=&quot;door-nail&quot;)</code></pre>
-<p>Debe aparecer una window “pop-up” con con algunos controles para explorar los resultados. Para consultar la documentación de <code>kwic</code> o cualquier otra función de R, podemos utilizar el mandato <code>?kwic</code> o <code>help(kwic)</code> al mensaje de R (<code>&gt;</code>).</p>
+<p>Debe aparecer una ventana “pop-up” con con algunos controles para explorar los resultados. Para consultar la documentación de <code>kwic</code> o cualquier otra función de R, podemos utilizar el mandato <code>?kwic</code> o <code>help(kwic)</code> al mensaje de R (<code>&gt;</code>).</p>
 </div>
 <div id="contar-casos" class="section level2">
 <h2>Contar casos</h2>
@@ -2412,7 +2412,71 @@ Sys.getenv(&quot;CORPUS_REGISTRY&quot;) # check that it was successfully set</co
 <pre class="r"><code>count(&quot;DICKENS&quot;,query=&#39; [word=&quot;nails?&quot;] &#39;,cqp=T)</code></pre>
 <pre><code>##                query count         freq
 ## 1:  [word=&quot;nails?&quot;]     73 2.142594e-05</code></pre>
+<p>Las primeras consultas solo contienen palabras. La tercera contiene una expresión regular (<code>?</code>) que nos busca la forma singular “nail” y plural “nails”. Podemos pedirle a <code>polmineR</code> que reconozca las consultas del tipo <code>CQP</code> con el argumento <code>cqp=T</code> (donde <code>T</code> es un elemento constante que signific TRUE en R). Incluímos la consulta con comillas simples porque la consulta misma se indica con comillas. La cuarta consulta es otra versión equivalente que hace explícita el requisito de que los atributos de las palabras tienen que concordar con la expresión regular <code>nails?</code>. Observemos que 73=30+43; la única fila del Data Frame que resulta de la búsqueda que contiene todos las variantes de las formas singulares y plurales.</p>
+<p>Además, podemos especificar que queremos varias filas a la vez mediante el uso de la función <code>c()</code>.</p>
+<pre class="r"><code>nail&lt;-count(&quot;DICKENS&quot;,query=c(&quot;nail&quot;,&quot;nails&quot;))</code></pre>
+<p>El resultado de este tipo de múltiple consulta se puede asignar a una variable como <code>nail</code> con la flechita. Cuando asignmamos el resultado de una función a una variable, no se produce un output. El output se puede exhibir por escribir el nombre de los resultados, en este caso <code>nail</code>.</p>
+<p>Si seguimos con este exemplo, veremos que el elemento <code>nail$query=="nails"</code> es un predicado que, para la segunda fila del data frame, es verdad pero no para el segundo. Esta especificación para las files tiene el nombre de un <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Index-vectors">“index vector”</a>. Abajo, se nota que el index vector recibe el nombre de <code>i</code> mediante el proceso de la asignación. Después, cuando escribimos <code>i</code>, el R produce el value de esta variable, lo cual en este caso es un vector de dos valores de veracidad (“truth values”).</p>
+<pre class="r"><code>i  &lt;- nail$query==&quot;nails&quot;
+i</code></pre>
+<pre><code>## [1] FALSE  TRUE</code></pre>
+<p>Si utilizamos el index vector dentro de los corchetes después del nombre de un data frame produce el efecto de hacer un subconjunto de los datos que satisfacen este predicado.</p>
+<pre class="r"><code>nail[i]</code></pre>
+<pre><code>##    query count         freq
+## 1: nails    43 1.262076e-05</code></pre>
+<p>Así solo nos queda una fila que contiene las formas plurales.</p>
+</div>
+<div id="la-dispersión" class="section level2">
+<h2>La dispersión</h2>
+<p>Algunas formas se localizan de manera concentrada en una parte del corpus, mientras que otros se observan mediante todo el corpus. Este fenómeno, descrito por Brezina (sección 2.4) como "The Whelk Problem (homenaje a Adam Kilgarriff), se ha designado como la dispersión.</p>
+<div id="un-repaso-con-el-royal-society-corpus" class="section level3">
+<h3>Un repaso con el Royal Society Corpus</h3>
+<p>Hace tiempo estudiamos diferentes formas de la palabra “divers” con el Royal Society Corpus. Los detalles de este corpus, y cualquier otro corpus en el servidor, se pueden recuperar desde el mensaje de R. Solo formamos un “corpus object” con el mandato <code>corpus</code>. Entonces, el objecto que resulta sirve como punto de referencia para diferentes tipos de información–p.e. el tamaño, el origen, y los atributos.</p>
+<pre class="r"><code>rsc  &lt;-  corpus(&quot;RSC&quot;)
+show_info(rsc)
+s_attributes(rsc)</code></pre>
+<pre><code>##  [1] &quot;text&quot;            &quot;text_id&quot;         &quot;text_author&quot;     &quot;text_century&quot;   
+##  [5] &quot;text_decade&quot;     &quot;text_doi&quot;        &quot;text_period&quot;     &quot;text_title&quot;     
+##  [9] &quot;text_type&quot;       &quot;text_year&quot;       &quot;page&quot;            &quot;page_id&quot;        
+## [13] &quot;page_no&quot;         &quot;s&quot;               &quot;normalised&quot;      &quot;normalised_orig&quot;
+## [17] &quot;inferred&quot;</code></pre>
+<p>Con el atributo-s de <code>text_year</code>, podemos verificar para ver cuáles eran los años cuando la palabra <code>divers</code> se observó más o menos. Utilizemos el mandato <code>dispersion</code> y formemos una tabla con la forma y el año. La función <code>head</code> de R nos da la posibilidad de ver solo unas filas (o columnas) a de un data frame más extendido (en este caso con 210 filas).</p>
+<pre class="r"><code>divers  &lt;- dispersion(&quot;RSC&quot;,query=&#39;divers&#39;,s_attribute=&quot;text_year&quot;)
+head(divers)</code></pre>
+<pre><code>##     query text_year count
+## 1: divers      1665    42
+## 2: divers      1666    40
+## 3: divers      1668    26
+## 4: divers      1669    62
+## 5: divers      1670    82
+## 6: divers      1671    71</code></pre>
+<p>Después, podemos producir una gráfica de barra directamente con estos resultados:</p>
+<pre class="r"><code>barplot(height = divers$count, names.arg = divers$text_year, las = 2)</code></pre>
+<p><img src="SPAN8450_files/figure-html/unnamed-chunk-21-1.png" width="672" /> ### Wuthering Heights</p>
+<p>¿Cómo funciona <code>dispersion</code>? Podemos construir nuestra propia función de <code>dispersion</code> y estudiar la mención de personajes en la literatura inglesa.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+<p>Primero, tenemos que crear un vector de posiciones de corpus en Wuthering Heights. Este poceso puede ser afectado por la repetición del valor disparatado NA (‘Not Applicable’) lo cual es muy frecuente en este corpus.</p>
+<p>Después, utilzamos la función de polmineR <code>cpos</code> para revelar las posiciones de corpus que concuerdan con el nombre propio “Heathcliff”. Si utilizamos el mandato <code>?cpos</code>, podemos consultar la documentación para verificar que el resultado de <code>cpos</code> es una matrix de dos columnas donde la primera columna contiene las posiciones initiales de la consulta y la segunda contiene las posiciones finales. Como el elemento “Heathcliff” es solo una palabara, estos números son iguales, así que elegimos arbitráriabmente la primera columna mediante el uso de <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Array-indexing">la notación comma-1</a>.</p>
+<p>Esta columna de posiciones de corpus sirve como un tipo de index vector. Si ponemos este vector dentro de corchetes a la mano izquierda de la flechita de asignación, podemos definir estas posiciones al valor 1 y dejamos que las demás posiciones de corpus donde el nombre “Heathcliff” no se menciona con el valor NA. Este vector ya revisado <code>w_count</code> sirve como un argumento apropiado para el mandato gráfico básico de R, <code>plot</code>.</p>
+<pre class="r"><code># everything is NA
+w_count &lt;- rep(NA,times=size(&quot;WUTHERING&quot;))
+ # until Healthcliff is mentioned
+where_he_is_mentioned  &lt;- cpos(&quot;WUTHERING&quot;,&quot;Heathcliff&quot;)[,1]
+ # set all of those corpus positions to the value 1
+w_count[where_he_is_mentioned] &lt;- 1
+ #Your plot may also appear a lot taller (or thicker) than the one seen here.
+plot(w_count,main=&quot;Gráfica de dispersión de `Healthcliff` en Wuthering Heights&quot;,xlab=&quot;Duración de la Novela&quot;,ylab=&quot;Healthcliff&quot;,type=&quot;h&quot;,ylim=c(0,1),yaxt=&#39;n&#39;)</code></pre>
+<p><img src="SPAN8450_files/figure-html/unnamed-chunk-22-1.png" width="672" /> Notemos que Heathcliff aparece mediante toda la novela, aunque el carácter Edgar se muere en la mitad de la historia.</p>
+<pre class="r"><code># everything is NA
+w_count2 &lt;- rep(NA,times=size(&quot;WUTHERING&quot;))
+ # until Edgar is mentioned
+where_edgar_is_mentioned  &lt;- cpos(&quot;WUTHERING&quot;,&quot;Edgar&quot;)[,1]
+ # set all of those corpus positions to the value 1
+w_count2[where_edgar_is_mentioned] &lt;- 1
+ #Your plot may also appear a lot taller (or thicker) than the one seen here.
+plot(w_count2,main=&quot;Gráfica de dispersión de `Edgar` en Wuthering Heights&quot;,xlab=&quot;Duración de la Novela&quot;,ylab=&quot;Edgar&quot;,type=&quot;h&quot;,ylim=c(0,1),yaxt=&#39;n&#39;)</code></pre>
+<p><img src="SPAN8450_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <hr />
+</div>
 </div>
 </div>
 <div id="recursos" class="section level1 tabset tabset-fade tabset-pills">
@@ -2497,6 +2561,7 @@ Sys.getenv(&quot;CORPUS_REGISTRY&quot;) # check that it was successfully set</co
 <li id="fn4"><p>Los <em>Hapax Legomena</em> son palabras que solo aparecen una vez. En la sección 2.3 de Brezina, este término griego se introduce.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
 <li id="fn5"><p>También os encontré un script que automatiza el proceso descrito en el Windows Setup Guide. Hay que (i) descargar el archivo <code>kucera_ polminer_ prep-DOT-BAT-RENAME-ME</code> para tu máquina local, (ii) cambiar el nombre a <code>kucera_polminer_prep.bat</code> y (iii) hacer un double-click. Notáos que este proceso solo se aplica con los usuarios de Windows.<a href="#fnref5" class="footnote-back">↩︎</a></p></li>
 <li id="fn6"><p>Con el macOS, el paquete se puede instalar con el R básico. Sin embargo, con Windows, el proceso de instalar el paqueste del código básico requiere el uso de Rtools. Por eso, el profesor Blätte proporciona una versión binaria–es decir, una versión que se ha compilado. El argumento adicional <code>type="win.binary"</code> requiere esta versión. Eventualmente, los dos paquetes se distribuirán por el archivo CRAN. Por ahora, la versión más reciente está disponible en el depósito personal del profesor Blätte. Se debe consultar la discusión de paquetes al principio de la introducción al <code>tidyverse</code> preparado por Jonathan Jones.<a href="#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>Este ejemplo se adopto de la sección 4.4 de Jockers 2020.<a href="#fnref7" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 

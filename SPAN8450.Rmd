@@ -1296,20 +1296,103 @@ kwic("DICKENS","door-nail")
 kwic("DICKENS",query="door-nail")
 ```
 
-Debe aparecer una window "pop-up" con con algunos controles para explorar los resultados. Para consultar la documentación de `kwic` o cualquier otra función de R, podemos utilizar el mandato `?kwic` o `help(kwic)` al mensaje de R (`>`).
+Debe aparecer una ventana "pop-up" con con algunos controles para explorar los resultados. Para consultar la documentación de `kwic` o cualquier otra función de R, podemos utilizar el mandato `?kwic` o `help(kwic)` al mensaje de R (`>`).
 
 ## Contar casos
 
 El mandato `count` calcula las frecuencias de las palabras. Su resultado es un tipo de "data frame". Se debe consultar la subsección sobre DATA FRAMEs en la introducción al R preparada por Jonathan Jones. Si la búsqueda es una sola palabra, este Data Frame tendrá una sola fila, como se demuestra con los siguientes ejemplos: 
 
-```{r}
+```{r echo=TRUE}
 count("DICKENS",query="nail")
 count("DICKENS",query="nails")
 count("DICKENS",query='"nails?"',cqp=TRUE)
 count("DICKENS",query=' [word="nails?"] ',cqp=T)
 ```
 
+Las primeras consultas solo contienen palabras. La tercera contiene una expresión regular (`?`) que nos busca la forma singular "nail" y plural "nails". Podemos pedirle a `polmineR` que reconozca las consultas del tipo `CQP` con el argumento `cqp=T` (donde `T` es un elemento constante que signific TRUE en R). Incluímos la consulta con comillas simples porque la consulta misma se indica con comillas. La cuarta consulta es otra versión equivalente que hace explícita el requisito de que los atributos de las palabras tienen que concordar con la expresión regular `nails?`. Observemos que 73=30+43; la única fila del Data Frame que resulta de la búsqueda que contiene todos las variantes de las formas singulares y plurales.
 
+Además, podemos especificar que queremos varias filas a la vez mediante el uso de la función `c()`. 
+
+```{r echo=TRUE}
+nail<-count("DICKENS",query=c("nail","nails"))
+```
+
+El resultado de este tipo de múltiple consulta se puede asignar a una variable como `nail` con la flechita. Cuando asignmamos el resultado de una función a una variable, no se produce un output. El output se puede exhibir por escribir el nombre de los resultados, en este caso `nail`.
+
+Si seguimos con este exemplo, veremos que el elemento `nail$query=="nails"` es un predicado que, para la segunda fila del data frame, es verdad pero no para el segundo. Esta especificación para las files tiene el nombre de un ["index vector"](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Index-vectors). Abajo, se nota que el index vector recibe el nombre de `i` mediante el proceso de la asignación. Después, cuando escribimos `i`, el R produce el value de esta variable, lo cual en este caso es un vector de dos valores de veracidad ("truth values").  
+
+```{r echo=TRUE}
+i  <- nail$query=="nails"
+i
+```
+
+Si utilizamos el index vector dentro de los corchetes después del nombre de un data frame produce el efecto de hacer un subconjunto de los datos que satisfacen este predicado.
+
+```{r echo=TRUE}
+nail[i]
+```
+
+Así solo nos queda una fila que contiene las formas plurales.
+
+## La dispersión
+
+Algunas formas se localizan de manera concentrada en una parte del corpus, mientras que otros se observan mediante todo el corpus. Este fenómeno, descrito por Brezina (sección 2.4) como "The Whelk Problem (homenaje a Adam Kilgarriff), se ha designado como la dispersión.
+
+### Un repaso con el Royal Society Corpus
+
+Hace tiempo estudiamos diferentes formas de la palabra "divers" con el Royal Society Corpus. Los detalles de este corpus, y cualquier otro corpus en el servidor, se pueden recuperar desde el mensaje de R. Solo formamos un "corpus object" con el mandato `corpus`. Entonces, el objecto que resulta sirve como punto de referencia para diferentes tipos de información--p.e. el tamaño, el origen, y los atributos.
+
+```{r echo=TRUE}
+rsc  <-  corpus("RSC")
+show_info(rsc)
+s_attributes(rsc)
+```
+
+Con el atributo-s de `text_year`, podemos verificar para ver cuáles eran los años cuando la palabra `divers` se observó más o menos. Utilizemos el mandato `dispersion` y formemos una tabla con la forma y el año. La función `head` de R nos da la posibilidad de ver solo unas filas (o columnas) a de un data frame más extendido (en este caso con 210 filas).
+
+```{r}
+divers  <- dispersion("RSC",query='divers',s_attribute="text_year")
+head(divers)
+```
+
+Después, podemos producir una gráfica de barra directamente con estos resultados:
+
+```{r}
+barplot(height = divers$count, names.arg = divers$text_year, las = 2)
+```
+### Wuthering Heights
+
+¿Cómo funciona `dispersion`? Podemos construir nuestra propia función de `dispersion` y estudiar la mención de personajes en la literatura inglesa.^[Este ejemplo se adopto de la sección 4.4 de Jockers 2020.]
+
+Primero, tenemos que crear un vector de posiciones de corpus en Wuthering Heights. Este poceso puede ser afectado por la repetición del valor disparatado NA ('Not Applicable') lo cual es muy frecuente en este corpus.
+
+Después, utilzamos la función de polmineR `cpos` para revelar las posiciones de corpus que concuerdan con el nombre propio "Heathcliff". Si utilizamos el mandato `?cpos`, podemos consultar la documentación para verificar que el resultado de `cpos` es una matrix de dos columnas donde la primera columna contiene las posiciones initiales de la consulta y la segunda contiene las posiciones finales. Como el elemento "Heathcliff" es solo una palabara, estos números son iguales, así que elegimos arbitráriabmente la primera columna mediante el uso de [la notación comma-1](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Array-indexing).
+
+Esta columna de posiciones de corpus sirve como un tipo de index vector. Si ponemos este vector dentro de corchetes a la mano izquierda de la flechita de asignación, podemos definir estas posiciones al valor 1 y dejamos que las demás posiciones de corpus donde el nombre "Heathcliff" no se menciona con el valor NA. Este vector ya revisado `w_count` sirve como un argumento apropiado para el mandato gráfico básico de R, `plot`.
+
+```{r}
+# everything is NA
+w_count <- rep(NA,times=size("WUTHERING"))
+ # until Healthcliff is mentioned
+where_he_is_mentioned  <- cpos("WUTHERING","Heathcliff")[,1]
+ # set all of those corpus positions to the value 1
+w_count[where_he_is_mentioned] <- 1
+ #Your plot may also appear a lot taller (or thicker) than the one seen here.
+plot(w_count,main="Gráfica de dispersión de `Healthcliff` en Wuthering Heights",xlab="Duración de la Novela",ylab="Healthcliff",type="h",ylim=c(0,1),yaxt='n')
+```
+Notemos que Heathcliff aparece mediante toda la novela, aunque el carácter Edgar se muere en la mitad de la historia.
+
+
+```{r}
+# everything is NA
+w_count2 <- rep(NA,times=size("WUTHERING"))
+ # until Edgar is mentioned
+where_edgar_is_mentioned  <- cpos("WUTHERING","Edgar")[,1]
+ # set all of those corpus positions to the value 1
+w_count2[where_edgar_is_mentioned] <- 1
+ #Your plot may also appear a lot taller (or thicker) than the one seen here.
+plot(w_count2,main="Gráfica de dispersión de `Edgar` en Wuthering Heights",xlab="Duración de la Novela",ylab="Edgar",type="h",ylim=c(0,1),yaxt='n')
+```
 
 ***
 # Recursos {.tabset .tabset-fade .tabset-pills}
