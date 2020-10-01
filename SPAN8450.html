@@ -2331,6 +2331,87 @@ div.tocify {
 <div id="tarea-1" class="section level2">
 <h2>Tarea</h2>
 <p>Para el próximo jueves, vamos a calcular la distribución Zipfiana del ANCORA siguiendo los mismos pasos que acabamos de realizar con Brown.</p>
+</div>
+</div>
+<div id="a-semana-5" class="section level1">
+<h1>7a Semana</h1>
+<p><strong>El uso de PolmineR:</strong> El paquate de R preparado pro <a href="https://www.uni-due.de/politik/blaette_forschung.php">Andreas Blätte</a> facilita el proceso de producir gráficas y realizar el análisis estadístico con los resultados de nuestro análisis de corpus. En esta sección del curso, introducimos el paquete <code>polmineR</code>, explicamos su integración con nuestro servidor, y describimos las funcionalidades principales que se desciben en <a href="https://cran.r-project.org/web/packages/polmineR/vignettes/vignette.html">el polmineR vignette</a>.</p>
+<div id="los-requisitos" class="section level2">
+<h2>Los requisitos</h2>
+<ol style="list-style-type: decimal">
+<li>Primero, hay que instalar <a href="https://cran.r-project.org/doc/manuals/r-release/R-FAQ.html#What-is-R_003f">el sistema estadístico y grafíco de R</a>. También, recomiendo que también se instale <a href="https://rstudio.com/">el programa de RStudio</a>.</li>
+<li>Abre <a href="https://eits.uga.edu/access_and_security/infosec/tools/vpn/">el VPN</a>. Después, tiene que ajuntar las dos unidades de disco que se exportan del servidor de corpus de UGA. Este proceso está descrito en los siguientes documentos: para <a href="https://uga.view.usg.edu/d2l/le/content/2064782/viewContent/32252896/View">macOS</a> y <a href="https://uga.view.usg.edu/d2l/le/content/2064782/viewContent/32252907/View">Windows</a>.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></li>
+<li>Verifica que el paquete <code>polmineR</code> se ha estalado. En el R console, escribe o <code>install.packages("polmineR",repos="https://polmine.github.io/drat")</code> para macOS o<code>install.packages("polmineR",repos="https://polmine.github.io/drat",type="win.binary")</code> para Windows. Solo hay que hacer este proceso una vez.’<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></li>
+<li>Según esta configuración, tu computadora es la que produce las consultas y calcula los resultados. El servidor de corpus de UGA sirve como el servidor de archivo para los corpus.</li>
+</ol>
+</div>
+<div id="a-probarlo" class="section level2">
+<h2>¡A probarlo!</h2>
+<p>Para utilizar los corpus dentro del ambiente de R, tenemos que indicar el “registry” apropiado con el proceso de establecar un “environment variable”. Hay dos registros seperados: uno para macOS y otro para Windows. Se puede establecer estas variables con R mediante el mandato <code>Sys.setenv</code>. El mandato <code>getenv</code> permite que verifiquemos que hemos establecido correctamente los registros. Los materiales después de la marca de hash es un comento; es un tipo de documentación, no un mandato.</p>
+<pre class="r"><code>Sys.setenv(&quot;CORPUS_REGISTRY&quot; = &quot;/Volumes/cwb_registry/mac_registry&quot;) # or &quot;R:/windows_registry&quot; if you are running Windows
+Sys.getenv(&quot;CORPUS_REGISTRY&quot;) # check that it was successfully set</code></pre>
+<pre><code>## [1] &quot;/Volumes/cwb_registry/mac_registry&quot;</code></pre>
+<p>Cuando esté listo el <code>CORPUS_REGISTRY</code> para el disco apropiado, ya estamos listos para abrir el paquete de <code>polmineR</code>. <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Packages">El manual de R explica el proceso de trabajar con los paquetes</a>.</p>
+<pre class="r"><code>library(polmineR)</code></pre>
+<p>Si funcionó bien, podemos pedir que nos produzca una lista de los corpus disponibles:</p>
+<pre class="r"><code>corpus()</code></pre>
+<pre><code>##           corpus       size encoding template
+## 1         ANCORA     517293   latin1    FALSE
+## 2            BNC  112156361   latin1    FALSE
+## 3       BNC-BABY    4644834   latin1    FALSE
+## 4          BROWN    1161192   latin1    FALSE
+## 5          BRWAC 2147483647   latin1    FALSE
+## 6            CDE 2147483647   latin1    FALSE
+## 7            CEG    1223383   latin1    FALSE
+## 8   CETEMPUBLICO  203717854   latin1    FALSE
+## 9           COCA  531874238   latin1    FALSE
+## 10          COHA  448680954   latin1    FALSE
+## 11          DASS    3990927   latin1    FALSE
+## 12        DASS19    3507808   latin1    FALSE
+## 13          DEFT     109699   latin1    FALSE
+## 14         DEWAC 1627169557   latin1    FALSE
+## 15       DICKENS    3407085   latin1    FALSE
+## 16   EUROPARL-DE   37461789   latin1    FALSE
+## 17   EUROPARL-EN   39431862   latin1    FALSE
+## 18   EUROPARL-ES   40461850   latin1    FALSE
+## 19   EUROPARL-FR   43988004   latin1    FALSE
+## 20   EUROPARL-IT   38966669   latin1    FALSE
+## 21   EUROPARL-NL   39535069   latin1    FALSE
+## 22        FOLGER    1030558   latin1    FALSE
+## 23         FRWAC 1613814684   latin1    FALSE
+## 24    GERMAN-LAW     816205   latin1    FALSE
+## 25 GERMAPARLMINI     222201   latin1     TRUE
+## 26         ITWAC 1909826324   latin1    FALSE
+## 27           NYT 1350046523   latin1    FALSE
+## 28       REUTERS       4050   latin1     TRUE
+## 29           RSC   78605737   latin1    FALSE
+## 30         SENSE      51826   latin1    FALSE
+## 31 SPOKENBNC2014   11422615   latin1    FALSE
+## 32    WACKYPEDIA  988267888   latin1    FALSE
+## 33     WUTHERING     144983   latin1    FALSE</code></pre>
+</div>
+<div id="las-concordancias" class="section level2">
+<h2>Las concordancias</h2>
+<p>El mandato de <code>kwic</code> produce una concordancia de ‘keyword-in-context’. El primero argumento es el nombre del corpus, y el segundo es la búsqueda. El programa R reconoce los argumentos de una fución o por su posición o por la sintáxis <code>name=arg</code>. Por eso, los dos siguientes mandatos son equivalentes.</p>
+<pre class="r"><code>kwic(&quot;DICKENS&quot;,&quot;door-nail&quot;)</code></pre>
+<pre class="r"><code>kwic(&quot;DICKENS&quot;,query=&quot;door-nail&quot;)</code></pre>
+<p>Debe aparecer una window “pop-up” con con algunos controles para explorar los resultados. Para consultar la documentación de <code>kwic</code> o cualquier otra función de R, podemos utilizar el mandato <code>?kwic</code> o <code>help(kwic)</code> al mensaje de R (<code>&gt;</code>).</p>
+</div>
+<div id="contar-casos" class="section level2">
+<h2>Contar casos</h2>
+<p>El mandato <code>count</code> calcula las frecuencias de las palabras. Su resultado es un tipo de “data frame”. Se debe consultar la subsección sobre DATA FRAMEs en la introducción al R preparada por Jonathan Jones. Si la búsqueda es una sola palabra, este Data Frame tendrá una sola fila, como se demuestra con los siguientes ejemplos:</p>
+<pre class="r"><code>count(&quot;DICKENS&quot;,query=&quot;nail&quot;)</code></pre>
+<pre><code>##    query count         freq
+## 1:  nail    30 8.805181e-06</code></pre>
+<pre class="r"><code>count(&quot;DICKENS&quot;,query=&quot;nails&quot;)</code></pre>
+<pre><code>##    query count         freq
+## 1: nails    43 1.262076e-05</code></pre>
+<pre class="r"><code>count(&quot;DICKENS&quot;,query=&#39;&quot;nails?&quot;&#39;,cqp=TRUE)</code></pre>
+<pre><code>##       query count         freq
+## 1: &quot;nails?&quot;    73 2.142594e-05</code></pre>
+<pre class="r"><code>count(&quot;DICKENS&quot;,query=&#39; [word=&quot;nails?&quot;] &#39;,cqp=T)</code></pre>
+<pre><code>##                query count         freq
+## 1:  [word=&quot;nails?&quot;]     73 2.142594e-05</code></pre>
 <hr />
 </div>
 </div>
@@ -2414,6 +2495,8 @@ div.tocify {
 <li id="fn2"><p>Verifica que la versión del CQP que utilizas es la versión apropiada con el mandato <code>cqp -version</code>. Debe ser la versión 3.4.22.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 <li id="fn3"><p>Estos apuntes se han basado en los apuntos de curso del profesor John Hale.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 <li id="fn4"><p>Los <em>Hapax Legomena</em> son palabras que solo aparecen una vez. En la sección 2.3 de Brezina, este término griego se introduce.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>También os encontré un script que automatiza el proceso descrito en el Windows Setup Guide. Hay que (i) descargar el archivo <code>kucera_ polminer_ prep-DOT-BAT-RENAME-ME</code> para tu máquina local, (ii) cambiar el nombre a <code>kucera_polminer_prep.bat</code> y (iii) hacer un double-click. Notáos que este proceso solo se aplica con los usuarios de Windows.<a href="#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Con el macOS, el paquete se puede instalar con el R básico. Sin embargo, con Windows, el proceso de instalar el paqueste del código básico requiere el uso de Rtools. Por eso, el profesor Blätte proporciona una versión binaria–es decir, una versión que se ha compilado. El argumento adicional <code>type="win.binary"</code> requiere esta versión. Eventualmente, los dos paquetes se distribuirán por el archivo CRAN. Por ahora, la versión más reciente está disponible en el depósito personal del profesor Blätte. Se debe consultar la discusión de paquetes al principio de la introducción al <code>tidyverse</code> preparado por Jonathan Jones.<a href="#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -2473,7 +2556,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

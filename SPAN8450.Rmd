@@ -1255,6 +1255,60 @@ Lo que hace el mandato de scp es extraer el archivo `brown-nonpunct` del servido
 ## Tarea
 Para el próximo jueves, vamos a calcular la distribución Zipfiana del ANCORA siguiendo los mismos pasos que acabamos de realizar con Brown.
 
+# 7a Semana
+
+**El uso de PolmineR:** El paquate de R preparado pro [Andreas Blätte](https://www.uni-due.de/politik/blaette_forschung.php) facilita el proceso de producir gráficas y realizar el análisis estadístico con los resultados de nuestro análisis de corpus. En esta sección del curso, introducimos el paquete `polmineR`, explicamos su integración con nuestro servidor, y describimos las funcionalidades principales que se desciben en [el polmineR vignette](https://cran.r-project.org/web/packages/polmineR/vignettes/vignette.html).
+
+## Los requisitos
+
+1.    Primero, hay que instalar [el sistema estadístico y grafíco de R](https://cran.r-project.org/doc/manuals/r-release/R-FAQ.html#What-is-R_003f). También, recomiendo que también se instale [el programa de RStudio](https://rstudio.com/).
+2.    Abre [el VPN](https://eits.uga.edu/access_and_security/infosec/tools/vpn/). Después, tiene que ajuntar las dos unidades de disco que se exportan del servidor de corpus de UGA. Este proceso está descrito en los siguientes documentos: para [macOS](https://uga.view.usg.edu/d2l/le/content/2064782/viewContent/32252896/View) y [Windows](https://uga.view.usg.edu/d2l/le/content/2064782/viewContent/32252907/View).^[También os encontré un script que automatiza el proceso descrito en el Windows Setup Guide. Hay que (i) descargar el archivo `kucera_ polminer_ prep-DOT-BAT-RENAME-ME` para tu máquina local, (ii) cambiar el nombre a `kucera_polminer_prep.bat` y (iii) hacer un double-click. Notáos que este proceso solo se aplica con los usuarios de Windows.]
+3.    Verifica que el paquete `polmineR` se ha estalado. En el R console, escribe o `install.packages("polmineR",repos="https://polmine.github.io/drat")` para macOS o`install.packages("polmineR",repos="https://polmine.github.io/drat",type="win.binary")` para Windows. Solo hay que hacer este proceso una vez.'^[Con el macOS, el paquete se puede instalar con el R básico. Sin embargo, con Windows, el proceso de instalar el paqueste del código básico requiere el uso de Rtools. Por eso, el profesor Blätte proporciona una versión binaria--es decir, una versión que se ha compilado. El argumento adicional `type="win.binary"` requiere esta versión. Eventualmente, los dos paquetes se distribuirán por el archivo CRAN. Por ahora, la versión más reciente está disponible en el depósito personal del profesor Blätte. Se debe consultar la discusión de paquetes al principio de la introducción al `tidyverse` preparado por Jonathan Jones.]
+4.    Según esta configuración, tu computadora es la que produce las consultas y calcula los resultados. El servidor de corpus de UGA sirve como el servidor de archivo para los corpus.
+
+## ¡A probarlo!
+
+Para utilizar los corpus dentro del ambiente de R, tenemos que indicar el "registry" apropiado con el proceso de establecar un "environment variable". Hay dos registros seperados: uno para macOS y otro para Windows. Se puede establecer estas variables con R mediante el mandato `Sys.setenv`. El mandato `getenv` permite que verifiquemos que hemos establecido correctamente los registros. Los materiales después de la marca de hash es un comento; es un tipo de documentación, no un mandato. 
+
+```{r}
+Sys.setenv("CORPUS_REGISTRY" = "/Volumes/cwb_registry/mac_registry") # or "R:/windows_registry" if you are running Windows
+Sys.getenv("CORPUS_REGISTRY") # check that it was successfully set
+```
+
+Cuando esté listo el `CORPUS_REGISTRY` para el disco apropiado, ya estamos listos para abrir el paquete de `polmineR`. [El manual de R explica el proceso de trabajar con los paquetes](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Packages). 
+
+```{r}
+library(polmineR)
+```
+
+Si funcionó bien, podemos pedir que nos produzca una lista de los corpus disponibles:
+
+```{r}
+corpus()
+```
+
+## Las concordancias
+
+El mandato de `kwic` produce una concordancia de 'keyword-in-context'. El primero argumento es el nombre del corpus, y el segundo es la búsqueda. El programa R reconoce los argumentos de una fución o por su posición o por la sintáxis `name=arg`. Por eso, los dos siguientes mandatos son equivalentes.
+
+```{r}
+kwic("DICKENS","door-nail")
+kwic("DICKENS",query="door-nail")
+```
+
+Debe aparecer una window "pop-up" con con algunos controles para explorar los resultados. Para consultar la documentación de `kwic` o cualquier otra función de R, podemos utilizar el mandato `?kwic` o `help(kwic)` al mensaje de R (`>`).
+
+## Contar casos
+
+El mandato `count` calcula las frecuencias de las palabras. Su resultado es un tipo de "data frame". Se debe consultar la subsección sobre DATA FRAMEs en la introducción al R preparada por Jonathan Jones. Si la búsqueda es una sola palabra, este Data Frame tendrá una sola fila, como se demuestra con los siguientes ejemplos: 
+
+```{r}
+count("DICKENS",query="nail")
+count("DICKENS",query="nails")
+count("DICKENS",query='"nails?"',cqp=TRUE)
+count("DICKENS",query=' [word="nails?"] ',cqp=T)
+```
+
 
 
 ***
