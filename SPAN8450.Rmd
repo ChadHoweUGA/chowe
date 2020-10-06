@@ -1608,7 +1608,7 @@ Baja la suposición que es verdad la H0, cada celda de la tabla de contingencia 
 | a_nondetermined	| 7.02	| 18.98 |
 | b_determined | 19.98 |	54.02 |
 
-La Tabla 5 es lo que esperamos baja la suposición de la hipótesis nula. Pero, lo que resulta son las observaciones que se presentaron en la Tabla 3. El estatus distinto de los valores esperados **E** versus los valores observados presentado en una tabla de contingencia 2x2 se resume en la descripción de Baroni y Evert.
+La Tabla 5 es lo que esperamos baja la suposición de la hipótesis nula. Pero, lo que resulta son las observaciones que se presentaron en la Tabla 3. El estatus distinto de los valores esperados **E** versus los valores observados **O** presentado en una tabla de contingencia 2x2 se resume en la descripción de Baroni y Evert.
 
 
 ***
