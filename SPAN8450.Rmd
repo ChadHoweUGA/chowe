@@ -1271,20 +1271,20 @@ Para el próximo jueves, vamos a calcular la distribución Zipfiana del ANCORA s
 Para utilizar los corpus dentro del ambiente de R, tenemos que indicar el "registry" apropiado con el proceso de establecar un "environment variable". Hay dos registros seperados: uno para macOS y otro para Windows. Se puede establecer estas variables con R mediante el mandato `Sys.setenv`. El mandato `getenv` permite que verifiquemos que hemos establecido correctamente los registros. Los materiales después de la marca de hash es un comento; es un tipo de documentación, no un mandato. 
 
 ```{r}
-Sys.setenv("CORPUS_REGISTRY" = "/Volumes/cwb_registry/mac_registry") # or "R:/windows_registry" if you are running Windows
-Sys.getenv("CORPUS_REGISTRY") # check that it was successfully set
+#> Sys.setenv("CORPUS_REGISTRY" = "/Volumes/cwb_registry/mac_registry") # or "R:/windows_registry" if you are running Windows
+#> Sys.getenv("CORPUS_REGISTRY") # check that it was successfully set
 ```
 
 Cuando esté listo el `CORPUS_REGISTRY` para el disco apropiado, ya estamos listos para abrir el paquete de `polmineR`. [El manual de R explica el proceso de trabajar con los paquetes](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Packages). 
 
 ```{r}
-library(polmineR)
+#> library(polmineR)
 ```
 
 Si funcionó bien, podemos pedir que nos produzca una lista de los corpus disponibles:
 
 ```{r}
-corpus()
+#> corpus()
 ```
 
 ## Las concordancias
@@ -1292,8 +1292,8 @@ corpus()
 El mandato de `kwic` produce una concordancia de 'keyword-in-context'. El primero argumento es el nombre del corpus, y el segundo es la búsqueda. El programa R reconoce los argumentos de una fución o por su posición o por la sintáxis `name=arg`. Por eso, los dos siguientes mandatos son equivalentes.
 
 ```{r}
-kwic("DICKENS","door-nail")
-kwic("DICKENS",query="door-nail")
+#> kwic("DICKENS","door-nail")
+#> kwic("DICKENS",query="door-nail")
 ```
 
 Debe aparecer una ventana "pop-up" con con algunos controles para explorar los resultados. Para consultar la documentación de `kwic` o cualquier otra función de R, podemos utilizar el mandato `?kwic` o `help(kwic)` al mensaje de R (`>`).
@@ -1303,10 +1303,10 @@ Debe aparecer una ventana "pop-up" con con algunos controles para explorar los r
 El mandato `count` calcula las frecuencias de las palabras. Su resultado es un tipo de "data frame". Se debe consultar la subsección sobre DATA FRAMEs en la introducción al R preparada por Jonathan Jones. Si la búsqueda es una sola palabra, este Data Frame tendrá una sola fila, como se demuestra con los siguientes ejemplos: 
 
 ```{r echo=TRUE}
-count("DICKENS",query="nail")
-count("DICKENS",query="nails")
-count("DICKENS",query='"nails?"',cqp=TRUE)
-count("DICKENS",query=' [word="nails?"] ',cqp=T)
+#> count("DICKENS",query="nail")
+#> count("DICKENS",query="nails")
+#> count("DICKENS",query='"nails?"',cqp=TRUE)
+#> count("DICKENS",query=' [word="nails?"] ',cqp=T)
 ```
 
 Las primeras consultas solo contienen palabras. La tercera contiene una expresión regular (`?`) que nos busca la forma singular "nail" y plural "nails". Podemos pedirle a `polmineR` que reconozca las consultas del tipo `CQP` con el argumento `cqp=T` (donde `T` es un elemento constante que signific TRUE en R). Incluímos la consulta con comillas simples porque la consulta misma se indica con comillas. La cuarta consulta es otra versión equivalente que hace explícita el requisito de que los atributos de las palabras tienen que concordar con la expresión regular `nails?`. Observemos que 73=30+43; la única fila del Data Frame que resulta de la búsqueda que contiene todos las variantes de las formas singulares y plurales.
@@ -1314,7 +1314,7 @@ Las primeras consultas solo contienen palabras. La tercera contiene una expresi�
 Además, podemos especificar que queremos varias filas a la vez mediante el uso de la función `c()`. 
 
 ```{r echo=TRUE}
-nail<-count("DICKENS",query=c("nail","nails"))
+#> ail<-count("DICKENS",query=c("nail","nails"))
 ```
 
 El resultado de este tipo de múltiple consulta se puede asignar a una variable como `nail` con la flechita. Cuando asignmamos el resultado de una función a una variable, no se produce un output. El output se puede exhibir por escribir el nombre de los resultados, en este caso `nail`.
@@ -1322,14 +1322,14 @@ El resultado de este tipo de múltiple consulta se puede asignar a una variable 
 Si seguimos con este exemplo, veremos que el elemento `nail$query=="nails"` es un predicado que, para la segunda fila del data frame, es verdad pero no para el segundo. Esta especificación para las files tiene el nombre de un ["index vector"](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Index-vectors). Abajo, se nota que el index vector recibe el nombre de `i` mediante el proceso de la asignación. Después, cuando escribimos `i`, el R produce el value de esta variable, lo cual en este caso es un vector de dos valores de veracidad ("truth values").  
 
 ```{r echo=TRUE}
-i  <- nail$query=="nails"
-i
+#> i  <- nail$query=="nails"
+#> i
 ```
 
 Si utilizamos el index vector dentro de los corchetes después del nombre de un data frame produce el efecto de hacer un subconjunto de los datos que satisfacen este predicado.
 
 ```{r echo=TRUE}
-nail[i]
+#> nail[i]
 ```
 
 Así solo nos queda una fila que contiene las formas plurales.
@@ -1343,22 +1343,22 @@ Algunas formas se localizan de manera concentrada en una parte del corpus, mient
 Hace tiempo estudiamos diferentes formas de la palabra "divers" con el Royal Society Corpus. Los detalles de este corpus, y cualquier otro corpus en el servidor, se pueden recuperar desde el mensaje de R. Solo formamos un "corpus object" con el mandato `corpus`. Entonces, el objecto que resulta sirve como punto de referencia para diferentes tipos de información--p.e. el tamaño, el origen, y los atributos.
 
 ```{r echo=TRUE}
-rsc  <-  corpus("RSC")
-show_info(rsc)
-s_attributes(rsc)
+#> rsc  <-  corpus("RSC")
+#> show_info(rsc)
+#> s_attributes(rsc)
 ```
 
 Con el atributo-s de `text_year`, podemos verificar para ver cuáles eran los años cuando la palabra `divers` se observó más o menos. Utilizemos el mandato `dispersion` y formemos una tabla con la forma y el año. La función `head` de R nos da la posibilidad de ver solo unas filas (o columnas) a de un data frame más extendido (en este caso con 210 filas).
 
 ```{r}
-divers  <- dispersion("RSC",query='divers',s_attribute="text_year")
-head(divers)
+#> divers  <- dispersion("RSC",query='divers',s_attribute="text_year")
+#> head(divers)
 ```
 
 Después, podemos producir una gráfica de barra directamente con estos resultados:
 
 ```{r}
-barplot(height = divers$count, names.arg = divers$text_year, las = 2)
+#> barplot(height = divers$count, names.arg = divers$text_year, las = 2)
 ```
 ### Wuthering Heights
 
@@ -1372,27 +1372,244 @@ Esta columna de posiciones de corpus sirve como un tipo de index vector. Si pone
 
 ```{r}
 # everything is NA
-w_count <- rep(NA,times=size("WUTHERING"))
+#> w_count <- rep(NA,times=size("WUTHERING"))
  # until Healthcliff is mentioned
-where_he_is_mentioned  <- cpos("WUTHERING","Heathcliff")[,1]
+#> where_he_is_mentioned  <- cpos("WUTHERING","Heathcliff")[,1]
  # set all of those corpus positions to the value 1
-w_count[where_he_is_mentioned] <- 1
+#> w_count[where_he_is_mentioned] <- 1
  #Your plot may also appear a lot taller (or thicker) than the one seen here.
-plot(w_count,main="Gráfica de dispersión de `Healthcliff` en Wuthering Heights",xlab="Duración de la Novela",ylab="Healthcliff",type="h",ylim=c(0,1),yaxt='n')
+#> plot(w_count,main="Gráfica de dispersión de `Healthcliff` en Wuthering Heights",xlab="Duración de la Novela",ylab="Healthcliff",type="h",ylim=c(0,1),yaxt='n')
 ```
 Notemos que Heathcliff aparece mediante toda la novela, aunque el carácter Edgar se muere en la mitad de la historia.
 
 
 ```{r}
 # everything is NA
-w_count2 <- rep(NA,times=size("WUTHERING"))
+#> w_count2 <- rep(NA,times=size("WUTHERING"))
  # until Edgar is mentioned
-where_edgar_is_mentioned  <- cpos("WUTHERING","Edgar")[,1]
+#> where_edgar_is_mentioned  <- cpos("WUTHERING","Edgar")[,1]
  # set all of those corpus positions to the value 1
-w_count2[where_edgar_is_mentioned] <- 1
+#> w_count2[where_edgar_is_mentioned] <- 1
  #Your plot may also appear a lot taller (or thicker) than the one seen here.
-plot(w_count2,main="Gráfica de dispersión de `Edgar` en Wuthering Heights",xlab="Duración de la Novela",ylab="Edgar",type="h",ylim=c(0,1),yaxt='n')
+#> plot(w_count2,main="Gráfica de dispersión de `Edgar` en Wuthering Heights",xlab="Duración de la Novela",ylab="Edgar",type="h",ylim=c(0,1),yaxt='n')
 ```
+
+### Más sobre la dispersión
+
+Ahora consideremos la palabra "breakfast" en el corpus de BNC. ¿Cómo son distintas las dispersiones de esta polabra en este corpus. Primero, se nota que la palabra "breakfast" se observa con 3751 casos.
+
+```{r echo=TRUE}
+#> count("BNC",query="breakfast")
+```
+Después, apliquemos el mandato de `dispersion` para identificar los textos donde aparece esta palabra. Notemos que muchos de los resultados son nulos:
+
+```{r echo=TRUE}
+#> bkf_by_text  <- dispersion("BNC","breakfast",s_attribute="text_id")
+#> head(bkf_by_text)
+```
+
+Formemos un vector de índice que nos da las observaciones (los textos) que contienen la palabra "breakfast". Podemos contar los números de textos, tanto el total como los que contienen la palabra "breakfast", por introducir las funciones de `length` y `unique con la notación `$` para referir al `text_id` de cada data frame (ver la discusión de [named list components en el R Manual](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Lists)).
+
+```{r}
+#> texts_where_bkfast_is_mentioned  <- bkf_by_text[bkf_by_text$count > 0]
+#> total_number_texts  <-  length(unique(bkf_by_text$text_id))
+#> number_bkfast_texts  <- length(unique(texts_where_bkfast_is_mentioned$text_id))
+#> (number_bkfast_texts/total_number_texts)*100
+#[1] 25.58656
+```
+
+El resultado es el "rango", lo que describe Brezina (sección 2.4) como una medida básica de la dispersión. La interpretación es que la palabra "breakfast" aparece en 25% de los textos del BNC. Con esta misma técnica, podemos determinar el "rango" de de la palabra "corpus". Esta palabra exhibe un rango más bajo y solo aparece en 3% de los textos del BNC. La interpretación es (o puede ser) que el análisis de corpus no es de interés general, mientras que el desayuno sí.
+
+# 8a Semana
+
+## Los intensificadores
+
+La selección de un intensificador (p.e. *very* y *really* en inglés o *muy* y *bien* en español) es una variable bastante interesante. Consideremos la distribución de la palabra "lovely" como intensificador. ¿Es más común esta palabra con los hombres o las mujeres? ¿Qué podemos decir si comparamos esta palabra con la palabra "ace", que también se puede utilizar para intensificar de manera positiva? ¿Habrá una **contingencia** entre el género del/de la escritor(a) y su uso de utilizar una de estas expresiones?
+
+Antes de seguir, verifiquemos que todo está preparado para poder trabajar directamente con R, como se describe en los SMB Setup Guides de macOS y de Windows. También, tenemos que poner la variable ambiental de CORPUS_REGISTRY y inicializar el paquete de `polmineR`. 
+
+Primero, foremos dos data frames para cada expresión, con la clasificación adicional de `text_author_sex`.
+
+```{r}
+# lovely <- dispersion("BNC", query = "lovely", s_attribute = "text_author_sex")
+# ace <- dispersion("BNC", query = "ace", s_attribute = "text_author_sex")
+```
+
+Ahora, podemos representar estas cantidades con una tabla 2x2. En esta tabla, las filas representan la expresión lingüística y las columnas representan los dos géneros en el corpus, "male" y "female".
+
+
+Tabla 1: Tabla de contingencia entre *lovely* y *ace* por género del autor
+| palabra |	male	| female | total |
+|:-----|:-----|:-----|:-----|
+| lovely	| 751	| 1337 | 2088
+| ace	| 48 |	19 | 67 |
+| Total	| 799	| 1356 | 2155 |
+
+Dentro de R, este proceso es bastante fácil:
+
+```{r}
+#> four_counts  <- c(lovely[text_author_sex=="male"]$count,ace[text_author_sex=="male"]$count,lovely[text_author_sex=="female"]$count,ace[text_author_sex=="female"]$count)
+#> T <- matrix(four_counts,ncol=2)
+  # add names for the table's columns and rows
+#> rownames(T) <- c("lovely", "ace")
+#> colnames(T) <- c("male", "female")
+#> T
+#       male female
+#lovely  751   1337
+#ace      48     19
+```
+
+También podemos visualizar estos datos con una gráfica que se llama un "mosaic plot" con el paquete de `vcd`. Esta visualización muestra claramente que existe dos desequilibrios: el número mucho mayor de casos de "lovely" y una diferencia entre los hombres y las mujeres con respeto al uso de estas palabras.
+
+![Figura 1: Mosaic Plot (Brezina, pag. 109) ](images/MosaicPlot.png)
+Observamos con la Tabla 1 los número que se escriben en las márgenes. Estos representan los totales para las filas y para las columnas. Podemos pedir que R nos los calcule con la función `marginSum`. Indicamos 1 o 2 para pedir las sumas de las filas o las columnas, respectivamente.
+
+```{r}
+#> marginSums(T,1)
+#lovely    ace 
+#  2088     67 
+#> marginSums(T,2)
+#  male female 
+#   799   1356
+```
+
+El elemento marginal en la esquina derecha y abajo representa la cantidad total de las observaciones. Si dividimos cada celda por este número, se producen una seria de proporciones. Podemos producir estas proporciones en R con el mandato `prop.table`.
+
+```{r}
+#> prop.table(T)
+#             male      female
+#lovely 0.34849188 0.620417633
+#ace    0.02227378 0.008816705
+```
+
+
+## Otra vez con los elementos modales
+
+Acordáos que hablamos hace mucho de los verbos modales y observamos que no todos los modales se pueden utilizar en todas las situaciones. Simplifiquemos esta comparación para que solo se incluyan los elementos "must" y "need to" en el BNC en los contextos orales y escritos. ¿Cuál esperamos que sea más frecuente en cada tipo de texto o situación lingüístico?
+
+```{r}
+# must <- dispersion("BNC", query = "must", s_attribute = "text_text_type")
+# needto <- dispersion("BNC", query = "'need' 'to'", s_attribute = "text_text_type")
+```
+
+Ahora, si vemos el componente "demographically-sampled" del BNC (sección 3.4 de Hoffman et al.), podemos formar una tabla de contingencia:
+
+Tabla 2: Tabla de contingencia entre *must* y *need to*
+
+| palabra |	spoken_demographic	| written_books_periodicals |
+|:-----|:-----|:-----|
+| must	| 2780	| 56581 |
+| need to | 829 |	16040 |
+
+¿Son similares las proporciones de los dos elementos modales? (Utilizemos `prop.table`.)
+
+## La prueba del chi-cuadrado
+
+### La selección entre un artículo definido e indefinido
+
+Como se observa en la Figura 1, las cifras del uso del artículo definido "the" y el artículo indefinido "a/n" en el inglés británico son distintas. Debemos preguntarnos, ¿por qué? Si la grámatica del inglés británico es consistente, debe de haber algunas restricciones sobre las palabras funcionales simples como "the" y "a", ¿no? ¿Por qué no se presentan estas restrcciones de manera distinta en los diferentes registros de la lengua? Estas son las preguntas que motivan el uso del los corpus para el análisis lingüistico. Ahora, vamos a ver cómo podemos hacer una inferencia estadística, la prueba del chi-cuadrado, para concluir que hay una contengencia de verdad entre la selección entre el tipo de artículo (es decir, definido vs. indefinido) y otro factor.
+
+![Figura 2: Distribución de artículos y registros (Brezina, pag. 104) ](images/BEArticles.png)
+
+### Otro factor
+
+En su explicación de la prueba del chi-cuadrado, Brezina extrajo una selección de 100 observaciones de "the", "a" o "an" del BNC y codificó manualmente varios factores. Una variable fue el "Definiteness" y otra fue el "Contextual Determination". En la página 106 del libro, Brezina describe así:
+
+-  **contextually-determined**: cases where the article marks a person, object or abstract entity previously mentioned or implied
+-  **contextually-nondetermined**: includes reference to a person, object or entity mentioned for the first time and otherwise not specified
+
+Debido a que estos criterios tienen que ver con nociones semánticas, la anotación semántica no es una opción. Se tiene que hacer manualmente, así que representa un juicio lingüístico. Utilizaremos los datos de Brezina y trataremos las datos variables como factores (repasad la discusión de los factores en la Introducción Básica a R).
+
+```{r}
+# articlechoice  <- read.csv(file="the_a(n).csv",header=T)
+# articlechoice is now a data frame with columns named by the headers in the comma-separated-value (CSV) file
+# articlechoice$Article_type  <- as.factor(articlechoice$Article_type)
+# articlechoice$Context_type  <- as.factor(articlechoice$Context_type)
+```
+
+If you are using RStudio, examining articlechoice should look pretty similar to the spreadsheet in Figure 4.2 on Brezina (2018) page 105
+
+Si examinamos el objeto `articlechoice`, debe ser similar a la hoja de cáculo presentada en la figura 4.2 de Brezina (2018, página 105).
+
+### Crear una tabla de contingencia
+
+The R table function creates a contingency able out of these two factor
+
+Esta función de R crear una tabla de contingencia de estos dos factores.^[Sin esta expresión, sería necesario hacer referencia a `articlechoice$Context_type` en vez de solo `Context_type`.]
+
+El resultado debe ser como se ve en la Tabla 3:
+
+**Tabla 3: Tabla de contingencia: Article_type por Context_type**
+
+| Context_type |	a_indefinite	| b_definite |
+|:-----|:-----|:-----|
+| a_nondetermined	| 25	| 1 |
+| b_determined | 2 |	72 |
+
+Las letras "a" y "b" se han puesto como prefijos para los niveles de los factores. Esta selección es tradicional en la sociolingüística y sirve para guarantizar el orden de los niveles para el beneficio del software (como R) que asume el orden alfabético.
+
+#### Los números marginales de las columnas
+
+Consideremos las sumas de las columnas en la tabla de contingencia:
+
+```{r}
+#> definiteness  <- marginSums(def_by_cntx,2)
+#> definiteness
+#Article_type
+#a_indefinite   b_definite 
+#          27           73 
+#> definiteness[["a_indefinite"]] / sum(definiteness)
+#[1] 0.27
+```
+
+Estos valores, 27 y 73, son exactamente los totales sombreados al pie de la Tabla 4.2 (página 109) de Brezina (2018). La probabilidad de seleccionar un artículo indefinido (en vez de un artículo definido) es 27/(27+73) = 0.27%. La probabilidad de seleccionar un artículo definido es el complemento de este resultado: 1-027=0.73. Estos cálculos son relativamente fáciles, ya que hay 100 observaciones. Sin embargo, el uso de los números margales es distintivo: revisar solo los números marginales produce una imagen del corpus mediante una de las dos variables de interés--es decir, se consideran las dos posibilidades de la otra variable. Dicho de otra forma, 27% es la probabilidad de seleccionar un artículo indefinido en vez de un artículo definido A PESAR DEL contexto.
+
+#### Los números marginales de las filas
+
+Ahora consideremos las sumas de las filas:
+
+```{r}
+#> cntx  <-  marginSums(def_by_cntx,1)
+#> cntx
+#Context_type
+#a_nondetermined    b_determined 
+#             26              74 
+#> cntx[["b_determined"]] / sum(cntx)
+#[1] 0.74
+```
+
+El valor 0.74 = 74/(26+74) es la probabilidad de que el contexto es "determined", a pesar de que la palabra sea *the* o *a(n)*. Si ignoramos "definiteness", sabemos la probabilidad de los dos valores posibles de `Context_type`, 0.74 ("determined") y 0.26 ("nondetermined").
+
+#### Las hipótesis
+
+Ahora formulemos dos hipótesis:
+
+-  **H0:** El tipo de artículo y el tipo de contexto son independientes.
+-  **H1:** El tipo de artículo y el tipo de contexto no son independientes.
+
+La primera de estas hipótesis es la hipótesis nula. El término "nulo" en este contexto significa algo como hipóteis "por defecto". Por primera vista, no parece que haya una razón para asumir que dos valores lingüísticos distintos que se han caracterizado de maneras distintas sean relacionados. Si observamos evidencia al contrario, abandonamos la hipótesis nula y aceptamos la hipótesis alternativa.
+
+La diferencia entre dos hipótesis tiene que ver con la palabra "independiente". Esta palabra se entiende en el sentido de [la independencia probabilística](https://mathworld.wolfram.com/IndependentEvents.html). Si son independientes nos variables, su distribución disjunta es el producto de sus probabilidades. Si es verdad la H0, la muestra Tabla debe ser como la siguiente:
+
+
+**Tabla 4:** Las frecuencia que se esperan si las variables de fila y de columna son independientes
+
+| Context_type |	a_indefinite	| b_definite |
+|:-----|:-----|:-----|
+| a_nondetermined	| P(indefinite)× P(nondetermined)× samplesize	| P(definite)× P(nondetermined)× samplesize |
+| b_determined | (indefinite)× P(determined)× samplesize |	P(definite)× P(determined)× samplesize |
+
+Baja la suposición que es verdad la H0, cada celda de la tabla de contingencia debe tener un número tde observacioens que es el producto de las probabilidades que estimamos arriba. `samplesize` es el total--es decir, 100 observaciones. Multiplicar todas estas probabilidades produce los valores numéricos que se presentan en la siguiente tabla. Comparemos estos resultados con la Tabla 4.5 de Brezina (página 114).
+
+**Tabla 5:** Las sumas esperadas
+
+| Context_type |	a_indefinite	| b_definite |
+|:-----|:-----|:-----|
+| a_nondetermined	| 7.02	| 18.98 |
+| b_determined | 19.98 |	54.02 |
+
+La Tabla 5 es lo que esperamos baja la suposición de la hipótesis nula. Pero, lo que resulta son las observaciones que se presentaron en la Tabla 3. El estatus distinto de los valores esperados **E** versus los valores observados presentado en una tabla de contingencia 2x2 se resume en la descripción de Baroni y Evert.
+
 
 ***
 # Recursos {.tabset .tabset-fade .tabset-pills}
