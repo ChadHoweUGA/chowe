@@ -1438,7 +1438,8 @@ Primero, foremos dos data frames para cada expresión, con la clasificación adi
 Ahora, podemos representar estas cantidades con una tabla 2x2. En esta tabla, las filas representan la expresión lingüística y las columnas representan los dos géneros en el corpus, "male" y "female".
 
 
-Tabla 1: Tabla de contingencia entre *lovely* y *ace* por género del autor
+**Tabla 1:** Tabla de contingencia entre *lovely* y *ace* por género del autor
+
 | palabra |	male	| female | total |
 |:-----|:-----|:-----|:-----|
 | lovely	| 751	| 1337 | 2088
@@ -1494,7 +1495,7 @@ Acordáos que hablamos hace mucho de los verbos modales y observamos que no todo
 
 Ahora, si vemos el componente "demographically-sampled" del BNC (sección 3.4 de Hoffman et al.), podemos formar una tabla de contingencia:
 
-Tabla 2: Tabla de contingencia entre *must* y *need to*
+**Tabla 2:** Tabla de contingencia entre *must* y *need to*
 
 | palabra |	spoken_demographic	| written_books_periodicals |
 |:-----|:-----|:-----|
@@ -1521,10 +1522,10 @@ En su explicación de la prueba del chi-cuadrado, Brezina extrajo una selección
 Debido a que estos criterios tienen que ver con nociones semánticas, la anotación semántica no es una opción. Se tiene que hacer manualmente, así que representa un juicio lingüístico. Utilizaremos los datos de Brezina y trataremos las datos variables como factores (repasad la discusión de los factores en la Introducción Básica a R).
 
 ```{r}
-# articlechoice  <- read.csv(file="the_a(n).csv",header=T)
-# articlechoice is now a data frame with columns named by the headers in the comma-separated-value (CSV) file
-# articlechoice$Article_type  <- as.factor(articlechoice$Article_type)
-# articlechoice$Context_type  <- as.factor(articlechoice$Context_type)
+articlechoice  <- read.csv(file="the_a(n).csv",header=T)
+# articlechoice es ahora un data frame con columnas y filas que tienen los títulos indicados en el archivo (CSV)
+articlechoice$Article_type  <- as.factor(articlechoice$Article_type)
+articlechoice$Context_type  <- as.factor(articlechoice$Context_type)
 ```
 
 If you are using RStudio, examining articlechoice should look pretty similar to the spreadsheet in Figure 4.2 on Brezina (2018) page 105
@@ -1533,13 +1534,16 @@ Si examinamos el objeto `articlechoice`, debe ser similar a la hoja de cáculo p
 
 ### Crear una tabla de contingencia
 
-The R table function creates a contingency able out of these two factor
-
 Esta función de R crear una tabla de contingencia de estos dos factores.^[Sin esta expresión, sería necesario hacer referencia a `articlechoice$Context_type` en vez de solo `Context_type`.]
+
+```{r}
+def_by_cntx  <-  with(articlechoice,table(Context_type,Article_type))
+def_by_cntx
+```
 
 El resultado debe ser como se ve en la Tabla 3:
 
-**Tabla 3: Tabla de contingencia: Article_type por Context_type**
+**Tabla 3:** Tabla de contingencia: *Article_type* por *Context_type*
 
 | Context_type |	a_indefinite	| b_definite |
 |:-----|:-----|:-----|
@@ -1552,14 +1556,10 @@ Las letras "a" y "b" se han puesto como prefijos para los niveles de los factore
 
 Consideremos las sumas de las columnas en la tabla de contingencia:
 
-```{r}
-#> definiteness  <- marginSums(def_by_cntx,2)
-#> definiteness
-#Article_type
-#a_indefinite   b_definite 
-#          27           73 
-#> definiteness[["a_indefinite"]] / sum(definiteness)
-#[1] 0.27
+```{r echo=TRUE}
+definiteness  <- marginSums(def_by_cntx,2)
+definiteness
+definiteness[["a_indefinite"]] / sum(definiteness)
 ```
 
 Estos valores, 27 y 73, son exactamente los totales sombreados al pie de la Tabla 4.2 (página 109) de Brezina (2018). La probabilidad de seleccionar un artículo indefinido (en vez de un artículo definido) es 27/(27+73) = 0.27%. La probabilidad de seleccionar un artículo definido es el complemento de este resultado: 1-027=0.73. Estos cálculos son relativamente fáciles, ya que hay 100 observaciones. Sin embargo, el uso de los números margales es distintivo: revisar solo los números marginales produce una imagen del corpus mediante una de las dos variables de interés--es decir, se consideran las dos posibilidades de la otra variable. Dicho de otra forma, 27% es la probabilidad de seleccionar un artículo indefinido en vez de un artículo definido A PESAR DEL contexto.
@@ -1568,14 +1568,10 @@ Estos valores, 27 y 73, son exactamente los totales sombreados al pie de la Tabl
 
 Ahora consideremos las sumas de las filas:
 
-```{r}
-#> cntx  <-  marginSums(def_by_cntx,1)
-#> cntx
-#Context_type
-#a_nondetermined    b_determined 
-#             26              74 
-#> cntx[["b_determined"]] / sum(cntx)
-#[1] 0.74
+```{r echo=TRUE}
+cntx  <-  marginSums(def_by_cntx,1)
+cntx
+cntx[["b_determined"]] / sum(cntx)
 ```
 
 El valor 0.74 = 74/(26+74) es la probabilidad de que el contexto es "determined", a pesar de que la palabra sea *the* o *a(n)*. Si ignoramos "definiteness", sabemos la probabilidad de los dos valores posibles de `Context_type`, 0.74 ("determined") y 0.26 ("nondetermined").
@@ -1584,8 +1580,8 @@ El valor 0.74 = 74/(26+74) es la probabilidad de que el contexto es "determined"
 
 Ahora formulemos dos hipótesis:
 
--  **H0:** El tipo de artículo y el tipo de contexto son independientes.
--  **H1:** El tipo de artículo y el tipo de contexto no son independientes.
+-  **H~0~:** El tipo de artículo y el tipo de contexto son independientes.
+-  **H~1~:** El tipo de artículo y el tipo de contexto no son independientes.
 
 La primera de estas hipótesis es la hipótesis nula. El término "nulo" en este contexto significa algo como hipóteis "por defecto". Por primera vista, no parece que haya una razón para asumir que dos valores lingüísticos distintos que se han caracterizado de maneras distintas sean relacionados. Si observamos evidencia al contrario, abandonamos la hipótesis nula y aceptamos la hipótesis alternativa.
 
@@ -1608,7 +1604,58 @@ Baja la suposición que es verdad la H0, cada celda de la tabla de contingencia 
 | a_nondetermined	| 7.02	| 18.98 |
 | b_determined | 19.98 |	54.02 |
 
-La Tabla 5 es lo que esperamos baja la suposición de la hipótesis nula. Pero, lo que resulta son las observaciones que se presentaron en la Tabla 3. El estatus distinto de los valores esperados **E** versus los valores observados **O** presentado en una tabla de contingencia 2x2 se resume en la descripción de Baroni y Evert.
+La Tabla 5 es lo que esperamos baja la suposición de la hipótesis nula. Pero, lo que resulta son las observaciones que se presentaron en la Tabla 3. El estatus distinto de los valores esperados **E** versus los valores observados **O** presentado en una tabla de contingencia 2x2 se resume en la descripción de Baroni y Evert (ver las diapositivas).
+
+#### La descrepancia entre las sumas esperadas y las observadas
+
+Decimos que hay un desequilibio con una tabla de contingencia cuando existe una descripancia grande entre los valores esperados y los observados (indicados en la Tabla 3). Sin embargos, debemos preguntarnos, ¿cómo sabemos si esta descrepancia es demasiado grande? La cantidad expresada por $\frac{(O-E)^2}{E}$ evalúa esta descrepancia. Sumamos esta estadística de prueba, a través de todas las celdas, y producimos un cálculo que tiene una distribución $\chi^2$. La distribución $\chi^2$ representa una distribución de las sumas de las cuadradas de las variables normales estándares *k*. Estas distribuciones se presentan en la siguiente gráfica con números que representan los grados de libertad ('degrees of freedom'.)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+data.frame(chisq = 0:7000 / 100) %>% 
+  mutate(df_05 = dchisq(x = chisq, df = 5),
+         df_15 = dchisq(x = chisq, df = 15),
+         df_30 = dchisq(x = chisq, df = 30)) %>%
+  gather(key = "df", value = "density", -chisq) %>%
+  ggplot() +
+  geom_line(aes(x = chisq, y = density, color = df)) +
+  labs(title = "Chi-Square con varios Degrees of Freedom",
+       x = "Chi-cuadrado",
+       y = "Densidad")
+```
+
+En este escenario de probar nuestras hipótesis, nosotros calculamos una probabilidad para la variable `Article type` y también para `Context type`. Entonces, en vez de tener $2 \times 2 = 4$ grados de libertad, solo tenemos $(2-1)\times(2-1)=1$ grados de libertad.
+
+#### Probar las hipótesis
+
+Las curvas en la figura previa nos muestran la probabilidad de ciertos valores de la estadística chi-cuadrado. Ahora, podemos pregunta: ¿qué es la probabilidad de una estadística chi-cuadrado **particular** que hemos calculado de una tabla de contingencia que ya formamos (basada en datas de un corpus)? Este proceso es lo que hace la prueba chi-cuadrado. Calcula esta estadística de prueba y determina la probabilidad de observar una tabla de contingencia que el mismo o un valor más extremo de la estadística de prueba. En R, esta función se llama `chisq.test`.^[El argumento adicional `correct=F` apaga lo que se llama el "Yate's correction" en este ejemplo. Para más información, consulta la nota 8 en la página 113 de Brezina (2018).]
+
+```{r echo=TRUE}
+chisq.test(def_by_cntx,correct=F)
+```
+Observemos la última línea de los resultados de la función `chisq.test`. X-squared = 85.249 representa la suma de las descrepancias, descrita en las secciones anteriores y por Brezina (página 113). Se puede calcular manualmente con la información que nos produce R:
+
+```{r echo=TRUE}
+result  <- chisq.test(def_by_cntx)
+E  <- result$expected
+O <- result$observed
+sum((O - E)^2 / E)
+```
+
+El 'p-value' es la probabilidad de tomar una muestra de este valor de `X-squared value` o un valor mayor de la distribución $\chi^2$ con la pregunta: ¿cuánta es el área que se encuentra bajo la curva de la distribución del chi-cuadrado que va más allá del número 85.249?
+
+```{r echo=TRUE}
+pchisq(85.249,df=1,lower.tail=F)
+```
+
+La respuesta es que casi ninguna (área bajo la curva). Existe una probabilidad casi inexistente de que se observaría aleatoriamente una estadística de prueba tan extrema si fuera verdad la hipótesis nula. El resultado de esta prueba es que la evidencia sacada del BNC es suficiente para rechazar la hipótesis nula. En nuestro escenario, nos queda la hipótesis alternativa, es decir, que la selección del tipo de artículo es un hecho afectado por el tipo de contexto. Como vimos en la Tabla 3, los autores suelen utilizar un artículo definido cuando mencionan algo por primera vez. 
+
+<!--
+**Tarea:**
+-->
+
 
 
 ***

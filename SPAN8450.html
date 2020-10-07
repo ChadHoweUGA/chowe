@@ -2446,7 +2446,37 @@ div.tocify {
 <pre class="r"><code># lovely &lt;- dispersion(&quot;BNC&quot;, query = &quot;lovely&quot;, s_attribute = &quot;text_author_sex&quot;)
 # ace &lt;- dispersion(&quot;BNC&quot;, query = &quot;ace&quot;, s_attribute = &quot;text_author_sex&quot;)</code></pre>
 <p>Ahora, podemos representar estas cantidades con una tabla 2x2. En esta tabla, las filas representan la expresión lingüística y las columnas representan los dos géneros en el corpus, “male” y “female”.</p>
-<p>Tabla 1: Tabla de contingencia entre <em>lovely</em> y <em>ace</em> por género del autor | palabra | male | female | total | |:—–|:—–|:—–|:—–| | lovely | 751 | 1337 | 2088 | ace | 48 | 19 | 67 | | Total | 799 | 1356 | 2155 |</p>
+<p><strong>Tabla 1:</strong> Tabla de contingencia entre <em>lovely</em> y <em>ace</em> por género del autor</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">palabra</th>
+<th align="left">male</th>
+<th align="left">female</th>
+<th align="left">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">lovely</td>
+<td align="left">751</td>
+<td align="left">1337</td>
+<td align="left">2088</td>
+</tr>
+<tr class="even">
+<td align="left">ace</td>
+<td align="left">48</td>
+<td align="left">19</td>
+<td align="left">67</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="left">799</td>
+<td align="left">1356</td>
+<td align="left">2155</td>
+</tr>
+</tbody>
+</table>
 <p>Dentro de R, este proceso es bastante fácil:</p>
 <pre class="r"><code>#&gt; four_counts  &lt;- c(lovely[text_author_sex==&quot;male&quot;]$count,ace[text_author_sex==&quot;male&quot;]$count,lovely[text_author_sex==&quot;female&quot;]$count,ace[text_author_sex==&quot;female&quot;]$count)
 #&gt; T &lt;- matrix(four_counts,ncol=2)
@@ -2477,7 +2507,7 @@ div.tocify {
 <pre class="r"><code># must &lt;- dispersion(&quot;BNC&quot;, query = &quot;must&quot;, s_attribute = &quot;text_text_type&quot;)
 # needto &lt;- dispersion(&quot;BNC&quot;, query = &quot;&#39;need&#39; &#39;to&#39;&quot;, s_attribute = &quot;text_text_type&quot;)</code></pre>
 <p>Ahora, si vemos el componente “demographically-sampled” del BNC (sección 3.4 de Hoffman et al.), podemos formar una tabla de contingencia:</p>
-<p>Tabla 2: Tabla de contingencia entre <em>must</em> y <em>need to</em></p>
+<p><strong>Tabla 2:</strong> Tabla de contingencia entre <em>must</em> y <em>need to</em></p>
 <table>
 <thead>
 <tr class="header">
@@ -2519,19 +2549,24 @@ div.tocify {
 <li><strong>contextually-nondetermined</strong>: includes reference to a person, object or entity mentioned for the first time and otherwise not specified</li>
 </ul>
 <p>Debido a que estos criterios tienen que ver con nociones semánticas, la anotación semántica no es una opción. Se tiene que hacer manualmente, así que representa un juicio lingüístico. Utilizaremos los datos de Brezina y trataremos las datos variables como factores (repasad la discusión de los factores en la Introducción Básica a R).</p>
-<pre class="r"><code># articlechoice  &lt;- read.csv(file=&quot;the_a(n).csv&quot;,header=T)
-# articlechoice is now a data frame with columns named by the headers in the comma-separated-value (CSV) file
-# articlechoice$Article_type  &lt;- as.factor(articlechoice$Article_type)
-# articlechoice$Context_type  &lt;- as.factor(articlechoice$Context_type)</code></pre>
+<pre class="r"><code>articlechoice  &lt;- read.csv(file=&quot;the_a(n).csv&quot;,header=T)
+# articlechoice es ahora un data frame con columnas y filas que tienen los títulos indicados en el archivo (CSV)
+articlechoice$Article_type  &lt;- as.factor(articlechoice$Article_type)
+articlechoice$Context_type  &lt;- as.factor(articlechoice$Context_type)</code></pre>
 <p>If you are using RStudio, examining articlechoice should look pretty similar to the spreadsheet in Figure 4.2 on Brezina (2018) page 105</p>
 <p>Si examinamos el objeto <code>articlechoice</code>, debe ser similar a la hoja de cáculo presentada en la figura 4.2 de Brezina (2018, página 105).</p>
 </div>
 <div id="crear-una-tabla-de-contingencia" class="section level3">
 <h3>Crear una tabla de contingencia</h3>
-<p>The R table function creates a contingency able out of these two factor</p>
 <p>Esta función de R crear una tabla de contingencia de estos dos factores.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
+<pre class="r"><code>def_by_cntx  &lt;-  with(articlechoice,table(Context_type,Article_type))
+def_by_cntx</code></pre>
+<pre><code>##                  Article_type
+## Context_type      a_indefinite b_definite
+##   a_nondetermined           25          1
+##   b_determined               2         72</code></pre>
 <p>El resultado debe ser como se ve en la Tabla 3:</p>
-<p><strong>Tabla 3: Tabla de contingencia: Article_type por Context_type</strong></p>
+<p><strong>Tabla 3:</strong> Tabla de contingencia: <em>Article_type</em> por <em>Context_type</em></p>
 <table>
 <thead>
 <tr class="header">
@@ -2557,33 +2592,33 @@ div.tocify {
 <div id="los-números-marginales-de-las-columnas" class="section level4">
 <h4>Los números marginales de las columnas</h4>
 <p>Consideremos las sumas de las columnas en la tabla de contingencia:</p>
-<pre class="r"><code>#&gt; definiteness  &lt;- marginSums(def_by_cntx,2)
-#&gt; definiteness
-#Article_type
-#a_indefinite   b_definite 
-#          27           73 
-#&gt; definiteness[[&quot;a_indefinite&quot;]] / sum(definiteness)
-#[1] 0.27</code></pre>
+<pre class="r"><code>definiteness  &lt;- marginSums(def_by_cntx,2)
+definiteness</code></pre>
+<pre><code>## Article_type
+## a_indefinite   b_definite 
+##           27           73</code></pre>
+<pre class="r"><code>definiteness[[&quot;a_indefinite&quot;]] / sum(definiteness)</code></pre>
+<pre><code>## [1] 0.27</code></pre>
 <p>Estos valores, 27 y 73, son exactamente los totales sombreados al pie de la Tabla 4.2 (página 109) de Brezina (2018). La probabilidad de seleccionar un artículo indefinido (en vez de un artículo definido) es 27/(27+73) = 0.27%. La probabilidad de seleccionar un artículo definido es el complemento de este resultado: 1-027=0.73. Estos cálculos son relativamente fáciles, ya que hay 100 observaciones. Sin embargo, el uso de los números margales es distintivo: revisar solo los números marginales produce una imagen del corpus mediante una de las dos variables de interés–es decir, se consideran las dos posibilidades de la otra variable. Dicho de otra forma, 27% es la probabilidad de seleccionar un artículo indefinido en vez de un artículo definido A PESAR DEL contexto.</p>
 </div>
 <div id="los-números-marginales-de-las-filas" class="section level4">
 <h4>Los números marginales de las filas</h4>
 <p>Ahora consideremos las sumas de las filas:</p>
-<pre class="r"><code>#&gt; cntx  &lt;-  marginSums(def_by_cntx,1)
-#&gt; cntx
-#Context_type
-#a_nondetermined    b_determined 
-#             26              74 
-#&gt; cntx[[&quot;b_determined&quot;]] / sum(cntx)
-#[1] 0.74</code></pre>
+<pre class="r"><code>cntx  &lt;-  marginSums(def_by_cntx,1)
+cntx</code></pre>
+<pre><code>## Context_type
+## a_nondetermined    b_determined 
+##              26              74</code></pre>
+<pre class="r"><code>cntx[[&quot;b_determined&quot;]] / sum(cntx)</code></pre>
+<pre><code>## [1] 0.74</code></pre>
 <p>El valor 0.74 = 74/(26+74) es la probabilidad de que el contexto es “determined”, a pesar de que la palabra sea <em>the</em> o <em>a(n)</em>. Si ignoramos “definiteness”, sabemos la probabilidad de los dos valores posibles de <code>Context_type</code>, 0.74 (“determined”) y 0.26 (“nondetermined”).</p>
 </div>
 <div id="las-hipótesis" class="section level4">
 <h4>Las hipótesis</h4>
 <p>Ahora formulemos dos hipótesis:</p>
 <ul>
-<li><strong>H0:</strong> El tipo de artículo y el tipo de contexto son independientes.</li>
-<li><strong>H1:</strong> El tipo de artículo y el tipo de contexto no son independientes.</li>
+<li><strong>H<sub>0</sub>:</strong> El tipo de artículo y el tipo de contexto son independientes.</li>
+<li><strong>H<sub>1</sub>:</strong> El tipo de artículo y el tipo de contexto no son independientes.</li>
 </ul>
 <p>La primera de estas hipótesis es la hipótesis nula. El término “nulo” en este contexto significa algo como hipóteis “por defecto”. Por primera vista, no parece que haya una razón para asumir que dos valores lingüísticos distintos que se han caracterizado de maneras distintas sean relacionados. Si observamos evidencia al contrario, abandonamos la hipótesis nula y aceptamos la hipótesis alternativa.</p>
 <p>La diferencia entre dos hipótesis tiene que ver con la palabra “independiente”. Esta palabra se entiende en el sentido de <a href="https://mathworld.wolfram.com/IndependentEvents.html">la independencia probabilística</a>. Si son independientes nos variables, su distribución disjunta es el producto de sus probabilidades. Si es verdad la H0, la muestra Tabla debe ser como la siguiente:</p>
@@ -2637,7 +2672,36 @@ div.tocify {
 </tr>
 </tbody>
 </table>
-<p>La Tabla 5 es lo que esperamos baja la suposición de la hipótesis nula. Pero, lo que resulta son las observaciones que se presentaron en la Tabla 3. El estatus distinto de los valores esperados <strong>E</strong> versus los valores observados <strong>O</strong> presentado en una tabla de contingencia 2x2 se resume en la descripción de Baroni y Evert.</p>
+<p>La Tabla 5 es lo que esperamos baja la suposición de la hipótesis nula. Pero, lo que resulta son las observaciones que se presentaron en la Tabla 3. El estatus distinto de los valores esperados <strong>E</strong> versus los valores observados <strong>O</strong> presentado en una tabla de contingencia 2x2 se resume en la descripción de Baroni y Evert (ver las diapositivas).</p>
+</div>
+<div id="la-descrepancia-entre-las-sumas-esperadas-y-las-observadas" class="section level4">
+<h4>La descrepancia entre las sumas esperadas y las observadas</h4>
+<p>Decimos que hay un desequilibio con una tabla de contingencia cuando existe una descripancia grande entre los valores esperados y los observados (indicados en la Tabla 3). Sin embargos, debemos preguntarnos, ¿cómo sabemos si esta descrepancia es demasiado grande? La cantidad expresada por <span class="math inline">\(\frac{(O-E)^2}{E}\)</span> evalúa esta descrepancia. Sumamos esta estadística de prueba, a través de todas las celdas, y producimos un cálculo que tiene una distribución <span class="math inline">\(\chi^2\)</span>. La distribución <span class="math inline">\(\chi^2\)</span> representa una distribución de las sumas de las cuadradas de las variables normales estándares <em>k</em>. Estas distribuciones se presentan en la siguiente gráfica con números que representan los grados de libertad (‘degrees of freedom’.)</p>
+<p><img src="SPAN8450_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p>En este escenario de probar nuestras hipótesis, nosotros calculamos una probabilidad para la variable <code>Article type</code> y también para <code>Context type</code>. Entonces, en vez de tener <span class="math inline">\(2 \times 2 = 4\)</span> grados de libertad, solo tenemos <span class="math inline">\((2-1)\times(2-1)=1\)</span> grados de libertad.</p>
+</div>
+<div id="probar-las-hipótesis" class="section level4">
+<h4>Probar las hipótesis</h4>
+<p>Las curvas en la figura previa nos muestran la probabilidad de ciertos valores de la estadística chi-cuadrado. Ahora, podemos pregunta: ¿qué es la probabilidad de una estadística chi-cuadrado <strong>particular</strong> que hemos calculado de una tabla de contingencia que ya formamos (basada en datas de un corpus)? Este proceso es lo que hace la prueba chi-cuadrado. Calcula esta estadística de prueba y determina la probabilidad de observar una tabla de contingencia que el mismo o un valor más extremo de la estadística de prueba. En R, esta función se llama <code>chisq.test</code>.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<pre class="r"><code>chisq.test(def_by_cntx,correct=F)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  def_by_cntx
+## X-squared = 85.249, df = 1, p-value &lt; 2.2e-16</code></pre>
+<p>Observemos la última línea de los resultados de la función <code>chisq.test</code>. X-squared = 85.249 representa la suma de las descrepancias, descrita en las secciones anteriores y por Brezina (página 113). Se puede calcular manualmente con la información que nos produce R:</p>
+<pre class="r"><code>result  &lt;- chisq.test(def_by_cntx)
+E  &lt;- result$expected
+O &lt;- result$observed
+sum((O - E)^2 / E)</code></pre>
+<pre><code>## [1] 85.24868</code></pre>
+<p>El ‘p-value’ es la probabilidad de tomar una muestra de este valor de <code>X-squared value</code> o un valor mayor de la distribución <span class="math inline">\(\chi^2\)</span> con la pregunta: ¿cuánta es el área que se encuentra bajo la curva de la distribución del chi-cuadrado que va más allá del número 85.249?</p>
+<pre class="r"><code>pchisq(85.249,df=1,lower.tail=F)</code></pre>
+<pre><code>## [1] 2.630615e-20</code></pre>
+<p>La respuesta es que casi ninguna (área bajo la curva). Existe una probabilidad casi inexistente de que se observaría aleatoriamente una estadística de prueba tan extrema si fuera verdad la hipótesis nula. El resultado de esta prueba es que la evidencia sacada del BNC es suficiente para rechazar la hipótesis nula. En nuestro escenario, nos queda la hipótesis alternativa, es decir, que la selección del tipo de artículo es un hecho afectado por el tipo de contexto. Como vimos en la Tabla 3, los autores suelen utilizar un artículo definido cuando mencionan algo por primera vez.</p>
+<!--
+**Tarea:**
+-->
 <hr />
 </div>
 </div>
@@ -2727,6 +2791,7 @@ div.tocify {
 <li id="fn6"><p>Con el macOS, el paquete se puede instalar con el R básico. Sin embargo, con Windows, el proceso de instalar el paqueste del código básico requiere el uso de Rtools. Por eso, el profesor Blätte proporciona una versión binaria–es decir, una versión que se ha compilado. El argumento adicional <code>type="win.binary"</code> requiere esta versión. Eventualmente, los dos paquetes se distribuirán por el archivo CRAN. Por ahora, la versión más reciente está disponible en el depósito personal del profesor Blätte. Se debe consultar la discusión de paquetes al principio de la introducción al <code>tidyverse</code> preparado por Jonathan Jones.<a href="#fnref6" class="footnote-back">↩︎</a></p></li>
 <li id="fn7"><p>Este ejemplo se adopto de la sección 4.4 de Jockers 2020.<a href="#fnref7" class="footnote-back">↩︎</a></p></li>
 <li id="fn8"><p>Sin esta expresión, sería necesario hacer referencia a <code>articlechoice$Context_type</code> en vez de solo <code>Context_type</code>.<a href="#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>El argumento adicional <code>correct=F</code> apaga lo que se llama el “Yate’s correction” en este ejemplo. Para más información, consulta la nota 8 en la página 113 de Brezina (2018).<a href="#fnref9" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
