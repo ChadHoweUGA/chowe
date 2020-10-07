@@ -1528,8 +1528,6 @@ articlechoice$Article_type  <- as.factor(articlechoice$Article_type)
 articlechoice$Context_type  <- as.factor(articlechoice$Context_type)
 ```
 
-If you are using RStudio, examining articlechoice should look pretty similar to the spreadsheet in Figure 4.2 on Brezina (2018) page 105
-
 Si examinamos el objeto `articlechoice`, debe ser similar a la hoja de cáculo presentada en la figura 4.2 de Brezina (2018, página 105).
 
 ### Crear una tabla de contingencia
