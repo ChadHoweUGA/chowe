@@ -2698,22 +2698,72 @@ sum((O - E)^2 / E)</code></pre>
 <pre class="r"><code>pchisq(85.249,df=1,lower.tail=F)</code></pre>
 <pre><code>## [1] 2.630615e-20</code></pre>
 <p>La respuesta es que casi ninguna (área bajo la curva). Existe una probabilidad casi inexistente de que se observaría aleatoriamente una estadística de prueba tan extrema si fuera verdad la hipótesis nula. El resultado de esta prueba es que la evidencia sacada del BNC es suficiente para rechazar la hipótesis nula. En nuestro escenario, nos queda la hipótesis alternativa, es decir, que la selección del tipo de artículo es un hecho afectado por el tipo de contexto. Como vimos en la Tabla 3, los autores suelen utilizar un artículo definido cuando mencionan algo por primera vez.</p>
-<p>#9a Semana</p>
-<p><strong>Las colocaciones</strong> son las palabras suelen aparecer juntas. Brezina (sección 3.2) utiliza el término “nodo” (‘node’) para la palabra que nos interesa y introduce la metáfora de un campo magnético para describir la vecindad donde se encuentran las colocaciones. Según <a href="https://uga.view.usg.edu/d2l/le/content/2055335/viewContent/32427992/View">Evert</a>, esta configuración es lo que se llama un “surface co-occurrence”. Podemos utilizar la estadística de chi-cuadrado para producir un rango de estas co-ocurrencias dentro de la ‘ventana’ indicada. Las palabras que ocurren con más frecuencia que se espera deben aparcer en la parte encima de este rango.</p>
 </div>
 </div>
 </div>
+</div>
+<div id="a-semana-7" class="section level1">
+<h1>9a Semana</h1>
+<p><strong>Los colocados</strong> (‘collocates’) son las palabras suelen aparecer juntas. Brezina (sección 3.2) utiliza el término “nodo” (‘node’) para la palabra que nos interesa y introduce la metáfora de un campo magnético para describir la vecindad donde se encuentran las colocaciones. Según <a href="https://uga.view.usg.edu/d2l/le/content/2055335/viewContent/32427992/View">Evert</a>, esta configuración es lo que se llama un “surface co-occurrence”. Podemos utilizar la estadística de chi-cuadrado para producir un rango de estas co-ocurrencias dentro de la ‘ventana’ indicada. Las palabras que ocurren con más frecuencia que se espera deben aparcer en la parte encima de este rango.</p>
 <div id="un-ejemplo-love-affair" class="section level2">
 <h2>Un ejemplo: <em>love affair</em></h2>
 <p>Consideremos la palabra “love” como una palabra de interés. ¿Con qué ocurre? Podemos utilizar la función <code>coocurrenences</code> en <code>polmineR</code> para contestar esta pregunta. Notaos que tenemos que seguir los pasos normales para utilizar esta técnica.</p>
 <pre><code>love_co &lt;- cooccurrences(&quot;BNC&quot;, query = &quot;love&quot;, left = 0, right=5, method=&quot;chisquare&quot;, verbose=T)
 love_df  &lt;- as.data.frame(love_co)</code></pre>
 <p>Si hacemos este primer mandato, se produce una mensaje que nos informa que se encontraron 20160 casos de la palabra “love” en el BNC.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> El segundo mandato (<code>as.data.frame</code>) produce un data frame de la lista de co-ocurrencias.</p>
-<pre><code>stuff here</code></pre>
+<pre><code>head(love_df)</code></pre>
+<p>Este data frame muestra que un colocado prominente de la palabra “love” es “affair”. Las filas están en orden por su estadística de la prueba del chi-cuadrado, y el colocado “affair” aparece en la primera fila. Si consideramos algunos de las otras columnas, observamos que la selección de casos donde “love” occur con “affair” son 3079 casos. De todos estos casos, 182 de ellos se observaron dentro de la ventana de las cinco palabras que siguen la palabra “love”. 2897 de estos casos no se observaron en esta ventana. Podemos utilizar estos números para crear una tabla de contingencia.</p>
+<div id="la-tabla-de-contingencia" class="section level3">
+<h3>La tabla de contingencia</h3>
+<p>Los números en el data frame <code>love_df</code> son suficientes para completar las celdas grises de la tabla 3.1 de Brezina (página 70). Se presentan en la siguiente tabla.</p>
+<p><strong>Tabla 1</strong>: Tabla de contigencia para una ventana de colocaciones de cinco palabras a la derecha del nodo</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">colocado</th>
+<th align="left">colocado presente (‘affair’)</th>
+<th align="left">colocado ausente</th>
+<th align="left">Totales</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">cerca de “love”</td>
+<td align="left">182</td>
+<td align="left">100618</td>
+<td align="left">20160 casos × 5 ventana = <code>love_co@size_coi</code></td>
+</tr>
+<tr class="even">
+<td align="left">no cerca de “love”</td>
+<td align="left">2897</td>
+<td align="left">112032504</td>
+<td align="left"><code>love_co@size_ref =112035401</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Totales</td>
+<td align="left">3079</td>
+<td align="left">12133122</td>
+<td align="left"><code>size("BNC")</code> - 20160 = 112136201</td>
+</tr>
+</tbody>
+</table>
+<p>Sin consideramos la ventana de cinco palabras a la derecha, tenemos aproximadamente 20150*5=100800 oportunidades para la co-ocurrencia.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> Podemos pensar de cada caso o (a) como parte del conjunto de casos con constan del <code>love_co@size_coi</code> o (b) como parte del corpus de referencia, es decir, los casos en el BNC que no se ubican cerca de cualquier instancia de la palabra “love”. La cantidad de estos casos equivale a <code>love_co@size_ref</code>.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
+</div>
+<div id="la-frecuencia-experada-del-colocado" class="section level3">
+<h3>La frecuencia experada del colocado</h3>
+<p>Ya podemos calcular lo que llama Brezina el <strong>random co-ocurrence baseline</strong>. Esto se refiere al número esperado de veces que se debería observar “affair” como co-ocurrencia dentro de la ventana de cinco palabras de “love” si las frecuencias fueran el producto sus probabilidades de atestación individual.</p>
+<pre><code>r1  &lt;-  love_df[love_df$word==&quot;love&quot;,]$count_partition
+c1  &lt;-  love_df[love_df$word==&quot;affair&quot;,]$count_partition
+n &lt;- size(&quot;BNC&quot;) - 20160
+&gt; (r1*c1*5)/n
+[1] 2.767734</code></pre>
+<p>El denominador es el total completo: el tamaño de corpus menos la cantidad de los casos del nodo. Por definición, estos no so candidatos para la co-ocurrencia (leer “The most sensible definition…”, Evert, página 27). El numerador es el producto de la frecuencia del nodo, la frecuencia del colocado, y el tamaño de la ventana presentados mediante la expresión 3.2 en la página 69 de Brezina. El valor numérico de esta fracción es como se presenta en la primera columna del data frame <code>love_df</code>–es decir, en la columna <code>exp_coi</code>. Esta columna es la frecuencia esperada de la palabra “affair” como un colocado a la derecha de “love”. Por supuesto, este número es solamente el valor de la celda E_11 de la matriz de frecuencias esperadas.</p>
+<p><strong>expected frequency of collocation (corrected)</strong> = <span class="math inline">\(\frac{(node frequency)\times(collocate frequency)\times(window size)}{no. of tokens in text or corpus}\)</span></p>
 <!--
 **Tarea:**
 -->
 <hr />
+</div>
 </div>
 </div>
 <div id="recursos" class="section level1 tabset tabset-fade tabset-pills">
@@ -2801,7 +2851,9 @@ love_df  &lt;- as.data.frame(love_co)</code></pre>
 <li id="fn7"><p>Este ejemplo se adopto de la sección 4.4 de Jockers 2020.<a href="#fnref7" class="footnote-back">↩︎</a></p></li>
 <li id="fn8"><p>Sin esta expresión, sería necesario hacer referencia a <code>articlechoice$Context_type</code> en vez de solo <code>Context_type</code>.<a href="#fnref8" class="footnote-back">↩︎</a></p></li>
 <li id="fn9"><p>El argumento adicional <code>correct=F</code> apaga lo que se llama el “Yate’s correction” en este ejemplo. Para más información, consulta la nota 8 en la página 113 de Brezina (2018).<a href="#fnref9" class="footnote-back">↩︎</a></p></li>
-<li id="fn10"><p>You can graphically page through a cooccurences object by coercing it to an htmlwidget like this as(love_co,“htmlwidget”)<a href="#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>Se puede explorar un objeto de ‘cooccurences’ mediante el htmlwidget como <code>as(love_co,"htmlwidget")</code><a href="#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>Esta estimación es aproximado porque la atestación final puede estar tan cerca al principio o al final del corpus que la ventana de colocación se corta. De manera similar, el investigador puede imponer unas restricciones que determinen que la ventana no pueda extender más allás de las fronteras de una oración. Estas restricciones requieren que las fronteras oracionales sean anotadas en el corpus–por ejepmlo, con los atributos estructurales como <s> y </s>.<a href="#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>El signo <code>@</code> extrae un valor de un luegar de un objeto definido dentro del <a href="http://adv-r.had.co.nz/OO-essentials.html#s4">S4 object system</a>. Es paralelo a la notación de <code>4</code> que describió Jonathan Jones en su introducción a R. it’s analogous to the dollar notation that you learned about in Jonathan Jones’ introduction to base R.<a href="#fnref12" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 

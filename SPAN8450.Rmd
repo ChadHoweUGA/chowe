@@ -1651,9 +1651,9 @@ pchisq(85.249,df=1,lower.tail=F)
 La respuesta es que casi ninguna (área bajo la curva). Existe una probabilidad casi inexistente de que se observaría aleatoriamente una estadística de prueba tan extrema si fuera verdad la hipótesis nula. El resultado de esta prueba es que la evidencia sacada del BNC es suficiente para rechazar la hipótesis nula. En nuestro escenario, nos queda la hipótesis alternativa, es decir, que la selección del tipo de artículo es un hecho afectado por el tipo de contexto. Como vimos en la Tabla 3, los autores suelen utilizar un artículo definido cuando mencionan algo por primera vez. 
 
 
-#9a Semana
+# 9a Semana
 
-**Las colocaciones** son las palabras suelen aparecer juntas. Brezina (sección 3.2) utiliza el término "nodo" ('node') para la palabra que nos interesa y introduce la metáfora de un campo magnético para describir la vecindad donde se encuentran las colocaciones. Según [Evert](https://uga.view.usg.edu/d2l/le/content/2055335/viewContent/32427992/View), esta configuración es lo que se llama un "surface co-occurrence". Podemos utilizar la estadística de chi-cuadrado para producir un rango de estas co-ocurrencias dentro de la 'ventana' indicada. Las palabras que ocurren con más frecuencia que se espera deben aparcer en la parte encima de este rango.
+**Los colocados** ('collocates') son las palabras suelen aparecer juntas. Brezina (sección 3.2) utiliza el término "nodo" ('node') para la palabra que nos interesa y introduce la metáfora de un campo magnético para describir la vecindad donde se encuentran las colocaciones. Según [Evert](https://uga.view.usg.edu/d2l/le/content/2055335/viewContent/32427992/View), esta configuración es lo que se llama un "surface co-occurrence". Podemos utilizar la estadística de chi-cuadrado para producir un rango de estas co-ocurrencias dentro de la 'ventana' indicada. Las palabras que ocurren con más frecuencia que se espera deben aparcer en la parte encima de este rango.
 
 ## Un ejemplo: *love affair*
 
@@ -1664,11 +1664,47 @@ love_co <- cooccurrences("BNC", query = "love", left = 0, right=5, method="chisq
 love_df  <- as.data.frame(love_co)
 ```
 
-Si hacemos este primer mandato, se produce una mensaje que nos informa que se encontraron 20160 casos de la palabra "love" en el BNC.^[You can graphically page through a cooccurences object by coercing it to an htmlwidget like this as(love_co,"htmlwidget")] El segundo mandato (`as.data.frame`) produce un data frame de la lista de co-ocurrencias. 
+Si hacemos este primer mandato, se produce una mensaje que nos informa que se encontraron 20160 casos de la palabra "love" en el BNC.^[Se puede explorar un objeto de 'cooccurences' mediante el htmlwidget como `as(love_co,"htmlwidget")`] El segundo mandato (`as.data.frame`) produce un data frame de la lista de co-ocurrencias. 
 
 ```{}
-stuff here
+head(love_df)
 ```
+Este data frame muestra que un colocado prominente de la palabra "love" es "affair". Las filas están en orden por su estadística de la prueba del chi-cuadrado, y el colocado "affair" aparece en la primera fila. Si consideramos algunos de las otras columnas, observamos que la selección de casos donde "love" occur con "affair" son 3079 casos. De todos estos casos, 182 de ellos se observaron dentro de la ventana de las cinco palabras que siguen la palabra "love". 2897 de estos casos no se observaron en esta ventana. Podemos utilizar estos números para crear una tabla de contingencia.
+
+### La tabla de contingencia
+
+Los números en el data frame `love_df` son suficientes para completar las celdas grises de la tabla 3.1 de Brezina (página 70). Se presentan en la siguiente tabla.
+
+**Tabla 1**: Tabla de contigencia para una ventana de colocaciones de cinco palabras a la derecha del nodo
+
+| colocado | colocado presente ('affair') |	colocado ausente	| Totales  |
+|:-----|:-----|:-----|:-----|
+| cerca de "love"	| 182	| 100618 | 20160 casos × 5 ventana = `love_co@size_coi` |
+| no cerca de "love"	| 2897 |	112032504 | `love_co@size_ref =112035401` |
+| Totales	| 3079	| 12133122 | `size("BNC")` - 20160 = 112136201 |
+
+Sin consideramos la ventana de cinco palabras a la derecha, tenemos aproximadamente 20150*5=100800 oportunidades para la co-ocurrencia.^[Esta estimación es aproximado porque la atestación final puede estar tan cerca al principio o al final del corpus que la ventana de colocación se corta. De manera similar, el investigador puede imponer unas restricciones que determinen que la ventana no pueda extender más allás de las fronteras de una oración. Estas restricciones requieren que las fronteras oracionales sean anotadas en el corpus--por ejepmlo, con los atributos estructurales como <s> y </s>.] Podemos pensar de cada caso o (a) como parte del conjunto de casos con constan del `love_co@size_coi` o (b) como parte del corpus de referencia, es decir, los casos en el BNC que no se ubican cerca de cualquier instancia de la palabra "love". La cantidad de estos casos equivale a `love_co@size_ref`.^[El signo `@` extrae un valor de un luegar de un objeto definido dentro del [S4 object system](http://adv-r.had.co.nz/OO-essentials.html#s4). Es paralelo a la notación de `4` que describió Jonathan Jones en su introducción a R. 
+it's analogous to the dollar notation that you learned about in Jonathan Jones' introduction to base R.]
+
+
+### La frecuencia experada del colocado
+
+Ya podemos calcular lo que llama Brezina el **random co-ocurrence baseline**. Esto se refiere al número esperado de veces que se debería observar "affair" como co-ocurrencia dentro de la ventana de cinco palabras de "love" si las frecuencias fueran el producto sus probabilidades de atestación individual.
+
+```{}
+r1  <-  love_df[love_df$word=="love",]$count_partition
+c1  <-  love_df[love_df$word=="affair",]$count_partition
+n <- size("BNC") - 20160
+> (r1*c1*5)/n
+[1] 2.767734
+```
+
+El denominador es el total completo: el tamaño de corpus menos la cantidad de los casos del nodo. Por definición, estos no so candidatos para la co-ocurrencia (leer "The most sensible definition...", Evert, página 27). El numerador es el producto de la frecuencia del nodo, la frecuencia del colocado, y el tamaño de la ventana presentados mediante la expresión 3.2 en la página 69 de Brezina. El valor numérico de esta fracción es como se presenta en la primera columna del data frame `love_df`--es decir, en la columna `exp_coi`. Esta columna es la frecuencia esperada de la palabra "affair" como un colocado a la derecha de "love". Por supuesto, este número es solamente el valor de la celda E_11 de la matriz de frecuencias esperadas.
+
+**expected frequency of collocation (corrected)**
+= $\frac{(node frequency)\times(collocate frequency)\times(window size)}{no. of tokens in text or corpus}$
+
+
 
 
 <!--
