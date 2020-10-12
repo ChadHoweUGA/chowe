@@ -2698,12 +2698,22 @@ sum((O - E)^2 / E)</code></pre>
 <pre class="r"><code>pchisq(85.249,df=1,lower.tail=F)</code></pre>
 <pre><code>## [1] 2.630615e-20</code></pre>
 <p>La respuesta es que casi ninguna (área bajo la curva). Existe una probabilidad casi inexistente de que se observaría aleatoriamente una estadística de prueba tan extrema si fuera verdad la hipótesis nula. El resultado de esta prueba es que la evidencia sacada del BNC es suficiente para rechazar la hipótesis nula. En nuestro escenario, nos queda la hipótesis alternativa, es decir, que la selección del tipo de artículo es un hecho afectado por el tipo de contexto. Como vimos en la Tabla 3, los autores suelen utilizar un artículo definido cuando mencionan algo por primera vez.</p>
+<p>#9a Semana</p>
+<p><strong>Las colocaciones</strong> son las palabras suelen aparecer juntas. Brezina (sección 3.2) utiliza el término “nodo” (‘node’) para la palabra que nos interesa y introduce la metáfora de un campo magnético para describir la vecindad donde se encuentran las colocaciones. Según <a href="https://uga.view.usg.edu/d2l/le/content/2055335/viewContent/32427992/View">Evert</a>, esta configuración es lo que se llama un “surface co-occurrence”. Podemos utilizar la estadística de chi-cuadrado para producir un rango de estas co-ocurrencias dentro de la ‘ventana’ indicada. Las palabras que ocurren con más frecuencia que se espera deben aparcer en la parte encima de este rango.</p>
+</div>
+</div>
+</div>
+<div id="un-ejemplo-love-affair" class="section level2">
+<h2>Un ejemplo: <em>love affair</em></h2>
+<p>Consideremos la palabra “love” como una palabra de interés. ¿Con qué ocurre? Podemos utilizar la función <code>coocurrenences</code> en <code>polmineR</code> para contestar esta pregunta. Notaos que tenemos que seguir los pasos normales para utilizar esta técnica.</p>
+<pre><code>love_co &lt;- cooccurrences(&quot;BNC&quot;, query = &quot;love&quot;, left = 0, right=5, method=&quot;chisquare&quot;, verbose=T)
+love_df  &lt;- as.data.frame(love_co)</code></pre>
+<p>Si hacemos este primer mandato, se produce una mensaje que nos informa que se encontraron 20160 casos de la palabra “love” en el BNC.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> El segundo mandato (<code>as.data.frame</code>) produce un data frame de la lista de co-ocurrencias.</p>
+<pre><code>stuff here</code></pre>
 <!--
 **Tarea:**
 -->
 <hr />
-</div>
-</div>
 </div>
 </div>
 <div id="recursos" class="section level1 tabset tabset-fade tabset-pills">
@@ -2791,6 +2801,7 @@ sum((O - E)^2 / E)</code></pre>
 <li id="fn7"><p>Este ejemplo se adopto de la sección 4.4 de Jockers 2020.<a href="#fnref7" class="footnote-back">↩︎</a></p></li>
 <li id="fn8"><p>Sin esta expresión, sería necesario hacer referencia a <code>articlechoice$Context_type</code> en vez de solo <code>Context_type</code>.<a href="#fnref8" class="footnote-back">↩︎</a></p></li>
 <li id="fn9"><p>El argumento adicional <code>correct=F</code> apaga lo que se llama el “Yate’s correction” en este ejemplo. Para más información, consulta la nota 8 en la página 113 de Brezina (2018).<a href="#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>You can graphically page through a cooccurences object by coercing it to an htmlwidget like this as(love_co,“htmlwidget”)<a href="#fnref10" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
