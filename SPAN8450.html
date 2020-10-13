@@ -2708,8 +2708,8 @@ sum((O - E)^2 / E)</code></pre>
 <div id="un-ejemplo-love-affair" class="section level2">
 <h2>Un ejemplo: <em>love affair</em></h2>
 <p>Consideremos la palabra “love” como una palabra de interés. ¿Con qué ocurre? Podemos utilizar la función <code>coocurrenences</code> en <code>polmineR</code> para contestar esta pregunta. Notaos que tenemos que seguir los pasos normales para utilizar esta técnica.</p>
-<pre><code>love_co &lt;- cooccurrences(&quot;BNC&quot;, query = &quot;love&quot;, left = 0, right=5, method=&quot;chisquare&quot;, verbose=T)
-love_df  &lt;- as.data.frame(love_co)</code></pre>
+<pre class="r"><code>#love_co &lt;- cooccurrences(&quot;BNC&quot;, query = &quot;love&quot;, left = 0, right=5, method=&quot;chisquare&quot;, verbose=T)
+#love_df  &lt;- as.data.frame(love_co)</code></pre>
 <p>Si hacemos este primer mandato, se produce una mensaje que nos informa que se encontraron 20160 casos de la palabra “love” en el BNC.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> El segundo mandato (<code>as.data.frame</code>) produce un data frame de la lista de co-ocurrencias.</p>
 <pre><code>head(love_df)</code></pre>
 <p>Este data frame muestra que un colocado prominente de la palabra “love” es “affair”. Las filas están en orden por su estadística de la prueba del chi-cuadrado, y el colocado “affair” aparece en la primera fila. Si consideramos algunos de las otras columnas, observamos que la selección de casos donde “love” occur con “affair” son 3079 casos. De todos estos casos, 182 de ellos se observaron dentro de la ventana de las cinco palabras que siguen la palabra “love”. 2897 de estos casos no se observaron en esta ventana. Podemos utilizar estos números para crear una tabla de contingencia.</p>
@@ -2752,18 +2752,76 @@ love_df  &lt;- as.data.frame(love_co)</code></pre>
 <div id="la-frecuencia-experada-del-colocado" class="section level3">
 <h3>La frecuencia experada del colocado</h3>
 <p>Ya podemos calcular lo que llama Brezina el <strong>random co-ocurrence baseline</strong>. Esto se refiere al número esperado de veces que se debería observar “affair” como co-ocurrencia dentro de la ventana de cinco palabras de “love” si las frecuencias fueran el producto sus probabilidades de atestación individual.</p>
-<pre><code>r1  &lt;-  love_df[love_df$word==&quot;love&quot;,]$count_partition
-c1  &lt;-  love_df[love_df$word==&quot;affair&quot;,]$count_partition
-n &lt;- size(&quot;BNC&quot;) - 20160
-&gt; (r1*c1*5)/n
-[1] 2.767734</code></pre>
+<pre class="r"><code>#r1  &lt;-  love_df[love_df$word==&quot;love&quot;,]$count_partition
+#c1  &lt;-  love_df[love_df$word==&quot;affair&quot;,]$count_partition
+#n &lt;- size(&quot;BNC&quot;) - 20160
+# (r1*c1*5)/n
+#[1] 2.767734</code></pre>
 <p>El denominador es el total completo: el tamaño de corpus menos la cantidad de los casos del nodo. Por definición, estos no so candidatos para la co-ocurrencia (leer “The most sensible definition…”, Evert, página 27). El numerador es el producto de la frecuencia del nodo, la frecuencia del colocado, y el tamaño de la ventana presentados mediante la expresión 3.2 en la página 69 de Brezina. El valor numérico de esta fracción es como se presenta en la primera columna del data frame <code>love_df</code>–es decir, en la columna <code>exp_coi</code>. Esta columna es la frecuencia esperada de la palabra “affair” como un colocado a la derecha de “love”. Por supuesto, este número es solamente el valor de la celda E_11 de la matriz de frecuencias esperadas.</p>
 <p><strong>expected frequency of collocation (corrected)</strong> = <span class="math inline">\(\frac{(node frequency)\times(collocate frequency)\times(window size)}{no. of tokens in text or corpus}\)</span></p>
+</div>
+<div id="las-frecuencias-observadas-y-esperadas" class="section level3">
+<h3>Las frecuencias observadas y esperadas</h3>
+<p>Acordáos que la prueba del chi cuadrado utiliza la descrepancia entre la matriz de frecuencias esperadas y la matriz de frecuencias observadas. Completamos la segunda matriz a base de los resultados sacados de <code>cooccurences</code> con tal de que distinguamos cuidadosamente entre los casos que se ubican cerca de “love” y los demás.</p>
+<pre class="r"><code>#affair  &lt;- love_df[love_df$word==&quot;affair&quot;,]$count_partition
+
+#o11  &lt;-  love_df[love_df$word==&quot;affair&quot;,]$count_coi  # count of co-occurrences within window
+#o21  &lt;-  affair - o11
+#o12  &lt;-  love_co@size_coi - o11
+#o22  &lt;-  n - (o11+o21+o12) # grand total minus all the others
+
+#O &lt;- matrix(c(o11,o21,o12,o22),ncol=2)
+#colnames(O)  &lt;-  c(&quot;affair present&quot;, &quot;affair not present&quot;)
+#rownames(O) &lt;- c(&quot;near love&quot;, &quot;not near love&quot;)</code></pre>
+<p>Calculamos los números marginales para llegar a las filas y las columnas que vimos en la Tabla 1.</p>
+<pre class="r"><code>#r1 &lt;- marginSums(O,1)[[1]]
+#r2 &lt;- marginSums(O,1)[[2]]
+#c1 &lt;- marginSums(O,2)[[1]]
+#c2 &lt;- marginSums(O,2)[[2]]</code></pre>
+<p>Con estos números, podemos calculamos los números de las atestaciones esperados según la hipótesis nula.</p>
+<pre class="r"><code>#f &lt;- function (numerator1,numerator2,denominator) { exp(log(numerator1)+log(numerator2)-log(denominator)) } # in log space to avoid overflow
+#E &lt;- matrix(c(f(r1,c1,n),f(r2,c1,n),f(r1,c2,n),f(r2,c2,n)),ncol=2)
+#colnames(E)  &lt;-  c(&quot;affair present&quot;, &quot;affair not present&quot;)
+#rownames(E) &lt;- c(&quot;near love&quot;, &quot;not near love&quot;)</code></pre>
+<p>Dado el tamaño tan grande del corpus, tenemos que realizar los cálculos con los logaritmos, donde la multiplicación se convierte en la suma.</p>
+<pre class="r"><code>#&gt; E
+#              affair present affair not present
+#near love           2.767734           100797.2
+#not near love    3076.232266        112032324.8
+#&gt; sum((O - E)^2 / E)
+#[1] 11617.44</code></pre>
+<p>Recuperamos el valor del <code>chisquare</code> que ya calculamos con la función <code>cooccurences</code> que se encontró en la primea fila del data frame <code>love_df</code>. Esta demostración nos destaca el hecho de que el rango de los colocados a la derecha de “love” es la misma estadística del chi-cuadrado que ya hemos utilizado para probar las hipótesis. ¿Habrá otras maneras de producir un rango de los colocados?</p>
+</div>
+</div>
+<div id="las-medidas-de-asociación" class="section level2">
+<h2>Las medidas de asociación</h2>
+<p>Ya hemos visto el uso de las pruebas del chi-cuadrado para los colocados de la palabra “love”.</p>
+<pre class="r"><code># last time
+#love_chisq  &lt;-  cooccurrences(&quot;BNC&quot;, query = &quot;love&quot;, left = 0, right=5, method=&quot;chisquare&quot;)
+#&gt; as.data.table(love_chisq)[word==&quot;affair&quot;]
+#     word word_id count_partition count_coi count_ref  exp_coi chisquare rank_chisquare
+#1: affair    7668            3079       182      2897 2.767734  11617.44              1
+# this time
+#love_ll  &lt;-  cooccurrences(&quot;BNC&quot;, query = &quot;love&quot;, left = 0, right=5, method=&quot;ll&quot;)
+#&gt; head(love_ll,10)
+#      word word_id count_partition count_coi count_ref     exp_coi     exp_ref       ll rank_ll
+ #1:    you      66          574132      2188    571944  516.091192  573615.909 3010.071       1
+ #2:     &#39;&#39;     165          752264      2347    749917  676.215268  751587.785 2531.337       2
+ #3:   love     876           20160       417     19743   18.121962   20141.878 1827.170       3
+ #4:   with      43          639450      1835    637615  574.805990  638875.194 1758.041       4
+ #5:    him     920          152878       818    152060  137.423082  152740.577 1564.793       5
+ #6:      .      22         4715138      6772   4708366 4238.469880 4710899.530 1348.064       6
+ #7:    her      53          287910      1019    286891  258.804273  287651.196 1280.476       7
+ #8:     me     395          129238       679    128559  116.172924  129121.827 1277.563       8
+ #9: affair    7668            3079       182      2897    2.767734    3076.232 1176.202       9
+#10:    God    2104           20382       279     20103   18.321520   20363.678 1002.179      10</code></pre>
+<p>En este caso, la palabra “affair” no resulta ser el colocado con el rango más alto. Los resultados de esta segunda métrica la tiene en la novena posición.</p>
+<p>El método por defecto <code>method=ll</code> produce una tabla de contingencia con probabilidades de ‘log-likelihood’.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> Esta métrica representa una medida de asociación diferente que pone los pronombres “you”, “him”, y “her” en posiciones más altas en en rango que la de “affair”. Sin examinamos la columna de <code>count_partition</code>, observamos que estas palabas tienen frecuencias de observación mucho más altas que la palabra “affair”. Evidentemente, la métrica log-likelihood prioriza *la frecuencia<strong> sobre </strong>la exclusividad**. Hay más o menos cuarenta medidas de asociación descritas por <a href="http://www.collocations.de/AM/">Evert</a> y que se han implementado en <a href="http://www.collocations.de/software.html">el UCS/R System</a>. Este programa se puede utilizar con nuestro servidor.</p>
 <!--
+### Describrir patrones
 **Tarea:**
 -->
 <hr />
-</div>
 </div>
 </div>
 <div id="recursos" class="section level1 tabset tabset-fade tabset-pills">
@@ -2854,6 +2912,7 @@ n &lt;- size(&quot;BNC&quot;) - 20160
 <li id="fn10"><p>Se puede explorar un objeto de ‘cooccurences’ mediante el htmlwidget como <code>as(love_co,"htmlwidget")</code><a href="#fnref10" class="footnote-back">↩︎</a></p></li>
 <li id="fn11"><p>Esta estimación es aproximado porque la atestación final puede estar tan cerca al principio o al final del corpus que la ventana de colocación se corta. De manera similar, el investigador puede imponer unas restricciones que determinen que la ventana no pueda extender más allás de las fronteras de una oración. Estas restricciones requieren que las fronteras oracionales sean anotadas en el corpus–por ejepmlo, con los atributos estructurales como <s> y </s>.<a href="#fnref11" class="footnote-back">↩︎</a></p></li>
 <li id="fn12"><p>El signo <code>@</code> extrae un valor de un luegar de un objeto definido dentro del <a href="http://adv-r.had.co.nz/OO-essentials.html#s4">S4 object system</a>. Es paralelo a la notación de <code>4</code> que describió Jonathan Jones en su introducción a R. it’s analogous to the dollar notation that you learned about in Jonathan Jones’ introduction to base R.<a href="#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>Un trabajo yaclásico que defende la idea de utilizar los log-likelihood es el trabajo de <a href="https://www.aclweb.org/anthology/J93-1003/">Dunning (1993)</a>.<a href="#fnref13" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
