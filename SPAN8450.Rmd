@@ -1891,10 +1891,117 @@ Este proceso nos da:
 Estos resultados confirman el argumento de Scott y Tribble que la expresión "one of the main" y "one of the major" son expresiones distinctamente académicas.
 
 
-<!--
-**Tarea:**
--->
+# 11a Semana
 
+## Regresión logística
+
+Descansemos unos minutos de nuestras preguntas lingüísticas para hablar de los autos. Cuando pensamos en los autos, cuanto más grande sea el motor, peor será el millaje. Esta observación se puede verificar con [los datos mpg](https://ggplot2.tidyverse.org/reference/mpg.html) incluidos con `ggplot2`.
+
+```{r echo=TRUE}
+library(ggplot2)
+data(mpg)
+ggplot(mtcars, aes(disp,mpg)) + geom_point() + geom_smooth(method="lm",se=F) + ggtitle("la economía de la gasolina como función del tamaño del motor")
+```
+
+Como se nota que, para cada litro adicional de desplazamiento (es decir, el espacio dentro de los cilindros de un motor), la economía del uso de gasolina (en la carretera) se empeorará por un factor de tres medio miles por galón (mpg). Este proceso empieza a los máximos teóricos de casi 35 o 36 mpg.
+
+Podemos representar esta relación mediante la siguiente ecuación:
+
+-  $y = -3.5x + 35.7$
+
+Aquí, la variable *y* se refiere a la economía del uso de gasolina y *x* es el tamaño del motor en litros. Podemos crear ('fit') un modelo con la función `lm` en R.
+
+```{r echo=TRUE}
+m <- lm(hwy~displ,data=mpg)
+```
+
+El objetivo de la función de `lm` es encontrar el mejor multiplicador para $x$ (el "slope") y el mejor constante (el "intercept") para los datos. El primero argumento para `lm` se conoce como una fórmula modelo; la tilde se entiende como "se entiende como función de"--es decir, la economía de la gasolina se modela como función del desplazamiento del motor.
+
+La función auxiliar `coefficients` extrae los valores de un "fitted model" como el modelo `m`.
+
+```{r echo=TRUE}
+coefficients(m)
+```
+
+El modelo que resulta es "linear" en el sentido de que los resultados se encuentran a lo largo de una línea recta. Podemos predecir la economía para el 2020 Chevy Tahoe, lo cual no fue parte de nuestro conjunto original de datos. Este auto tiene un motor de 5.3 litros.
+
+```{r echo=TRUE}
+slope <- unname(coef(m)[2])
+intercept <- unname(coef(m)[1])
+slope*5.3 + intercept
+```
+
+Predecimos que el Tahoe debe obtener un mpg de 16. De hecho, el EPA indica que este auto tiene un mpg de 20 en la carretera. Este rango del EPA es mejor que habríamos esperado basado solo en el desplazamiento. Evidentamente, la tecnología ha avanzado desde el añol 2008. Puede ser que Chevrolet haya mejorado otros aspectos del Tahoe, por ejemplo su aerodinámico. Si tuviéramos los datos sobre, por ejemplo, el área frontal de estos vehículos, podríamos añadirlos como otro indicador para el model--`hwy ~ displ + fontal`. Esto sería un caso de regresión *múltiple*. Con la regresión múltiple, los coeficientes se conocen como los "betas" y se identifican con los subíndices--$\beta_1$ es el coeficiente del primer indicador $x_1$, $\beta_2$ es el coeficiente del segundo indicador $x_2$, etc.
+
+## Elegir entre dos realizaciones alternativas
+
+En la lingüística, el resultado de interés es, para muchos estudios, categórico. Un ejemplo de Brezina (capítulo 4) es la definitud: si se utiliza el artículo definido "the" o el artículo indefinido "a". Otro ejemplo es la alternancia dativa donde el mismo significado semántico se puede comunicar con una estructura dativa preposicional o una estructura de doble complemento. Estas estructuras alternativas se pueden clasificar de la siguiente manera:
+
+| nombre | ejemplo |	subcat	|
+|:-----|:-----|:-----|
+| estructura dativa preposicional | ...gave toys to the children | V SN(NP) SP(PP) |
+| estructura de doble complement | ...gave the children the toys | V SN(NP) SN(NP) |
+
+**Tabla 1:** Los términos que se usan con la alternancia dativa ( (Bresnan et al. 2007, página 70)
+
+![Ejemplo de la estructura dativa preposicional del corpus Switchboard (disponible en nuestro servidor)](images/DativeAlternation.png)
+Todavía podemos predecir las atestaciones de categorías lingüísticas como estos con un modelo linear. Sin embargo, tenemos que generalizar el modelo para considerar el hecho de que solo haya dos opciones (preposicional vs. doble objeto). En vez de proponer un modelo de la economía de la gasolina en términos de mpg, podemos modelar la probabilidad de que la estructura dativa preposicional sea elegida o no. Una complicación que nos enfrentará es que las probabilidades tienen que encontrarse en el intervalo $[0,1]$. Podemos utilizar la función logística para imponer un valor artibrario $arb$ en el intervalo.^[El símbolo $e$ en la definición de la función logística denota [el número de Euler](https://mathworld.wolfram.com/e.html).] La figura 1 ilutra este efecto:
+
+$$\frac{e^{arb}}{e^{arb} + 1}=\frac{1}{1+e^{-arb}}$$
+
+![Función logística (de la figure 12.4 de página 202 de Winter 2020)](images/LogisticFunctionWinter.png)
+Entonces, para conseguir las probabilidades, tenemos que "squash" also con la función logística. ¿A qué se refiere el "algo"? Es el "log-odds". Es decir, es el logoritmo de las probabilidades de un evento.
+
+-  **función de logit (aka log-odds)**
+
+$$logit(P(event)) = ln(\frac{P(event)}{1-P(event)})$$
+
+Cuanto mejor los lod-odds, más alto será la probabilidad. Estas dos funciones son inversas de una y otra (vé la figura 12.5 de Winter 2020). Si utilizamos un indicador linear para modelar estos log odds, creamos un enlace entre este indicador linear a través de la función logit. Producimos una probaibilidad por el proceso de introducir estos log odds a la función logística como el $arb$. Esto es los que describe Brezina en la página 126 cuando comenta que la regresión logística opera de manera "interna" con los log odds.
+
+Bresnan et al. (2007) estudiaron la alternancia dativa con la colección de Switchboard (3 millones de palabras) que contiene conversaciones telefónicas. Bresnan y sus colegas querían predecir la realización del recipiente como un SN o SP. Notáos que el recipiente es una noción semántica mientras que los elementos SN/NP y SP/PP son conceptos sintácticos. Estos investigadores querían determinar los factores que influían en esta decisión sintáctica. Consideraron una variedad de diferentes variables independientes, como la animicidad (si el reference de la expresión es un ser vivo), la duración de la palabras y la pronominalidad del tema y el recipiente (el tema es otra noción semántica; es decir, "la cosa que se transfiere en mediante la acción denotada por el verbo").^[Esta characterización del trabajo de Bresnan et al. (2007) se ha tomado directamente de la sección 1.2 del libro de R. Harald Baayen, [Analyzing linguistic data](http://www.sfs.uni-tuebingen.de/~hbaayen/publications/baayenCUPstats.pdf).]
+
+Los datos de Bresnan son disponibles con el paquete de R `languageR`.
+
+```{r echo=TRUE}
+library(languageR)
+data(dative)
+head(dative)
+```
+R tiene documentación para unos "generalized linear models". Solo tenemos que elegir la regresión logística mediante el ajuste "binomial". Esto signfica que las respuestas ocurren o no de manera categórica. Por defecto, este proceso establece la función enclace con el valor del logit. Hagamos ahora un model simple que predice el tipo de sintagma sintáctica del recipiente basado solo en el estatus de animicidad del recipiente.
+
+```{r echo=TRUE}
+dative_mdl <- glm(RealizationOfRecipient ~ AnimacyOfRec, data=dative, family="binomial")
+```
+
+Después, pedimos que R nos dé un resumen. Esto nos produce una tabla con los p-values de una prueba contra el hipótesis nula que el indicador (animicidad) no tiene un efecto:
+
+```{r echo=TRUE}
+summary(dative_mdl)
+```
+Considermos la tabla debajo de "Coeficientes". El signo negativo del Intercept significa que, en general, la probabilidades van en contra de las estructuras preposicionales. Este resultado tiene cierto sentido dado que representan el grupo minoritario.
+
+```{r echo=TRUE}
+table(dative$RealizationOfRecipient)
+```
+
+El signo positivo de la estimación en la fila titulada "AnimacyOfRecinanimate" significa que el log odds de obtener una estructura dativa preposicinal se mejoran un poquito si el recipiente es "Inanimate". Noemos que ser inanimado se ha codificado con el valor `1` mientras que ser animado se codificó con el valor `0`. Nosotros podemos calcular las probabilidades con la función logístrica, la cual está disponible en R como la función `plogis`.
+
+```{r echo=TRUE}
+# extraer los betas del "fitted model"
+intercept <- unname(dative_mdl$coefficients[1])
+slope <- unname(dative_mdl$coefficients[2])
+```
+
+```{r echo=TRUE}
+plogis(intercept + slope*0) # animate
+plogis(intercept + slope*1) # inanimate
+```
+
+Nuestra predicción es que la probabilidad de obtener una estructura dativa preposicional es 51% si el recipiente es inanimado pero solo 23% si es animado.
+
+La animicidad se queda un indicador significativo aun cuando la regresión logística considera otros factores, como la duración del sintagma y la pronominalidad. Jenset et al. (2018) utiliza una análisis similar con el inglés británico y descubren un factor de género: los hombres prefieren las estructuras dativas preposicionales. Sin embargo, tienen cuidado con este resultado cuando comentan que "further investigations would be necessary to assess whether any interaction with other factors is at play, for example conversation topics."
+
+-   **Para el jueves**: Leer Brezina 6.1 y 6.5
 
 
 ***
