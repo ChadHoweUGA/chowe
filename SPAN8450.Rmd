@@ -1950,13 +1950,13 @@ Todavía podemos predecir las atestaciones de categorías lingüísticas como es
 $$\frac{e^{arb}}{e^{arb} + 1}=\frac{1}{1+e^{-arb}}$$
 
 ![Función logística (de la figure 12.4 de página 202 de Winter 2020)](images/LogisticFunctionWinter.png)
-Entonces, para conseguir las probabilidades, tenemos que "squash" also con la función logística. ¿A qué se refiere el "algo"? Es el "log-odds". Es decir, es el logoritmo de las probabilidades de un evento.
+Entonces, para conseguir las probabilidades, tenemos que "squash" algo con la función logística. ¿A qué se refiere el "algo"? Es el "log-odds". Es decir, es el logoritmo de las probabilidades de un evento.
 
 -  **función de logit (aka log-odds)**
 
 $$logit(P(event)) = ln(\frac{P(event)}{1-P(event)})$$
 
-Cuanto mejor los lod-odds, más alto será la probabilidad. Estas dos funciones son inversas de una y otra (vé la figura 12.5 de Winter 2020). Si utilizamos un indicador linear para modelar estos log odds, creamos un enlace entre este indicador linear a través de la función logit. Producimos una probaibilidad por el proceso de introducir estos log odds a la función logística como el $arb$. Esto es los que describe Brezina en la página 126 cuando comenta que la regresión logística opera de manera "interna" con los log odds.
+Cuanto mejor los log-odds, más alto será la probabilidad. Estas dos funciones son inversas de una y otra (vé la figura 12.5 de Winter 2020). Si utilizamos un indicador linear para modelar estos log odds, creamos un enlace entre este indicador linear a través de la función logit. Producimos una probaibilidad por el proceso de introducir estos log odds a la función logística como el $arb$. Esto es los que describe Brezina en la página 126 cuando comenta que la regresión logística opera de manera "interna" con los log odds.
 
 Bresnan et al. (2007) estudiaron la alternancia dativa con la colección de Switchboard (3 millones de palabras) que contiene conversaciones telefónicas. Bresnan y sus colegas querían predecir la realización del recipiente como un SN o SP. Notáos que el recipiente es una noción semántica mientras que los elementos SN/NP y SP/PP son conceptos sintácticos. Estos investigadores querían determinar los factores que influían en esta decisión sintáctica. Consideraron una variedad de diferentes variables independientes, como la animicidad (si el reference de la expresión es un ser vivo), la duración de la palabras y la pronominalidad del tema y el recipiente (el tema es otra noción semántica; es decir, "la cosa que se transfiere en mediante la acción denotada por el verbo").^[Esta characterización del trabajo de Bresnan et al. (2007) se ha tomado directamente de la sección 1.2 del libro de R. Harald Baayen, [Analyzing linguistic data](http://www.sfs.uni-tuebingen.de/~hbaayen/publications/baayenCUPstats.pdf).]
 
