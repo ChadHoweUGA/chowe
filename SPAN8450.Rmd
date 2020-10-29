@@ -1984,7 +1984,7 @@ Considermos la tabla debajo de "Coeficientes". El signo negativo del Intercept s
 table(dative$RealizationOfRecipient)
 ```
 
-El signo positivo de la estimación en la fila titulada "AnimacyOfRecinanimate" significa que el log odds de obtener una estructura dativa preposicinal se mejoran un poquito si el recipiente es "Inanimate". Noemos que ser inanimado se ha codificado con el valor `1` mientras que ser animado se codificó con el valor `0`. Nosotros podemos calcular las probabilidades con la función logístrica, la cual está disponible en R como la función `plogis`.
+El signo positivo de la estimación en la fila titulada "AnimacyOfRecinanimate" significa que el log odds de obtener una estructura dativa preposicinal se mejoran un poquito si el recipiente es "Inanimate". Notemos que ser inanimado se ha codificado con el valor `1` mientras que ser animado se codificó con el valor `0`. Nosotros podemos calcular las probabilidades con la función logístrica, la cual está disponible en R como la función `plogis`.
 
 ```{r echo=TRUE}
 # extraer los betas del "fitted model"
@@ -2002,6 +2002,55 @@ Nuestra predicción es que la probabilidad de obtener una estructura dativa prep
 La animicidad se queda un indicador significativo aun cuando la regresión logística considera otros factores, como la duración del sintagma y la pronominalidad. Jenset et al. (2018) utiliza una análisis similar con el inglés británico y descubren un factor de género: los hombres prefieren las estructuras dativas preposicionales. Sin embargo, tienen cuidado con este resultado cuando comentan que "further investigations would be necessary to assess whether any interaction with other factors is at play, for example conversation topics."
 
 -   **Para el jueves**: Leer Brezina 6.1 y 6.5
+
+
+## Los efectos mixtos
+
+El término "mixto" ('mixed') se refiere a una regresión linear con efectos aleatorios además de los efectos "fijos" ('fijos') que vimos el martes (ej. la animicidad)
+
+En un estudio con los corpora orales, por ejemplo, consideremos una variable como GRAMMATICAL_CATEGORY que tiene los valores sustantivo, verbo, adjetivo, etc. o la variable REGISTER que tienen los valores formal y informal. Podemos estudiar estas mismas variables en una variedad de corpus diferentes; estas variables se pueden repetir. Por otro lado, las variables como SPEAKER_ID, la cual tiene unos 692 valores en [el SpokenBNC2014](https://www.jbe-platform.com/content/journals/10.1075/ijcl.22.3.02lov), o FOLLOWING_WORD, que tienen 386 valores en los datos de los intensificadores de Brezina y no se pueden repetir. Hay muchos otros hablantes que no aparecen en el corpus; hay muchas otras palabras que pueden aparecer después de un intensificador. En un sentido, lo que tenemos en el corpus es una muestra aleatoria de los valores de las variables.
+
+En este tipo de estudio, sería apropiado elaborar un modelo que considera el primer tipo de variable (GRAMMATICAL_CATEGORY; que se pueden repetir) como un efecto fijo; el segundo tipo (SPEAKER_ID; que no se pueden repetir) se deben considerar efectos aleatorios. Donde los efectos fijos se entienden como contrastes (ej. 0 para un SN animado, 1 para un SN inanimado), los efectos aleatorios se consideran variables aleatorias con una media de 0 y una desviación estándar que se estima de los datos (ve la página 10 de Brezina sobre los términos 'media'/'means' y 'desviación estándar').
+
+### El ejemplo de los intensificadores
+
+Promero, utilicemos el paquete `readxl` para poder abrir el archivo que contiene algunas observaciones anotadas del corpus. La Figura 6.9 de Brezina (página 208) presenta una muestra de estos datos.
+
+```{r echo=TRUE}
+library(tidyverse)
+library(readxl)
+# abrir los datos de Brezina sección 6.5
+rv  <- read_excel("mixed_effect_intensifiers.xlsx") %>% mutate_if(is.character,compose(as.factor,trimws))
+```
+
+La diferencia entre los adjetivos atributivos y los predicativos [se explica aquí](https://english.stackexchange.com/questions/175562/how-to-tell-if-an-adjective-is-attributive-or-predicative-efl-context/181215#181215).
+
+El paquete `lm4` ofrece una variante de glm que se llama glmer. Esta función permite que espequemos las variables aleatorias por la adición de un término adicional en la formula del modelo. En este ejemplo, el término adicional es `(1|Speaker), lo cual significa que queremos modelar los hablantes inviduales con una interceptación ('intercept') variable.
+
+```{r echo=TRUE}
+library(lme4)
+ml <- glmer(Outcome ~ Gender + Class + Age + Syntax + (1|Speaker), data=rv, family="binomial")
+summary(ml,corr=F)
+```
+La función `summary` nos muestra algunos astericos cerca de los efectos fijos que son estadisticamente significativos. Como observa Brezina (página 209), los hablantes mayores prefieren *very* y los contextos sintácticos con un adjetivo predicativo. ¿Qué nos dicen los efectos aleatorios? El La función de R `coef` revela una distribución especial con los log odds para cada individuo.
+
+```{r echo=TRUE}
+head(select(coef(ml)$Speaker,"(Intercept)"))
+```
+Consideremos la línea del resumen del model donde se presenta el AIC. El AIC es el Akaike Informational Criterion, una medida de la cualidad del modelo (ve  la sección 4.4 de Brezina, páginas 124-125). En la siguiente Tabla, se compara este modelo con uno más simple, m0, que carece del efecto aleatorio de "Speaker." Cuanto más bajo sea el valor del AIC, mejor será el modelo. Entonces, el valor de AIC del modelo m1 indica que es el modelo preferido. Sin embargo, no es siempre el caso que un modelo con más indicadores (predictors) sea mejor. De hecho, el AIC incluya una 'multa' basado en el número de parámetros que se tienen que estimar en el modelo.
+
+```{r echo=TRUE}
+m0  <- glm(Outcome ~ Gender + Class + Age + Syntax, data=rv, family="binomial")
+summary(m0)
+```
+
+| modelo | AIC |
+|:-----|:-----|:-----|
+| m0 (sin efecto aleatorio) | 1755.5 |
+| m1 (hablante como efecto aleatorio) | 1624.8 |
+
+El uso de los modelos de efectos mixtos se ha hecho popular en diferentes campos de investigación. [El trabajo de Johnson (2014)](http://danielezrajohnson.com/johnson_2014b.pdf) describe algunas de las ventajas que tiene esta técnica para la sociolingüística en contraste con el método previo estándar, VARBRUL. VARBRUL (a través de GOLDVARB) era un forma de de regresión logística no-mixta. El trabajo de [Drager y Hay (2012)](https://www-proquest-com.proxy-remote.galib.uga.edu/docview/1008896594/A9CC2FD7DB2C485EPQ/3?accountid=14537) aplica los modelos mixtos a los grupos de chicas de colegio en Nueva Zelanda. Además, [Jaeger (2008)](https://www-sciencedirect-com.proxy-remote.galib.uga.edu/science/article/pii/S0749596X07001337) también propone que los modelos de efectos mixtso son mejores para la psicolingüística, comparado con el método estándar previo, ANOVA.
+
 
 
 ***
