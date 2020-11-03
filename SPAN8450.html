@@ -3065,11 +3065,11 @@ slope &lt;- unname(dative_mdl$coefficients[2])</code></pre>
 <h3>El ejemplo de los intensificadores</h3>
 <p>Promero, utilicemos el paquete <code>readxl</code> para poder abrir el archivo que contiene algunas observaciones anotadas del corpus. La Figura 6.9 de Brezina (página 208) presenta una muestra de estos datos.</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ── Attaching packages ────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
 <pre><code>## ✓ tibble  3.0.3     ✓ stringr 1.4.0
 ## ✓ readr   1.3.1     ✓ forcats 0.5.0
 ## ✓ purrr   0.3.4</code></pre>
-<pre><code>## ── Conflicts ────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Conflicts ───────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>library(readxl)
@@ -3182,9 +3182,245 @@ summary(m0)</code></pre>
 </table>
 <p>El uso de los modelos de efectos mixtos se ha hecho popular en diferentes campos de investigación. <a href="http://danielezrajohnson.com/johnson_2014b.pdf">El trabajo de Johnson (2014)</a> describe algunas de las ventajas que tiene esta técnica para la sociolingüística en contraste con el método previo estándar, VARBRUL. VARBRUL (a través de GOLDVARB) era un forma de de regresión logística no-mixta. El trabajo de <a href="https://www-proquest-com.proxy-remote.galib.uga.edu/docview/1008896594/A9CC2FD7DB2C485EPQ/3?accountid=14537">Drager y Hay (2012)</a> aplica los modelos mixtos a los grupos de chicas de colegio en Nueva Zelanda. Además, <a href="https://www-sciencedirect-com.proxy-remote.galib.uga.edu/science/article/pii/S0749596X07001337">Jaeger (2008)</a> también propone que los modelos de efectos mixtso son mejores para la psicolingüística, comparado con el método estándar previo, ANOVA.</p>
 <ul>
-<li>Para el martes, quiero que leáis el capítulo de <a href="https://uga.view.usg.edu/d2l/le/content/2055335/viewContent/32560333/View">Kolbe-Hanna y Szmrecsanyi (2015)</a> sobre la variación gramatical. En este capítulo, se menciona "Somers D_{xy}. Para más información sobre esto, se puede consulta la sección 6.3.1 de <a href="http://www.sfs.uni-tuebingen.de/~hbaayen/publications/baayenCUPstats.pdf">Baayen (2008)</a>.</li>
+<li>Para el martes, quiero que leáis el capítulo de <a href="https://uga.view.usg.edu/d2l/le/content/2055335/viewContent/32560333/View">Kolbe-Hanna y Szmrecsanyi (2015)</a> sobre la variación gramatical. En este capítulo, se menciona “Somers D_{xy}”. Para más información sobre esto, se puede consulta la sección 6.3.1 de <a href="http://www.sfs.uni-tuebingen.de/~hbaayen/publications/baayenCUPstats.pdf">Baayen (2008)</a>.</li>
 </ul>
+</div>
+</div>
+</div>
+<div id="a-semana-9" class="section level1">
+<h1>12a Semana</h1>
+<div id="la-regresión-logística" class="section level2">
+<h2>La regresión logística</h2>
+<p>En el trabajo de <a href="https://uga.view.usg.edu/d2l/le/content/2055335/viewContent/32560333/View">Kolbe-Hanna and Szmrecsanyi (2015)</a>, se presenta un estudio de la elisión de los complementantes en inglés con el uso del <a href="https://uga.view.usg.edu/d2l/le/content/2064782/viewContent/32546838/View">FRED corpus</a>. La variable dependiente es la presencia o la ausencia de la palabra “that” en los contextos descritos en la siguiente tabla:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">complementier position</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">I think</td>
+<td align="left">that</td>
+<td align="left">this is good</td>
+</tr>
+<tr class="even">
+<td align="left">I think</td>
+<td align="left"><span class="math inline">\(\emptyset\)</span></td>
+<td align="left">this is good</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tabla 1</strong> Omisión del complementante (p. 107, Tabla 4.1)</p>
+<p>¿Cuáles son los factores que condicionen la manifestación de un complementante explícito? Dr. Kolbe-Hanna ha compartido sus datos con el profesor Hale y se encuentran en el archivo <code>compl_spoken2.csv</code>. En este archivo, las variables dependientes se incluyen como columnas; es decir, la variable dependiente (“that” vs. omisión de “that”) entre otras.</p>
+<ul>
+<li>El pronombre de la cláusula principal (<code>matrix_subject_type_3</code>)</li>
+<li>La negación (o no) de la cláusula principal (<code>matrix_negation</code>)</li>
+<li>Si el primer elemento de la cláusula subordinanda es un pronombre (<code>complement_subject</code>)</li>
+</ul>
+<p>Estos datos se pueden abrir así:</p>
+<pre class="r"><code>compl &lt;- read.table(&quot;compl_spoken2.csv&quot;, header=T, sep=&quot;,&quot;, dec=&quot;.&quot;, stringsAsFactors=T)</code></pre>
+<p>La función de <code>read.table</code> eximina el archivo CSV (comma-separated-value) y asegura que todas las columnas con valores de series de carácteres (“character-string-valued columns”) se tratarán como factores. Luego, esta función produce un data frame en R con el nombre <code>compl</code>.</p>
+<p>Los factores independientes se describen individualmente en la sección 2.2.1 del capítulo de Kolbe-Hanna and Szmrecsanyi. Su sistema de codificación de los datos se describe en <a href="https://uga.view.usg.edu/d2l/le/content/2055335/viewContent/32591365/View">el Codebook</a>.</p>
+<p>La estrategia de Kolbe-Hanna y Szrecsanyi es empezar con un modelo que contiene todos los factores y después removerlos uno por uno par encontrar la explicación más mezquina. Aquí repetimos los pasos importantes de su análsis, empezando con la verificación de una suposición importante de la regresión logística: que cada factor predice el resultado de una manera distinta.</p>
+<pre class="r"><code>library(lme4)
+maximal_model &lt;- glmer(label_verbose ~ verbmorph +
+               matrix_subject_type_3 +
+               log(emb_cl_length) +
+               log(interv_material_macl_embcl + 1) +
+               horror_aequi +
+               log(ehms_etc_narrow + 1) +
+               ttrpassage +
+               adv_beginning +
+               adv_afterend +
+               matrix_negation +
+               matrix_auxiliary +
+               complement_subject +
+               I_THINK_alert +
+               alpha_persistence_50 + 
+               verbid +
+               morphid +
+                (1|speaker) + (1|verb) + (1|county) + (1|text),
+            data=compl,
+            family=&quot;binomial&quot;,
+            control=glmerControl(optimizer=&quot;bobyqa&quot;,optCtrl=list(maxfun=2e5)
+            ))</code></pre>
+<p>El argumento adicional <code>control=glmerControl</code> mande a R que intente lo máximo cuando crea un modelo, un proceso que evita los fallos que tienen que ver con la falta de convergencia. ¿Se reconocen los efectos aletorios especificados en este modelo?</p>
+<div id="la-multicolinearidad" class="section level3">
+<h3>La (multi)colinearidad</h3>
+<p>Según <a href="http://www.dsglynn.univ-paris8.fr/">Dylan Glynn</a> en una presentación reciente, “Multicollinearity is typically the biggest problem in corpus linguistics.” Los indicadores son colineares si se pueden re-escribir como la suma ponderada de uno o más de los otros indicadores que también existen como parte del modelo. Tener dos variables que son similares de esta manera aumenta la posibilidad de que rechazemos la hipótesis nula cuando sea verdad.</p>
+<p>La idea de la colinearidad parece extraña cuando se compara con los indicadores categóricos, pero todavía podemos verificar con un cálculo de los factores de inflación variante (“variance inflation predictors”). El VIF es una proporción de la varianza de un coeficiente particular <span class="math inline">\(\beta\)</span>_j cuando el resultado del modelo completo (es decir, con todos los factores) la comparación con la varianza de <span class="math inline">\(\beta\)</span>_j de un modelo que solo tuviera este como el único indicador. En la literatura, hay cierto debata sobre el nivel de utilidad del VIF. Según Glynn, se debe indicar cualquier número que excede 4.</p>
+<pre class="r"><code>library(car)</code></pre>
+<pre><code>## Loading required package: carData</code></pre>
+<pre><code>## Registered S3 methods overwritten by &#39;car&#39;:
+##   method                          from
+##   influence.merMod                lme4
+##   cooks.distance.influence.merMod lme4
+##   dfbeta.influence.merMod         lme4
+##   dfbetas.influence.merMod        lme4</code></pre>
+<pre><code>## 
+## Attaching package: &#39;car&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     some</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     recode</code></pre>
+<pre class="r"><code>car::vif(maximal_model)</code></pre>
+<pre><code>##                                         GVIF Df GVIF^(1/(2*Df))
+## verbmorph                           1.708619  3        1.093388
+## matrix_subject_type_3               1.812767  3        1.104224
+## log(emb_cl_length)                  1.188328  1        1.090105
+## log(interv_material_macl_embcl + 1) 1.040064  1        1.019835
+## horror_aequi                        1.077283  1        1.037923
+## log(ehms_etc_narrow + 1)            1.053797  1        1.026546
+## ttrpassage                          1.010196  1        1.005085
+## adv_beginning                       1.137816  1        1.066684
+## adv_afterend                        1.007280  1        1.003633
+## matrix_negation                     1.343690  1        1.159176
+## matrix_auxiliary                    1.231323  1        1.109650
+## complement_subject                  1.189801  1        1.090780
+## I_THINK_alert                       1.642903  1        1.281758
+## alpha_persistence_50                1.011810  1        1.005888
+## verbid                              1.030038  1        1.014908
+## morphid                             1.249451  1        1.117788</code></pre>
+<p>Debido a que algunos de los factores tienen más de dos valores (ej. la morfología verbal tienen 4), los VIFs se identifican como “generalized” con grados de libertad que más de 1. En este caso, todos los GVIF son buenos.</p>
+</div>
+<div id="vale-un-indicador-particular" class="section level3">
+<h3>¿Vale un indicador particular?</h3>
+<p>Para determinar si vale la pena incluir un indicador en el modelo, debemos tener algunas medidas de “goodness of fit”. En la última sesión de clase, hablamos de AIC como una medida de la calidad de un modelo. Esta medida nos puede servir. Brezina describe esta medida con una ecuación (página 125) como la variación en los datos que queda sin explicación en un modelo particular. Esta variación se conoce como el “likelihood” <span class="math inline">\(L\)</span> de un “fitted model”, dado los datos overvados. Podemos utilizar el “likelihood” como una prueba estadística mediante el cálculo de la probabilidad de dos “likelihoods”; es decir, sobre un modelo que incluye el indicador bajo consideración en comparación con un modelo que no lo incluye.</p>
+<ul>
+<li>likelihood ratio <span class="math display">\[= -2ln(\frac{L(m_o)}{L(m_1)}) = 2(logLik(m_1) - logLik(m_o)\]</span></li>
+</ul>
+<p>Con los logoritmos, la división se convierte en la resta. Según el teorema de Wilk, este likelihood ratio tienen una distribución <span class="math inline">\(\chi^{2}\)</span> con un número de grados de libertad que equivale al número de parámetros que se remueven del modelo. Intentemos quitar el factor de morfología verbal del modelo.</p>
+<div id="remover-un-efecto-fijo" class="section level4">
+<h4>Remover un efecto fijo</h4>
+<p>Consideremos la hipótesis nula que la morfología verbal no tiene valor en nuestro modelo. Lo podemos quitar del modelo con <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Updating-fitted-models">la función en R <code>update</code></a>. El segundo argumento en esta función es un formulario en el cual el punto significa “el mismo que antes” y el signo menos significa “remover”.</p>
+<pre class="r"><code>no_verb &lt;- update(maximal_model, . ~ . -verbmorph)
+noverbmorphdeviance  &lt;- -2 * logLik(no_verb) + 2 * logLik(maximal_model)</code></pre>
+<p>Notáos que el modelo con más indicadores siempre tendrá un mejor log-likelihood. ¿Pero es significamente mejor?</p>
+<pre class="r"><code>pchisq(as.numeric(noverbmorphdeviance), df=3, lower.tail=F)  # 4 - 1 = 3 degrees of freedom</code></pre>
+<pre><code>## [1] 1.273238e-05</code></pre>
+<p>La probabilidad de rechazar equivocadamente la hipótesis nula cuando es verdad, considerando una probabilidad de “likelihood” tan grande, es mínima, menos de 0.0000127324. Concluimos que el indicador de la morfología verbal se debe retener en el modelo. Podemos realizar esta misma prueba con la función <code>anova</code> en R.</p>
+<pre class="r"><code>anova(no_verb, maximal_model, test=&quot;Chisq&quot;)</code></pre>
+<pre><code>## Data: compl
+## Models:
+## no_verb: label_verbose ~ matrix_subject_type_3 + log(emb_cl_length) + 
+## no_verb:     log(interv_material_macl_embcl + 1) + horror_aequi + log(ehms_etc_narrow + 
+## no_verb:     1) + ttrpassage + adv_beginning + adv_afterend + matrix_negation + 
+## no_verb:     matrix_auxiliary + complement_subject + I_THINK_alert + alpha_persistence_50 + 
+## no_verb:     verbid + morphid + (1 | speaker) + (1 | verb) + (1 | county) + 
+## no_verb:     (1 | text)
+## maximal_model: label_verbose ~ verbmorph + matrix_subject_type_3 + log(emb_cl_length) + 
+## maximal_model:     log(interv_material_macl_embcl + 1) + horror_aequi + log(ehms_etc_narrow + 
+## maximal_model:     1) + ttrpassage + adv_beginning + adv_afterend + matrix_negation + 
+## maximal_model:     matrix_auxiliary + complement_subject + I_THINK_alert + alpha_persistence_50 + 
+## maximal_model:     verbid + morphid + (1 | speaker) + (1 | verb) + (1 | county) + 
+## maximal_model:     (1 | text)
+##               npar    AIC    BIC  logLik deviance  Chisq Df Pr(&gt;Chisq)    
+## no_verb         22 2514.9 2659.5 -1235.5   2470.9                         
+## maximal_model   25 2495.5 2659.9 -1222.8   2445.5 25.401  3  1.273e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Notemos que el mismo p-value está indicado en la fila de los resultados del <code>anova</code> que corresponde con el “maximal model”. El juicio que este model sea mejor que el modelo sin el indicador de la morfología verbal es estadísticamente significativo.</p>
+</div>
+<div id="remover-un-efecto-aleatorio" class="section level4">
+<h4>Remover un efecto aleatorio</h4>
+<p>También podemos realizar esta misma prueba de “likelihood ration” con los efectos aleatorios, como, por ejemplo, “County” de los hablantes incluídos en el corpus de FRED.</p>
+<pre class="r"><code>no_county &lt;- update(maximal_model, . ~ . -(1|county))
+anova(maximal_model, no_county, test=&quot;Chisq&quot;)</code></pre>
+<pre><code>## Data: compl
+## Models:
+## no_county: label_verbose ~ verbmorph + matrix_subject_type_3 + log(emb_cl_length) + 
+## no_county:     log(interv_material_macl_embcl + 1) + horror_aequi + log(ehms_etc_narrow + 
+## no_county:     1) + ttrpassage + adv_beginning + adv_afterend + matrix_negation + 
+## no_county:     matrix_auxiliary + complement_subject + I_THINK_alert + alpha_persistence_50 + 
+## no_county:     verbid + morphid + (1 | speaker) + (1 | verb) + (1 | text)
+## maximal_model: label_verbose ~ verbmorph + matrix_subject_type_3 + log(emb_cl_length) + 
+## maximal_model:     log(interv_material_macl_embcl + 1) + horror_aequi + log(ehms_etc_narrow + 
+## maximal_model:     1) + ttrpassage + adv_beginning + adv_afterend + matrix_negation + 
+## maximal_model:     matrix_auxiliary + complement_subject + I_THINK_alert + alpha_persistence_50 + 
+## maximal_model:     verbid + morphid + (1 | speaker) + (1 | verb) + (1 | county) + 
+## maximal_model:     (1 | text)
+##               npar    AIC    BIC  logLik deviance  Chisq Df Pr(&gt;Chisq)    
+## no_county       24 2512.6 2670.4 -1232.3   2464.6                         
+## maximal_model   25 2495.5 2659.9 -1222.8   2445.5 19.081  1  1.253e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Otra vez, la prueba nos indica que debemos retener este indicador.</p>
+</div>
+<div id="la-selección-al-revés" class="section level4">
+<h4>La selección al revés</h4>
+<p>El proceso de quitar iterativamente los indicadores que no se quieren se conoce como la selección al revés (“backwards selection”, Brezina p. 123). Podemos calcular las probabilidades de likelihood para todos los modelos posibles que se pueden obtener mediante la función <code>drop1</code> que permite la extracción de un único indicador. ¡Cuidado! Este proceso requiere cierto poder computacional.</p>
+<pre class="r"><code>drop1(maximal_model, test=&quot;Chisq&quot;)</code></pre>
+<pre><code>## Single term deletions
+## 
+## Model:
+## label_verbose ~ verbmorph + matrix_subject_type_3 + log(emb_cl_length) + 
+##     log(interv_material_macl_embcl + 1) + horror_aequi + log(ehms_etc_narrow + 
+##     1) + ttrpassage + adv_beginning + adv_afterend + matrix_negation + 
+##     matrix_auxiliary + complement_subject + I_THINK_alert + alpha_persistence_50 + 
+##     verbid + morphid + (1 | speaker) + (1 | verb) + (1 | county) + 
+##     (1 | text)
+##                                     npar    AIC     LRT   Pr(Chi)    
+## &lt;none&gt;                                   2495.5                      
+## verbmorph                              3 2514.9  25.400 1.273e-05 ***
+## matrix_subject_type_3                  3 2581.0  91.464 &lt; 2.2e-16 ***
+## log(emb_cl_length)                     1 2604.2 110.732 &lt; 2.2e-16 ***
+## log(interv_material_macl_embcl + 1)    1 2496.6   3.116 0.0775437 .  
+## horror_aequi                           1 2506.7  13.168 0.0002847 ***
+## log(ehms_etc_narrow + 1)               1 2501.2   7.728 0.0054367 ** 
+## ttrpassage                             1 2494.5   1.011 0.3146926    
+## adv_beginning                          1 2495.9   2.460 0.1167523    
+## adv_afterend                           1 2497.4   3.955 0.0467311 *  
+## matrix_negation                        1 2493.6   0.106 0.7445102    
+## matrix_auxiliary                       1 2504.6  11.071 0.0008770 ***
+## complement_subject                     1 2513.8  20.322 6.543e-06 ***
+## I_THINK_alert                          1 2501.3   7.790 0.0052538 ** 
+## alpha_persistence_50                   1 2507.6  14.117 0.0001718 ***
+## verbid                                 1 2494.1   0.576 0.4479153    
+## morphid                                1 2493.7   0.182 0.6699228    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="el-modelo-óptimo" class="section level4">
+<h4>El modelo óptimo</h4>
+<p>Los resultados de las pruebas de las probabilidades likelihood sugieren que debamos remover algunos de los indicadores como la presencia de la negación en la cláusula principal y la probilidad de tipo-caso dentro de cincuenta palabras. Este proceso produce el siguiente modelo:</p>
+<pre class="r"><code>optimal_model &lt;- glmer(label_verbose ~
+  verbmorph +
+  matrix_subject_type_3 +
+  horror_aequi +
+  adv_afterend +
+  matrix_auxiliary +
+  complement_subject +
+  I_THINK_alert +
+  alpha_persistence_50 +
+  log(emb_cl_length) +
+  log(ehms_etc_narrow + 1) + 
+  (1 |verb) + 
+  (1 |speaker) + 
+  (1 |county) +
+  (1 |text),
+  data=compl,
+  family=&quot;binomial&quot;,
+  control=glmerControl(optimizer=&quot;bobyqa&quot;,optCtrl=list(maxfun=2e5)))</code></pre>
+<p>Si utilizamos la función <code>summary</code> con el <code>optimal_model</code>, veremos una tabla que nos muestra cuáles son los indicadores que son estadísticamente significativos según una prueba de Wald (Brezina, página 128).</p>
+<p>El resumen en este caso corresponde a lo que se publicó en la Tabla 9 de Kolbe-Hanna &amp; Szmrecsanyi (2015). Podemos recuperar los “odds ratios” con la producción de los exponentes de los estimados (es decir, los log-odds). Con R, este proceso se puede realizar para todos los efectos fijos a la vez: `exp(fixef(optimal_model)) (ver la página 170 de Kolbe-Hanna y Szmrecsanyi).</p>
+<p>Consideremos ahora que pasa si el sujeto es “it” como en “it appears…”. Con los valores típicos de duración de cláusula y falta de fluidez:</p>
+<pre class="r"><code>intercept  &lt;- unname(fixef(optimal_model)[1])
+thirdpersoninanimate &lt;- unname(fixef(optimal_model)[6])
+clauselength &lt;- unname(fixef(optimal_model)[14])
+disfluency  &lt;-  unname(fixef(optimal_model)[15])</code></pre>
+<p>Vemos que si el sujeto es “it”, la probabilidad de tener un “that” explícito aumenta de 0.21 a 0.52.</p>
+<pre class="r"><code>plogis(intercept + thirdpersoninanimate*0 + clauselength*mean(log(compl$emb_cl_length)) + disfluency*mean(log(compl$ehms_etc_narrow +1)))</code></pre>
+<pre><code>## [1] 0.2139068</code></pre>
+<pre class="r"><code>plogis(intercept + thirdpersoninanimate*1 + clauselength*mean(log(compl$emb_cl_length)) + disfluency*mean(log(compl$ehms_etc_narrow +1)))</code></pre>
+<pre><code>## [1] 0.5283416</code></pre>
+<p>Este cálculo es análogo a lo que hicimos con los datos de Bresnan et al. sobre la alternancia dativa.</p>
 <hr />
+</div>
 </div>
 </div>
 </div>
