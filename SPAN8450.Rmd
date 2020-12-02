@@ -2263,6 +2263,7 @@ Este cálculo es análogo a lo que hicimos con los datos de Bresnan et al. sobre
 - [Spanish in Texas](http://spanishintexas.org/)
 - [Bilingual Youth Texts](https://byts.commons.gc.cuny.edu/)
 - [COW](https://www.webcorpora.org/): High Quality Web Corpora
+- [Proyecto COLA](https://blogg.hiof.no/colam-esp/): El corpus COLA posibilita el análisis del habla oral adolescente (13 a 19 años) de Madrid y de otras capitales latinoamericanas.
 
 
 ## Adquisición {-}
