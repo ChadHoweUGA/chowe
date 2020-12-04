@@ -18,6 +18,8 @@ My principle area of research is language variation and change, primarily focusi
 
 
 ## Recent/Upcoming
+- 2020. Howe, Chad. Corpus tools for Quechua studies: NLP for low-resource languages. [6th Annual Meeting of the Quechua Alliance](https://thequechua.org/qa-registration2020/). [Slides](https://drive.google.com/file/d/1HWg_ILUAvR3dobGZ3OrjpF9dGh_km7_q/view?usp=sharing)
+- 2020. Critchfield, Madeline and Chad Howe. Accusative Clitic Strategies in Mosquito Coast Spanish. [11th Workshop on Immigrant Languages in the Americas](http://www.workshoponimmigrantlanguages.org/wila-11.html).
 - 2020. Bateman McDonald, Bethany, Sarah Hubbel, and Chad Howe. From placeholder to pause filler: *na* in Quechua/Spanish bilingual speech. [2020 Andean Research Proseminar](https://thinkingandeanstudies.com/)
 - 2020 (April-<font size="3" color="red">CANCELED!</font>) Howe, Chad, Sarah Hubbel, and Bethany Bateman McDonald. Transfer in discourse: The case of Quechua *na*. [10th International Workshop on Spanish Sociolinguistics](https://wss10.modlangs.gatech.edu/). Georgia Tech. [Abstract](https://drive.google.com/open?id=10MYJy8qPeAyFwEAuGn-P2qIMF9NR-7gu)
 - Howe, Chad and Camila Lívio. 2020. Intensification in diachrony:A corpus analysis of *muito* and *bem* in Portuguese. [50th Linguistic Symposium on Romance Languages](http://sites.utexas.edu/lsrl50/2019/09/05/info-post/). University of Texas at Austin. [Abstract](https://drive.google.com/open?id=1jHdtj10c6dRzxZbuxXHE4e1XCxOvh9nK)
