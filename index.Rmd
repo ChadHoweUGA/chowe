@@ -40,24 +40,25 @@ Current students are encouraged to consult the [Resources page of my website](ht
 
 ----
 
-### Teaching Schedule (Fall 2020)
+### Schedule (Spring 2021-Research Intensive Semester)
 
-1.  SPAN 8450: Spanish in the age of big data: Corpus-based approaches to language and grammar
-2.  SPAN 3050: Introducción a la lingüística hispánica
-3.  FYOS 1001: Endangered Languages: Preserving the World's Voices
-3.  Office Hours: Tuesdays from 1:00-3:00 (via Zoom)
+1.  Linguistics Colloquium: Fridays at 12:40 (245 MLC)
+2.  Office Hours: Available by appointment only
 
+<!--
 | Time | Tuesdays | Thursdays |
 | ----------- | ----------- |  ----------- |
 | 9:30-10:45 | SPAN 3050 | SPAN 3050 |
 | 11:00-12:15 | SPAN 8650 | SPAN 8650 |
 | 12:30-1:45 | --- | FYOS 1001 |
+-->
+
 
 ----
 
 ### Graduate Coordinator
 
-As of Fall 2020, I will be serving as [Graduate Coordinator](https://www.linguistics.uga.edu/graduate-program) in the Department of Linguistics. Current students should feel free to contact me regarding advisement and any other program-related questions. I will be holding open office hours for graduate students on **Fridays from 1:00-3:00 (via Zoom)**. Prospective students are encouraged to contact me as well with questions related to UGA's graduate offerings in linguistics. Below are a few helpful links for students (current and prospective):
+As of Fall 2020, I will be serving as [Graduate Coordinator](https://www.linguistics.uga.edu/graduate-program) in the Department of Linguistics. Current students should feel free to contact me regarding advisement and any other program-related questions. Prospective students are encouraged to contact me as well with questions related to UGA's graduate offerings in linguistics. Below are a few helpful links for students (current and prospective):
 
 - [UGA Graduate School](https://grad.uga.edu/)
 - [UGA Grad School Calendar](https://grad.uga.edu/index.php/current-students/important-dates-deadlines/)
